@@ -26,7 +26,7 @@ public class Health : MonoBehaviour
     {
         sound = GetComponent<AudioSource>();
         if (!CompareTag("Player")) text.text = Convert.ToString(healthPoint);
-        else playerText.text = "Health: " + Convert.ToString(healthPoint);
+        else playerText.text = "Health: " + Convert.ToString(Math.Round(healthPoint, 2)) + "/" + Convert.ToString(maxHealthPoint);
     }
 
     public bool SetHealth(float damage, float sanityDamage = 0)
@@ -51,7 +51,7 @@ public class Health : MonoBehaviour
             if (healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
             if (!CompareTag("Player")) text.text = Convert.ToString(Math.Round(healthPoint, 2));
             else {
-                playerText.text = "Health: " + Convert.ToString(Math.Round(healthPoint, 2));
+                playerText.text = "Health: " + Convert.ToString(Math.Round(healthPoint, 2)) + "/" + Convert.ToString(maxHealthPoint);
                 if (lifes != 0)playerText.text += " x" + Convert.ToString(lifes);
                 GetComponent<SanitySystem>().Sanity -= sanityDamage;
             }

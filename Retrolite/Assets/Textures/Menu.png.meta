@@ -291,9 +291,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 1
+        y: 0
         width: 56
-        height: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -610,7 +610,7 @@ TextureImporter:
         width: 9
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -631,7 +631,7 @@ TextureImporter:
         width: 9
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -639,6 +639,27 @@ TextureImporter:
       bones: []
       spriteID: 226d56142fdcbb04997ab0359e162840
       internalID: 1366822164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Menu_24
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 1
+        width: 1
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29fff16153f4bf44d9b334a623ce901a
+      internalID: 658860356
       vertices: []
       indices: 
       edges: []
@@ -655,6 +676,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Menu_3: 895019836
+      Menu_24: 658860356
       Menu_20: -660484294
       Menu_10: 1537790262
       Menu_15: 1342893777

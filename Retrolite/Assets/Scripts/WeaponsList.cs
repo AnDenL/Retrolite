@@ -12,6 +12,8 @@ public class WeaponsList : MonoBehaviour
     public Gun firstGun, secondGun;
     public SpriteRenderer Reflection1, Reflection2;
     public bool reload = false;
+    public AudioClip start,end;
+    private AudioSource sound;
     private SpriteRenderer m_SpriteRenderer;
 
     private void Start()
@@ -29,6 +31,7 @@ public class WeaponsList : MonoBehaviour
         secondBulletImage.sprite = bullets[secondGun.weaponStyle];
         Formula(firstGun, firstCharacteristics);
         Formula(secondGun, secondCharacteristics);
+        sound = GetComponent<AudioSource>();
     }
     private void Update()
     {
@@ -60,6 +63,7 @@ public class WeaponsList : MonoBehaviour
     {
         if(!reload)
         {
+            sound.PlayOneShot(start);
             float t = Time.time;
             reload = true;
             gun.animator.SetBool("Reload", true);
@@ -71,6 +75,7 @@ public class WeaponsList : MonoBehaviour
             gun.ammo = gun.maxAmmo;
             firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
             secondCharacteristics[4].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
+            sound.PlayOneShot(end);
             reload = false;
         } 
     }
