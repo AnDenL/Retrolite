@@ -13,7 +13,7 @@ public class Shop : MonoBehaviour
     private void Start() 
     {  
         SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
-        purchase = (UnityEngine.Random.Range(0,5));
+        purchase = (UnityEngine.Random.Range(0,6));
         Sprite.sprite = Image[purchase];
         switch(purchase){
             case 0:

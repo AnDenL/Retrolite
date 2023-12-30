@@ -206,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 700547988, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
+  m_Sprite: {fileID: -1385690772, guid: a0227c255529ce7458fa89907e03b474, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -233,11 +233,12 @@ MonoBehaviour:
   text: {fileID: 6951438512298072863}
   description: {fileID: 8800566136555194860}
   Image:
-  - {fileID: 700547988, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: -80556855, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: -2004766500, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: 37169504, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: 1832585029, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
+  - {fileID: -1385690772, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 1404359551, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: -1761702436, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 2109293080, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 1432614340, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 1805296171, guid: a0227c255529ce7458fa89907e03b474, type: 3}
   panel: {fileID: 5660105895661228146}
   needToBuy: 1
 --- !u!58 &49983322988939700

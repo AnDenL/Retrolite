@@ -62,12 +62,12 @@ public class Settings : MonoBehaviour
         float currentAspect = Screen.height / (float)Screen.width;
         if (currentAspect < 0.5625f)
         {
-            int ResolutionY = Convert.ToInt32(144 * (currentAspect / 0.5625f));
+            int ResolutionY = Convert.ToInt32(171 * (currentAspect / 0.5625f));
             pixelPerfectCamera.refResolutionY = ResolutionY;
         }
         else
         {
-            int ResolutionX = Convert.ToInt32(256 * (currentAspect / 0.5625f));
+            int ResolutionX = Convert.ToInt32(304 * (currentAspect / 0.5625f));
             pixelPerfectCamera.refResolutionX = ResolutionX;
         }
         if (water != null)

@@ -277,7 +277,6 @@ GameObject:
   - component: {fileID: 7508940506585690863}
   - component: {fileID: 7508940506585690856}
   - component: {fileID: 7508940506585690857}
-  - component: {fileID: 6233293681718344633}
   - component: {fileID: 7508940506585690858}
   - component: {fileID: 7508940506585690859}
   - component: {fileID: 7508940506585690852}
@@ -398,19 +397,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6233293681718344633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7508940506585690853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9b32c6bad828ee40b02ab73e88f63e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delay: 30
 --- !u!114 &7508940506585690858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,7 +443,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 0.625}
+    oldSize: {x: 0.65, y: 0.5}
     newSize: {x: 0.6875, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

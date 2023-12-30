@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5766852522940548032}
   - component: {fileID: 5766852522940548035}
   - component: {fileID: 5766852522940548034}
+  - component: {fileID: 2685097493327191798}
   - component: {fileID: 5766852522940548037}
   - component: {fileID: 5766852522940548036}
   m_Layer: 4
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 446679568, guid: bb10b377eb422ba41bb84d181897dc36, type: 3}
+  m_Sprite: {fileID: -642110225, guid: 6d918180b1616944a81d01d12ccc7869, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
@@ -4889,6 +4890,22 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &2685097493327191798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5766852522940548039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 915ec2b5ab258cd44aa8ba281a15e3d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -349190132, guid: 6d918180b1616944a81d01d12ccc7869, type: 3}
+  - {fileID: -1498841769, guid: 6d918180b1616944a81d01d12ccc7869, type: 3}
+  - {fileID: -642110225, guid: 6d918180b1616944a81d01d12ccc7869, type: 3}
 --- !u!199 &5766852522940548037
 ParticleSystemRenderer:
   serializedVersion: 6

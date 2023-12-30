@@ -5135,11 +5135,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletImage:
-  - {fileID: -529939129, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
-  - {fileID: -91629141, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
-  - {fileID: 217924713, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
-  - {fileID: -515034583, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
-  - {fileID: -515034583, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
+  - {fileID: -1287058670, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
+  - {fileID: -844323359, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
+  - {fileID: -1826115709, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
+  - {fileID: -122304162, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
+  - {fileID: -122304162, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
   bulletSpeed: 0
   echo: 0
   ammo: 0

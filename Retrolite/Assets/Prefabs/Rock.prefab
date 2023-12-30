@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 887841332, guid: 8fd4dc145e967714c832191d1d972113, type: 3}
+  m_Sprite: {fileID: -727310366, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 2022585605, guid: 8fd4dc145e967714c832191d1d972113, type: 3}
-  - {fileID: 887841332, guid: 8fd4dc145e967714c832191d1d972113, type: 3}
+  - {fileID: -727310366, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
+  - {fileID: 260039901, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
 --- !u!1 &8962978271635220150
 GameObject:
   m_ObjectHideFlags: 0
@@ -262,6 +262,7 @@ MonoBehaviour:
   InvisibleTime: 0
   isInvincible: 0
   invertDamage: 0
+  RevivalEffect: {fileID: 0}
 --- !u!95 &8962978271699224639
 Animator:
   serializedVersion: 4

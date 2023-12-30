@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: -367907616, guid: 4a9af19c22fadde4889772659f722d4e, type: 3}
+  m_Sprite: {fileID: -321733385, guid: 1d3eb6158d3f34945889b60882eedafc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -231,6 +231,7 @@ MonoBehaviour:
   InvisibleTime: 0.1
   isInvincible: 0
   invertDamage: 0
+  RevivalEffect: {fileID: 0}
 --- !u!95 &916429074740485973
 Animator:
   serializedVersion: 4
@@ -1829,7 +1830,7 @@ ParticleSystem:
     uvChannelMask: -1
     rowMode: 1
     sprites:
-    - sprite: {fileID: 85327816, guid: 4a9af19c22fadde4889772659f722d4e, type: 3}
+    - sprite: {fileID: 1229364023, guid: 1d3eb6158d3f34945889b60882eedafc, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:

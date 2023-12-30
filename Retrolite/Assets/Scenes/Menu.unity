@@ -172,10 +172,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0022883294
-    y: 0
-    width: 0.9954233
-    height: 1
+    x: 0.0010940919
+    y: 0.0019455253
+    width: 1.6280087
+    height: 0.7392996
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2267,6 +2267,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1513949685171543583, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1513949685171543583, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -2335,6 +2339,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5736882748632301461, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5736882748632301461, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 0
       objectReference: {fileID: 0}
@@ -2369,6 +2377,10 @@ PrefabInstance:
     - target: {fileID: 7200782640961747505, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7333855045731571892, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
+      propertyPath: m_Value
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7333855045731571892, guid: 35193b3207c3e0b41a65dceab4932dc7, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

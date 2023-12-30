@@ -233,11 +233,11 @@ MonoBehaviour:
   text: {fileID: 7402505855110698758}
   description: {fileID: 8999150708583564789}
   Image:
-  - {fileID: 700547988, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: -80556855, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: -2004766500, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: 37169504, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
-  - {fileID: 1832585029, guid: 075f6d3faf0d91e48889c9cd198983e9, type: 3}
+  - {fileID: -1385690772, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 1404359551, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: -1761702436, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 2109293080, guid: a0227c255529ce7458fa89907e03b474, type: 3}
+  - {fileID: 1432614340, guid: a0227c255529ce7458fa89907e03b474, type: 3}
   panel: {fileID: 5210172149324258411}
   needToBuy: 0
 --- !u!58 &464733004314658221
