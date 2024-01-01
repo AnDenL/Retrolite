@@ -1528,12 +1528,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1598484195733972300, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1640263253463356900, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1640263253463356900, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640263253463356900, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2547278658533551003, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
@@ -1806,11 +1814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4262784988486564202, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_Size.y
-      value: 0.8
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 4262784988486564202, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_Offset.y
-      value: -0.3
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 4262784988486564204, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: hp
@@ -1976,6 +1984,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 4262784989426170473, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 4262784989713896675, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2
@@ -1987,6 +1999,10 @@ PrefabInstance:
     - target: {fileID: 4307097149261363910, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4307097149261363910, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4307097149722238224, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2025,6 +2041,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6199547559533794170, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6199547559533794170, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 0
       objectReference: {fileID: 0}
@@ -2043,6 +2063,10 @@ PrefabInstance:
     - target: {fileID: 6261307492620641234, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_Color.a
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6261307492620641234, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6261307492620641234, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
       propertyPath: m_WasSpriteAssigned
@@ -2150,6 +2174,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aeed86477f7a7ee4a81f46ef9c1bb7c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1139294818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11824813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4904a791e3eaa4e96f1fa20c08f120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1171916899

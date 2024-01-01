@@ -28,6 +28,7 @@ public class Gun : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>(); ;
         thisGun = GetComponent<Gun>();
+        SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
         if(randomizeWeapon){
             spread = UnityEngine.Random.Range(0f, 4f); ;
             weaponStyle = UnityEngine.Random.Range(0,5);
@@ -47,10 +48,7 @@ public class Gun : MonoBehaviour
             ammo = UnityEngine.Random.Range(4, 18);
             maxAmmo = ammo;
             reloadTime = UnityEngine.Random.Range(0.2f, 0.8f) * Mathf.Sqrt(ammo);
-        }
-        SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
-        Sprite.sprite = Image[weaponStyle];
-        switch(weaponStyle){
+            switch(weaponStyle){
                 case 1:
                     shootSpeed /= 2;
                     break;
@@ -66,7 +64,9 @@ public class Gun : MonoBehaviour
                 case 5:
                     Sprite.color = new Color(1,1,1,0);
                     break;
-        }
+            }
+        }   
+        Sprite.sprite = Image[weaponStyle];
     }
     void Start()
     {

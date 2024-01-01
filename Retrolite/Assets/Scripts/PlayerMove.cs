@@ -25,6 +25,7 @@ public class PlayerMove : MonoBehaviour
         pos = main.WorldToScreenPoint(transform.position);
         Vector2 MoveDirection = new Vector2(transform.position.x + horizontalMove,transform.position.y + verticalMove);
         transform.position = Vector2.MoveTowards(transform.position,MoveDirection,speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
         Flip();
     }
     void Flip()

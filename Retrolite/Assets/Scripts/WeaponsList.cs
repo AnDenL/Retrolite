@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class WeaponsList : MonoBehaviour
 {
     public Image weaponImage, secondWeaponImage;
@@ -79,11 +80,11 @@ public class WeaponsList : MonoBehaviour
             reload = false;
         } 
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    public void PickUp(Collider2D collision, bool isLeft)
     {
-        if(collision.tag == "Weapon") 
+        if(!reload)
         {
-            if (Input.GetKeyDown(KeyCode.E) && !reload)
+            if (isLeft)
             {
                 firstWeapon.GetComponent<Collider2D>().enabled = true;
                 collision.gameObject.transform.parent = firstWeapon.transform.parent;
@@ -110,8 +111,7 @@ public class WeaponsList : MonoBehaviour
                 if(Reflection1 != null)Reflection1.sprite =  m_SpriteRenderer.sprite;
                 Formula(firstGun, firstCharacteristics);
             }
-            else if (Input.GetKeyDown(KeyCode.Q) && !reload)
-            {
+            else {
                 collision.gameObject.transform.rotation = secondWeapon.transform.rotation;
                 collision.gameObject.transform.position = secondWeapon.transform.position;
                 collision.gameObject.transform.localScale = secondWeapon.transform.localScale;
