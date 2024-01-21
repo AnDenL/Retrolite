@@ -37,7 +37,7 @@ public class Gun : MonoBehaviour
             for(int i = 0;i < numOfOperand - 1; i++)
             {
                 randomNumber[i + 1] = UnityEngine.Random.Range(0,16);
-                if (randomNumber[i + 1] == 8 && weaponStyle == 3) randomNumber[i + 1] = 1;
+                if (randomNumber[i + 1] == 7 && weaponStyle == 3) randomNumber[i + 1] = 1;
                 randomOperand[i] = UnityEngine.Random.Range(0,4);
                 if (randomNumber[i + 1] >= 8) MagicNumbers[i + 1] = UnityEngine.Random.Range(-5,6);
             }

@@ -40,11 +40,10 @@ public class Settings : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionIndex);
-        Invoke("t",0.1f);
+        Invoke("LateStart",0.1f);
     }
-    private void t(){
-        SetResolution(resolutionDropdown.value);
-    }
+
+    void LateStart() => UiCamera.orthographicSize = Game.orthographicSize;
 
     public void SetFullscreen(bool isFullscreen)
     {
@@ -61,14 +60,14 @@ public class Settings : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         float currentAspect = Screen.height / (float)Screen.width;
         if (currentAspect < 0.5625f)
-        {
-            int ResolutionY = Convert.ToInt32(171 * (currentAspect / 0.5625f));
-            pixelPerfectCamera.refResolutionY = ResolutionY;
+        { 
+            int ResolutionX = Convert.ToInt32(304 * (currentAspect / 0.5625f));
+            pixelPerfectCamera.refResolutionX = ResolutionX;
         }
         else
         {
-            int ResolutionX = Convert.ToInt32(304 * (currentAspect / 0.5625f));
-            pixelPerfectCamera.refResolutionX = ResolutionX;
+            int ResolutionY = Convert.ToInt32(171 * (currentAspect / 0.5625f));
+            pixelPerfectCamera.refResolutionY = ResolutionY;
         }
         if (water != null)
         {
@@ -79,8 +78,8 @@ public class Settings : MonoBehaviour
         }
         UI = new RenderTexture(Screen.width, Screen.height, 0);
         UiCamera.targetTexture = UI;
-        UiCamera.orthographicSize = Game.orthographicSize;
         image.texture = UI;
+        UiCamera.orthographicSize = Game.orthographicSize;
     }
     public void SaveSettings()
     {
@@ -129,9 +128,9 @@ public class Settings : MonoBehaviour
             Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
         else
             Screen.fullScreen = true;
+        pixelEffect.isOn =  Convert.ToBoolean(PlayerPrefs.GetInt("PixelEffectPreference"));
         BrightnessSlider.value = PlayerPrefs.GetFloat("BrightnessPreference");
         ChangeBrightness(BrightnessSlider.value);
-        SetResolution(resolutionDropdown.value);
-        PixelEffect(Convert.ToBoolean(PlayerPrefs.GetInt("PixelEffectPreference")));
+        PixelEffect(pixelEffect.isOn);
     }
 }

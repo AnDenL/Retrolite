@@ -86,7 +86,7 @@ public class Shop : MonoBehaviour
                 break;
             case 4:
                 Player.GetComponent<Health>().lifes += 1;
-                Player.GetComponent<Health>().SetHealth(0);
+                Player.GetComponent<Health>().SetHealth(-2);
                 break;
             case 5:
                 Player.GetComponent<Health>().SetHealth(UnityEngine.Random.Range(-6,4), 100);

@@ -188,7 +188,7 @@ MonoBehaviour:
   animator2: {fileID: 0}
   takeHitSound: {fileID: 8300000, guid: 285bd57938408ba4cbc0dc256f812267, type: 3}
   deathSound: {fileID: 8300000, guid: 3d0ff5aa946b34d469d3d02724b282eb, type: 3}
-  canDie: 0
+  canDie: 1
   isDead: 0
   LoadLevel: 0
   InvisibleTime: 0.1

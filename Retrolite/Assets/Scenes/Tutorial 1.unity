@@ -25766,6 +25766,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4262784988486564193, guid: aaf487de259e2f8409d2243da557dea0, type: 3}
   m_PrefabInstance: {fileID: 2104196529}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1183453125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183453114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe4904a791e3eaa4e96f1fa20c08f120, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1188129796
 GameObject:
   m_ObjectHideFlags: 0
@@ -28347,9 +28359,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0.0010940919
-    y: 0.0019455253
-    width: 1.6280087
-    height: 0.7392996
+    y: 0.0038910506
+    width: 0.99781185
+    height: 0.9922179
   near clip plane: -31.02
   far clip plane: 1000
   field of view: 34

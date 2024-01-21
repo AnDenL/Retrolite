@@ -86,7 +86,7 @@ public class WeaponsList : MonoBehaviour
         {
             if (isLeft)
             {
-                firstWeapon.GetComponent<Collider2D>().enabled = true;
+                if(secondGun.weaponStyle != 5)firstWeapon.GetComponent<Collider2D>().enabled = true;
                 collision.gameObject.transform.parent = firstWeapon.transform.parent;
                 collision.gameObject.transform.rotation = firstWeapon.transform.rotation;
                 collision.gameObject.transform.position = firstWeapon.transform.position;
@@ -112,13 +112,16 @@ public class WeaponsList : MonoBehaviour
                 Formula(firstGun, firstCharacteristics);
             }
             else {
+                if(secondGun.weaponStyle != 5)secondWeapon.GetComponent<Collider2D>().enabled = true;
                 collision.gameObject.transform.rotation = secondWeapon.transform.rotation;
                 collision.gameObject.transform.position = secondWeapon.transform.position;
-                collision.gameObject.transform.localScale = secondWeapon.transform.localScale;
                 collision.gameObject.transform.parent = secondWeapon.transform.parent;
+                collision.gameObject.transform.localScale = secondWeapon.transform.localScale;
+                collision.enabled = false;
                 secondGun.enabled = false;
                 secondWeapon.tag = "Weapon"; 
                 secondWeapon.transform.parent = null;
+                secondWeapon.transform.localScale = new Vector2(1,1);
                 secondWeapon = collision.gameObject;  
                 secondWeapon.tag = "Empty";
                 secondGun = secondWeapon.GetComponent<Gun>(); 

@@ -102,9 +102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 0
-  maxHealthPoint: 0
-  destroyDelay: 0
+  healthPoint: 1
+  maxHealthPoint: 1
+  destroyDelay: -1
   lifes: 0
   text: {fileID: 5405613328121854513}
   playerText: {fileID: 0}
@@ -112,7 +112,7 @@ MonoBehaviour:
   animator2: {fileID: 0}
   takeHitSound: {fileID: 8300000, guid: 5b6acdf9a05be9f49a488e218990b7ae, type: 3}
   deathSound: {fileID: 8300000, guid: 5b6acdf9a05be9f49a488e218990b7ae, type: 3}
-  canDie: 0
+  canDie: 1
   isDead: 0
   LoadLevel: 0
   InvisibleTime: 0

@@ -12,6 +12,7 @@ public class RobotBullet : MonoBehaviour
     private GameObject player;
     private Vector3 direction;
     private float rotationZ;
+    
     private void Start()
     {
         transform.parent = null;

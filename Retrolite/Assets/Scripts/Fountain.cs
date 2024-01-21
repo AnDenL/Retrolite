@@ -9,14 +9,19 @@ public class Fountain : MonoBehaviour
     public GameObject panel;
     public int defaultCost = 10;
     public ParticleSystem particles;
+    public AudioClip sound;
+
+    private AudioSource Fx;
     private int cost;
     private bool isActive, playerIsHere;
     private GameObject Player;
+
     private void Start() 
     {  
         cost = defaultCost;
         text.text = Convert.ToString(cost);
         isActive = false;
+        Fx = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -65,12 +70,17 @@ public class Fountain : MonoBehaviour
         switch(UnityEngine.Random.Range(0,4)){
             case 0:
                 Instantiate(Reward[UnityEngine.Random.Range(0,Reward.Length)], transform.parent.GetChild(0));
+                Fx.PlayOneShot(sound);
                 break;
             case 1:
                 Health hp = player.GetComponent<Health>();
                 if (hp.maxHealthPoint != hp.healthPoint) {
-                    hp.SetHealth(-100); 
+                    hp.SetHealth(-hp.maxHealthPoint); 
                 }
+                Fx.PlayOneShot(sound);
+                break;
+            default :
+                Fx.PlayOneShot(sound);
                 break;
         }
     }
