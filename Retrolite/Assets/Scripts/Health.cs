@@ -33,20 +33,24 @@ public class Health : MonoBehaviour
     {
         healthPoint += H;
         if (healthPoint > maxHealthPoint) healthPoint = maxHealthPoint;
-        text.text = Convert.ToString(Math.Round(healthPoint, 2));
+        if(Features == 2){
+            playerText.text = "Health: " + Convert.ToString(Math.Round(healthPoint, 2)) + "/" + Convert.ToString(maxHealthPoint);
+            if (lifes != 0)playerText.text += " x" + Convert.ToString(lifes);
+        }
+        else text.text = Convert.ToString(Math.Round(healthPoint, 2));
         GameObject Effect = Instantiate(RevivalEffect, transform.parent);
         Effect.transform.position = transform.position;
         Effect.transform.parent = null;
     }
 
-    public bool SetHealth(float damage, float sanityDamage = 0)
+    public bool SetHealth(float damage, float pureDamage = 0,float sanityDamage = 0)
     {
         switch(Features){
             case 0:
-                TakeDamage(damage);
+                TakeDamage(damage + pureDamage);
                 return isDead;
             case 1:
-                TakeDamage(-damage);
+                TakeDamage(-damage - pureDamage);
                 return isDead;
             case 2:
                 if(damage != 0)PlayerTakeDamage(damage);
@@ -55,11 +59,14 @@ public class Health : MonoBehaviour
             case 3:
                 GolemHead Head = GetComponent<GolemHead>();
                 if(Head.charges != 0) Head.LaserShoot();
-                TakeDamage(damage);
+                TakeDamage(damage + pureDamage);
                 return isDead;
             case 4:
                 GolemBody Body = GetComponent<GolemBody>();
-                if(Body.charges != 0) Body.Shield();
+                if(Body.charges != 0) {
+                    Body.Shield();
+                    if(pureDamage != 0)TakeDamage(pureDamage);
+                }
                 else TakeDamage(damage);
                 return isDead;
             default:

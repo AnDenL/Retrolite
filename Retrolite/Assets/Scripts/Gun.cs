@@ -17,6 +17,8 @@ public class Gun : MonoBehaviour
     public AudioClip[] shootSound;
     public Animator animator;
     public string weaponClip;
+
+    private SpriteRenderer Sprite;
     private PlayerMove player;
     private AudioSource sound;
     private float shootTime;
@@ -28,43 +30,9 @@ public class Gun : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>(); ;
         thisGun = GetComponent<Gun>();
-        SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
+        Sprite = GetComponent<SpriteRenderer>();
         if(randomizeWeapon){
-            spread = UnityEngine.Random.Range(0f, 4f); ;
-            weaponStyle = UnityEngine.Random.Range(0,5);
-            numOfOperand = UnityEngine.Random.Range(1,5);
-            range = UnityEngine.Random.Range(4,15);
-            for(int i = 0;i < numOfOperand - 1; i++)
-            {
-                randomNumber[i + 1] = UnityEngine.Random.Range(0,16);
-                if (randomNumber[i + 1] == 7 && weaponStyle == 3) randomNumber[i + 1] = 1;
-                randomOperand[i] = UnityEngine.Random.Range(0,4);
-                if (randomNumber[i + 1] >= 8) MagicNumbers[i + 1] = UnityEngine.Random.Range(-5,6);
-            }
-            randomNumber[0] = UnityEngine.Random.Range(0,16);
-            if (randomNumber[0] >= 8) MagicNumbers[0] = UnityEngine.Random.Range(-5,6);
-            bulletSpeed = UnityEngine.Random.Range(3f,8f);
-            shootSpeed = UnityEngine.Random.Range(2f,6f);
-            ammo = UnityEngine.Random.Range(4, 18);
-            maxAmmo = ammo;
-            reloadTime = UnityEngine.Random.Range(0.2f, 0.8f) * Mathf.Sqrt(ammo);
-            switch(weaponStyle){
-                case 1:
-                    shootSpeed /= 2;
-                    break;
-                case 2:
-                    bulletSpeed /= 2;
-                    break;
-                case 3:
-                    bulletSpeed = 15;
-                    break;
-                case 4:
-                    bulletSpeed = UnityEngine.Random.Range(12f,14f);
-                    break;
-                case 5:
-                    Sprite.color = new Color(1,1,1,0);
-                    break;
-            }
+            RandomizeWeapon();
         }   
         Sprite.sprite = Image[weaponStyle];
     }
@@ -113,5 +81,43 @@ public class Gun : MonoBehaviour
         curentBullet.kills = kills;
         if(ammo == 0) curentBullet.ammo = maxAmmo;
         else curentBullet.ammo = ammo;
+    }
+    private void RandomizeWeapon()
+    {
+        spread = UnityEngine.Random.Range(0f, 4f); ;
+        weaponStyle = UnityEngine.Random.Range(0,5);
+        numOfOperand = UnityEngine.Random.Range(1,5);
+        range = UnityEngine.Random.Range(4,15);
+        for(int i = 0;i < numOfOperand - 1; i++)
+        {
+            randomNumber[i + 1] = UnityEngine.Random.Range(0,16);
+            if (randomNumber[i + 1] == 7 && weaponStyle == 3) randomNumber[i + 1] = 1;
+            randomOperand[i] = UnityEngine.Random.Range(0,4);
+            if (randomNumber[i + 1] >= 8) MagicNumbers[i + 1] = UnityEngine.Random.Range(-5,6);
+        }
+        randomNumber[0] = UnityEngine.Random.Range(0,16);
+        if (randomNumber[0] >= 8) MagicNumbers[0] = UnityEngine.Random.Range(-5,6);
+        bulletSpeed = UnityEngine.Random.Range(3f,8f);
+        shootSpeed = UnityEngine.Random.Range(2f,6f);
+        ammo = UnityEngine.Random.Range(4, 18);
+        maxAmmo = ammo;
+        reloadTime = UnityEngine.Random.Range(0.2f, 0.8f) * Mathf.Sqrt(ammo);
+        switch(weaponStyle){
+            case 1:
+                shootSpeed /= 2;
+                break;
+            case 2:
+                bulletSpeed /= 2;
+                break;
+            case 3:
+                bulletSpeed = 15;
+                break;
+            case 4:
+                bulletSpeed = UnityEngine.Random.Range(12f,14f);
+                break;
+            case 5:
+                Sprite.color = new Color(1,1,1,0);
+                break;
+        }
     }
 }

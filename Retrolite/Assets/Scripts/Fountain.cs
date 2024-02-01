@@ -75,7 +75,7 @@ public class Fountain : MonoBehaviour
             case 1:
                 Health hp = player.GetComponent<Health>();
                 if (hp.maxHealthPoint != hp.healthPoint) {
-                    hp.SetHealth(-hp.maxHealthPoint); 
+                    hp.Heal(hp.maxHealthPoint); 
                 }
                 Fx.PlayOneShot(sound);
                 break;

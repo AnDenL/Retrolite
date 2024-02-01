@@ -203,8 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 8
-  maxHealthPoint: 8
+  healthPoint: 15
+  maxHealthPoint: 15
   destroyDelay: 1
   lifes: 0
   text: {fileID: 1798577530443903983}
@@ -406,7 +406,7 @@ MonoBehaviour:
   min: 2
   max: 4
   bulletPrefab: {fileID: 854845352271797811, guid: 735a677b24bfc284e9af7ab23e0453db, type: 3}
-  sound: {fileID: 0}
+  sound: {fileID: 8300000, guid: a36d50f1a74f1814a9876b2081a3951f, type: 3}
 --- !u!114 &2922305178732020477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3004e601ccb224b46a25922846cc4109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 4
 --- !u!1 &4300404211539853225
 GameObject:
   m_ObjectHideFlags: 0

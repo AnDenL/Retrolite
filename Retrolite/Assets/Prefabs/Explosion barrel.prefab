@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: -8
+  healthPoint: -16
   maxHealthPoint: 1
   destroyDelay: 2
   lifes: 0
@@ -216,7 +216,7 @@ MonoBehaviour:
   LoadLevel: 0
   InvisibleTime: 0.1
   isInvincible: 0
-  invertDamage: 0
+  Features: 0
   RevivalEffect: {fileID: 0}
 --- !u!114 &5389180225229123996
 MonoBehaviour:

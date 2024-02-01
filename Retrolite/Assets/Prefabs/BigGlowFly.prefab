@@ -409,8 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 5
-  maxHealthPoint: 5
+  healthPoint: 8
+  maxHealthPoint: 8
   destroyDelay: 1
   lifes: 0
   text: {fileID: 7508940506343712373}
@@ -450,7 +450,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6875, y: 0.5}
+  m_Size: {x: 0.6875, y: 0.6}
   m_EdgeRadius: 0
 --- !u!82 &7508940506585690852
 AudioSource:
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3004e601ccb224b46a25922846cc4109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 4
 --- !u!114 &1773149810566595569
 MonoBehaviour:
   m_ObjectHideFlags: 0

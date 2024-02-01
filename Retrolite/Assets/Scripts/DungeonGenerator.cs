@@ -116,14 +116,21 @@ public class DungeonGenerator : MonoBehaviour
                         }
                     }
                     if(i != 15 || j != 15){
-                        if (dungeon[i, j] == 4)
-                            Instantiate(roomFillPrefabs[roomFillPrefabs.Length - 1], troom.GetChild(0));
-                        else if (dungeon[i, j] == 2)
-                            Instantiate(roomFillPrefabs[Random.Range(roomFillPrefabs.Length - 2, roomFillPrefabs.Length - 4)], troom.GetChild(0));
-                        else if (dungeon[i, j] == 3)
-                            Instantiate(roomFillPrefabs[Random.Range(roomFillPrefabs.Length - 4, roomFillPrefabs.Length - 7)], troom.GetChild(0));
-                        else 
-                            Instantiate(roomFillPrefabs[Random.Range(0,roomFillPrefabs.Length - 6)], troom.GetChild(0));
+                        switch (dungeon[i, j])
+                        {
+                            case 1 :
+                                Instantiate(roomFillPrefabs[Random.Range(0,roomFillPrefabs.Length - 6)], troom.GetChild(0));
+                                break;
+                            case 2 :    
+                                Instantiate(roomFillPrefabs[Random.Range(roomFillPrefabs.Length - 2, roomFillPrefabs.Length - 4)], troom.GetChild(0));
+                                break;
+                            case 3 :
+                                Instantiate(roomFillPrefabs[Random.Range(roomFillPrefabs.Length - 4, roomFillPrefabs.Length - 7)], troom.GetChild(0));
+                                break;
+                            case 4 :
+                                Instantiate(roomFillPrefabs[roomFillPrefabs.Length - 1], troom.GetChild(0));
+                                break;
+                        }
                     }
                     opt.dungeon[i,j] = currentRoom;
                     currentRoom.SetActive(false);

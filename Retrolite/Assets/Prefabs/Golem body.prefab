@@ -226,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 30
-  maxHealthPoint: 30
+  healthPoint: 60
+  maxHealthPoint: 60
   destroyDelay: -1
   lifes: 0
   text: {fileID: 1403666608311069262}
@@ -265,6 +265,7 @@ MonoBehaviour:
   sphere_2: {fileID: 1403666607832101122}
   sphere_3: {fileID: 1403666607122958015}
   step: {fileID: 8300000, guid: f752cf13a9f50964f8eb37a466bd15f9, type: 3}
+  DashSound: {fileID: 8300000, guid: aba37f9981d234f45a00c159e858b029, type: 3}
 --- !u!82 &1403666607140587918
 AudioSource:
   m_ObjectHideFlags: 0
@@ -373,7 +374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3004e601ccb224b46a25922846cc4109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
 --- !u!50 &1403666607140587632
 Rigidbody2D:
   serializedVersion: 4

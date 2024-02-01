@@ -5141,8 +5141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 10
-  maxHealthPoint: 10
+  healthPoint: 20
+  maxHealthPoint: 20
   destroyDelay: 0
   lifes: 0
   text: {fileID: 0}
@@ -5678,7 +5678,7 @@ MonoBehaviour:
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 862877277, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
+  m_LightCookieSprite: {fileID: -476348170, guid: 2ae8a2a36492acd44a6081517d0e5886, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_OverlapOperation: 0
@@ -5738,8 +5738,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
+      propertyPath: range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: spread
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: magicNum
@@ -5748,6 +5752,10 @@ PrefabInstance:
     - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
+      propertyPath: reloadTime
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: shootPoint
@@ -5814,6 +5822,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
+      propertyPath: MagicNumbers.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 753843540309043353, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: randomNumber.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
@@ -5871,7 +5883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7886080712290642056, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 7911933534345462577, guid: 5655af4bd1b40614f8a80dbff037ddfe, type: 3}
       propertyPath: m_Color.a

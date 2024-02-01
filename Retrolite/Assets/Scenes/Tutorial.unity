@@ -13831,9 +13831,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0.0010940919
-    y: 0.0038910506
-    width: 0.99781185
-    height: 0.9922179
+    y: 0.0019455253
+    width: 1.6017506
+    height: 0.7392996
   near clip plane: -119.73
   far clip plane: 1000
   field of view: 34
@@ -13842,7 +13842,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8159
+    m_Bits: 16351
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -14690,6 +14690,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4904a791e3eaa4e96f1fa20c08f120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1001 &8962978272912102577
 PrefabInstance:
   m_ObjectHideFlags: 0

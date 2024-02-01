@@ -43,36 +43,13 @@ SpriteAtlas:
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: 1963707319, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: -1663145265, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: 739977035, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: 1264929946, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: -890167463, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: -1347881907, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: -1220802520, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: 862877277, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: 822139956, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: 1943267859, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  - {fileID: -2054805466, guid: 20f681a391d33df4abf8e84e7efa3bd0, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Player_9
-  - Player_8
-  - Player_5
-  - Player_4
-  - Player_7
-  - Player_6
-  - Player_1
-  - Player_0
-  - Player_3
-  - Player_2
-  - Player_10
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Weapons
   m_IsVariant: 0

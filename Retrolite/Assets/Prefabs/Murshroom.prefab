@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b68baa8a35882e34585f37d555b30f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 4
-  maxHealthPoint: 4
+  healthPoint: 8
+  maxHealthPoint: 8
   destroyDelay: 1
   lifes: 0
   text: {fileID: 5715820653955693852}
@@ -193,7 +193,7 @@ MonoBehaviour:
   LoadLevel: 0
   InvisibleTime: 0.1
   isInvincible: 0
-  invertDamage: 0
+  Features: 0
   RevivalEffect: {fileID: 0}
 --- !u!95 &1306915009158355716
 Animator:

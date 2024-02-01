@@ -301,7 +301,8 @@ MonoBehaviour:
   LoadLevel: 0
   InvisibleTime: 0.1
   isInvincible: 0
-  invertDamage: 0
+  Features: 0
+  RevivalEffect: {fileID: 0}
 --- !u!58 &5899996090296600700
 CircleCollider2D:
   m_ObjectHideFlags: 0

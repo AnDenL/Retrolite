@@ -13,13 +13,13 @@ public class MusicController : MonoBehaviour
     {
         if(lastSong != musicPlayed)
         {
-            volume = 1 - volume;
+            volume = 0;
             music[musicPlayed].enabled = true;
             while (volume > 0)
             {
-                volume -= Time.deltaTime / 2;
-                music[lastSong].volume = volume;
-                music[musicPlayed].volume = 1 - volume;
+                volume += Time.deltaTime / 2;
+                music[lastSong].volume = 1 - volume;
+                music[musicPlayed].volume = volume;
                 yield return null;
             }
             music[lastSong].enabled = false;

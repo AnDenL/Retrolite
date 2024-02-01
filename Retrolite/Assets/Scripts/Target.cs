@@ -10,8 +10,8 @@ public class Target : MonoBehaviour
     }
     private void Update()
     {
-        Vector2 playerPos = hand.position * 9;
+        Vector2 playerPos = hand.position * 6;
         Vector2 mousePos = (main.ScreenToWorldPoint(Input.mousePosition));
-        transform.position = new Vector2((playerPos.x + (mousePos.x * 0.2f)) / (9 + 0.2f),(playerPos.y + (mousePos.y * 0.2f)) / (9 + 0.2f));
+        transform.position = new Vector2((playerPos.x + (mousePos.x * 0.2f)) / (6 + 0.2f),(playerPos.y + (mousePos.y * 0.2f)) / (6 + 0.2f));
     }
 }

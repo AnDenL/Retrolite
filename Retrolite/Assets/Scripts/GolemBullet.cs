@@ -29,7 +29,7 @@ public class GolemBullet : MonoBehaviour
         if (collision.tag == "Player")
         {
             Health health = collision.gameObject.GetComponent<Health>();
-            health.SetHealth(2);
+            health.SetHealth(4);
             BulletDisappear();
         }
         else if(collision.tag == "Tilemap")BulletDisappear();

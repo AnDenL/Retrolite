@@ -18,15 +18,15 @@ public class Shop : MonoBehaviour
         switch(purchase){
             case 0:
                 cost = 20;
-                description.text = "Heals you for 5 health points";
+                description.text = "Heals you for 10 health points";
                 break;
             case 1:
                 cost = 35;
-                description.text = "Heals you for 10 health points";
+                description.text = "Heals you for 20 health points";
                 break;
             case 2:
                 cost = 30;
-                description.text = "Increases your maximum health for 2 health points";
+                description.text = "Increases your maximum health for 5 health points";
                 break;
             case 3:
                 cost = 40;
@@ -72,24 +72,24 @@ public class Shop : MonoBehaviour
         Player.GetComponent<AudioSource>().PlayOneShot(DrinkSound);
         switch(purchase){
             case 0:
-                Player.GetComponent<Health>().SetHealth(-5);
+                Player.GetComponent<Health>().Heal(10);
                 break;
             case 1:
-                Player.GetComponent<Health>().SetHealth(-10);
+                Player.GetComponent<Health>().Heal(20);
                 break;
             case 2:
-                Player.GetComponent<Health>().maxHealthPoint += 2;
-                Player.GetComponent<Health>().SetHealth(-2);
+                Player.GetComponent<Health>().maxHealthPoint += 5;
+                Player.GetComponent<Health>().Heal(5);
                 break;
             case 3:
                 Player.GetComponent<Health>().SetHealth(0,-3000);
                 break;
             case 4:
                 Player.GetComponent<Health>().lifes += 1;
-                Player.GetComponent<Health>().SetHealth(-2);
+                Player.GetComponent<Health>().Heal(2);
                 break;
             case 5:
-                Player.GetComponent<Health>().SetHealth(UnityEngine.Random.Range(-6,4), 100);
+                Player.GetComponent<Health>().SetHealth(UnityEngine.Random.Range(-8,6), 100);
                 break;
         }
         Destroy(gameObject);

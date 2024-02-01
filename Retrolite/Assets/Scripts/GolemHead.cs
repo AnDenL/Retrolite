@@ -65,7 +65,7 @@ public class GolemHead : MonoBehaviour
         if(ChargeTime < Time.time)
         {
             if(charges < 3)charges ++;
-            else hp.Heal(3);
+            else hp.Heal(10);
 
             if(charges > 0)sphere_1.color = new Color(1,1,1,1);
             else sphere_1.color = new Color(0.1f,0.1f,0.1f,1);

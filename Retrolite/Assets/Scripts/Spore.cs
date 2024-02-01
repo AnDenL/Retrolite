@@ -28,7 +28,7 @@ public class Spore : MonoBehaviour
         if (collision.CompareTag("Player")) {
             Health health = collision.GetComponent<Health>();
             if (health != null) {
-                health.SetHealth(2);
+                health.SetHealth(3);
             }
             isScaling = false;
             Destroy(gameObject);

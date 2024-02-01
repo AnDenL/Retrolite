@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     [Header("Bullet stats")]
 
     public Sprite[] bulletImage;
-    public float bulletSpeed, echo, ammo, kills, range;
+    public float bulletSpeed, echo, ammo, kills, range, pureDamage = 0;
     public int bulletStyle, numOfOperand;
     public int[] MagicNumbers = new int[]{0,0,0,0};
     public int[] randomNumber = new int[]{0,0,0,0};
@@ -211,7 +211,7 @@ public class Bullet : MonoBehaviour
                 }
             }
         }
-        if(EnemyHealth.SetHealth(damage) == true) gun.kills++;
+        if(EnemyHealth.SetHealth(damage,pureDamage) == true) gun.kills++;
         gun.echo = damage;
         if(bulletStyle == 3){
             Destroy(gameObject,0.2f); 
@@ -317,7 +317,7 @@ public class Bullet : MonoBehaviour
             }
         }
         foreach(Collider2D enemy in hitEmenies){
-            if(enemy.GetComponent<Health>().SetHealth(damage) == true) gun.kills++;
+            if(enemy.GetComponent<Health>().SetHealth(damage,pureDamage) == true) gun.kills++;
             gun.echo += damage;
         } 
     }

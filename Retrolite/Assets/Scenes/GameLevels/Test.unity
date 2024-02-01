@@ -5844,10 +5844,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0011049723
-    y: 0.0019646366
-    width: 1.6176795
-    height: 0.6836935
+    x: 0.0010940919
+    y: 0.0038910506
+    width: 0.99781185
+    height: 0.9922179
   near clip plane: -24.33
   far clip plane: 1000
   field of view: 60
@@ -6510,6 +6510,14 @@ PrefabInstance:
       propertyPath: pixelPerfectCamera
       value: 
       objectReference: {fileID: 1813428743}
+    - target: {fileID: 448513801472205398, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 448513801866916178, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 448513802802025327, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: blur
       value: 
@@ -6610,6 +6618,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 3170196165479695037, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3947721388391834837, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_text
       value: Factory
@@ -6618,10 +6630,22 @@ PrefabInstance:
       propertyPath: m_fontStyle
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4635214429770921461, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5825869795108896940, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7594376251993726716, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: frame
       value: 
       objectReference: {fileID: 462920839}
+    - target: {fileID: 7767392090951971478, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7767392090951971478, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
