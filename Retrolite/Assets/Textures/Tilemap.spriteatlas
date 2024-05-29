@@ -180,6 +180,7 @@ SpriteAtlas:
   - {fileID: -664105912, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   - {fileID: -563624565, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   - {fileID: 1780177840, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
+  - {fileID: -911697471, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   - {fileID: -1374401683, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   - {fileID: 260039901, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
   - {fileID: -727310366, guid: 29d295b6483e80f43bfabc1482a96d99, type: 3}
@@ -438,6 +439,7 @@ SpriteAtlas:
   - Tilemap_0_2
   - Tilemap_0_1
   - Tilemap_0_0
+  - Tilemap_0_27
   - Tilemap_0_26
   - Tilemap_0_25
   - Tilemap_0_24

@@ -13,12 +13,16 @@ public class WeaponsList : MonoBehaviour
     public Gun firstGun, secondGun;
     public SpriteRenderer Reflection1, Reflection2;
     public bool reload = false;
+    public GameObject Сursor;
+    
+    private SpriteRenderer a;
     public AudioClip start,end;
     private AudioSource sound;
     private SpriteRenderer m_SpriteRenderer;
 
     private void Start()
     {
+        a = Сursor.GetComponent<SpriteRenderer>();
         m_SpriteRenderer = firstWeapon.GetComponent<SpriteRenderer>();
         weaponImage.sprite = m_SpriteRenderer.sprite;
         if (Reflection1 != null) Reflection1.sprite = m_SpriteRenderer.sprite;
@@ -36,29 +40,42 @@ public class WeaponsList : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetAxis("Fire1") >= 0.1f)
         {
-            if (firstGun.ammo != 0 && !reload) {
-                firstGun.Shoot();
-                if(firstGun.weaponStyle != 3 && firstGun.weaponStyle != 5)firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
-                else firstCharacteristics[4].text = " ";
-            } 
-            else StartCoroutine(ReloadGun(firstGun));
+            if(firstGun.weaponStyle != 5)
+            {
+                if (firstGun.ammo != 0 && !reload) {
+                    firstGun.Shoot();
+                    if(firstGun.weaponStyle != 3 && firstGun.weaponStyle != 5)firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
+                    else firstCharacteristics[4].text = " ";
+                } 
+                else StartCoroutine(ReloadGun(firstGun));
+            }
         }
-        else if (Input.GetMouseButton(1))
+        else if (Input.GetAxis("Fire2") >= 0.1f)
         {
-            if (secondGun.ammo != 0 && !reload) {
-                secondGun.Shoot();
-                if(secondGun.weaponStyle != 3 && secondGun.weaponStyle != 5)secondCharacteristics[4].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
-                else secondCharacteristics[4].text = " ";
-            } 
-            else StartCoroutine(ReloadGun(secondGun));
+            if(secondGun.weaponStyle != 5)
+            {
+                if (secondGun.ammo != 0 && !reload) {
+                    secondGun.Shoot();
+                    if(secondGun.weaponStyle != 3 && secondGun.weaponStyle != 5)secondCharacteristics[4].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
+                    else secondCharacteristics[4].text = " ";
+                } 
+                else StartCoroutine(ReloadGun(secondGun));
+            }
         }
         else if (Input.GetKeyDown(KeyCode.R))
         {
             if (firstGun.ammo != firstGun.maxAmmo && !reload) StartCoroutine(ReloadGun(firstGun));
             else if (secondGun.ammo != secondGun.maxAmmo && !reload) StartCoroutine(ReloadGun(secondGun));
         }
+        Vector3 joy = Vector3.zero;
+        
+        joy.x = Input.GetAxis("JoyX");
+        joy.y = Input.GetAxis("JoyY");
+
+        Сursor.transform.position = transform.position + (joy * 40  );
+        a.color = new Color(1,1,1,3 * (Mathf.Abs(joy.x) + Mathf.Abs(joy.y)));
     }
     IEnumerator ReloadGun(Gun gun)
     {
@@ -86,7 +103,7 @@ public class WeaponsList : MonoBehaviour
         {
             if (isLeft)
             {
-                if(secondGun.weaponStyle != 5)firstWeapon.GetComponent<Collider2D>().enabled = true;
+                if(firstGun.weaponStyle != 5)firstWeapon.GetComponent<Collider2D>().enabled = true;
                 collision.gameObject.transform.parent = firstWeapon.transform.parent;
                 collision.gameObject.transform.rotation = firstWeapon.transform.rotation;
                 collision.gameObject.transform.position = firstWeapon.transform.position;

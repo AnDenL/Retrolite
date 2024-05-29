@@ -10,6 +10,7 @@ public class Rotate : MonoBehaviour
     void Update()
     {
         Vector3 diference = main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        // Vector3 diference = Gamepad();
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotateZ);
 
@@ -22,5 +23,15 @@ public class Rotate : MonoBehaviour
         }
 
         transform.localScale = LocalScale;
+    }
+
+    Vector3 Gamepad()
+    {
+        Vector3 joy = Vector3.zero;
+        
+        joy.x = Input.GetAxis("JoyX");
+        joy.y = Input.GetAxis("JoyY");
+
+        return joy;
     }
 }

@@ -26,12 +26,9 @@ public class Spore : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) {
-            Health health = collision.GetComponent<Health>();
-            if (health != null) {
-                health.SetHealth(3);
-            }
+            Health health = collision.GetComponent<Health>();   
             isScaling = false;
-            Destroy(gameObject);
+            if(health.SetHealth(3))Destroy(gameObject);
         }
         else if (!collision.CompareTag("Empty") && !collision.CompareTag("Enemy")) {
             isScaling = false; 

@@ -32,7 +32,10 @@ public class Turret : MonoBehaviour
                 {
                     sound.pitch = Random.Range(0.8f,1.2f);
                     sound.PlayOneShot(shootSound);
-                    Instantiate(bullet, transform.GetChild(0));
+                    PlayerMove playermovement = player.GetComponent<PlayerMove>();
+                    Vector2 prediction = new Vector2(playermovement.horizontalMove * (Vector2.Distance(transform.position,player.transform.position) / 4),playermovement.verticalMove * (Vector2.Distance(transform.position,player.transform.position) / 4));
+                    Vector3 ThrowDirection = new Vector3(player.transform.position.x + prediction.x,player.transform.position.y + prediction.y,0);
+                    Instantiate(bullet, transform.GetChild(0)).GetComponent<ThrowObject>().Throw(ThrowDirection);
                     shootTime = Time.time + rechargeTime;
                 }
             }

@@ -26,6 +26,7 @@ public class Bullet : MonoBehaviour
     private Vector2 startPos;
     private Rigidbody2D Rigidbody;
     private SpriteRenderer sprite;
+
     void Start()
     {
         gun.echo = 0;
@@ -105,20 +106,8 @@ public class Bullet : MonoBehaviour
             else if (collision.tag == "Tilemap")
             {
                 Rigidbody.simulated = false;
-                switch(bulletStyle){
-                case 0:
-                    BulletDisappear();
-                    break;
-                case 1:
-                    AreaTakeDamage();
-                    break;
-                case 2:
-                    BulletDisappear();
-                    break;
-                case 3:
-                    BulletDisappear();
-                    break;
-                }
+                if(bulletStyle == 1)AreaTakeDamage();
+                else BulletDisappear();
             }
         }
     }

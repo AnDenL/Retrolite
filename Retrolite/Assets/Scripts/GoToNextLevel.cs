@@ -26,7 +26,7 @@ public class GoToNextLevel : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && PlayerIsHere)
+        if (Input.GetAxis("Action") != 0 && PlayerIsHere)
         {
             GetComponent<AudioSource>().enabled = true;
             Player.SetTrigger("End");

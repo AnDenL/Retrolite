@@ -4,16 +4,17 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     private int cost;
-    private int purchase;
+    [SerializeField] private int purchase;
     public AudioClip DrinkSound;
     public TextMesh text, description;
     public Sprite[] Image;
     public GameObject panel;
     public bool needToBuy = true;
+    public bool randomize = true;
     private void Start() 
     {  
         SpriteRenderer Sprite = GetComponent<SpriteRenderer>();
-        purchase = (UnityEngine.Random.Range(0,6));
+        if(randomize)purchase = (UnityEngine.Random.Range(0,6));
         Sprite.sprite = Image[purchase];
         switch(purchase){
             case 0:

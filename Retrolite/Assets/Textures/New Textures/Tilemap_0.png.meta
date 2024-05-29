@@ -670,7 +670,7 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -678,6 +678,27 @@ TextureImporter:
       bones: []
       spriteID: a31aefcaa0472204fa01088662ca3342
       internalID: -1374401683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tilemap_0_27
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 40
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b050efa308cbf4409aa577106afa3ca
+      internalID: -911697471
       vertices: []
       indices: 
       edges: []
@@ -719,6 +740,7 @@ TextureImporter:
       Tilemap_0_4: 1269291334
       Tilemap_0_7: -351635579
       Tilemap_0_11: -953381619
+      Tilemap_0_27: -911697471
       Tilemap_0_17: -1895379627
   spritePackingTag: 
   pSDRemoveMatte: 0

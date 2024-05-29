@@ -65,7 +65,7 @@ public class Fountain : MonoBehaviour
 
     void TakePurchase(GameObject player)
     {
-        cost += defaultCost / 2;
+        cost += defaultCost / 3;
         text.text = Convert.ToString(cost);
         switch(UnityEngine.Random.Range(0,4)){
             case 0:

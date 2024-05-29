@@ -53,9 +53,10 @@ public class Health : MonoBehaviour
                 TakeDamage(-damage - pureDamage);
                 return isDead;
             case 2:
+                bool damageDealt = !isInvincible;
                 if(damage != 0)PlayerTakeDamage(damage);
                 GetComponent<SanitySystem>().Sanity -= sanityDamage;
-                return false;
+                return damageDealt;
             case 3:
                 GolemHead Head = GetComponent<GolemHead>();
                 if(Head.charges != 0) Head.LaserShoot();
