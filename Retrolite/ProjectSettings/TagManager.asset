@@ -3,27 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Tilemap
-  - Weapon
-  - Enemy
-  - Empty
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Enemy
+  - 
   - Water
   - UI
-  - PostProcessing
-  - Player
-  - Spawn
-  - TileMap
-  - FlyingEnemy
-  - Bullet
-  - Reflection
-  - Weapon
-  - EnemyBullet
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
