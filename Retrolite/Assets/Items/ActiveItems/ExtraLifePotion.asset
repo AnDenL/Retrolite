@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c686f8220e76f49a9a96f63549ef04, type: 3}
+  m_Name: ExtraLifePotion
+  m_EditorClassIdentifier: 
+  Name: Health up potion
+  Description: Heals 5 health points
+  Icon: {fileID: 1882939439, guid: 88c106f8564104645be9fae981902c50, type: 3}
+  Prefab: {fileID: 7868760390938601585, guid: 2ef6a75cbbed9e94ea228b03ad1a5b4c, type: 3}
+  CanAction: 1
+  CanDrop: 1
+  Charged: 1
+  Fill: {fileID: 0}
+  _chargeTime: 0.5
+  _singleUse: 1
+  _healthChange: -4
+  _sanityChange: 30
+  _extraLife: 4
