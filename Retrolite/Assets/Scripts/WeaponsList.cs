@@ -14,6 +14,9 @@ public class WeaponsList : MonoBehaviour
     public SpriteRenderer Reflection1, Reflection2;
     public bool reload = false;
     public GameObject Сursor;
+
+    [SerializeField] private Material _material;
+    [SerializeField] private GameObject _reloadBar;
     
     private SpriteRenderer a;
     public AudioClip start,end;
@@ -83,13 +86,17 @@ public class WeaponsList : MonoBehaviour
         if(!reload)
         {
             sound.PlayOneShot(start);
-            float t = Time.time;
+            float t = 0;
             reload = true;
             gun.animator.SetBool("Reload", true);
-            while (Time.time - t < gun.ReloadTime)
+            _reloadBar.SetActive(true);
+            while (t < 1)
             {
+                t += Time.deltaTime / gun.ReloadTime;
+                _material.SetFloat("_Arc2", (1 - t) * 360);
                 yield return null;
             }
+            _reloadBar.SetActive(false);
             gun.animator.SetBool("Reload", false);
             gun.ammo = gun.maxAmmo;
             firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);

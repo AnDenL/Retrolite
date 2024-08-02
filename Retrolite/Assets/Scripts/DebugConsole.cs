@@ -8,9 +8,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 using UnityEngine.Networking;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 public class DebugConsole : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class DebugConsole : MonoBehaviour
     [SerializeField] private GameObject _field;
     [SerializeField] private Scroll _scroll;
 
+    private Volume _processing;
     private static Dictionary<string, object> variables = new Dictionary<string, object>();
     private static List<Bind> binds = new List<Bind>();
     private static List<string> spawnObjects = new List<string>();
@@ -35,6 +38,7 @@ public class DebugConsole : MonoBehaviour
 
     private void Start()
     {
+        _processing = GameObject.Find("PostProcesing").GetComponent<Volume>();
         _eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         _audio = GameObject.Find("MusicController").GetComponent<AudioSource>();
         _consoleHistoryStatic = _consoleHistory;
@@ -96,7 +100,7 @@ public class DebugConsole : MonoBehaviour
             switch(action)
             {
                 default:
-                    _tips.text = "- Clear: - Restart: - LoadScene: - Time: - Spawn: - Destroy: - Bind: - Unbind: - Music: - Immortal: - Color: - Scale: - Roll: - Freeze: - Unfreeze: - Var: - Dvar: - Method: - RunInBackground:";
+                    _tips.text = "- Clear: - Restart: - LoadScene: - Time: - Spawn: - Destroy: - Bind: - Unbind: - Music: - Immortal: - Color: - Scale: - Roll: - Volume: - Freeze: - Unfreeze: - Var: - Dvar: - Method: - RunInBackground:";
                     break;
                 case "print": case "message": case "write": case "p":
                     _tips.text = "Enter any text";
@@ -115,6 +119,9 @@ public class DebugConsole : MonoBehaviour
                     break;
                 case "immortal": case "i": 
                     _tips.text = "false - you can die \ntrue - you can't die";
+                    break;
+                case "noclip":
+                    _tips.text = "true\nfalse";
                     break;
                 case "spawn": case "s":
                     tips = new List<string>();
@@ -146,6 +153,20 @@ public class DebugConsole : MonoBehaviour
                     break;
                 case "color": case "colour": case "cl":
                     _tips.text = "Type any color in HEX for example #ff5454 or just color like red or blue";
+                    break;
+                case "postprocessing" : case "volume":
+                    tips = new List<string>();
+                    _tips.text = "Enter name of profile";
+                    IEnumerable<string> profileNames = Resources.LoadAll<VolumeProfile>("").Select(prefab => prefab.name);
+                    foreach (string profile in profileNames)
+                    {
+                        tips.Add(profile);
+                    }
+
+                    foreach (string s in tips)
+                    {
+                        if(s.StartsWith(command, StringComparison.InvariantCultureIgnoreCase)) _tips.text += " - " + s;
+                    }
                     break;
                 case "scale":
                     tips = new List<string>();
@@ -417,6 +438,18 @@ public class DebugConsole : MonoBehaviour
                         WriteLine("Variable " + title + " already exists", _errorColor);
                     }
                     break;
+                case "postprocessing" : case "volume":
+                    VolumeProfile volume = Resources.Load<VolumeProfile>(command);
+                    if (volume != null)
+                    {
+                        _processing.profile = volume;
+                        WriteLine("PostProcessing changed");
+                    }
+                    else
+                    {
+                        WriteLine("Profile "+ command +" not found");
+                    }
+                    break;
                 case "print": case "message": case "write": case "p":
                     if(command[0] == '$') WriteLine(variables[command].ToString());
                     else WriteLine(command);
@@ -490,14 +523,14 @@ public class DebugConsole : MonoBehaviour
                     {
                         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                        Instantiate(prefab, cursorPosition, Quaternion.identity);   
+                        GameObject spawnedObject = Instantiate(prefab, cursorPosition, Quaternion.identity);   
+                        GUIUtility.systemCopyBuffer = spawnedObject.name;
                         WriteLine("Object " + name + " created");
                         if(int.TryParse(command, out repeats))
                         {
                             for(int i = 1; i < repeats; i++)
                             {
-                                GameObject spawnedObject = Instantiate(prefab, cursorPosition, Quaternion.identity);   
-                                GUIUtility.systemCopyBuffer = spawnedObject.name;
+                                Instantiate(prefab, cursorPosition, Quaternion.identity);
                                 WriteLine("Object " + name + " created");   
                             }
                         }
@@ -537,6 +570,22 @@ public class DebugConsole : MonoBehaviour
                     _consoleHistoryStatic.text += "</color>";
                     if(command[0] == '#') _consoleHistoryStatic.text += $"<color={command}>";
                     else _consoleHistoryStatic.text += $"<color=\"{command}\">";
+                    break;
+                case "noclip":
+                    bool noclip;
+                    if(command[0] == '$') 
+                    {
+                        noclip = (bool)variables[command];
+                        Game.Player.GetComponent<Rigidbody2D>().simulated = !noclip;
+                        WriteLine("Noclip " + noclip);
+                    }
+                    else if (Boolean.TryParse(GetCommand(ref command), out noclip))
+                    {
+                        Game.Player.GetComponent<Rigidbody2D>().simulated = !noclip;
+                        WriteLine("Noclip " + noclip);
+                    }
+                    else 
+                        WriteLine($"Parse error, {command} can`t be parsed to boolean", _errorColor);
                     break;
                 case "scale":
                     string tName = GetCommand(ref command);

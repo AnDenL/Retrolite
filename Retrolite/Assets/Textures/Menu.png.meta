@@ -275,7 +275,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -296,7 +296,7 @@ TextureImporter:
         height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 1, y: 1, z: 1, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -605,8 +605,8 @@ TextureImporter:
       name: Menu_22
       rect:
         serializedVersion: 2
-        x: 95
-        y: 21
+        x: 99
+        y: 26
         width: 10
         height: 10
       alignment: 0
@@ -618,27 +618,6 @@ TextureImporter:
       bones: []
       spriteID: c474a32eca02b0b4f846f6dddd68d1ea
       internalID: 1186463854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Menu_23
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 30
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 226d56142fdcbb04997ab0359e162840
-      internalID: 1366822164
       vertices: []
       indices: 
       edges: []
