@@ -7,7 +7,13 @@ public class Money : MonoBehaviour
     public int money, bonus;
     public Text text;
     public ParticleSystem particles;
-    private void Start() {
+
+    private void Awake() 
+    {
+        Game.Money = this; 
+    }
+    private void Start() 
+    {
         text.text = "Money: " + Convert.ToString(money);
     }
     public void AddMoney(int m)

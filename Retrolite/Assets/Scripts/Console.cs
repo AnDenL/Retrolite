@@ -211,6 +211,6 @@ public class Console : MonoBehaviour
     {
         lines++;
         _consoleHistory.text += text + "\n";
-        if(lines > 20)_scroll._moddify = (lines - 19) / 32f;
+        if(lines > 20)_scroll.modify = (lines - 19) / 32f;
     }
 }

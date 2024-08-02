@@ -22,11 +22,22 @@ public class Health : MonoBehaviour
 
     private AudioSource sound;
 
+    private void Awake()
+    {
+        Game.Player = gameObject;
+        Game.PlayerHealth = this;
+    }
+
     private void Start()
     {
         sound = GetComponent<AudioSource>();
         if (Features != 2) text.text = Convert.ToString(healthPoint);
         else playerText.text = "Health: " + Convert.ToString(Math.Round(healthPoint, 2)) + "/" + Convert.ToString(maxHealthPoint);
+    }
+
+    public float HealthPercent()
+    {
+        return (healthPoint / maxHealthPoint);
     }
 
     public void Heal(float H)

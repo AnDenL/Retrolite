@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scroll : MonoBehaviour
 {
-    public float _moddify;
+    public float modify;
     private float Y;
 
     void Start()
@@ -14,6 +14,6 @@ public class Scroll : MonoBehaviour
 
     public void Scrolling(float s)
     {
-        transform.position = new Vector2(transform.position.x,Y - s * (_moddify * Screen.height));
+        transform.position = new Vector2(transform.position.x,Y - s * (modify * Screen.height));
     }
 }

@@ -9,6 +9,7 @@ public class Rotate : MonoBehaviour
     }
     void Update()
     {
+        if(Game.Paused) return;
         Vector3 diference = main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         // Vector3 diference = Gamepad();
         float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;

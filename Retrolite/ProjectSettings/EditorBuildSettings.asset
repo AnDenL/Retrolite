@@ -23,16 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End.unity
     guid: a2a1be990109bc24184d833d271d06a0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameLevels/Looping catacombs.unity
     guid: 422fbc1403f29b643b5bece9df0f6401
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameLevels/Level2.unity
     guid: 64e42eae505204a40a3a5a95ec2f0b0f
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameLevels/Level3.unity
     guid: a0f1c5ba87f085a418caa4ca09a9a5d0
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/GameLevels/1leveL.unity
     guid: 3e6b58307f1f4604598f9411277f9f7c
   m_configObjects:

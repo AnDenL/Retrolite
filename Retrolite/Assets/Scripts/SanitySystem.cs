@@ -12,12 +12,23 @@ public class SanitySystem : MonoBehaviour
     public float stress;
     public Volume volume;
     public ParticleSystem particles;
-    void Start()
+
+    private void Awake()
+    {
+        Game.Sanity = this; 
+    }
+    private void Start()
     {
         health = GetComponent<Health>();
         MaxSanity = Sanity;
         StartCoroutine(LoseSanity());
     }
+
+    public float SanityPercent()
+    {
+        return Sanity / MaxSanity;
+    }
+
     IEnumerator LoseSanity()
     {
         var emission = particles.emission;

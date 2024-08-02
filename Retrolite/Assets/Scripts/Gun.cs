@@ -1,38 +1,35 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Gun : MonoBehaviour
 {
     [Header("Gun Stats")]
-    public int[] randomNumber = new int[]{0,0,0,0};
-    public int[] randomOperand = new int[]{0,0,0,0};
-    public int[] MagicNumbers = new int[]{0,0,0,0};
+    public float Echo, PureDamage, Spread, ReloadTime;
     public Sprite[] Image;
     public bool randomizeWeapon = true;
-    public int numOfOperand, weaponStyle, maxAmmo, ammo, kills;
-    public float shootSpeed, bulletSpeed, reloadTime, spread, range, echo = 0;
+    public int weaponStyle, maxAmmo, ammo, kills;
+    public string ShootSpeed, BulletSpeed, Range, Damage;
     [Header("Reference")]
     public GameObject bulletPrefab;
     public AudioClip[] shootSound;
     public Animator animator;
     public string weaponClip;
+    public Bullet curentBullet;
 
     private SpriteRenderer Sprite;
     private PlayerMove player;
     private AudioSource sound;
     private float shootTime;
     private Transform clip;
-    private Bullet curentBullet;
-    private Gun thisGun;
 
     public void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>(); ;
-        thisGun = GetComponent<Gun>();
         Sprite = GetComponent<SpriteRenderer>();
         if(randomizeWeapon){
-            RandomizeWeapon();
+            RandomParameter();
         }   
         Sprite.sprite = Image[weaponStyle];
     }
@@ -43,6 +40,7 @@ public class Gun : MonoBehaviour
         GameObject clipo = GameObject.Find(weaponClip);
         clip = clipo.GetComponent<Transform>();
         if (weaponStyle != 5)CreateBullet();
+        maxAmmo = ammo;
     }
     public void Shoot()
     {
@@ -52,72 +50,176 @@ public class Gun : MonoBehaviour
             {
                 sound.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
                 sound.PlayOneShot(shootSound[weaponStyle]);
-                float r = UnityEngine.Random.Range(-spread, spread);
+                float r = UnityEngine.Random.Range(-Spread, Spread);
                 if (player.horizontalMove != 0 || player.verticalMove != 0) r += r * (player.speed / 2);
+
+                float bulletSpeed = Mathf.Abs(Game.Calculate(BulletSpeed, curentBullet));
+                float range = Mathf.Abs(Game.Calculate(Range, curentBullet));
+
                 curentBullet.transform.localRotation = Quaternion.Euler(0, 0, r);
-                curentBullet.Shoot();
-                CreateBullet();
+                curentBullet.Shoot(bulletSpeed, range, ammo, this);
                 animator.SetTrigger("Shoot");
-                shootTime = Time.time + 1f / shootSpeed;
+                shootTime = Time.time + 1f / Mathf.Abs(Game.Calculate(ShootSpeed, curentBullet));
                 if (weaponStyle != 3)
                 {
                     ammo--;
                 }
+                CreateBullet();
             }
         }
     }
     void CreateBullet()
     {
         curentBullet = Instantiate(bulletPrefab, clip.GetChild(0)).GetComponent<Bullet>();
-        curentBullet.bulletStyle = weaponStyle;
-        curentBullet.bulletSpeed = bulletSpeed;
-        curentBullet.numOfOperand = numOfOperand;
-        curentBullet.randomNumber = randomNumber;
-        curentBullet.randomOperand = randomOperand;
-        curentBullet.MagicNumbers = MagicNumbers;
-        curentBullet.echo = echo;
-        curentBullet.range = range;
-        curentBullet.gun = thisGun;
-        curentBullet.kills = kills;
-        if(ammo == 0) curentBullet.ammo = maxAmmo;
-        else curentBullet.ammo = ammo;
     }
-    private void RandomizeWeapon()
+    private void RandomParameter()
     {
-        spread = UnityEngine.Random.Range(0f, 4f); ;
-        weaponStyle = UnityEngine.Random.Range(0,5);
-        numOfOperand = UnityEngine.Random.Range(1,5);
-        range = UnityEngine.Random.Range(4,15);
-        for(int i = 0;i < numOfOperand - 1; i++)
+        weaponStyle = Random.Range(0, 5);
+        ReloadTime = Random.Range(0.5f, 5f);
+        Spread = Random.Range(1, 12);
+        Range = RandomExpression(9, 18);
+        BulletSpeed = RandomExpression(0, 18);
+        ShootSpeed = RandomExpression(0, 18);
+        Damage = RandomExpression(0, 20);
+        maxAmmo = Random.Range(1, 31);
+    }
+
+    private void SetDamage(string value)
+    {
+        Damage = value;
+    }
+
+    private void SetRange(string value)
+    {
+        Range = value;
+    }
+
+    private void SetBulletSpeed(string value)
+    {
+        BulletSpeed = value;
+    }
+
+    private void SetSpread(float value)
+    {
+        Spread = value;
+    }
+
+    private void SetShootSpeed(string value)
+    {
+        ShootSpeed = value;
+    }
+
+    private void SetReloadTime(float value)
+    {
+        ReloadTime = value;
+    }
+
+    private void SetMaxAmmo(int value)
+    {
+        maxAmmo = value;
+    }
+
+    private string RandomExpression(int min, int max)
+    {
+        int length = Random.Range(1, 3);
+        string expression = "";
+        for (int i = 0; i < length; i++)
         {
-            randomNumber[i + 1] = UnityEngine.Random.Range(0,16);
-            if (randomNumber[i + 1] == 7 && weaponStyle == 3) randomNumber[i + 1] = 1;
-            randomOperand[i] = UnityEngine.Random.Range(0,4);
-            if (randomNumber[i + 1] >= 8) MagicNumbers[i + 1] = UnityEngine.Random.Range(-5,6);
+            int r = Random.Range(min,max);
+
+            switch(r)
+            {
+                case 0:
+                    expression += "-5";
+                    break;
+                case 1:
+                    expression += "-4";
+                    break;
+                case 2:
+                    expression += "-3";
+                    break;
+                case 3:
+                    expression += "-2";
+                    break;
+                case 4:
+                    expression += "-1";
+                    break;
+                case 5:
+                    expression += "0";
+                    break;
+                case 6:
+                    expression += "0,5";
+                    break;
+                case 7:
+                    expression += "1";
+                    break;
+                case 8:
+                    expression += "2";
+                    break;
+                case 9:
+                    expression += "3";
+                    break;
+                case 10:
+                    expression += "4";
+                    break;
+                case 11:
+                    expression += "5";
+                    break;
+                case 12:
+                    expression += "R";
+                    break;
+                case 13:
+                    expression += "P";
+                    break;
+                case 14:
+                    expression += "E";
+                    break;
+                case 15:
+                    expression += "N";
+                    break;
+                case 16:
+                    expression += "M";
+                    break;
+                case 17:
+                    expression += "S";
+                    break;
+                case 18:
+                    expression += "I";
+                    break;
+                case 19:
+                    expression += "K";
+                    break;
+                case 20:
+                    expression += "D";
+                    break;
+                case 21:
+                    expression += "H";
+                    break;
+                
+            }
+            expression += " ";
+            if(i < length - 1)
+            {
+                int o = Random.Range(0,4);
+
+                switch(o)
+                {
+                    case 0:
+                        expression += "+";
+                        break;
+                    case 1:
+                        expression += "-";
+                        break;
+                    case 2:
+                        expression += "*";
+                        break;
+                    case 3:
+                        expression += "/";
+                        break;
+                }
+                expression += " ";
+            }
         }
-        randomNumber[0] = UnityEngine.Random.Range(0,16);
-        if (randomNumber[0] >= 8) MagicNumbers[0] = UnityEngine.Random.Range(-5,6);
-        bulletSpeed = UnityEngine.Random.Range(3f,8f);
-        shootSpeed = UnityEngine.Random.Range(2f,6f);
-        ammo = UnityEngine.Random.Range(4, 18);
-        maxAmmo = ammo;
-        reloadTime = UnityEngine.Random.Range(0.2f, 0.8f) * Mathf.Sqrt(ammo);
-        switch(weaponStyle){
-            case 1:
-                shootSpeed /= 2;
-                break;
-            case 2:
-                bulletSpeed /= 2;
-                break;
-            case 3:
-                bulletSpeed = 15;
-                break;
-            case 4:
-                bulletSpeed = UnityEngine.Random.Range(12f,14f);
-                break;
-            case 5:
-                Sprite.color = new Color(1,1,1,0);
-                break;
-        }
+        return expression;
     }
 }

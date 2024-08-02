@@ -31,8 +31,9 @@ public class WeaponsList : MonoBehaviour
         if (Reflection2 != null) Reflection2.sprite = m_SpriteRenderer.sprite;
         firstGun = firstWeapon.GetComponent<Gun>();
         secondGun = secondWeapon.GetComponent<Gun>();
-        bulletImage.color = new Color(0.2f + (firstGun.bulletSpeed / 15), 0.2f + (1 - (Convert.ToSingle(firstGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(firstGun.numOfOperand) / 5), 1);
+        bulletImage.color = new Color(0.2f + Game.Calculate(firstGun.BulletSpeed, firstGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(firstGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(firstGun.Damage.Length) / 5), 1);
         bulletImage.sprite = bullets[firstGun.weaponStyle];
+        secondBulletImage.color = new Color(0.2f + Game.Calculate(secondGun.BulletSpeed, secondGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(secondGun.Damage.Length) / 5), 1);
         secondBulletImage.sprite = bullets[secondGun.weaponStyle];
         Formula(firstGun, firstCharacteristics);
         Formula(secondGun, secondCharacteristics);
@@ -85,7 +86,7 @@ public class WeaponsList : MonoBehaviour
             float t = Time.time;
             reload = true;
             gun.animator.SetBool("Reload", true);
-            while (Time.time - t < gun.reloadTime)
+            while (Time.time - t < gun.ReloadTime)
             {
                 yield return null;
             }
@@ -120,7 +121,7 @@ public class WeaponsList : MonoBehaviour
                 firstGun.weaponClip = "Clip0";
                 if(firstGun.weaponStyle != 5){  
                     bulletImage.sprite = bullets[firstGun.weaponStyle];
-                    bulletImage.color = new Color(0.2f + (firstGun.bulletSpeed / 15), 0.2f + (1 - (Convert.ToSingle(firstGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(firstGun.numOfOperand) / 5), 1);
+                    bulletImage.color = new Color(0.2f + Game.Calculate(firstGun.BulletSpeed, firstGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(firstGun.Damage.Length) / 5), 1);
                 }
                 else bulletImage.color = new Color(1,1,1,0);
                 m_SpriteRenderer = firstWeapon.GetComponent<SpriteRenderer>();
@@ -146,7 +147,7 @@ public class WeaponsList : MonoBehaviour
                 secondGun.weaponClip = "Clip1";
                 if(secondGun.weaponStyle != 5){  
                     secondBulletImage.sprite = bullets[secondGun.weaponStyle];
-                    secondBulletImage.color = new Color(0.2f + (secondGun.bulletSpeed / 15), 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(secondGun.numOfOperand) / 5), 1);
+                    secondBulletImage.color = new Color(0.2f + Game.Calculate(secondGun.BulletSpeed, secondGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(secondGun.Damage.Length) / 5), 1);
                 }
                 else secondBulletImage.color = new Color(1,1,1,0);
                 m_SpriteRenderer = secondWeapon.GetComponent<SpriteRenderer>();
@@ -158,8 +159,8 @@ public class WeaponsList : MonoBehaviour
     }
     private void Formula(Gun gunInfo,Text[] characteristics)
     {
-        characteristics[0].text = Convert.ToString(gunInfo.shootSpeed);
-        characteristics[1].text = Convert.ToString(gunInfo.bulletSpeed);
+        characteristics[0].text = gunInfo.ShootSpeed;
+        characteristics[1].text = gunInfo.BulletSpeed;
         if(gunInfo.weaponStyle != 3 && gunInfo.weaponStyle != 5)characteristics[4].text = Convert.ToString(gunInfo.ammo) + "/" + Convert.ToString(gunInfo.maxAmmo);
         else characteristics[4].text = " ";
         switch (gunInfo.weaponStyle){
@@ -182,62 +183,6 @@ public class WeaponsList : MonoBehaviour
                     characteristics[2].text = "None";
                     break; 
             }
-        string form = null;
-        for (int i = 0;i < gunInfo.numOfOperand; i++){
-            switch(gunInfo.randomNumber[i]){
-                case 0:
-                    form += "R";
-                    break;
-                case 1:
-                    form += "H";
-                    break;
-                case 2:
-                    form += "D";
-                    break;
-                case 3:
-                    form += "T";
-                    break;
-                case 4:
-                    form += "M";
-                    break;
-                case 5:
-                    form += "P";
-                    break;
-                case 6:
-                    form += "E";
-                    break;
-                case 7:
-                    form += "A";
-                    break;
-                case 8:
-                    form += "K";
-                    break;
-                case >= 9:
-                    if(i != 0){
-                        if(gunInfo.MagicNumbers[i] < 0) {
-                            form +=  "(" + Convert.ToString(gunInfo.MagicNumbers[i]) + ")";
-                            break;
-                        }
-                    }
-                    form += Convert.ToString(gunInfo.MagicNumbers[i]);
-                    break;
-            }
-            if (i != gunInfo.numOfOperand - 1)
-            switch(gunInfo.randomOperand[i]){
-                case 0:
-                    form += "+";
-                    break;
-                case 1:
-                    form += "-";
-                    break;
-                case 2:
-                    form += "*";
-                    break;
-                case 3:
-                    form += "/";
-                    break;
-            }
-        }
-        characteristics[3].text = form;
+        characteristics[3].text = gunInfo.Damage;
     }
 }
