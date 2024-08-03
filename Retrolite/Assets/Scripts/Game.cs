@@ -86,33 +86,38 @@ public static class Game
                 case "R":
                     numbers.Add(UnityEngine.Random.Range(-5f,5f));
                     break;
-                case "H":
-                    if(bullet.Health != null) numbers.Add(bullet.Health.HealthPercent());
-                    else numbers.Add(0);
+                case "H%":
+                    if(bullet.Health == null) numbers.Add(0);
+                    else numbers.Add(bullet.Health.HealthPercent());
                     break;
-                case "P":
+                case "PH%":
                     numbers.Add(PlayerHealth.HealthPercent());
                     break;
                 case "E":
-                    numbers.Add(bullet.Echo);
+                    if(bullet == null) numbers.Add(0);
+                    else numbers.Add(bullet.Echo);
                     break;
                 case "N":
-                    numbers.Add(bullet.Number);
+                    if(bullet == null) numbers.Add(0);
+                    else numbers.Add(bullet.Number);
                     break;
                 case "D":
-                    numbers.Add(Vector2.Distance(bullet.startPos, bullet.transform.position));
+                    if(bullet == null) numbers.Add(0);
+                    else numbers.Add(Vector2.Distance(bullet.startPos, bullet.transform.position));
                     break;
                 case "M":
-                    numbers.Add(Convert.ToSingle(Money.money) / 10);
+                    numbers.Add(Convert.ToSingle(Money.money));
                     break;
                 case "S":
-                    numbers.Add(bullet.BulletSpeed);
+                    if(bullet == null) numbers.Add(0);
+                    else numbers.Add(bullet.BulletSpeed);
                     break;
                 case "I":
                     numbers.Add(Sanity.SanityPercent());
                     break;
                 case "K":
-                    numbers.Add(bullet.Gun.kills / 10);
+                    if(bullet == null) numbers.Add(0);
+                    else numbers.Add(bullet.Gun.kills / 10);
                     break;
             }
         }

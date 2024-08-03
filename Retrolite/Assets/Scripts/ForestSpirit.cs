@@ -1,12 +1,13 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ForestSpirit : MonoBehaviour
 {
-    public GameObject[] objects;
-    public GameObject Target;
+    public List<GameObject> objects;
+    public GameObject Target = null;
     public float speed;
 
-    private int throwed;
     private float findTargetCooldown;
     private float rDirectionCooldown;
     private float speedModifier = 1f;
@@ -26,7 +27,7 @@ public class ForestSpirit : MonoBehaviour
         {
             MoveDirection = transform.position + player.transform.position;
             speedModifier = 0.75f;
-            if(findTargetCooldown < Time.time) if (throwed != objects.Length) FindTarget();
+            if(findTargetCooldown < Time.time) FindTarget();
         }
         else 
         {
@@ -51,15 +52,11 @@ public class ForestSpirit : MonoBehaviour
 
     private void FindTarget()
     {
-        while(Target == null)
-        {
-            Target = objects[Random.Range(0,objects.Length)];
-        }
+        if(objects.Count != 0) Target = objects[Random.Range(0,objects.Count)];
     }
 
     private void Attack()
     {
-        throwed++;
         PlayerMove playermovement = player.GetComponent<PlayerMove>();
         Vector2 prediction = new Vector2(playermovement.horizontalMove * (Vector2.Distance(transform.position,player.transform.position) / 3),playermovement.verticalMove * (Vector2.Distance(transform.position,player.transform.position) / 3));
         Vector3 ThrowDirection = new Vector3(player.transform.position.x + prediction.x,player.transform.position.y + prediction.y,0);
@@ -72,6 +69,7 @@ public class ForestSpirit : MonoBehaviour
     {
         if(collider.gameObject == Target)
         {
+            objects.Remove(Target);
             Invoke("Attack",1f);
         }
     }

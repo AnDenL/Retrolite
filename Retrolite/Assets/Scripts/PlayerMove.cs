@@ -13,6 +13,11 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
     private Vector3 pos;
     private Camera main;
+
+    private void Awake()
+    {
+        Game.Player = gameObject;
+    }
     
     private void Start()
     {

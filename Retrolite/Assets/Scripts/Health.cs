@@ -24,8 +24,10 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        Game.Player = gameObject;
-        Game.PlayerHealth = this;
+        if(Features == 2)
+        {
+            Game.PlayerHealth = this;
+        }
     }
 
     private void Start()

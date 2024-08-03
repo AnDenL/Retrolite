@@ -15,14 +15,12 @@ public class Gun : MonoBehaviour
     public GameObject bulletPrefab;
     public AudioClip[] shootSound;
     public Animator animator;
-    public string weaponClip;
     public Bullet curentBullet;
 
     private SpriteRenderer Sprite;
     private PlayerMove player;
     private AudioSource sound;
     private float shootTime;
-    private Transform clip;
 
     public void Awake()
     {
@@ -33,12 +31,10 @@ public class Gun : MonoBehaviour
         }   
         Sprite.sprite = Image[weaponStyle];
     }
-    void Start()
+    private void Start()
     {
         animator = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();
-        GameObject clipo = GameObject.Find(weaponClip);
-        clip = clipo.GetComponent<Transform>();
         if (weaponStyle != 5)CreateBullet();
         maxAmmo = ammo;
     }
@@ -68,18 +64,18 @@ public class Gun : MonoBehaviour
             }
         }
     }
-    void CreateBullet()
+    private void CreateBullet()
     {
-        curentBullet = Instantiate(bulletPrefab, clip.GetChild(0)).GetComponent<Bullet>();
+        curentBullet = Instantiate(bulletPrefab, transform.GetChild(0)).GetComponent<Bullet>();
     }
     private void RandomParameter()
     {
         weaponStyle = Random.Range(0, 5);
         ReloadTime = Random.Range(0.5f, 5f);
         Spread = Random.Range(1, 12);
-        Range = RandomExpression(9, 18);
-        BulletSpeed = RandomExpression(0, 18);
-        ShootSpeed = RandomExpression(0, 18);
+        Range = RandomExpression(9, 14);
+        BulletSpeed = RandomExpression(0, 14);
+        ShootSpeed = RandomExpression(0, 14);
         Damage = RandomExpression(0, 20);
         maxAmmo = Random.Range(1, 31);
     }
@@ -171,6 +167,12 @@ public class Gun : MonoBehaviour
                 case 13:
                     expression += "P";
                     break;
+                case 17:
+                    expression += "S";
+                    break;
+                case 18:
+                    expression += "I";
+                    break;
                 case 14:
                     expression += "E";
                     break;
@@ -179,12 +181,6 @@ public class Gun : MonoBehaviour
                     break;
                 case 16:
                     expression += "M";
-                    break;
-                case 17:
-                    expression += "S";
-                    break;
-                case 18:
-                    expression += "I";
                     break;
                 case 19:
                     expression += "K";

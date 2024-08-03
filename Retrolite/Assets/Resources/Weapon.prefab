@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6620867108065908699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6508620821677292557}
+  m_Layer: 13
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6508620821677292557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6620867108065908699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.194, y: 0.094, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3308763510460380423}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7886080712290642056
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +63,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6508620821677292557}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -77,12 +109,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 1359306939, guid: 460c4f6787d3db44b82a60de10b7ccd6, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.625, y: 0.33333334}
+  m_Size: {x: 0.65, y: 0.35}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -100,9 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93886c098192bfc46835ecab219be91b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomNumber: 0000000000000000000000000000000000000000
-  randomOperand: 0000000000000000000000000000000000000000
-  MagicNumbers: 00000000000000000000000000000000
+  Echo: 0
+  PureDamage: 0
+  Spread: 0
+  ReloadTime: 0
   Image:
   - {fileID: 678000772, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
   - {fileID: 1379971019, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
@@ -111,17 +144,14 @@ MonoBehaviour:
   - {fileID: -1852116406, guid: 61c6a57896f9b78489981068c493d17d, type: 3}
   - {fileID: -968210057, guid: 8f9c40673be5fd94595d7019ad0434e2, type: 3}
   randomizeWeapon: 1
-  numOfOperand: 0
   weaponStyle: 0
   maxAmmo: 6
   ammo: 6
   kills: 0
-  shootSpeed: 2
-  bulletSpeed: 4
-  reloadTime: 2
-  spread: 0
-  range: 0
-  echo: 0
+  ShootSpeed: 
+  BulletSpeed: 
+  Range: 
+  Damage: 
   bulletPrefab: {fileID: 4973285040261532876, guid: 861c1e091c457b542927ac014f793f87, type: 3}
   shootSound:
   - {fileID: 8300000, guid: 135e58d9b01f17845a3101ef4905bff6, type: 3}
@@ -130,7 +160,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a99aa52a1cc3ea46a8aca21ee4d56d5, type: 3}
   - {fileID: 8300000, guid: a337d2f19da98444a9f9b2bba525fb21, type: 3}
   animator: {fileID: 0}
-  weaponClip: 
+  curentBullet: {fileID: 0}
 --- !u!58 &104727573666760622
 CircleCollider2D:
   m_ObjectHideFlags: 0

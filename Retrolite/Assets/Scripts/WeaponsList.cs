@@ -125,7 +125,6 @@ public class WeaponsList : MonoBehaviour
                 firstWeapon.tag = "Empty";  
                 firstGun = firstWeapon.GetComponent<Gun>();
                 firstGun.enabled = true;
-                firstGun.weaponClip = "Clip0";
                 if(firstGun.weaponStyle != 5){  
                     bulletImage.sprite = bullets[firstGun.weaponStyle];
                     bulletImage.color = new Color(0.2f + Game.Calculate(firstGun.BulletSpeed, firstGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(firstGun.Damage.Length) / 5), 1);
@@ -151,7 +150,6 @@ public class WeaponsList : MonoBehaviour
                 secondWeapon.tag = "Empty";
                 secondGun = secondWeapon.GetComponent<Gun>(); 
                 secondGun.enabled = true;
-                secondGun.weaponClip = "Clip1";
                 if(secondGun.weaponStyle != 5){  
                     secondBulletImage.sprite = bullets[secondGun.weaponStyle];
                     secondBulletImage.color = new Color(0.2f + Game.Calculate(secondGun.BulletSpeed, secondGun.curentBullet) / 15f, 0.2f + (1 - (Convert.ToSingle(secondGun.weaponStyle) / 5)), 0.2f + (Convert.ToSingle(secondGun.Damage.Length) / 5), 1);

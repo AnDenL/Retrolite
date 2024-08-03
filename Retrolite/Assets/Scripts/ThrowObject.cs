@@ -40,13 +40,13 @@ public class ThrowObject : MonoBehaviour
     {
         if(throwed)
         {
-            if (collision.gameObject.tag == "Player")
+            if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy") )
             {
                 Health health = collision.gameObject.GetComponent<Health>();
                 health.SetHealth(4);
                 BulletDisappear();
             }
-            else if(collision.gameObject.tag == "Tilemap") BulletDisappear();
+            else if(collision.gameObject.CompareTag("Tilemap")) BulletDisappear();
         }
     }
     private void BulletDisappear()
