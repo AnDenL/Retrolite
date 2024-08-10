@@ -120,8 +120,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 16
+        y: 1
+        width: 12
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -140,9 +140,9 @@ TextureImporter:
       name: Heal_1
       rect:
         serializedVersion: 2
-        x: 17
-        y: 0
-        width: 7
+        x: 13
+        y: 1
+        width: 6
         height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -161,10 +161,10 @@ TextureImporter:
       name: Heal_2
       rect:
         serializedVersion: 2
-        x: 25
+        x: 20
         y: 0
-        width: 11
-        height: 12
+        width: 12
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,10 +182,10 @@ TextureImporter:
       name: Heal_3
       rect:
         serializedVersion: 2
-        x: 37
+        x: 33
         y: 0
         width: 10
-        height: 11
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,9 +203,9 @@ TextureImporter:
       name: Heal_4
       rect:
         serializedVersion: 2
-        x: 48
-        y: 0
-        width: 12
+        x: 44
+        y: 1
+        width: 10
         height: 11
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -224,10 +224,10 @@ TextureImporter:
       name: Heal_5
       rect:
         serializedVersion: 2
-        x: 61
+        x: 55
         y: 0
-        width: 11
-        height: 12
+        width: 12
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,6 +237,27 @@ TextureImporter:
       bones: []
       spriteID: ad1707ffb9b6ca841b8105be03a27a3c
       internalID: 1432614340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Heal_6
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 12
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0426370ddd1e88044b506cf59a54ae47
+      internalID: 850053756
       vertices: []
       indices: 
       edges: []

@@ -1,3 +1,4 @@
+using TMPro;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class WeaponsList : MonoBehaviour
     public Image bulletImage, secondBulletImage;
     public GameObject firstWeapon, secondWeapon;
     public Sprite[] bullets;
-    public Text[] firstCharacteristics, secondCharacteristics;
+    public TextMeshProUGUI[] firstCharacteristics, secondCharacteristics;
     public Gun firstGun, secondGun;
     public SpriteRenderer Reflection1, Reflection2;
     public bool reload = false;
@@ -19,9 +20,14 @@ public class WeaponsList : MonoBehaviour
     [SerializeField] private GameObject _reloadBar;
     
     private SpriteRenderer a;
-    public AudioClip start,end;
+    public AudioClip start, end;
     private AudioSource sound;
     private SpriteRenderer m_SpriteRenderer;
+
+    private void Awake()
+    {
+        Game.List = this;
+    }
 
     private void Start()
     {
@@ -50,8 +56,8 @@ public class WeaponsList : MonoBehaviour
             {
                 if (firstGun.ammo != 0 && !reload) {
                     firstGun.Shoot();
-                    if(firstGun.weaponStyle != 3 && firstGun.weaponStyle != 5)firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
-                    else firstCharacteristics[4].text = " ";
+                    if(firstGun.weaponStyle != 3 && firstGun.weaponStyle != 5)firstCharacteristics[3].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
+                    else firstCharacteristics[3].text = " ";
                 } 
                 else StartCoroutine(ReloadGun(firstGun));
             }
@@ -62,8 +68,8 @@ public class WeaponsList : MonoBehaviour
             {
                 if (secondGun.ammo != 0 && !reload) {
                     secondGun.Shoot();
-                    if(secondGun.weaponStyle != 3 && secondGun.weaponStyle != 5)secondCharacteristics[4].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
-                    else secondCharacteristics[4].text = " ";
+                    if(secondGun.weaponStyle != 3 && secondGun.weaponStyle != 5)secondCharacteristics[3].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
+                    else secondCharacteristics[3].text = " ";
                 } 
                 else StartCoroutine(ReloadGun(secondGun));
             }
@@ -94,13 +100,14 @@ public class WeaponsList : MonoBehaviour
             {
                 t += Time.deltaTime / gun.ReloadTime;
                 _material.SetFloat("_Arc2", (1 - t) * 360);
+                if(t > 0.9f)gun.animator.SetBool("Reload", false);
                 yield return null;
             }
             _reloadBar.SetActive(false);
             gun.animator.SetBool("Reload", false);
             gun.ammo = gun.maxAmmo;
-            firstCharacteristics[4].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
-            secondCharacteristics[4].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
+            firstCharacteristics[3].text = Convert.ToString(firstGun.ammo) + "/" + Convert.ToString(firstGun.maxAmmo);
+            secondCharacteristics[3].text = Convert.ToString(secondGun.ammo) + "/" + Convert.ToString(secondGun.maxAmmo);
             sound.PlayOneShot(end);
             reload = false;
         } 
@@ -162,32 +169,39 @@ public class WeaponsList : MonoBehaviour
             }
         }
     }
-    private void Formula(Gun gunInfo,Text[] characteristics)
+
+    private void UpdateUI()
+    {
+        Formula(firstGun, firstCharacteristics);
+        Formula(secondGun, secondCharacteristics);
+    }
+    private void Formula(Gun gunInfo,TextMeshProUGUI[] characteristics)
     {
         characteristics[0].text = gunInfo.ShootSpeed;
         characteristics[1].text = gunInfo.BulletSpeed;
-        if(gunInfo.weaponStyle != 3 && gunInfo.weaponStyle != 5)characteristics[4].text = Convert.ToString(gunInfo.ammo) + "/" + Convert.ToString(gunInfo.maxAmmo);
-        else characteristics[4].text = " ";
+        characteristics[2].text = gunInfo.Range;
+        if(gunInfo.weaponStyle != 3 && gunInfo.weaponStyle != 5)characteristics[3].text = Convert.ToString(gunInfo.ammo) + "/" + Convert.ToString(gunInfo.maxAmmo);
+        else characteristics[3].text = " ";
         switch (gunInfo.weaponStyle){
                 case 0:
-                    characteristics[2].text = "Plasma";
+                    characteristics[4].text = "Plasma";
                     break;
                 case 1:
-                    characteristics[2].text = "Bombs";
+                    characteristics[4].text = "Bombs";
                     break;
                 case 2:
-                    characteristics[2].text = "Sound wave";
+                    characteristics[4].text = "Sound wave";
                     break;
                 case 3:
-                    characteristics[2].text = "Laser";
+                    characteristics[4].text = "Laser";
                     break; 
                 case 4:
-                    characteristics[2].text = "Tesla";
+                    characteristics[4].text = "Tesla";
                     break; 
                 case 5:
-                    characteristics[2].text = "None";
+                    characteristics[4].text = "None";
                     break; 
             }
-        characteristics[3].text = gunInfo.Damage;
+        characteristics[5].text = gunInfo.Damage;
     }
 }

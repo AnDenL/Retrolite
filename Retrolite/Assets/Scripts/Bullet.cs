@@ -35,7 +35,8 @@ public class Bullet : MonoBehaviour
 
     public void Shoot(float speed, float range, int number, Gun gun)
     {
-        BulletSpeed = speed;
+        BulletSpeed = Mathf.Clamp(speed, 0.1f, 15f);
+        range = Mathf.Clamp(range, 1, 25);
         Number = number;
         this.Gun = gun;
         bulletStyle = gun.weaponStyle;

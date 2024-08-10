@@ -34,7 +34,7 @@ public class Shop : MonoBehaviour
                 description.text = "Protects you from insanity";
                 break;
             case 4:
-                cost = 100;
+                cost = 60;
                 description.text = "Brings you back to life if you die";
                 break;
             case 5:

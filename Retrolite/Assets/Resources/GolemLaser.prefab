@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Effect: {fileID: 215860691323438586, guid: 0b93704a8c4143749b78bf4d25d84a1b, type: 3}
-  speed: 18
+  speed: 15
   throwOnStart: 1
   UseBulletColor: 1
 --- !u!1 &9153339847308757827

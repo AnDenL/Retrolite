@@ -100,7 +100,7 @@ public class DebugConsole : MonoBehaviour
             switch(action)
             {
                 default:
-                    _tips.text = "- Clear: - Restart: - LoadScene: - Time: - Spawn: - Destroy: - Bind: - Unbind: - Music: - Immortal: - Color: - Scale: - Roll: - Volume: - Freeze: - Unfreeze: - Var: - Dvar: - Method: - RunInBackground:";
+                    _tips.text = "- Clear: - Restart: - LoadScene: - Time: - Spawn: - Sprite: - Destroy: - Money: - Bind: - Unbind: - Music: - Immortal: - Color: - Scale: - Roll: - Volume: - Var: - Dvar: - Method: - RunInBackground: - Quit:";
                     break;
                 case "print": case "message": case "write": case "p":
                     _tips.text = "Enter any text";
@@ -129,7 +129,11 @@ public class DebugConsole : MonoBehaviour
 
                     foreach (string s in spawnObjects)
                     {
-                        if(s.StartsWith(command, StringComparison.InvariantCultureIgnoreCase)) _tips.text += " - " + s;
+                        if(s.StartsWith(command, StringComparison.InvariantCultureIgnoreCase)) 
+                        {
+                            tips.Add(s);
+                            _tips.text += " - " + s;
+                        }
                     }
                     break;
                 case "destroy": case "d":
@@ -150,6 +154,9 @@ public class DebugConsole : MonoBehaviour
                     break;
                 case "music": case "m":
                     _tips.text = "Type a path to music you want to play";
+                    break;
+                case "money":
+                    _tips.text = "Type add or set and value";
                     break;
                 case "color": case "colour": case "cl":
                     _tips.text = "Type any color in HEX for example #ff5454 or just color like red or blue";
@@ -217,6 +224,42 @@ public class DebugConsole : MonoBehaviour
                                 if(bind.Command.StartsWith(command)) _tips.text += " - " + bind.Command;
                             }
                             break;
+                    }
+                    break;
+                case "sprite":
+                    _tips.text = "/sprite Object $image \n";
+
+                    string spriteName = GetCommand(ref command);
+
+                    string imageName = GetCommand(ref command);
+
+                    if(string.IsNullOrEmpty(imageName))
+                    {
+                        GameObject[] spriteObj = UnityEngine.Object.FindObjectsOfType<GameObject>();
+                        tips = new List<string>();
+
+                        foreach (GameObject objName in spriteObj)
+                        {
+                            tips.Add(objName.name);
+                        }
+
+                        foreach (string s in tips)
+                        {
+                            if(s.StartsWith(spriteName)) _tips.text += " - " + s;
+                        }
+                    }
+                    else
+                    {
+                        List<string> spriteNames = new List<string>();
+                        foreach (var varName in variables)
+                        {
+                            if(varName.Value is Sprite) spriteNames.Add(varName.Key);
+                        }
+
+                        foreach (string s in spriteNames)
+                        {
+                            if(s.StartsWith(imageName)) _tips.text += " - " + s;
+                        }
                     }
                     break;
                 case "deletevar": case "dvar":
@@ -458,6 +501,7 @@ public class DebugConsole : MonoBehaviour
                     _consoleHistory.text = null;
                     break;
                 case "restart": case "reset": case "r":
+                    SavingSystem.Current = null;
                     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
                     Time.timeScale = MainManu._timeScale;
                     break;
@@ -515,10 +559,20 @@ public class DebugConsole : MonoBehaviour
                     string name = GetCommand(ref command);
                     int repeats = 1;
                     GameObject prefab = null;
+
+                    if(string.IsNullOrEmpty(name))
+                    {
+                        WriteLine($"Enter the name of   an object", _errorColor);
+                        break;
+                    } 
+
                     if(name[0] == '$') 
                         prefab = variables[name] as GameObject;
                     else 
                         prefab = Resources.Load<GameObject>(name);
+
+                    if(prefab == null && tips.Count > 0) prefab = Resources.Load<GameObject>(tips[0]);
+
                     if (prefab != null)
                     {
                         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -544,10 +598,13 @@ public class DebugConsole : MonoBehaviour
                     else 
                         if(command != "mouse") obj = GameObject.Find(command);
                         else obj = GetMouseObject();
+
+                    if(obj == null && tips.Count > 0) obj = GameObject.Find(tips[0]);
+
                     if(obj != null)
                     {
+                        WriteLine(obj.name +" destroyed");
                         Destroy(obj);
-                        WriteLine(command +" destroyed");
                     }
                     else WriteLine("Object "+ command +" not found", _errorColor);
                     break;
@@ -573,19 +630,65 @@ public class DebugConsole : MonoBehaviour
                     break;
                 case "noclip":
                     bool noclip;
+                    Rigidbody2D rb = Game.Player.GetComponent<Rigidbody2D>();
+                    if(string.IsNullOrEmpty(command))
+                    {
+                        noclip = rb.simulated;
+                        rb.simulated = !noclip;
+                        WriteLine("Noclip " + noclip);
+                        break;
+                    } 
                     if(command[0] == '$') 
                     {
                         noclip = (bool)variables[command];
-                        Game.Player.GetComponent<Rigidbody2D>().simulated = !noclip;
+                        rb.simulated = !noclip;
                         WriteLine("Noclip " + noclip);
                     }
                     else if (Boolean.TryParse(GetCommand(ref command), out noclip))
                     {
-                        Game.Player.GetComponent<Rigidbody2D>().simulated = !noclip;
+                        rb.simulated = !noclip;
                         WriteLine("Noclip " + noclip);
                     }
                     else 
                         WriteLine($"Parse error, {command} can`t be parsed to boolean", _errorColor);
+                    break;
+                case "money":
+                    int money = 0;
+                    switch(GetCommand(ref command))
+                    {
+                        case "add":
+                            if(command[0] == '$') 
+                            {
+                                money = (int)variables[command];
+                                Game.Money.AddMoney(money);
+                                WriteLine("Money = " + Game.Money.money);
+                            }
+                            else if(int.TryParse(command, out money))
+                            {
+                                Game.Money.AddMoney(money);
+                                WriteLine("Money = " + Game.Money.money);
+                            }
+                            else 
+                                WriteLine($"Parse error, {command} can`t be parsed to integer number", _errorColor);
+                            break;
+                        case "set":
+                            if(command[0] == '$') 
+                            {
+                                money = (int)variables[command];
+                                Game.Money.money = money;
+                                Game.Money.AddMoney(0);
+                                WriteLine("Money = " + money);
+                            }
+                            else if(int.TryParse(command, out money))
+                            {
+                                Game.Money.money = money;
+                                Game.Money.AddMoney(0);
+                                WriteLine("Money = " + money);
+                            }
+                            else 
+                                WriteLine($"Parse error, {command} can`t be parsed to integer number", _errorColor);
+                            break;
+                    }
                     break;
                 case "scale":
                     string tName = GetCommand(ref command);
@@ -635,36 +738,6 @@ public class DebugConsole : MonoBehaviour
                         break;
                     }
                     break;
-                case "freeze": case "f":
-                    GameObject fobj = GetMouseObject();
-
-                    if(fobj != null)
-                    {
-                        Rigidbody2D rb = fobj.GetComponent<Rigidbody2D>();
-                        if (rb != null)
-                        {
-                            rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-                        }
-                        else
-                            WriteLine("Object not found", _errorColor);
-                    }
-                    break;
-                case "unfreeze": case "uf":
-                    GameObject ufobj = GetMouseObject();
-
-                    if (ufobj != null)
-                    {
-                        Rigidbody2D rb = ufobj.GetComponent<Rigidbody2D>();
-                        if (rb != null)
-                        {
-                            rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation;
-                        }
-                        else
-                            WriteLine("Object has no physics", _errorColor);
-                    }
-                    else
-                        WriteLine("Object not found", _errorColor);
-                    break;
                 case "sprite":
                     SpriteRenderer sprite = null;
                     GameObject gobj;
@@ -701,7 +774,7 @@ public class DebugConsole : MonoBehaviour
                     }
                     if (System.Enum.TryParse(stringKeyDown, true, out keydown))
                     {
-                        binds.Add(new Bind(keydown, command, onKeyDown));
+                        binds.Add(new Bind(keydown, command, !onKeyDown));
                         WriteLine($"Binding added: {stringKeyDown} -> {command}");
                     }
                     else WriteLine("Invalid KeyCode!", _errorColor);
@@ -744,7 +817,6 @@ public class DebugConsole : MonoBehaviour
 
                     GameObject gameobj = null;
                     string objName = GetCommand(ref command);
-                    Debug.Log(objName);
 
                     if(objName != "mouse")
                         gameobj = GameObject.Find(objName);
@@ -820,6 +892,9 @@ public class DebugConsole : MonoBehaviour
                     }
                     else 
                         WriteLine($"Parse error, {command} can`t be parsed to boolean", _errorColor);
+                    break;
+                case "quit":
+                    Application.Quit();
                     break;
             }
         }
@@ -912,7 +987,7 @@ public class DebugConsole : MonoBehaviour
     {
         Vector3 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] hitEmenies = Physics2D.OverlapCircleAll(cursorPosition, 0.1f);
-        if (hitEmenies != null && hitEmenies[0] != null) return hitEmenies[0].gameObject;
+        if (hitEmenies.Length > 0) return hitEmenies[0].gameObject;
         else return null;
     }
 }

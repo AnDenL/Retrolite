@@ -23,7 +23,7 @@ public class MainManu : MonoBehaviour
             if (!menu) Pause();
             else Resume();  
         }
-        if(Input.GetKeyDown(KeyCode.BackQuote)) 
+        if(Input.GetButtonDown("Console")) 
         {
             bool active = _console.activeInHierarchy;
             Time.timeScale = Convert.ToInt32(active) * _timeScale;

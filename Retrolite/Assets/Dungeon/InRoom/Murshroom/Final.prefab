@@ -20154,7 +20154,7 @@ GameObject:
   - component: {fileID: 6764604694956809097}
   - component: {fileID: 3412525561400889398}
   - component: {fileID: 3036679506785418866}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (3)
   m_TagString: Empty
   m_Icon: {fileID: 0}
@@ -20483,6 +20483,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
       propertyPath: LoadedLevel
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
+      propertyPath: LoadedLevel.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
+      propertyPath: LoadedLevel.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -1030,12 +1030,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "P - the player's health divided by his maximum health\nA - Bullet number
-    in the clip\nK - Kills on this gun divided by 10\n\nThere are also different
-    types of weapons\r\n\r\n      Plasma pistol - a standard weapon\r\n      Grenade
-    launcher - deals damage in a small area\r\n      Sonic gun - makes sound waves
-    that pierce enemies and grow over time\r\n      Laser - never needs to be reloaded\n     
-    Tesla - fires an electric shot that is transferred from one enemy to another"
+  m_text: "P - the player's health divided by his maximum health\nA - bullet number
+    in the clip\nK - kills on this gun divided by 10\nN - bullet number\nS - sanity
+    percent\n\nTypes of weapons: \n      Plasma pistol - a standard weapon\r\n     
+    Grenade launcher - deals damage in a small area\r\n      Sonic gun - makes sound
+    waves that pierce enemies and grow over time\r\n      Laser - never needs to
+    be reloaded\n      Tesla - fires an electric shot that is transferred from one
+    enemy to another"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ecf9579190ec7d84eb99b2d150a7f53a, type: 2}
   m_sharedMaterial: {fileID: 2601755957050858548, guid: ecf9579190ec7d84eb99b2d150a7f53a, type: 2}
@@ -6155,7 +6156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9001608456408725728
 RectTransform:
   m_ObjectHideFlags: 0

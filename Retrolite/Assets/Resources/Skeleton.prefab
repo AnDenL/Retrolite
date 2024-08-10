@@ -340,7 +340,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Sprite: {fileID: -228813970, guid: 0fb4c01a3c9359242afec6cad1e3f091, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -479,7 +479,8 @@ MonoBehaviour:
   LoadLevel: 0
   InvisibleTime: 0.1
   isInvincible: 0
-  invertDamage: 0
+  Features: 0
+  RevivalEffect: {fileID: 0}
 --- !u!82 &3961987873399100528
 AudioSource:
   m_ObjectHideFlags: 0

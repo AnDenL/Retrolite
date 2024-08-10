@@ -22,7 +22,7 @@ public class Settings : MonoBehaviour
     public RawImage image;
     public Material material;
 
-    void Start()
+    private void Start()
     {
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
@@ -43,7 +43,11 @@ public class Settings : MonoBehaviour
         Invoke("LateStart",0.1f);
     }
 
-    void LateStart() => UiCamera.orthographicSize = Game.orthographicSize;
+    private void LateStart() 
+    {
+        UiCamera.orthographicSize = Game.orthographicSize;
+        Water.orthographicSize = Game.orthographicSize;
+    }
 
     public void SetFullscreen(bool isFullscreen)
     {
@@ -90,6 +94,7 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetFloat("MusicPreference", MusicSlider.value);
         PlayerPrefs.SetFloat("EffectsPreference", EffectSlider.value);
         PlayerPrefs.SetFloat("BrightnessPreference", BrightnessSlider.value);
+        PlayerPrefs.Save();
     }
     public void ChangeMasterVolume(float MasterVolume)
     {
@@ -106,7 +111,7 @@ public class Settings : MonoBehaviour
     public void ChangeBrightness(float Brightness)
     {
         BrightnessProfile.TryGet<ColorAdjustments>(out Exposure);
-        Exposure.postExposure.value = Mathf.Lerp(0, 2, Brightness);
+        Exposure.postExposure.value = Mathf.Lerp(0, 1.5f, Brightness);
     }
     public void LoadSettings(int currentResolutionIndex)
     {
@@ -119,6 +124,13 @@ public class Settings : MonoBehaviour
         Mixer.audioMixer.SetFloat("MasterVolume", Mathf.Lerp(-60, 0, masterVolume));
         Mixer.audioMixer.SetFloat("MusicVolume", Mathf.Lerp(-60, 0, musicVolume));
         Mixer.audioMixer.SetFloat("EffectsVolume", Mathf.Lerp(-60, 0, effectVolume));
+
+        pixelEffect.isOn =  Convert.ToBoolean(PlayerPrefs.GetInt("PixelEffectPreference"));
+        PixelEffect(pixelEffect.isOn);
+        BrightnessSlider.value = PlayerPrefs.GetFloat("BrightnessPreference");
+        ChangeBrightness(BrightnessSlider.value);
+        
+
         if (PlayerPrefs.HasKey("ResolutionPreference"))
             resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");
         else
@@ -128,9 +140,6 @@ public class Settings : MonoBehaviour
             Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
         else
             Screen.fullScreen = true;
-        pixelEffect.isOn =  Convert.ToBoolean(PlayerPrefs.GetInt("PixelEffectPreference"));
-        BrightnessSlider.value = PlayerPrefs.GetFloat("BrightnessPreference");
-        ChangeBrightness(BrightnessSlider.value);
-        PixelEffect(pixelEffect.isOn);
+        
     }
 }

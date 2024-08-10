@@ -55,7 +55,7 @@ public class Gun : MonoBehaviour
                 curentBullet.transform.localRotation = Quaternion.Euler(0, 0, r);
                 curentBullet.Shoot(bulletSpeed, range, ammo, this);
                 animator.SetTrigger("Shoot");
-                shootTime = Time.time + 1f / Mathf.Abs(Game.Calculate(ShootSpeed, curentBullet));
+                shootTime = Time.time + 1f / Mathf.Clamp(Mathf.Abs(Game.Calculate(ShootSpeed, curentBullet)), 0.3f, 20f);
                 if (weaponStyle != 3)
                 {
                     ammo--;
@@ -73,11 +73,14 @@ public class Gun : MonoBehaviour
         weaponStyle = Random.Range(0, 5);
         ReloadTime = Random.Range(0.5f, 5f);
         Spread = Random.Range(1, 12);
-        Range = RandomExpression(9, 14);
-        BulletSpeed = RandomExpression(0, 14);
-        ShootSpeed = RandomExpression(0, 14);
-        Damage = RandomExpression(0, 20);
-        maxAmmo = Random.Range(1, 31);
+        Range = RandomExpression(9, 15);
+        BulletSpeed = RandomExpression(0, 15);
+        ShootSpeed = RandomExpression(0, 15);
+        Damage = RandomExpression(0, 21);
+        int ammoAmount = Random.Range(1, 31);
+        maxAmmo = ammoAmount;
+        ammo = ammoAmount;
+
     }
 
     private void SetDamage(string value)
@@ -117,7 +120,9 @@ public class Gun : MonoBehaviour
 
     private string RandomExpression(int min, int max)
     {
-        int length = Random.Range(1, 3);
+        int length = 1;
+        if(Random.Range(1, 3) == 1) length = Random.Range(1, 4);
+
         string expression = "";
         for (int i = 0; i < length; i++)
         {
@@ -170,9 +175,6 @@ public class Gun : MonoBehaviour
                 case 17:
                     expression += "S";
                     break;
-                case 18:
-                    expression += "I";
-                    break;
                 case 14:
                     expression += "E";
                     break;
@@ -182,13 +184,13 @@ public class Gun : MonoBehaviour
                 case 16:
                     expression += "M";
                     break;
-                case 19:
+                case 18:
                     expression += "K";
                     break;
-                case 20:
+                case 19:
                     expression += "D";
                     break;
-                case 21:
+                case 20:
                     expression += "H";
                     break;
                 

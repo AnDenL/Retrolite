@@ -3,9 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GoToNextLevel : MonoBehaviour
 {
-    public int LoadedLevel;
+    public int[] LoadedLevel;
     public GameObject Button;
-    public bool nextlevel, savePlayer;
     private bool PlayerIsHere;
     private Animator Fade;
     private Animator Player;
@@ -46,21 +45,8 @@ public class GoToNextLevel : MonoBehaviour
     private void UnLockLevel()
     {
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
-        if (savePlayer){
-            GameObject Player = GameObject.Find("Player");
-            DataHolder.money = Player.GetComponent<Money>().money;
-            DataHolder.Health = Player.GetComponent<Health>().healthPoint;
-            DataHolder.MaxHealth = Player.GetComponent<Health>().maxHealthPoint;
-            DataHolder.lifes = Player.GetComponent<Health>().lifes;
-            DataHolder.Sanity = Player.GetComponent<SanitySystem>().Sanity;
-            WeaponsList guns = Player.GetComponent<WeaponsList>();
-            DataHolder.FirstWeapon = guns.firstGun;
-            DataHolder.SecondWeapon = guns.secondGun;
-        }
-        if (nextlevel){
-            SceneManager.LoadScene(currentLevel + 1);
-        } 
-        else SceneManager.LoadScene(LoadedLevel);
+        if(SavingSystem.instance != null) SavingSystem.SaveRun();
+        SceneManager.LoadScene(LoadedLevel[Random.Range(0, LoadedLevel.Length)]);
     }
     private void BlackScreen() => Fade.SetTrigger("End");
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public static class Game
 {
+    public static WeaponsList List;
     public static Health PlayerHealth;
     public static GameObject Player;
     public static Money Money;
@@ -86,11 +87,11 @@ public static class Game
                 case "R":
                     numbers.Add(UnityEngine.Random.Range(-5f,5f));
                     break;
-                case "H%":
+                case "H":
                     if(bullet.Health == null) numbers.Add(0);
                     else numbers.Add(bullet.Health.HealthPercent());
                     break;
-                case "PH%":
+                case "P":
                     numbers.Add(PlayerHealth.HealthPercent());
                     break;
                 case "E":
@@ -106,13 +107,9 @@ public static class Game
                     else numbers.Add(Vector2.Distance(bullet.startPos, bullet.transform.position));
                     break;
                 case "M":
-                    numbers.Add(Convert.ToSingle(Money.money));
+                    numbers.Add(Convert.ToSingle(Money.money / 10));
                     break;
                 case "S":
-                    if(bullet == null) numbers.Add(0);
-                    else numbers.Add(bullet.BulletSpeed);
-                    break;
-                case "I":
                     numbers.Add(Sanity.SanityPercent());
                     break;
                 case "K":

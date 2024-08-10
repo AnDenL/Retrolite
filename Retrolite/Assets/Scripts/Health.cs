@@ -170,6 +170,7 @@ public class Health : MonoBehaviour
             Time.timeScale = 0.2f;
             animator2.SetTrigger("End");
             Invoke("LoadScene", 0.3f);
+            SavingSystem.Current = null;
 
         }
         else if (lifes > 0)

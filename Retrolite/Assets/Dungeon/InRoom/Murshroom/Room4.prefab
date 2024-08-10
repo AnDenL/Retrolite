@@ -15779,7 +15779,7 @@ GameObject:
   - component: {fileID: 5997709773928644497}
   - component: {fileID: 6766809607711899709}
   - component: {fileID: 4682165851426673073}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (3)
   m_TagString: Empty
   m_Icon: {fileID: 0}
@@ -21199,6 +21199,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 2001866401, guid: bb10b377eb422ba41bb84d181897dc36, type: 3}
+    - target: {fileID: 5766852522940548032, guid: 91db1086dfa3ab045beb75c2c199c224, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5766852522940548033, guid: 91db1086dfa3ab045beb75c2c199c224, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -21351,6 +21355,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -207067942, guid: bb10b377eb422ba41bb84d181897dc36, type: 3}
+    - target: {fileID: 5766852522940548032, guid: 91db1086dfa3ab045beb75c2c199c224, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5766852522940548033, guid: 91db1086dfa3ab045beb75c2c199c224, type: 3}
       propertyPath: m_RootOrder
       value: 4

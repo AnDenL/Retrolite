@@ -7,10 +7,11 @@ public class SpikeController : MonoBehaviour
     public Animator[] spike;
     public float delay;
     private int i = 0;
+    private bool active = false;
 
     private void OnEnable()
     {
-        spike[0].SetTrigger("Toggle");
+        
         StartCoroutine(Toggle());
     }
 
@@ -19,9 +20,13 @@ public class SpikeController : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(delay);
-            spike[i].SetTrigger("Toggle");
+            spike[i].SetBool("Toggle", active);
             if (i < spike.Length - 1) i++;
-            else i = 0;
+            else 
+            {
+                active = !active;
+                i = 0;
+            }
         }
     }
 }

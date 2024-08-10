@@ -109,7 +109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
       propertyPath: nextlevel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
       propertyPath: savePlayer
@@ -118,6 +118,14 @@ PrefabInstance:
     - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
       propertyPath: LoadedLevel
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
+      propertyPath: LoadedLevel.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7511482367917098764, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}
+      propertyPath: LoadedLevel.Array.data[0]
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1356441b563d7ed4faa6d488de66bdcd, type: 3}

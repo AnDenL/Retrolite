@@ -39,10 +39,10 @@ public class SanitySystem : MonoBehaviour
             percent = NewValue / MaxSanity;
             volume.weight = percent;
             if (percent > 0.5f) {
-                emission.rateOverTime = new ParticleSystem.MinMaxCurve((percent - 0.5f) * 4);
+                emission.rateOverTime = new ParticleSystem.MinMaxCurve((percent - 0.5f) * 12);
             }
             yield return null;
         }
-        health.SetHealth(health.healthPoint);
+        health.SetHealth(-Sanity);
     }
 }

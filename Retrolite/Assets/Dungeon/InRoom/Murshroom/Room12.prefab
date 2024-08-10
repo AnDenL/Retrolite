@@ -15354,7 +15354,7 @@ GameObject:
   - component: {fileID: 5997709773928644497}
   - component: {fileID: 6766809607711899709}
   - component: {fileID: 4682165851426673073}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject (3)
   m_TagString: Empty
   m_Icon: {fileID: 0}
