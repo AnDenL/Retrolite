@@ -3,18 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bullet
-  - Trigger
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Empty
+  - 
   - Water
   - UI
-  - Bullet
-  - Player
+  - 
+  - 
   - 
   - 
   - 
