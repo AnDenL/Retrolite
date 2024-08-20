@@ -24,15 +24,17 @@ public class Gun : MonoBehaviour
 
     public void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>(); ;
         Sprite = GetComponent<SpriteRenderer>();
         if(randomizeWeapon){
             RandomParameter();
-        }   
+        }  
         Sprite.sprite = Image[weaponStyle];
     }
+
     private void Start()
     {
+        player = Game.Player.GetComponent<PlayerMove>();
+
         animator = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();
         if (weaponStyle != 5)CreateBullet();
@@ -71,13 +73,13 @@ public class Gun : MonoBehaviour
     private void RandomParameter()
     {
         weaponStyle = Random.Range(0, 5);
-        ReloadTime = Random.Range(0.5f, 5f);
         Spread = Random.Range(1, 12);
         Range = RandomExpression(9, 15);
         BulletSpeed = RandomExpression(0, 15);
         ShootSpeed = RandomExpression(0, 15);
         Damage = RandomExpression(0, 21);
         int ammoAmount = Random.Range(1, 31);
+        ReloadTime = Mathf.Sqrt(Random.Range(0.1f, 0.2f) * ammoAmount) + 0.5f;
         maxAmmo = ammoAmount;
         ammo = ammoAmount;
 

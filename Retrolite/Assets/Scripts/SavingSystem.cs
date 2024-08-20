@@ -22,6 +22,7 @@ public class SavingSystem : MonoBehaviour
         Game.PlayerHealth.healthPoint = Run.Health; 
         Game.PlayerHealth.maxHealthPoint = Run.MaxHealth;
         Game.Sanity.Sanity = Run.Sanity;
+        Game.Money.money = Run.Money;
 
         Game.List.firstGun.Damage = Run.FirstWeapon.Damage;
         Game.List.firstGun.weaponStyle = Run.FirstWeapon.weaponStyle;
@@ -48,6 +49,7 @@ public class SavingSystem : MonoBehaviour
     {
         Run.Stage++;
         Run.Lives = Game.PlayerHealth.lifes; 
+        Run.Money = Game.Money.money;
         Run.Health = Game.PlayerHealth.healthPoint; 
         Run.MaxHealth = Game.PlayerHealth.maxHealthPoint; 
         Run.Sanity = Game.Sanity.Sanity;
@@ -62,6 +64,7 @@ public class Run
 {
     public static int Stage;
     public static int Lives;
+    public static int Money;
     public static float Time;
     public static float Health, MaxHealth;
     public static float Sanity;
@@ -72,6 +75,7 @@ public class Run
         Stage = 0;
         Lives = 0;
         Time = 0;
+        Money = 0;
         Health = health;
         MaxHealth = health;
         Sanity = sanity;

@@ -17,7 +17,7 @@ public class Slime : MonoBehaviour
 
     private void Awake()
     {
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = Game.Player.transform;
         animator = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();
     }

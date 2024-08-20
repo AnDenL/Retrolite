@@ -17,7 +17,7 @@ public class ForestSpirit : MonoBehaviour
     
     private void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = Game.Player;
         findTargetCooldown = Time.time + Random.Range(4f,6f);
     }
 

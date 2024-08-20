@@ -15,7 +15,7 @@ public class Skeleton : MonoBehaviour
     private Animator animator;
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
+        Player = Game.Player.transform;
         animator = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();
         StartCoroutine(CheckTimer());

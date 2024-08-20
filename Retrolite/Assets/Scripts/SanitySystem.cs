@@ -6,9 +6,9 @@ using UnityEngine.Rendering.Universal;
 public class SanitySystem : MonoBehaviour
 {
     private Health health;
-    private float MaxSanity;
+    private float MaxSanity = 10000;
     private float percent;
-    public float Sanity;
+    public float Sanity = 10000;
     public float stress;
     public Volume volume;
     public ParticleSystem particles;
@@ -20,7 +20,6 @@ public class SanitySystem : MonoBehaviour
     private void Start()
     {
         health = GetComponent<Health>();
-        MaxSanity = Sanity;
         StartCoroutine(LoseSanity());
     }
 
@@ -34,7 +33,10 @@ public class SanitySystem : MonoBehaviour
         var emission = particles.emission;
         while(Sanity > 0)
         {
-            Sanity -= stress;
+            Sanity -= Time.deltaTime * stress;
+
+            if(Sanity > MaxSanity) Sanity = MaxSanity;
+
             float NewValue = (Sanity - MaxSanity) *-1;
             percent = NewValue / MaxSanity;
             volume.weight = percent;
@@ -43,6 +45,6 @@ public class SanitySystem : MonoBehaviour
             }
             yield return null;
         }
-        health.SetHealth(-Sanity);
+        health.SetHealth(health.healthPoint);
     }
 }

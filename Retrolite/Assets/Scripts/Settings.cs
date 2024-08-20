@@ -31,7 +31,7 @@ public class Settings : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
+            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRateRatio + "Hz";
             options.Add(option);
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
                 currentResolutionIndex = i;
@@ -46,7 +46,7 @@ public class Settings : MonoBehaviour
     private void LateStart() 
     {
         UiCamera.orthographicSize = Game.orthographicSize;
-        Water.orthographicSize = Game.orthographicSize;
+        if (water != null) Water.orthographicSize = Game.orthographicSize;
     }
 
     public void SetFullscreen(bool isFullscreen)

@@ -15,7 +15,7 @@ public class Bat : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
+        player = Game.Player;
         hp = GetComponent<Health>();
         animator = GetComponent<Animator>();
         sound = GetComponent<AudioSource>();  

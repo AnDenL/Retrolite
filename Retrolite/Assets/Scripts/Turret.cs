@@ -13,7 +13,7 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        player = Game.Player.transform;
         sound = GetComponent<AudioSource>();
         shootTime = Time.time + 3;
         transform.parent = null;

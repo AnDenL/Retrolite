@@ -19,7 +19,7 @@ public class BigFly : MonoBehaviour
     {
         sound = GetComponent<AudioSource>();
         sound.pitch = Random.Range(0.5f,0.6f);
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = Game.Player.transform;
         animator = GetComponent<Animator>();
     }
     private void Start()

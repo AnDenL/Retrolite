@@ -18,7 +18,7 @@ public class Minimap : MonoBehaviour
     private void Start()
     {   
         minimapPos = new Vector2(frame.position.x,frame.position.y);
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = Game.Player;
         roomsParent = new GameObject("RoomsParent").transform;
         roomsParent.SetParent(miniMap);
         roomsParent.localPosition = Vector2.zero;

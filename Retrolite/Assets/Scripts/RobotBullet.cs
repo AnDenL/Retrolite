@@ -42,11 +42,9 @@ public class RobotBullet : MonoBehaviour
         Collider2D[] hitEmenies = Physics2D.OverlapCircleAll(transform.position, 2f, Layers);
         foreach (Collider2D enemy in hitEmenies)
         {
-            RaycastHit2D hitX = Physics2D.Raycast(transform.position, enemy.transform.position, 2f, explosionLayers);
-            if (hitX.collider.tag == "Player")
-            {
-                enemy.GetComponent<Health>().SetHealth(damage);
-            }
+            Health hp = enemy.GetComponent<Health>();
+
+            if(hp != null) hp.SetHealth(damage);
         }
     }
     private void Destroy() => Destroy(gameObject);
