@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 9f4d8026536d922478f17760dde6e283
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8263454844349163960
+    second: Binary texture_0
+  - first:
+      213: -6968661576922023442
+    second: Binary texture_1
+  - first:
+      213: 5337276087953180396
+    second: Binary texture_2
+  - first:
+      213: 2538467081897729394
+    second: Binary texture_3
+  - first:
+      213: -6070417239037112563
+    second: Binary texture_4
+  - first:
+      213: -3936434304860048717
+    second: Binary texture_5
+  - first:
+      213: -281662191716178772
+    second: Binary texture_6
+  - first:
+      213: 3165217846219620443
+    second: Binary texture_7
+  - first:
+      213: 3638893561445874469
+    second: Binary texture_8
+  - first:
+      213: -1039867373491866437
+    second: Binary texture_9
+  - first:
+      213: 376859651480068144
+    second: Binary texture_10
+  - first:
+      213: 6297144815490946194
+    second: Binary texture_11
+  - first:
+      213: 1250680661105916962
+    second: Binary texture_12
+  - first:
+      213: -2929076073772203504
+    second: Binary texture_13
+  - first:
+      213: -770046212631759960
+    second: Binary texture_14
+  - first:
+      213: 4895190798470117743
+    second: Binary texture_15
+  - first:
+      213: 7340003097205889599
+    second: Binary texture_16
+  - first:
+      213: -2038707550432105618
+    second: Binary texture_17
+  - first:
+      213: -2465898652685688325
+    second: Binary texture_18
+  - first:
+      213: 7997923721414647611
+    second: Binary texture_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Binary texture_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 52
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8465619c99f425d80800000000000000
+      internalID: -8263454844349163960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_1
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 36
+        width: 13
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee936a3a7375a4f90800000000000000
+      internalID: -6968661576922023442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_2
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 54
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce6c2aae250d11a40800000000000000
+      internalID: 5337276087953180396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_3
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 48
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27d59829c527a3320800000000000000
+      internalID: 2538467081897729394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_4
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 47
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0f09ccfeab81cba0800000000000000
+      internalID: -6070417239037112563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 37
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2b7291bd9fe59c0800000000000000
+      internalID: -3936434304860048717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 42
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca4691c9ab5571cf0800000000000000
+      internalID: -281662191716178772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_7
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 28
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b50c5a07cdc1deb20800000000000000
+      internalID: 3165217846219620443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_8
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 36
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52bff691a62ff7230800000000000000
+      internalID: 3638893561445874469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_9
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 25
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb4bf7d1226a191f0800000000000000
+      internalID: -1039867373491866437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_10
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 33
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 030a5a83bdfda3500800000000000000
+      internalID: 376859651480068144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_11
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 19
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 294d78298d3f36750800000000000000
+      internalID: 6297144815490946194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_12
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 20
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c3ba45f6f4b5110800000000000000
+      internalID: 1250680661105916962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_13
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 18
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01246be64d4d957d0800000000000000
+      internalID: -2929076073772203504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_14
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 16
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a3f27bac0f3055f0800000000000000
+      internalID: -770046212631759960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_15
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 19
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f69729a68163fe340800000000000000
+      internalID: 4895190798470117743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3a593b8dedecd560800000000000000
+      internalID: 7340003097205889599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_17
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 0
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6b669fc84e05b3e0800000000000000
+      internalID: -2038707550432105618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_18
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 1
+        width: 18
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf12e828d3e57cdd0800000000000000
+      internalID: -2465898652685688325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Binary texture_19
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 2
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3f1793ff355efe60800000000000000
+      internalID: 7997923721414647611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Binary texture_0: -8263454844349163960
+      Binary texture_1: -6968661576922023442
+      Binary texture_10: 376859651480068144
+      Binary texture_11: 6297144815490946194
+      Binary texture_12: 1250680661105916962
+      Binary texture_13: -2929076073772203504
+      Binary texture_14: -770046212631759960
+      Binary texture_15: 4895190798470117743
+      Binary texture_16: 7340003097205889599
+      Binary texture_17: -2038707550432105618
+      Binary texture_18: -2465898652685688325
+      Binary texture_19: 7997923721414647611
+      Binary texture_2: 5337276087953180396
+      Binary texture_3: 2538467081897729394
+      Binary texture_4: -6070417239037112563
+      Binary texture_5: -3936434304860048717
+      Binary texture_6: -281662191716178772
+      Binary texture_7: 3165217846219620443
+      Binary texture_8: 3638893561445874469
+      Binary texture_9: -1039867373491866437
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

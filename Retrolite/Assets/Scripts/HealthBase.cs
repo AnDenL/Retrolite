@@ -2,45 +2,31 @@ using UnityEngine;
 
 public class HealthBase : MonoBehaviour
 {
-    [SerializeField] protected float _health;
+    [Header("Health")]
+    [SerializeField]
+    protected float maxHealth = 100f;
+    [SerializeField]
+    protected float health;
 
-    public float MaxHealth;
-
-    protected bool _alive = true;
-
-    protected void Start() => MaxHealth = _health;
-
-    public virtual void SetHealth(float Value)
+    protected virtual void Start()
     {
-        if(Value < 0) Heal(-Value);
-        else Hit(Value);
+        health = maxHealth;
     }
 
-    protected virtual void Hit(float damage)
+    public virtual void TakeDamage(float damage)
     {
-        if(damage == 0) return;
+        health -= damage;
 
-        _health -= damage;
-
-        if(_health <= 0) Death();
+        if (health > maxHealth)
+            health = maxHealth;
+        else if (health <= 0)
+            Die();
     }
 
-    protected virtual void Heal(float healing)
-    {
-        if(healing == 0) return;
-    
-        _health += healing;
+    public virtual float GetHealthPercent() => health / maxHealth;
 
-        if(_health > MaxHealth) _health = MaxHealth;
-    }
-
-    protected virtual void Death()
+    protected virtual void Die()
     {
-        _alive = false;
-    }
-
-    public virtual float HealthPercent()
-    {
-        return _health/MaxHealth;
+        Destroy(gameObject);
     }
 }

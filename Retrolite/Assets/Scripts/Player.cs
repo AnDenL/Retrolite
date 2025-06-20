@@ -1,239 +1,217 @@
 using TMPro;
 using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
+using System.Collections;
 
-public class Player: HealthBase
+public class Player : HealthBase
 {
-    [Header("Health")]
-    [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private ParticleSystem _healingParticals;
-
-    private Animator _animator;
-    private int _extraLife;
-    private float _immortalityTime;
+    [SerializeField]
+    private float lives;
+    [SerializeField]
+    private PlayerUI playerUI;
 
     [Header("Movement")]
-    public bool IsRunning = false;
+    [SerializeField]
+    private float moveSpeed = 5f;
+    [SerializeField]
+    private float inertia = 0.9f;
+    [Header("Arms")]
+    [SerializeField]
+    private Transform rotation;
+    [SerializeField]
+    private Transform hand;
+    [SerializeField]
+    private GameObject handsWithoutGun;
+    [SerializeField]
+    private GunBase gun;
 
-    [SerializeField] private float _defaultSpeed;
-    [SerializeField] private float _runningSpeed;
-    [SerializeField] private float _stamina;
-    [SerializeField] private AudioClip _step;
+    [Header("Dash Effects")]
+    [SerializeField]
+    private TrailRenderer trailRenderer;
+    [SerializeField]
+    private SpriteRenderer glitchRenderer;
+    [SerializeField]
+    private ParticleSystem glitchParticles;
+    [SerializeField]
+    private LayerMask wallLayerMask;
 
-    private float _speed;
-    private float _maxStamina;
-    private AudioSource _source;
-    private Camera _camera;
-    private bool _fliped;
+    [Header("Resources")]
+    [SerializeField]
+    private float money;
+    [SerializeField]
+    private float code = 100f;
 
-    [Header("Sanity")]
-    public float Sanity;
-    public float Stress;
-    [SerializeField] private Volume _sanityProfile;
-    private float _maxSanity;
+    private Vector2 velocity;
+    private Camera mainCamera;
+    private Collider2D playerCollider;
+    private Animator animator;
 
-    [Header("Money")]
-    public int Money;
-    [SerializeField] private ParticleSystem _moneyParticals;
+    private float dashCooldown;
+    private float invincibilityTimer;
 
-
-    private Trigger _currentTrigger;
+    public static Player instance;
+    public static bool canInteract = true;
 
     private void Awake()
     {
-        Game.Player = this;
-
-        _animator = GetComponent<Animator>();
-
-        _source = GetComponent<AudioSource>();
-        _animator = GetComponent<Animator>();
-        _camera = FindObjectOfType<Camera>();
-
-        _maxSanity = Sanity;
-        _maxStamina = _stamina;
+        instance = this;
     }
 
-    private void Update()
+    protected override void Start()
     {
-        SanityChange();
-        Activate();
-        PlayerMove();
+        mainCamera = Camera.main;
+        playerCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
+        trailRenderer.autodestruct = false;
+
+        SetValues(SaveSystem.CurrentSave);
+
+        playerUI.UpdateHealthUI(health, maxHealth);
     }
 
     #region Movement
-    private void PlayerMove()
+    private void Update()
     {
-        if(Game.Paused) 
-        {
-            _animator.SetFloat("Speed", 0);
+        if (!canInteract)
             return;
-        }
 
-        float vertical = Input.GetAxisRaw("Vertical");
-        float horizontal = Input.GetAxisRaw("Horizontal");
-
-        if(Input.GetKey(KeyCode.LeftShift) && _stamina > 0 && Mathf.Abs(vertical) + Mathf.Abs(horizontal) != 0) 
+        Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (direction.magnitude == 0) animator.SetBool("IsWalking", false);
+        else
         {
-            IsRunning = true;
-            _speed = _runningSpeed;
-            _stamina -= Time.deltaTime;
-            if(_stamina < 0) _stamina -= 1;
-        }
-        else 
-        {
-            IsRunning = false;
-            _speed = _defaultSpeed;
-            _stamina += Time.deltaTime * 2;
-            if(_stamina > _maxStamina) _stamina = _maxStamina;
+            animator.SetBool("IsWalking", true);
+            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time) StartCoroutine(Dash());
         }
 
-        _animator.SetFloat("Speed", Mathf.Abs(vertical) + Mathf.Abs(horizontal));
+        direction.Normalize();
+        velocity -= velocity * (inertia * Time.deltaTime);
+        velocity = velocity + direction * moveSpeed * Time.deltaTime;
 
-        Vector3 direction = new Vector3(horizontal, vertical, transform.position.y);
 
-        transform.position = Vector2.MoveTowards(transform.position, transform.position + direction, _speed * Time.deltaTime);
+        transform.position += (Vector3)velocity * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.y - 1f);
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
-
-        Flip();
-        if(horizontal < 0) _animator.SetBool("Flip", _fliped);
-        else _animator.SetBool("Flip", !_fliped);
+        Rotate();
     }
 
-    private void Flip()
+    private IEnumerator Dash()
     {
-        Vector3 playerOnScreen = _camera.WorldToScreenPoint(transform.position);
-        
-        if(Input.mousePosition.x < playerOnScreen.x){
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            _fliped = false;
+        glitchRenderer.enabled = true;
+        glitchParticles.Play();
+        playerCollider.enabled = false;
+        canInteract = false;
+        trailRenderer.emitting = true;
+
+        float dashTime = 0.5f;
+        Vector3 direction = velocity.normalized;
+
+        dashCooldown = Time.time + 0.8f;
+        float elapsed = 0f;
+
+        float dashSpeed = 48f;
+
+        while (elapsed < dashTime)
+        {
+            float moveDistance = (dashTime - elapsed) * dashSpeed * Time.deltaTime;
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y - 0.25f), direction, moveDistance, wallLayerMask);
+
+            if (hit.collider != null)
+            {
+                transform.position = (Vector3)hit.point - direction * 0.01f;
+                break;
+            }
+            else
+            {
+                transform.position += (Vector3)(direction * moveDistance);
+            }
+
+            glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 2);
+
+            if (elapsed > dashTime - 0.2f)
+            {
+                playerCollider.enabled = true;
+                canInteract = true;
+            }
+
+            elapsed += Time.deltaTime;
+            yield return null;
         }
-        if(Input.mousePosition.x > playerOnScreen.x){
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            _fliped = true;
-        }
+
+        playerCollider.enabled = true;
+        canInteract = true;
+
+        yield return new WaitForSeconds(0.2f);
+        glitchParticles.Stop();
+        trailRenderer.emitting = false;
+        glitchRenderer.enabled = false;
     }
 
-    private void StepSound()
+    private void Rotate()
     {
-        _source.pitch = UnityEngine.Random.Range(0.8f,1.2f);
-        _source.PlayOneShot(_step);
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - (Vector2)transform.position;
+        direction.Normalize();
+
+        if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+            direction = -direction;
+            animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") > 0);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+            animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") < 0);
+        }
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        hand.localPosition = new Vector3(0.8f - Mathf.Abs(direction.y) / 5, 0f, direction.y);
+        rotation.rotation = Quaternion.Euler(0f, 0f, angle);
     }
     #endregion
-
     #region Health
 
-    public override void SetHealth(float Value)
+    public override void TakeDamage(float damage)
     {
-        if(Value < 0) Heal(-Value);
-        else Hit(Value);
+        if (invincibilityTimer > Time.time)
+            return;
+
+        base.TakeDamage(damage);
+        playerUI.UpdateHealthUI(health, maxHealth);
+
+        invincibilityTimer = Time.time + 1f;
     }
 
-    public void Immortality(float time)
-    {
-        _immortalityTime += time;
-    }
+    #endregion
+    #region Interact
 
-    protected override void Hit(float damage)
+    private void SetGun(GunData gunData)
     {
-        if(_immortalityTime < Time.time)
+        gun.Set(gunData);
+        if (gunData.GunType == GunType.Empty)
         {
-            _animator.SetTrigger("TakeHit");
-            base.Hit(damage);
-            _text.text = Math.Round(_health, 1) + "/" + MaxHealth;
-            _immortalityTime = Time.time + 1;
-        }   
-    }
-    protected override void Heal(float healing)
-    {
-        base.Heal(healing);
-        _healingParticals.Play();
-        _text.text = Math.Round(_health, 1) + "/" + MaxHealth;
-    }
-
-    protected override void Death()
-    {
-        if(_extraLife == 0)
-        {
-            base.Death();
-            Game.Fade.SetTrigger("End");
-            Invoke("RestartScene",1);
+            rotation.gameObject.SetActive(false);
+            handsWithoutGun.SetActive(true);
         }
         else
         {
-            Heal(MaxHealth);
-            Game.Player.Sanity += 200;
-            _immortalityTime = Time.time + 1;
-            _extraLife--;
+            rotation.gameObject.SetActive(true);
+            handsWithoutGun.SetActive(false);
         }
+        //gunUI.UpdateGunUI(gun);
     }
 
-    private void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     #endregion
 
-    #region Sanity
-    private void SanityChange()
+    public void SetValues(SaveData data)
     {
-        Sanity -= Stress * Time.deltaTime;
-        _sanityProfile.weight = 1 - (Sanity / _maxSanity);
-
-        if(Sanity < 0) Game.Player.SetHealth(-Sanity * 0.1f);
-
-        Mathf.Clamp(Sanity, 0, _maxSanity);
+        health = data.PlayerHealth;
+        maxHealth = data.PlayerMaxHealth;
+        SetGun(data.PlayerWeapon);
+        money = data.PlayerMoney;
+        code = data.PlayerCode;
+        lives = data.PlayerLives;
     }
-
-    public float SanityPercent()
-    {
-        return Sanity / _maxSanity;
-    }
-    #endregion
-
-    #region Money
-    public void AddMoney(int count)
-    {
-        Money += count;
-
-        _moneyParticals.emission.SetBurst(0, new ParticleSystem.Burst(0, count));
-        _moneyParticals.Play();
-    }
-
-    private bool Purchase(int price)
-    {
-        if(price <= Money)
-        {
-            Money -= price;
-            return true;
-        }
-        else
-        return false;
-    }
-    #endregion
-
-    #region Triggers
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        if(other.CompareTag("Trigger")) 
-        {
-            if(_currentTrigger != null)_currentTrigger.OnExit();
-            
-            _currentTrigger = other.GetComponent<Trigger>();
-            _currentTrigger.OnEnter();
-        }
-    }
-    private void Activate()
-    {
-        if(Input.GetKeyDown(KeyCode.E) && _currentTrigger != null) _currentTrigger.Activate();
-    }
-    private void OnTriggerExit2D(Collider2D other) 
-    {
-        if(other.CompareTag("Trigger")) 
-        {
-            other.GetComponent<Trigger>().OnExit();
-        }
-            
-    }
-    #endregion
 }

@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class ContactDamage : MonoBehaviour
 {
-    public float damage;
+    [SerializeField]
+    private float damageAmount = 10f;
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Player health = collision.gameObject.GetComponent<Player>();
-            health.SetHealth(damage);
-        }
+        collision.gameObject.GetComponent<HealthBase>()?.TakeDamage(damageAmount);
     }
 }

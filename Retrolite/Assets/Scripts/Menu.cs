@@ -1,58 +1,59 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField]private GameObject _menu;
+    public static Menu instance;
+    public static float timeScale = 1;
+    public static bool isPaused;
 
-    private bool _paused = false;
+    [SerializeField]
+    private GameObject menu, selected;
 
-    private void Start()
+    private void Awake()
     {
-        Time.timeScale = 1;
+        if (instance != null) Destroy(gameObject);
+        instance = this;
     }
 
     private void Update()
     {
-        if(_menu == null) return;
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && menu)
         {
-            if(_paused) Resume();
-            else Pause();
-        }
-        if(Input.GetKeyDown(KeyCode.Tab) && !_paused) 
-        {
-            bool active = Game.Inventory.gameObject.transform.GetChild(0).gameObject.activeInHierarchy;
-            Game.Paused = !active;
-            Game.Inventory.gameObject.transform.GetChild(0).gameObject.SetActive(!active);
-            Game.Inventory.SelectedItem = null;
+            isPaused = !isPaused;
+            if (isPaused) PauseGame();
+            else ResumeGame();
         }
     }
 
-    public void Pause()
+    public void PauseGame()
     {
-        Game.Inventory.gameObject.transform.GetChild(0).gameObject.SetActive(false);
-        _paused = true;
-        Game.Paused = true;
-        _menu.SetActive(true);
         Time.timeScale = 0;
+        Player.canInteract = false;
+        menu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(selected);
     }
 
-    public void Resume()
+    public void ResumeGame()
     {
-        _paused = false;
-        Game.Paused = false;
-        _menu.SetActive(false);
-        Time.timeScale = 1;
+        Time.timeScale = timeScale;
+        Player.canInteract = true;
+        menu.SetActive(false);
     }
 
-    public void ExitGame()
+    public void LoadLevel(int levelIndex)
+    {
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void LoadScene(int i)
-    {
-        SceneManager.LoadScene(i);
     }
 }
