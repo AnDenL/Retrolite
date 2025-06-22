@@ -127,6 +127,9 @@ MonoBehaviour:
     m_Bits: 1
   money: 0
   code: 100
+  interactMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!70 &1264232799100110172
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

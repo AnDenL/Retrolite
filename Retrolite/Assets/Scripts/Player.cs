@@ -1,7 +1,4 @@
-using TMPro;
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class Player : HealthBase
@@ -36,11 +33,13 @@ public class Player : HealthBase
     [SerializeField]
     private LayerMask wallLayerMask;
 
-    [Header("Resources")]
+    [Header("Interact")]
     [SerializeField]
     private float money;
     [SerializeField]
     private float code = 100f;
+    [SerializeField]
+    private LayerMask interactMask;
 
     private Vector2 velocity;
     private Camera mainCamera;
@@ -201,6 +200,12 @@ public class Player : HealthBase
             handsWithoutGun.SetActive(false);
         }
         //gunUI.UpdateGunUI(gun);
+    }
+
+    private void InteractObject()
+    {
+        var item = Physics2D.Raycast(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition), 2f, interactMask);
+        item.collider.GetComponent<Interactable>().Interact(this);
     }
 
     #endregion
