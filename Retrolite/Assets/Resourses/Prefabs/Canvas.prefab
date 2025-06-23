@@ -542,6 +542,8 @@ MonoBehaviour:
   effect: {fileID: 3524978252246673355}
   healthBarColor: {r: 0.3254717, g: 1, b: 0.36056972, a: 1}
   lowHealthColor: {r: 0.41509432, g: 0.021537915, b: 0.021537915, a: 1}
+  moneyText: {fileID: 3028012991055230252}
+  codeText: {fileID: 8572123462461097838}
 --- !u!1 &3968595052988366787
 GameObject:
   m_ObjectHideFlags: 0

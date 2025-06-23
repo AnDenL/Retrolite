@@ -13,6 +13,17 @@ public class HealthBase : MonoBehaviour
         health = maxHealth;
     }
 
+    public virtual void Heal(float amount)
+    {
+        if (amount <= 0)
+            return;
+
+        health += amount;
+
+        if (health > maxHealth)
+            health = maxHealth;
+    }
+
     public virtual void TakeDamage(float damage)
     {
         health -= damage;

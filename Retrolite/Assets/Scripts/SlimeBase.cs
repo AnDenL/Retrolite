@@ -55,7 +55,7 @@ public class SlimeBase : HealthBase
         while (t > 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, transform.position + targetPosition, speed * Time.deltaTime);
-            transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.y + t);
+            transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y + t);
             t -= Time.deltaTime;
             yield return null;
         }

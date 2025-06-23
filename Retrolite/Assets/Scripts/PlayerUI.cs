@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    [Header("Health UI")]
     [SerializeField]
     private TMP_Text healthText;
     [SerializeField]
@@ -21,6 +22,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField]
     private Color lowHealthColor;
 
+    [Header("Resources UI")]
+    [SerializeField]
+    private TMP_Text moneyText;
+    [SerializeField]
+    private TMP_Text codeText;
+
     private Vector3 originalTextPos;
     private float healthPercent;
 
@@ -29,6 +36,16 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         originalTextPos = transform.localPosition;
+    }
+
+    public void UpdateMoneyText(int money)
+    {
+        moneyText.text = money.ToString();
+    }
+
+    public void UpdateCodeText(int code)
+    {
+        codeText.text = code.ToString();
     }
 
     public void UpdateHealthUI(float currentHealth, float maxHealth)

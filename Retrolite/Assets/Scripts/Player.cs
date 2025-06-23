@@ -35,16 +35,21 @@ public class Player : HealthBase
 
     [Header("Interact")]
     [SerializeField]
-    private float money;
+    private int money;
     [SerializeField]
-    private float code = 100f;
+    private int code;
     [SerializeField]
     private LayerMask interactMask;
+    [SerializeField]
+    private Material outlineMaterial;
+    [SerializeField]
+    private Material defaultMaterial;
 
     private Vector2 velocity;
     private Camera mainCamera;
     private Collider2D playerCollider;
     private Animator animator;
+    private GameObject lastInteractedObject;
 
     private float dashCooldown;
     private float invincibilityTimer;
@@ -67,6 +72,8 @@ public class Player : HealthBase
         SetValues(SaveSystem.CurrentSave);
 
         playerUI.UpdateHealthUI(health, maxHealth);
+        playerUI.UpdateMoneyText(money);
+        playerUI.UpdateCodeText(code);
     }
 
     #region Movement
@@ -89,9 +96,11 @@ public class Player : HealthBase
 
 
         transform.position += (Vector3)velocity * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x, transform.position.y, -transform.position.y - 1f);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y - 0.5f);
 
         Rotate();
+        OutlineObject();
+        if (Input.GetKeyDown(KeyCode.E)) InteractObject();
     }
 
     private IEnumerator Dash()
@@ -172,6 +181,12 @@ public class Player : HealthBase
     #endregion
     #region Health
 
+    public override void Heal(float amount)
+    {
+        base.Heal(amount);
+        playerUI.UpdateHealthUI(health, maxHealth);
+    }
+
     public override void TakeDamage(float damage)
     {
         if (invincibilityTimer > Time.time)
@@ -204,8 +219,95 @@ public class Player : HealthBase
 
     private void InteractObject()
     {
-        var item = Physics2D.Raycast(transform.position, mainCamera.ScreenToWorldPoint(Input.mousePosition), 2f, interactMask);
-        item.collider.GetComponent<Interactable>().Interact(this);
+        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+
+        Collider2D nearestCollider = null;
+        float nearestDistance = float.MaxValue;
+
+        foreach (var collider in temp)
+        {
+            if (collider.CompareTag("Interactable"))
+            {
+                float distance = Vector2.Distance(transform.position, collider.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestCollider = collider;
+                    nearestDistance = distance;
+                }
+            }
+        }
+
+        if (nearestCollider != null)
+        {
+            nearestCollider.GetComponent<Interactable>()?.Interact(this);
+        }
+    }
+
+    private void OutlineObject()
+    {
+        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+
+        Collider2D nearestCollider = null;
+        float nearestDistance = float.MaxValue;
+
+        foreach (var collider in temp)
+        {
+            if (collider.CompareTag("Interactable"))
+            {
+                float distance = Vector2.Distance(transform.position, collider.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestCollider = collider;
+                    nearestDistance = distance;
+                }
+            }
+        }
+
+        if (nearestCollider != lastInteractedObject)
+        {
+            if (lastInteractedObject != null) lastInteractedObject.GetComponent<SpriteRenderer>().material = defaultMaterial;
+            if (nearestCollider != null) lastInteractedObject = nearestCollider.gameObject;
+            else lastInteractedObject = null;
+        }
+
+        if (nearestCollider != null)
+        {
+            nearestCollider.GetComponent<SpriteRenderer>().material = outlineMaterial;
+        }
+    }
+
+    public bool Buy(int value)
+    {
+        if (money >= value)
+        {
+            money -= value;
+            playerUI.UpdateMoneyText(money);
+            return true;
+        }
+        return false;
+    }
+
+    public void AddMoney(int value)
+    {
+        money += value;
+        playerUI.UpdateMoneyText(money);
+    }
+
+    public void AddCode(int value)
+    {
+        code += value;
+        playerUI.UpdateCodeText(code);
+    }
+
+    public void AddLives(int value)
+    {
+        lives += value;
+    }
+
+    public void AddHealth(float value)
+    {
+        maxHealth += value;
+        Heal(value);
     }
 
     #endregion
