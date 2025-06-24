@@ -44,7 +44,11 @@ public class Player : HealthBase
     private Material outlineMaterial;
     [SerializeField]
     private Material defaultMaterial;
+    [SerializeField]
+    private ParticleSystem coinParticles, codeParticles;
 
+    private ParticleSystem.ShapeModule coinShape, codeShape;
+    private ParticleSystem.EmissionModule coinEmission, codeEmission;
     private Vector2 velocity;
     private Camera mainCamera;
     private Collider2D playerCollider;
@@ -74,6 +78,10 @@ public class Player : HealthBase
         playerUI.UpdateHealthUI(health, maxHealth);
         playerUI.UpdateMoneyText(money);
         playerUI.UpdateCodeText(code);
+        coinShape = coinParticles.shape;
+        coinEmission = coinParticles.emission;
+        codeShape = codeParticles.shape;
+        codeEmission = codeParticles.emission;
     }
 
     #region Movement
@@ -87,7 +95,7 @@ public class Player : HealthBase
         else
         {
             animator.SetBool("IsWalking", true);
-            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time) StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time && code >= 2) StartCoroutine(Dash());
         }
 
         direction.Normalize();
@@ -105,6 +113,8 @@ public class Player : HealthBase
 
     private IEnumerator Dash()
     {
+        code -= 2;
+        playerUI.UpdateCodeText(code);
         glitchRenderer.enabled = true;
         glitchParticles.Play();
         playerCollider.enabled = false;
@@ -136,7 +146,7 @@ public class Player : HealthBase
 
             glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 2);
 
-            if (elapsed > dashTime - 0.2f)
+            if (elapsed > dashTime - 0.25f)
             {
                 playerCollider.enabled = true;
                 canInteract = true;
@@ -201,7 +211,7 @@ public class Player : HealthBase
     #endregion
     #region Interact
 
-    private void SetGun(GunData gunData)
+    public void SetGun(GunData gunData)
     {
         gun.Set(gunData);
         if (gunData.GunType == GunType.Empty)
@@ -272,7 +282,10 @@ public class Player : HealthBase
 
         if (nearestCollider != null)
         {
-            nearestCollider.GetComponent<SpriteRenderer>().material = outlineMaterial;
+            SpriteRenderer spriteRenderer = nearestCollider.GetComponent<SpriteRenderer>();
+            var newMaterial = new Material(outlineMaterial);
+            newMaterial.SetTexture("_MainTex", spriteRenderer.sprite.texture);
+            spriteRenderer.material = newMaterial;
         }
     }
 
@@ -287,16 +300,26 @@ public class Player : HealthBase
         return false;
     }
 
-    public void AddMoney(int value)
+    public void AddMoney(int value, Vector3 spawnPosition)
     {
         money += value;
         playerUI.UpdateMoneyText(money);
+
+        coinShape.position = transform.InverseTransformPoint(spawnPosition);
+        coinEmission.SetBurst(0, new ParticleSystem.Burst(0f, (short)value));
+
+        coinParticles.Play();
     }
 
-    public void AddCode(int value)
+    public void AddCode(int value, Vector3 spawnPosition)
     {
         code += value;
         playerUI.UpdateCodeText(code);
+
+        codeShape.position = transform.InverseTransformPoint(spawnPosition);
+        codeEmission.SetBurst(0, new ParticleSystem.Burst(0f, (short)value));
+
+        codeParticles.Play();
     }
 
     public void AddLives(int value)

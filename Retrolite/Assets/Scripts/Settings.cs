@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -11,7 +12,7 @@ public class Settings : MonoBehaviour
     [SerializeField]
     private AudioMixerGroup mixer;
     [SerializeField]
-    private Dropdown resolutionDropdown;
+    private TMP_Dropdown resolutionDropdown;
     [SerializeField]
     private Toggle fullscreenToggle;
 
@@ -43,7 +44,7 @@ public class Settings : MonoBehaviour
         mixer.audioMixer.SetFloat("EffectVolume", NumToDecibel(value));
     }
 
-    public void Save() => settings.Save();
+    //public void Save() => settings.Save();
 
     public float NumToDecibel(float num) => Mathf.Log10(num) * 20;
 }
@@ -58,24 +59,25 @@ public class SettingsData
 
     public SettingsData()
     {
-        Load();
+        //Load();
     }
+    /*  does not work because it is not MonoBehavior
+        public void Save()
+        {
+            PlayerPrefs.SetFloat("MasterVolume", MasterVolume);
+            PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
+            PlayerPrefs.SetFloat("EffectVolume", EffectVolume);
+            PlayerPrefs.SetInt("ResolutionIndex", ResolutionIndex);
+            PlayerPrefs.SetInt("Fullscreen", Fullscreen ? 1 : 0);
+        }
 
-    public void Save()
-    {
-        PlayerPrefs.SetFloat("MasterVolume", MasterVolume);
-        PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
-        PlayerPrefs.SetFloat("EffectVolume", EffectVolume);
-        PlayerPrefs.SetInt("ResolutionIndex", ResolutionIndex);
-        PlayerPrefs.SetInt("Fullscreen", Fullscreen ? 1 : 0);
-    }
-
-    public void Load()
-    {
-        MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
-        MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        EffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);
-        ResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
-        Fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
-    }
+        public void Load()
+        {
+            MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+            MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+            EffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);
+            ResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
+            Fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        }
+        */
 }

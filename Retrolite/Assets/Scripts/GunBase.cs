@@ -1,10 +1,11 @@
 using UnityEngine;
+using CalculatingSystem;
 using System.Collections.Generic;
 
 public class GunBase : MonoBehaviour
 {
     [SerializeField]
-    public GunData data { get; protected set; }
+    public GunData data;
     [SerializeField]
     protected GameObject bulletPrefab;
 
@@ -50,7 +51,7 @@ public class GunBase : MonoBehaviour
         bullets[lastBulletIndex].gameObject.SetActive(false);
     }
 }
-
+[System.Serializable]
 public struct GunData
 {
     public FormulaNode FireRate;

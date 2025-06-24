@@ -7,12 +7,15 @@ public class Shop : Interactable
 
     [SerializeField]
     private Sprite soldSprite;
+    [SerializeField]
+    private TextMesh priceText;
 
     private bool isBought;
 
     private void Start()
     {
-        transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
+        transform.GetChild(1).GetComponent<Collider2D>().enabled = false;
+        priceText.text = price.ToString();
     }
 
     public override void Interact(Player player)
@@ -23,7 +26,7 @@ public class Shop : Interactable
         {
             isBought = true;
             GetComponent<SpriteRenderer>().sprite = soldSprite;
-            StartCoroutine(BuyItem(player, transform.GetChild(0)));
+            StartCoroutine(BuyItem(player, transform.GetChild(1)));
         }
     }
 
@@ -31,7 +34,10 @@ public class Shop : Interactable
     {
         Vector2 targetPosition = (Vector2)player.transform.position + Vector2.down;
         Vector2 pos = item.position;
+        SpriteRenderer spriteRenderer = item.GetComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = -1;
         item.transform.parent = null;
+        priceText.gameObject.SetActive(false);
 
         Transform shadow = item.GetChild(0);
 
@@ -45,6 +51,7 @@ public class Shop : Interactable
             t += Time.deltaTime;
             yield return null;
         }
+        spriteRenderer.sortingOrder = -3;
         item.GetComponent<Collider2D>().enabled = true;
     }
 

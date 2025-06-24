@@ -1,4 +1,5 @@
 using UnityEngine;
+using CalculatingSystem;
 using System.Collections;
 
 public class BulletBase : MonoBehaviour

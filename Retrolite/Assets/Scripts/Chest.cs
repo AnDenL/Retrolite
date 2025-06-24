@@ -17,11 +17,16 @@ public class Chest : Interactable
 
     public override void Interact(Player player)
     {
-        if (isOpen) return;
+        if (isOpen)
+        {
+            animator.SetBool("IsOpen", false);
+            isOpen = false;
+            return;
+        }
         isOpen = true;
         animator.SetBool("IsOpen", true);
-        player.AddMoney(reward.money);
-        player.AddCode(reward.code);
+        player.AddMoney(reward.money, transform.position);
+        player.AddCode(reward.code, transform.position);
         player.AddHealth(reward.health);
         // Spawn objects
         reward = new Reward();

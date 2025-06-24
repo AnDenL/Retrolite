@@ -14,7 +14,7 @@ public class SaveSystem : MonoBehaviour
                 CurrentSave = new SaveData(100f, 100f, new GunData(2, 3, 8, GunType.Pistol, new BulletData()), 0, 50, 0);
                 break;
             case DataMode.Tutorial:
-                CurrentSave = new SaveData(1, 100f, new GunData(), 0, 100, 0);
+                CurrentSave = new SaveData(1, 100f, new GunData(), 0, 0, 0);
                 break;
             case DataMode.LevelSelect:
                 CurrentSave = new SaveData(100f, 100f, new GunData(), 0, 0, 0);
