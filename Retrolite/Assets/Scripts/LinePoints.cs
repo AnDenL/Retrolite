@@ -4,8 +4,7 @@ public class LinePoints : MonoBehaviour
 {
     private LineRenderer lineRenderer;
 
-    [SerializeField]
-    private Transform[] points;
+    public Transform[] points;
 
     private void Start()
     {

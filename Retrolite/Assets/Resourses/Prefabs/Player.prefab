@@ -119,6 +119,10 @@ MonoBehaviour:
   inertia: 8
   rotation: {fileID: 3473850372348920174}
   hand: {fileID: 3179825005254226916}
+  arm1: {fileID: 6498460163385416186}
+  arm2: {fileID: 840005569250673569}
+  hand1: {fileID: 259502998954065255}
+  hand2: {fileID: 8362474879578523012}
   handsWithoutGun: {fileID: 7142831337059248852}
   gun: {fileID: 2725822582328639035}
   trailRenderer: {fileID: 3128735029863287220}
@@ -127,7 +131,6 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1
-  money: 0
   code: 100
   interactMask:
     serializedVersion: 2
@@ -10671,7 +10674,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f520b351c73f54f259b8017b70d491a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4500548146545427392, guid: 620984b893359c632bee55693b414ce3, type: 3}
+  Data:
+    FireRate:
+      rid: -2
+    Accuracy:
+      rid: -2
+    MagazineSize: 0
+    CurrentAmmo: 0
+    GunType: 0
+    BulletType: 0
+    BulletData:
+      Damage:
+        rid: -2
+      LifeTime:
+        rid: -2
+      Scale:
+        rid: -2
+      Speed:
+        rid: -2
+      IsDynamic: 0
+  bulletPrefabs: {fileID: 11400000, guid: 2d3b67caa0117fcc1901dd70deab86c3, type: 2}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!1 &5177638131709840021
 GameObject:
   m_ObjectHideFlags: 0
@@ -15746,8 +15773,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8362474879578523012}
   - {fileID: 259502998954065255}
+  - {fileID: 8362474879578523012}
   m_Father: {fileID: 7967063597275555765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7630235547089015067

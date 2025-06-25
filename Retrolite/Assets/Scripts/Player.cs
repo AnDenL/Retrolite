@@ -13,11 +13,16 @@ public class Player : HealthBase
     private float moveSpeed = 5f;
     [SerializeField]
     private float inertia = 0.9f;
+
     [Header("Arms")]
     [SerializeField]
     private Transform rotation;
     [SerializeField]
     private Transform hand;
+    [SerializeField]
+    private LinePoints arm1, arm2;
+    [SerializeField]
+    private Transform hand1, hand2;
     [SerializeField]
     private GameObject handsWithoutGun;
     [SerializeField]
@@ -35,7 +40,7 @@ public class Player : HealthBase
 
     [Header("Interact")]
     [SerializeField]
-    private int money;
+    public int money { get; private set; }
     [SerializeField]
     private int code;
     [SerializeField]
@@ -185,7 +190,7 @@ public class Player : HealthBase
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        hand.localPosition = new Vector3(0.8f - Mathf.Abs(direction.y) / 5, 0f, direction.y);
+        hand.localPosition = new Vector3(0.4f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
         rotation.rotation = Quaternion.Euler(0f, 0f, angle);
     }
     #endregion
@@ -218,11 +223,15 @@ public class Player : HealthBase
         {
             rotation.gameObject.SetActive(false);
             handsWithoutGun.SetActive(true);
+            arm1.points[1] = hand1;
+            arm2.points[1] = hand2;
         }
         else
         {
             rotation.gameObject.SetActive(true);
             handsWithoutGun.SetActive(false);
+            arm1.points[1] = hand;
+            arm2.points[1] = hand;
         }
         //gunUI.UpdateGunUI(gun);
     }
