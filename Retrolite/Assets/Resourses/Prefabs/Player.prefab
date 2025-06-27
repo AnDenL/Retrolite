@@ -131,6 +131,7 @@ MonoBehaviour:
   wallLayerMask:
     serializedVersion: 2
     m_Bits: 1
+  money: 0
   code: 100
   interactMask:
     serializedVersion: 2
@@ -419,7 +420,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -10252,7 +10253,7 @@ Transform:
   m_GameObject: {fileID: 2418065198062392499}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10370,7 +10371,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0.36122757, y: 1.2256095, z: 0}
   - {x: 0.3, y: 0.8, z: -2}
@@ -10600,7 +10601,7 @@ Transform:
   m_GameObject: {fileID: 5170338941784713277}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2709999, y: 0.17499995, z: 0}
+  m_LocalPosition: {x: 0.2709999, y: 0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10681,17 +10682,20 @@ MonoBehaviour:
       rid: -2
     MagazineSize: 0
     CurrentAmmo: 0
+    Echo: 0
     GunType: 0
     BulletType: 0
     BulletData:
       Damage:
-        rid: -2
+        rid: 1717894067389464681
       LifeTime:
-        rid: -2
+        rid: 1717894067389464680
       Scale:
-        rid: -2
+        rid: 1717894067389464679
       Speed:
-        rid: -2
+        rid: 1717894067389464678
+      Angle:
+        rid: 1717894067389464677
       IsDynamic: 0
   bulletPrefabs: {fileID: 11400000, guid: 2d3b67caa0117fcc1901dd70deab86c3, type: 2}
   references:
@@ -10699,6 +10703,26 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 1717894067389464677
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
+    - rid: 1717894067389464678
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
+    - rid: 1717894067389464679
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
+    - rid: 1717894067389464680
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
+    - rid: 1717894067389464681
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
 --- !u!1 &5177638131709840021
 GameObject:
   m_ObjectHideFlags: 0
@@ -10953,7 +10977,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -15886,7 +15910,7 @@ Transform:
   m_GameObject: {fileID: 8471992794933690253}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.004000008, y: 0.13900006, z: 0}
+  m_LocalPosition: {x: -0.004000008, y: 0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

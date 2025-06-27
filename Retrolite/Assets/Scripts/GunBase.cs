@@ -43,8 +43,10 @@ public class GunBase : MonoBehaviour
 
         fireTime = Time.time + 1f / Data.FireRate.Evaluate(context);
 
+        float Spread = 5 / Data.Accuracy.Evaluate(context);
+
         bullets[lastBulletIndex].gameObject.SetActive(true);
-        bullets[lastBulletIndex].Fire();
+        bullets[lastBulletIndex].Fire(Random.Range(-Spread, Spread));
         lastBulletIndex++;
         if (Data.MagazineSize != 0) Data.CurrentAmmo -= 1;
 
@@ -59,7 +61,7 @@ public class GunBase : MonoBehaviour
 
     protected void CreateBullet()
     {
-        var bullet = Instantiate(bulletPrefabs.Entries[(int)Data.BulletType], transform).GetComponent<BulletBase>();
+        var bullet = Instantiate(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0).transform).GetComponent<BulletBase>();
 
         bullet.Initialize(this, Data.BulletData, context);
         bullets.Insert(lastBulletIndex, bullet);
@@ -67,26 +69,31 @@ public class GunBase : MonoBehaviour
     }
 }
 [Serializable]
-public class GunData
+public struct GunData
 {
     [SerializeReference]
     public FormulaNode FireRate;
+    [SerializeReference]
+    public FormulaNode Accuracy;
 
     public int MagazineSize;
     public int CurrentAmmo;
+    public float Echo;
     public GunType GunType;
 
     public BulletType BulletType;
     public BulletData BulletData;
 
-    public GunData(float fireRate = 0, int magazineSize = 0, GunType gunType = GunType.Empty, BulletType bulletType = BulletType.Bullet, BulletData bulletData = null)
+    public GunData(float fireRate = 0, float accuracy = 1, int magazineSize = 0, GunType gunType = GunType.Empty, BulletType bulletType = BulletType.Bullet, BulletData bulletData = new BulletData())
     {
         FireRate = new ConstantNode(fireRate);
+        Accuracy = new ConstantNode(accuracy);
         MagazineSize = magazineSize;
         CurrentAmmo = MagazineSize == 0 ? 1 : MagazineSize;
         GunType = gunType;
         BulletType = bulletType;
         BulletData = bulletData;
+        Echo = 0;
     }
 }
 

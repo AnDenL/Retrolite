@@ -7,6 +7,9 @@ public class GunPickUp : Interactable
 
     public override void Interact(Player player)
     {
-        player.SetGun(gunData);
+        gunData = player.SetGun(gunData);
+
+        if (gunData.GunType == GunType.Empty)
+            Destroy(gameObject);
     }
 }

@@ -184,29 +184,28 @@ MonoBehaviour:
   gunData:
     FireRate:
       rid: 1717894035193725090
+    Accuracy:
+      rid: 1717894077145415921
     MagazineSize: 9999
     CurrentAmmo: 9999
+    Echo: 0
     GunType: 1
     BulletType: 0
     BulletData:
       Damage:
-        rid: 1717894035193725031
+        rid: 1717894077145415920
       LifeTime:
         rid: 1717894035193725032
       Scale:
         rid: 1717894035193725033
       Speed:
-        rid: 1717894035193725034
+        rid: 1717894077145415848
       Angle:
-        rid: 1717894035193725074
-      IsDynamic: 0
+        rid: 1717894077145415922
+      IsDynamic: 1
   references:
     version: 2
     RefIds:
-    - rid: 1717894035193725031
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 1
     - rid: 1717894035193725032
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
@@ -215,30 +214,50 @@ MonoBehaviour:
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 1
-    - rid: 1717894035193725034
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 5
-    - rid: 1717894035193725074
-      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Left:
-          rid: 1717894035193725103
-        Operation: 2
-        Right:
-          rid: 1717894035193725076
-    - rid: 1717894035193725076
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 5
     - rid: 1717894035193725090
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 20
-    - rid: 1717894035193725103
+        Value: 2
+    - rid: 1717894077145415848
+      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Left:
+          rid: 1717894077145415849
+        Operation: 0
+        Right:
+          rid: 1717894077145415850
+    - rid: 1717894077145415849
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 2
+    - rid: 1717894077145415850
       type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Variable: 2
+        Variable: 4
+    - rid: 1717894077145415920
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 10
+    - rid: 1717894077145415921
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 0
+    - rid: 1717894077145415922
+      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Left:
+          rid: 1717894077145415923
+        Operation: 2
+        Right:
+          rid: 1717894077145415924
+    - rid: 1717894077145415923
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 11
+    - rid: 1717894077145415924
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 5
 --- !u!4 &154590365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 490145683511419079, guid: 2007ff0f46f6c9b4fbac9492b1b1c612, type: 3}
@@ -12796,7 +12815,7 @@ Camera:
   far clip plane: 10000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.1875
+  orthographic size: 7.875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -12843,8 +12862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 352
-  m_RefResolutionY: 198
+  m_RefResolutionX: 448
+  m_RefResolutionY: 252
   m_CropFrame: 4
   m_GridSnapping: 2
   m_FilterMode: 1
@@ -36386,10 +36405,6 @@ PrefabInstance:
     - target: {fileID: 135032362516127119, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 1127240027396745071, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1152285883391924825, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
       propertyPath: m_LocalPosition.x

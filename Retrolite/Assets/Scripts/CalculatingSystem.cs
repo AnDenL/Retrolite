@@ -94,7 +94,6 @@ namespace CalculatingSystem
         public HealthBase Health;
         public GunBase Gun;
         public BulletBase Bullet;
-        public float Echo;
     }
 
     public static class VariableResolver
@@ -106,12 +105,16 @@ namespace CalculatingSystem
                 PlayerHP => Player.instance.GetHealthPercent(),
                 EnemyHP => context.Health?.GetHealthPercent() ?? Break(variable, context),
                 BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
-                Echo => context.Echo,
+                Echo => context.Gun.Data.Echo,
                 Distance => context.Bullet?.GetDistanceTravelled() ?? Break(variable, context),
                 PlayerDistance => Vector2.Distance(Player.instance.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
                 Ammo => context.Gun?.Data.CurrentAmmo ?? Break(variable, context),
                 RandomNum => UnityEngine.Random.Range(-5f, 5f),
-                Money => (Player.instance.money / 100),
+                Money => Player.instance.GetMoney(),
+                Speed => context.Bullet?.speed ?? Break(variable, context),
+                Size => context.Bullet?.scale ?? Break(variable, context),
+                BulletSpread => context.Bullet?.spread ?? Break(variable, context) * Mathf.Deg2Rad,
+                BulletDestroyTime => context.Bullet?.GetDestroyTime() ?? Break(variable, context),
                 _ => 0f
             };
         }
@@ -131,6 +134,10 @@ namespace CalculatingSystem
         PlayerDistance,
         Ammo,
         RandomNum,
-        Money
+        Money,
+        Speed,
+        Size,
+        BulletSpread,
+        BulletDestroyTime
     }
 }

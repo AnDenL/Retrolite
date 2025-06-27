@@ -40,7 +40,7 @@ public class Player : HealthBase
 
     [Header("Interact")]
     [SerializeField]
-    public int money { get; private set; }
+    private int money;
     [SerializeField]
     private int code;
     [SerializeField]
@@ -173,7 +173,7 @@ public class Player : HealthBase
     private void Rotate()
     {
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - (Vector2)transform.position;
+        Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
         direction.Normalize();
 
         if (direction.x < 0)
@@ -190,7 +190,7 @@ public class Player : HealthBase
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        hand.localPosition = new Vector3(0.4f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
+        hand.localPosition = new Vector3(0.6f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
         rotation.rotation = Quaternion.Euler(0f, 0f, angle);
     }
     #endregion
@@ -216,8 +216,9 @@ public class Player : HealthBase
     #endregion
     #region Interact
 
-    public void SetGun(GunData gunData)
+    public GunData SetGun(GunData gunData)
     {
+        GunData previousGunData = gun.Data;
         gun.Set(gunData);
         if (gunData.GunType == GunType.Empty)
         {
@@ -234,6 +235,8 @@ public class Player : HealthBase
             arm2.points[1] = hand;
         }
         //gunUI.UpdateGunUI(gun);
+
+        return previousGunData;
     }
 
     private void InteractObject()
@@ -341,6 +344,8 @@ public class Player : HealthBase
         maxHealth += value;
         Heal(value);
     }
+
+    public float GetMoney() => money / 100;
 
     #endregion
 
