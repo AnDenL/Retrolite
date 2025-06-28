@@ -117,9 +117,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 23
-        width: 16
-        height: 9
+        y: 81
+        width: 20
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,8 +138,8 @@ TextureImporter:
       name: weapons_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 18
+        x: 2
+        y: 70
         width: 4
         height: 4
       alignment: 0
@@ -161,7 +161,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 26
-        y: 24
+        y: 88
         width: 5
         height: 7
       alignment: 0
@@ -183,7 +183,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 23
-        y: 15
+        y: 79
         width: 8
         height: 8
       alignment: 0
@@ -196,6 +196,50 @@ TextureImporter:
       bones: []
       spriteID: 4c6e8df6110e9e877b524c028cffdd6b
       internalID: 196186710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapons_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45ec1612b6e5e25418bb3880d3b58e9a
+      internalID: 1369742279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapons_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 316b37047d7d2cf40bfc53b21cd925f0
+      internalID: -795155567
       vertices: []
       indices: 
       edges: []
@@ -218,6 +262,8 @@ TextureImporter:
       weapons_1: -272297546
       weapons_2: -386389626
       weapons_3: 196186710
+      weapons_4: 1369742279
+      weapons_5: -795155567
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

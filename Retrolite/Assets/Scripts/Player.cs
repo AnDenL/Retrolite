@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Player : HealthBase
 {
@@ -190,7 +191,7 @@ public class Player : HealthBase
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        hand.localPosition = new Vector3(0.6f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
+        hand.localPosition = new Vector3(0.65f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
         rotation.rotation = Quaternion.Euler(0f, 0f, angle);
     }
     #endregion

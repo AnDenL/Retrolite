@@ -56,13 +56,13 @@ public class BulletBase : MonoBehaviour
     {
         if (data.IsDynamic)
         {
-            if (!(data.Scale.IsConstant()))
+            if (!data.Scale.IsConstant())
             {
-                scale = data.Scale.Evaluate(context);
+                scale = Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context)));
                 transform.localScale = Vector3.one * scale;
             }
-            if (!(data.Speed.IsConstant())) speed = data.Speed.Evaluate(context);
-            if (!(data.Angle.IsConstant())) transform.rotation = Quaternion.Euler(0, 0, angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
+            if (!data.Speed.IsConstant()) speed = data.Speed.Evaluate(context);
+            if (!data.Angle.IsConstant()) transform.rotation = Quaternion.Euler(0, 0, angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
             SetRendererColor();
         }
         transform.position += transform.up * speed * Time.deltaTime;
@@ -90,9 +90,9 @@ public class BulletBase : MonoBehaviour
     protected void SetRendererColor()
     {
         float r = data.Damage.Evaluate(context) / 10;
-        float g = data.LifeTime.Evaluate(context) / 3;
-        float b = data.Speed.Evaluate(context) / 5;
-        color = new Color(Mathf.Clamp(r, 0, 5), Mathf.Clamp(g, 0, 5), Mathf.Clamp(b, 0, 5), 1);
+        float g = life / 3;
+        float b = speed / 5;
+        color = new Color(Mathf.Clamp(r, 0, 5), Mathf.Clamp(g, 0, 5), Mathf.Clamp(b, 0, 5), 1 / scale);
         bulletRenderer = GetComponent<SpriteRenderer>();
         bulletRenderer.color = color;
     }
@@ -123,7 +123,7 @@ public class BulletBase : MonoBehaviour
 }
 
 [System.Serializable]
-public struct BulletData
+public class BulletData
 {
     // Static stats
     [SerializeReference]

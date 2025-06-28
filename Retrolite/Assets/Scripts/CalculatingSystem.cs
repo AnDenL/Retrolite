@@ -27,6 +27,34 @@ namespace CalculatingSystem
     }
 
     [Serializable]
+    public class SinNode : FormulaNode
+    {
+        [SerializeReference]
+        public FormulaNode Node;
+        public override bool IsConstant() => Node.IsConstant();
+
+        public SinNode() {}
+
+        public SinNode(FormulaNode value) => Node = value;
+        public override float Evaluate(FormulaContext context) => Mathf.Sin(Node.Evaluate(context));
+        public override string ToReadableString() => "Sin(" + Node.ToString() + ")";
+    }
+
+    [Serializable]
+    public class CosNode : FormulaNode
+    {
+        [SerializeReference]
+        public FormulaNode Node;
+        public override bool IsConstant() => Node.IsConstant();
+
+        public CosNode() {}
+
+        public CosNode(FormulaNode value) => Node = value;
+        public override float Evaluate(FormulaContext context) => Mathf.Cos(Node.Evaluate(context));
+        public override string ToReadableString() => "Cos(" + Node.ToString() + ")";
+    }
+
+    [Serializable]
     public class VariableNode : FormulaNode
     {
         public StatVariable Variable;
@@ -46,9 +74,7 @@ namespace CalculatingSystem
         public Operator Operation;
         [SerializeReference]
         public FormulaNode Right;
-        private bool Constant;
-
-        public override bool IsConstant() => Constant;
+        public override bool IsConstant() => Left.IsConstant() && Right.IsConstant();
 
         public Expression() { }
 
@@ -57,7 +83,6 @@ namespace CalculatingSystem
             Left = left;
             Right = right;
             Operation = op;
-            Constant = Left.IsConstant() && Right.IsConstant();
         }
 
         public override float Evaluate(FormulaContext context)
