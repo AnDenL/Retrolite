@@ -35,6 +35,7 @@ public class GunBase : MonoBehaviour
     public void Set(GunData gun)
     {
         Data = gun;
+        GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
     }
 
     protected void Update()
@@ -113,6 +114,7 @@ public struct GunData
     public float Echo;
     public float ReloadTime;    
     public GunType GunType;
+    public Sprite GunSprite;
 
     public BulletType BulletType;
     public BulletData BulletData;
@@ -127,6 +129,7 @@ public struct GunData
         GunType = gunType;
         BulletType = bulletType;
         BulletData = bulletData;
+        GunSprite = WeaponSpriteGenerator.instance.RandomSprite(); 
         Echo = 0;
     }
 }
