@@ -31,21 +31,27 @@ public class PlayerUI : MonoBehaviour
     private Vector3 originalTextPos;
     private float healthPercent;
 
-    private Coroutine healthBarAnimationCoroutine;
+    private Coroutine healthBarAnimationCoroutine, healthTextCoroutine, moneyCoroutine, bitsCoroutine;
 
-    private void Start()
+    private void Awake()
     {
         originalTextPos = transform.localPosition;
+
+        Player player = FindAnyObjectByType<Player>();
+
+        player.OnHealthChanged += UpdateHealthUI;
+        player.OnMoneyChange += UpdateMoneyText;
+        player.OnBitsChange += UpdateBitsText;
     }
 
     public void UpdateMoneyText(int money)
     {
-        moneyText.text = money.ToString();
+        bitsCoroutine = StartCoroutine(TextAnimation(moneyText, int.Parse(moneyText.text), money));
     }
 
-    public void UpdateCodeText(int code)
+    public void UpdateBitsText(int code)
     {
-        codeText.text = code.ToString();
+        bitsCoroutine = StartCoroutine(TextAnimation(codeText, int.Parse(codeText.text), code));
     }
 
     public void UpdateHealthUI(float currentHealth, float maxHealth)
@@ -54,7 +60,7 @@ public class PlayerUI : MonoBehaviour
         healthBarFill.fillAmount = healthPercent;
         if (healthPercent < 0.6f)
         {
-            effect.intensity = (1 - healthPercent) - 0.3f;
+            effect.intensity = 1 - healthPercent - 0.3f;
             effect.enabled = true;
             effect.volume.enabled = true;
         }
@@ -77,9 +83,9 @@ public class PlayerUI : MonoBehaviour
         }
 
         if (healthBarAnimationCoroutine != null) StopCoroutine(healthBarAnimationCoroutine);
+        if (healthTextCoroutine != null) StopCoroutine(healthTextCoroutine);
         healthBarAnimationCoroutine = StartCoroutine(HealthBarAnimation(currentHealth, maxHealth));
-
-        healthText.text = $"{Math.Round(currentHealth, 1)}/{maxHealth}";
+        healthTextCoroutine = StartCoroutine(HealthTextAnimation(healthText, healthBar.value * maxHealth, currentHealth, maxHealth));
     }
 
     private IEnumerator HealthBarAnimation(float currentHealth, float maxHealth)
@@ -109,5 +115,34 @@ public class PlayerUI : MonoBehaviour
             healthBarFill.color = Color.Lerp(lowHealthColor, healthBarColor, healthBar.value);
             yield return null;
         }
+    }
+
+    private IEnumerator TextAnimation(TMP_Text label, int start, int end)
+    {
+        float t = 0;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime * 2;
+            label.text = "" + (int)Mathf.Lerp(start, end, t);
+            yield return null;
+        }
+
+        codeText.text = end.ToString();
+    }
+
+    private IEnumerator HealthTextAnimation(TMP_Text label, float start, float end, float max)
+    {
+        float t = 0;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime * 2;
+            float health = (float)Math.Round(Mathf.Lerp(start, end, t), 1);
+            label.text = $"{Math.Round(health, 1)}/{max}";
+            yield return null;
+        }
+        
+        healthText.text = $"{Math.Round(end, 1)}/{max}";
     }
 }

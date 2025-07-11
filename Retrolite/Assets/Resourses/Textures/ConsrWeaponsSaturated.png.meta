@@ -516,7 +516,7 @@ TextureImporter:
       name: ConsrWeaponsSaturated_16
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 32
         width: 16
         height: 16
@@ -530,6 +530,50 @@ TextureImporter:
       bones: []
       spriteID: fd80a368e50215b00800000000000000
       internalID: 815468597881735391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConsrWeaponsSaturated_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b183573d6f4f1bc4dbfc37a9560ace4a
+      internalID: 1062801773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ConsrWeaponsSaturated_18
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fda375ae71260744a33042d267c97af
+      internalID: -1470863309
       vertices: []
       indices: 
       edges: []
@@ -557,6 +601,8 @@ TextureImporter:
       ConsrWeaponsSaturated_14: 2905215854644476283
       ConsrWeaponsSaturated_15: -1413271850637649464
       ConsrWeaponsSaturated_16: 815468597881735391
+      ConsrWeaponsSaturated_17: 1062801773
+      ConsrWeaponsSaturated_18: -1470863309
       ConsrWeaponsSaturated_2: 7463917477325957117
       ConsrWeaponsSaturated_3: 9097894827093708096
       ConsrWeaponsSaturated_4: -1790079376622079411

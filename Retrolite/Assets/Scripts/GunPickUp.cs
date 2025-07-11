@@ -15,7 +15,7 @@ public class GunPickUp : Interactable
     [ContextMenu("SetSprite")]
     private void SetSprite()
     {
-        gunData.GunSprite = WeaponSpriteGenerator.instance.CombineSprites(part1, part2, hueShift);
+        gunData.GunSprite = WeaponSpriteGenerator.CombineSprites(part1, part2, hueShift);
         GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
     }
 

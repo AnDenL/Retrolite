@@ -12,7 +12,7 @@ public class WeaponSpriteGenerator : MonoBehaviour
 
     public Sprite RandomSprite() => CombineSprites(List.Parts1[Random.Range(0, List.Parts1.Length - 1)], List.Parts2[Random.Range(0, List.Parts2.Length - 1)], Random.Range(0f, 1f));
 
-    public Sprite CombineSprites(Sprite part1, Sprite part2, float hueShift)
+    public static Sprite CombineSprites(Sprite part1, Sprite part2, float hueShift)
     {
         Texture2D texture = new Texture2D(34, 18, TextureFormat.RGBA32, false);
         texture.filterMode = FilterMode.Point;
@@ -39,6 +39,8 @@ public class WeaponSpriteGenerator : MonoBehaviour
             {
                 Color pixel = GetSpritePixel(part2, x, y);
 
+                if (pixel.a == 0) continue;
+
                 ChangeHue(ref pixel, hueShift);
                 texture.SetPixel(x + 14, y + 1, pixel);
             }
@@ -50,7 +52,7 @@ public class WeaponSpriteGenerator : MonoBehaviour
         return final;
     }
 
-    private Color GetSpritePixel(Sprite sprite, int x, int y)
+    private static Color GetSpritePixel(Sprite sprite, int x, int y)
     {
         Texture2D texture = sprite.texture;
 
@@ -61,7 +63,7 @@ public class WeaponSpriteGenerator : MonoBehaviour
         return texture.GetPixel(pixelX, pixelY);
     }
 
-    private void ChangeHue(ref Color color, float hueShift)
+    private static void ChangeHue(ref Color color, float hueShift)
     {
         float alpha = color.a;
         Color.RGBToHSV(color, out float h, out float s, out float v);

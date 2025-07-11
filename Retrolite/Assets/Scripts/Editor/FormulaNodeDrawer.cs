@@ -6,8 +6,9 @@ using CalculatingSystem;
 [CustomPropertyDrawer(typeof(FormulaNode), true)]
 public class FormulaNodeDrawer : PropertyDrawer
 {
-    private const float ButtonWidth = 35f;
-    private const float Spacing = 4f;
+    private const float ButtonWidth = 30f;
+    private const float Spacing = 2f;
+    private const float OperationWidth = 50f;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
@@ -18,7 +19,7 @@ public class FormulaNodeDrawer : PropertyDrawer
         if (node is Expression)
         {
             // Для Expression беремо висоту 1 рядка
-            return EditorGUIUtility.singleLineHeight + Spacing;
+            return EditorGUIUtility.singleLineHeight;
         }
 
         // Для інших — стандартно
@@ -35,7 +36,6 @@ public class FormulaNodeDrawer : PropertyDrawer
         {
             if (GUI.Button(position, "Set Formula"))
                 ShowTypeMenu(property);
-
             EditorGUI.EndProperty();
             return;
         }
@@ -61,12 +61,7 @@ public class FormulaNodeDrawer : PropertyDrawer
             var valueProp = property.FindPropertyRelative("Value");
             EditorGUI.PropertyField(fieldRect, valueProp, label);
         }
-        else if (node is SinNode)
-        {
-            var nodeProp = property.FindPropertyRelative("Node");
-            EditorGUI.PropertyField(fieldRect, nodeProp, label);
-        }
-        else if (node is CosNode)
+        else if (node is SinNode || node is CosNode)
         {
             var nodeProp = property.FindPropertyRelative("Node");
             EditorGUI.PropertyField(fieldRect, nodeProp, label);
@@ -85,18 +80,17 @@ public class FormulaNodeDrawer : PropertyDrawer
             float contentX = labelRect.xMax + Spacing;
             float contentWidth = fieldRect.width - labelWidth - Spacing;
 
-            // Ділимо простір на три частини
-            float thirdWidth = (contentWidth - Spacing * 2) / 3f;
+            // Віднімаємо ширину операції та спейсінги
+            float nodeWidth = (contentWidth - OperationWidth - Spacing * 2) / 2f;
 
             var leftProp = property.FindPropertyRelative("Left");
             var opProp = property.FindPropertyRelative("Operation");
             var rightProp = property.FindPropertyRelative("Right");
 
-            Rect leftRect = new Rect(contentX, fieldRect.y, thirdWidth, fieldRect.height);
-            Rect opRect = new Rect(leftRect.xMax + Spacing, fieldRect.y, thirdWidth, fieldRect.height);
-            Rect rightRect = new Rect(opRect.xMax + Spacing, fieldRect.y, thirdWidth, fieldRect.height);
+            Rect leftRect = new Rect(contentX, fieldRect.y, nodeWidth, fieldRect.height);
+            Rect opRect = new Rect(leftRect.xMax + Spacing, fieldRect.y, OperationWidth, fieldRect.height);
+            Rect rightRect = new Rect(opRect.xMax + Spacing, fieldRect.y, nodeWidth, fieldRect.height);
 
-            // Увага: тут використовуємо PropertyField без label
             EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
             EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
@@ -125,7 +119,6 @@ public class FormulaNodeDrawer : PropertyDrawer
 
     private void SetNodeType(SerializedProperty property, FormulaNode node)
     {
-        property.serializedObject.Update();
         property.managedReferenceValue = node;
         property.serializedObject.ApplyModifiedProperties();
     }

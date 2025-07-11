@@ -1,13 +1,11 @@
+using System;
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class Player : HealthBase
 {
     [SerializeField]
     private float lives;
-    [SerializeField]
-    private PlayerUI playerUI;
 
     [Header("Movement")]
     [SerializeField]
@@ -43,7 +41,7 @@ public class Player : HealthBase
     [SerializeField]
     private int money;
     [SerializeField]
-    private int code;
+    private int bits;
     [SerializeField]
     private LayerMask interactMask;
     [SerializeField]
@@ -66,6 +64,8 @@ public class Player : HealthBase
 
     public static Player instance;
     public static bool canInteract = true;
+    public event Action<int> OnMoneyChange;
+    public event Action<int> OnBitsChange;
 
     private void Awake()
     {
@@ -81,9 +81,7 @@ public class Player : HealthBase
 
         SetValues(SaveSystem.CurrentSave);
 
-        playerUI.UpdateHealthUI(health, maxHealth);
-        playerUI.UpdateMoneyText(money);
-        playerUI.UpdateCodeText(code);
+        TakeDamage(0);
         coinShape = coinParticles.shape;
         coinEmission = coinParticles.emission;
         codeShape = codeParticles.shape;
@@ -101,7 +99,7 @@ public class Player : HealthBase
         else
         {
             animator.SetBool("IsWalking", true);
-            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time && code >= 2) StartCoroutine(Dash());
+            if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time && bits >= 2) StartCoroutine(Dash());
         }
 
         direction.Normalize();
@@ -115,12 +113,17 @@ public class Player : HealthBase
         Rotate();
         OutlineObject();
         if (Input.GetKeyDown(KeyCode.E)) InteractObject();
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            gun.Data.GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
+            gun.Set(gun.Data);   
+        }
     }
 
     private IEnumerator Dash()
     {
-        code -= 2;
-        playerUI.UpdateCodeText(code);
+        bits -= 2;
+        OnBitsChange?.Invoke(bits);
         glitchRenderer.enabled = true;
         glitchParticles.Play();
         playerCollider.enabled = false;
@@ -200,7 +203,6 @@ public class Player : HealthBase
     public override void Heal(float amount)
     {
         base.Heal(amount);
-        playerUI.UpdateHealthUI(health, maxHealth);
     }
 
     public override void TakeDamage(float damage)
@@ -209,9 +211,14 @@ public class Player : HealthBase
             return;
 
         base.TakeDamage(damage);
-        playerUI.UpdateHealthUI(health, maxHealth);
 
         invincibilityTimer = Time.time + 1f;
+    }
+
+    protected override void Die()
+    {
+        if (lives > 0) lives--;
+        else base.Die();
     }
 
     #endregion
@@ -307,7 +314,7 @@ public class Player : HealthBase
         if (money >= value)
         {
             money -= value;
-            playerUI.UpdateMoneyText(money);
+            OnMoneyChange?.Invoke(money);
             return true;
         }
         return false;
@@ -316,7 +323,7 @@ public class Player : HealthBase
     public void AddMoney(int value, Vector3 spawnPosition)
     {
         money += value;
-        playerUI.UpdateMoneyText(money);
+        OnMoneyChange?.Invoke(money);
 
         coinShape.position = transform.InverseTransformPoint(spawnPosition);
         coinEmission.SetBurst(0, new ParticleSystem.Burst(0f, (short)value));
@@ -326,8 +333,8 @@ public class Player : HealthBase
 
     public void AddCode(int value, Vector3 spawnPosition)
     {
-        code += value;
-        playerUI.UpdateCodeText(code);
+        bits += value;
+        OnBitsChange?.Invoke(bits);
 
         codeShape.position = transform.InverseTransformPoint(spawnPosition);
         codeEmission.SetBurst(0, new ParticleSystem.Burst(0f, (short)value));
@@ -356,7 +363,7 @@ public class Player : HealthBase
         maxHealth = data.PlayerMaxHealth;
         SetGun(data.PlayerWeapon);
         money = data.PlayerMoney;
-        code = data.PlayerCode;
+        bits = data.PlayerCode;
         lives = data.PlayerLives;
     }
 }
