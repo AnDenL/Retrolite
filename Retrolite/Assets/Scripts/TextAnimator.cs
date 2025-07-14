@@ -4,9 +4,9 @@ using System.Collections;
 
 public class TextAnimator : MonoBehaviour
 {
-    [SerializeField] private float glitchSpeed = 0.05f;
-    [SerializeField] private string glitchChars = "!@#$%^&*()_+=-{}[]<>?/|\\";
-    [SerializeField] private int glitchesPerFrame = 3;
+    [SerializeField] float glitchSpeed = 0.05f;
+    [SerializeField] string glitchChars = "!@#$%^&*()_+=-{}[]<>?/|\\";
+    [SerializeField] int glitchesPerFrame = 3;
 
     private TMP_Text textMeshPro;
     private Coroutine glitchCoroutine;

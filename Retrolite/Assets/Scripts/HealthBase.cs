@@ -4,10 +4,8 @@ using System;
 public class HealthBase : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField]
-    protected float maxHealth = 100f;
-    [SerializeField]
-    protected float health;
+    [SerializeField] protected float maxHealth = 100f;
+    [SerializeField] protected float health;
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;

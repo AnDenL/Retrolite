@@ -4,52 +4,33 @@ using System.Collections;
 
 public class Player : HealthBase
 {
-    [SerializeField]
-    private float lives;
+    [SerializeField] float lives;
 
     [Header("Movement")]
-    [SerializeField]
-    private float moveSpeed = 5f;
-    [SerializeField]
-    private float inertia = 0.9f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float inertia = 0.9f;
 
     [Header("Arms")]
-    [SerializeField]
-    private Transform rotation;
-    [SerializeField]
-    private Transform hand;
-    [SerializeField]
-    private LinePoints arm1, arm2;
-    [SerializeField]
-    private Transform hand1, hand2;
-    [SerializeField]
-    private GameObject handsWithoutGun;
-    [SerializeField]
-    private GunBase gun;
+    [SerializeField] Transform rotation;
+    [SerializeField] Transform hand;
+    [SerializeField] LinePoints arm1, arm2;
+    [SerializeField] Transform hand1, hand2;
+    [SerializeField] GameObject handsWithoutGun;
+    [SerializeField] GunBase gun;
 
     [Header("Dash Effects")]
-    [SerializeField]
-    private TrailRenderer trailRenderer;
-    [SerializeField]
-    private SpriteRenderer glitchRenderer;
-    [SerializeField]
-    private ParticleSystem glitchParticles;
-    [SerializeField]
-    private LayerMask wallLayerMask;
+    [SerializeField] TrailRenderer trailRenderer;
+    [SerializeField] SpriteRenderer glitchRenderer;
+    [SerializeField] ParticleSystem glitchParticles;
+    [SerializeField] LayerMask wallLayerMask;
 
     [Header("Interact")]
-    [SerializeField]
-    private int money;
-    [SerializeField]
-    private int bits;
-    [SerializeField]
-    private LayerMask interactMask;
-    [SerializeField]
-    private Material outlineMaterial;
-    [SerializeField]
-    private Material defaultMaterial;
-    [SerializeField]
-    private ParticleSystem coinParticles, codeParticles;
+    [SerializeField] int money;
+    [SerializeField] int bits;
+    [SerializeField] LayerMask interactMask;
+    [SerializeField] Material outlineMaterial;
+    [SerializeField] Material defaultMaterial;
+    [SerializeField] ParticleSystem coinParticles, codeParticles;
 
     private ParticleSystem.ShapeModule coinShape, codeShape;
     private ParticleSystem.EmissionModule coinEmission, codeEmission;
@@ -116,7 +97,7 @@ public class Player : HealthBase
         if (Input.GetKeyDown(KeyCode.P))
         {
             gun.Data.GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
-            gun.Set(gun.Data);   
+            gun.Set(gun.Data);
         }
     }
 
@@ -334,7 +315,7 @@ public class Player : HealthBase
     public void AddCode(int value, Vector3 spawnPosition)
     {
         bits += value;
-        OnBitsChange?.Invoke(bits);
+        OnBitsChange?.Invoke(value);
 
         codeShape.position = transform.InverseTransformPoint(spawnPosition);
         codeEmission.SetBurst(0, new ParticleSystem.Burst(0f, (short)value));

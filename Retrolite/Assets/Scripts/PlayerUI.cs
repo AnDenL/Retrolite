@@ -1,4 +1,5 @@
 using TMPro;
+using TMPro.Examples;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -7,26 +8,17 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
     [Header("Health UI")]
-    [SerializeField]
-    private TMP_Text healthText;
-    [SerializeField]
-    private ShakingText shakingText;
-    [SerializeField]
-    private Slider healthBar, backBar;
-    [SerializeField]
-    private Image healthBarFill;
-    [SerializeField]
-    private LowHealthVolume effect;
-    [SerializeField]
-    private Color healthBarColor;
-    [SerializeField]
-    private Color lowHealthColor;
+    [SerializeField] TMP_Text healthText;
+    [SerializeField] VertexJitter shakingText;
+    [SerializeField] Slider healthBar, backBar;
+    [SerializeField] Image healthBarFill;
+    [SerializeField] LowHealthVolume effect;
+    [SerializeField] Color healthBarColor;
+    [SerializeField] Color lowHealthColor;
 
     [Header("Resources UI")]
-    [SerializeField]
-    private TMP_Text moneyText;
-    [SerializeField]
-    private TMP_Text codeText;
+    [SerializeField] TMP_Text moneyText;
+    [SerializeField] TMP_Text codeText;
 
     private Vector3 originalTextPos;
     private float healthPercent;
@@ -74,8 +66,7 @@ public class PlayerUI : MonoBehaviour
         if (healthPercent < 0.5f)
         {
             shakingText.enabled = true;
-            shakingText.shakeMagnitude = 0.2f / healthPercent + 0.5f;
-            shakingText.shakeSpeed = 2f / healthPercent + 0.5f;
+            shakingText.CurveScale = 8f / (healthPercent * 6f + 0.3f);
         }
         else
         {
@@ -128,7 +119,7 @@ public class PlayerUI : MonoBehaviour
             yield return null;
         }
 
-        codeText.text = end.ToString();
+        label.text = end.ToString();
     }
 
     private IEnumerator HealthTextAnimation(TMP_Text label, float start, float end, float max)
@@ -142,7 +133,7 @@ public class PlayerUI : MonoBehaviour
             label.text = $"{Math.Round(health, 1)}/{max}";
             yield return null;
         }
-        
+
         healthText.text = $"{Math.Round(end, 1)}/{max}";
     }
 }

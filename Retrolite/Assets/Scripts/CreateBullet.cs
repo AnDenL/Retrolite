@@ -2,14 +2,10 @@ using UnityEngine;
 
 public class CreateBullet : MonoBehaviour
 {
-    [SerializeField]
-    private float shootCooldown = 3f;
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private Transform[] spawnPoints;
-    [SerializeField]
-    private Vector2 direction;
+    [SerializeField] float shootCooldown = 3f;
+    [SerializeField] GameObject bulletPrefab;
+    [SerializeField] Transform[] spawnPoints;
+    [SerializeField] Vector2 direction;
 
     private float shootTimer = 2f;
 

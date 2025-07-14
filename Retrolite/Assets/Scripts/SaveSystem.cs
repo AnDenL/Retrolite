@@ -4,7 +4,7 @@ public class SaveSystem : MonoBehaviour
 {
     public static SaveData CurrentSave;
 
-    [SerializeField] private DataMode dataMode;
+    [SerializeField] DataMode dataMode;
 
     private void Awake()
     {

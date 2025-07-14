@@ -7,15 +7,11 @@ using CalculatingSystem;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField]
-    protected BulletRegistry bulletPrefabs;
-    [SerializeField]
-    protected Material reloadMaterial;
-    [SerializeField]
-    protected GameObject reloadBar;
+    [SerializeField] protected BulletRegistry bulletPrefabs;
+    [SerializeField] protected Material reloadMaterial;
+    [SerializeField] protected GameObject reloadBar;
 
-    [SerializeField]
-    public GunData Data;
+    [SerializeField] public GunData Data;
 
     protected float fireTime;
     protected List<BulletBase> bullets;
@@ -112,7 +108,7 @@ public struct GunData
     public int MagazineSize;
     public int CurrentAmmo;
     public float Echo;
-    public float ReloadTime;    
+    public float ReloadTime;
     public GunType GunType;
     public Sprite GunSprite;
 
@@ -129,7 +125,7 @@ public struct GunData
         GunType = gunType;
         BulletType = bulletType;
         BulletData = bulletData;
-        GunSprite = WeaponSpriteGenerator.instance.RandomSprite(); 
+        GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
         Echo = 0;
     }
 }

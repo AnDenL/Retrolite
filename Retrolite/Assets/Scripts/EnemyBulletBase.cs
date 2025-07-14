@@ -2,12 +2,9 @@ using UnityEngine;
 
 public class EnemyBulletBase : MonoBehaviour
 {
-    [SerializeField]
-    protected float speed = 5f;
-    [SerializeField]
-    protected float damage = 10f;
-    [SerializeField]
-    protected float lifetime = 5f;
+    [SerializeField] protected float speed = 5f;
+    [SerializeField] protected float damage = 10f;
+    [SerializeField] protected float lifetime = 5f;
 
     public virtual void Shoot(Vector2 direction)
     {

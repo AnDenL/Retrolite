@@ -3,16 +3,12 @@ using System.Collections;
 
 public class SlimeBase : HealthBase
 {
-    [SerializeField]
-    protected TextMesh healthLabel;
+    [SerializeField] protected TextMesh healthLabel;
 
     [Header("Slime")]
-    [SerializeField]
-    protected float jumpTime;
-    [SerializeField]
-    protected float speed;
-    [SerializeField]
-    protected float damage;
+    [SerializeField] protected float jumpTime;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float damage;
 
     protected bool isAttacking = false;
     protected bool isDead = false;

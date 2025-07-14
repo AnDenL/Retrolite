@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class HealingPotion : Interactable
 {
-    [SerializeField]
-    private float healAmount = 10f;
-    [SerializeField]
-    private float additionalHeal;
+    [SerializeField] float healAmount = 10f;
+    [SerializeField] float additionalHeal;
 
     public override void Interact(Player player)
     {

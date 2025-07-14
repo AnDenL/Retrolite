@@ -7,14 +7,10 @@ public class Settings : MonoBehaviour
 {
     public static SettingsData settings = new SettingsData();
 
-    [SerializeField]
-    private Slider masterSlider, musicSlider, effectSlider;
-    [SerializeField]
-    private AudioMixerGroup mixer;
-    [SerializeField]
-    private TMP_Dropdown resolutionDropdown;
-    [SerializeField]
-    private Toggle fullscreenToggle;
+    [SerializeField] Slider masterSlider, musicSlider, effectSlider;
+    [SerializeField] AudioMixerGroup mixer;
+    [SerializeField] TMP_Dropdown resolutionDropdown;
+    [SerializeField] Toggle fullscreenToggle;
 
     private Resolution[] resolutions;
 

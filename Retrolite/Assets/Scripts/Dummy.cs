@@ -4,7 +4,7 @@ using System.Collections;
 
 public class Dummy : HealthBase
 {
-    [SerializeField] private TextMesh text;
+    [SerializeField] TextMesh text;
 
     private Animator animator;
     private float t;

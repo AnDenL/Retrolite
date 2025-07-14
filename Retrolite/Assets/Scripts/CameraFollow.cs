@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Transform target;
-    [SerializeField] private short targetWeight;
+    [SerializeField] Transform target;
+    [SerializeField] short targetWeight;
 
     private void Update()
     {

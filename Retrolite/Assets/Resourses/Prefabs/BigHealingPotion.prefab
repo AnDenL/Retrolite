@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3429032535262705217}
   - component: {fileID: 2800461512115727467}
   - component: {fileID: 8769633414663170921}
+  - component: {fileID: 4068744663892547058}
   m_Layer: 11
   m_Name: BigHealingPotion
   m_TagString: Interactable
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_Sprite: {fileID: 1185527514606905908, guid: 3cbce0f112bc9bb5a9b25efee6506ebc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -121,7 +122,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -168,6 +169,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healAmount: 100
   additionalHeal: 0
+--- !u!114 &4068744663892547058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37932009207781714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb95763155c7600bb825b8d9643b9d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.9225094
+      outSlope: 3.9225094
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.08168475
+    - serializedVersion: 3
+      time: 1
+      value: 0.006248474
+      inSlope: -4.1937613
+      outSlope: -4.1937613
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06998521
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxHeight: 0.75
+  duration: 0.6
+  shadow: {fileID: 4253741002685925708}
+  shadowOffset: {x: 0, y: -0.25, z: 0}
 --- !u!1 &4904908803858037900
 GameObject:
   m_ObjectHideFlags: 0

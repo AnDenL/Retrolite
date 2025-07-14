@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ContactDamage : MonoBehaviour
 {
-    [SerializeField]
-    private float damageAmount = 10f;
+    [SerializeField] float damageAmount = 10f;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

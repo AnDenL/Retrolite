@@ -8,8 +8,7 @@ public class Menu : MonoBehaviour
     public static float timeScale = 1;
     public static bool isPaused;
 
-    [SerializeField]
-    private GameObject menu, selected;
+    [SerializeField] GameObject menu, selected;
 
     private void Awake()
     {
