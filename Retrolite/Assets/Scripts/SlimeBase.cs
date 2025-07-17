@@ -9,6 +9,7 @@ public class SlimeBase : HealthBase
     [SerializeField] protected float jumpTime;
     [SerializeField] protected float speed;
     [SerializeField] protected float damage;
+    [SerializeField] protected ParticleSystem hitEffect;
 
     protected bool isAttacking = false;
     protected bool isDead = false;
@@ -22,7 +23,7 @@ public class SlimeBase : HealthBase
         StartCoroutine(AttackTimer());
     }
 
-    private IEnumerator AttackTimer()
+    protected IEnumerator AttackTimer()
     {
         while (!isDead)
         {
@@ -62,6 +63,7 @@ public class SlimeBase : HealthBase
     {
         base.TakeDamage(damage);
         healthLabel.text = health.ToString();
+        hitEffect.Play();
     }
 
     protected override void Die()

@@ -12836,9 +12836,9 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.029929576
     y: 0
-    width: 1
+    width: 0.9405321
     height: 1
   near clip plane: -10000
   far clip plane: 10000
@@ -37025,6 +37025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1127240027396745071, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1152285883391924825, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -37065,6 +37069,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 6386035971000908232, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_Positions.Array.data[1].z
+      value: 0
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

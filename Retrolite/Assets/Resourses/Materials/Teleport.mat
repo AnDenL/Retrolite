@@ -59,7 +59,7 @@ Material:
     - _Float: 0.03
     - _Float_1: 99.12
     - _Scale: 15
-    - _mult: 6.1
+    - _mult: 0
     m_Colors: []
   m_BuildTextureStacks: []
   m_AllowLocking: 1

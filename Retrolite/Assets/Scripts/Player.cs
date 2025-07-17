@@ -11,11 +11,26 @@ public class Player : HealthBase
     [SerializeField] float inertia = 0.9f;
 
     [Header("Arms")]
+<<<<<<< Updated upstream
     [SerializeField] Transform rotation;
     [SerializeField] Transform hand;
     [SerializeField] LinePoints arm1, arm2;
     [SerializeField] GameObject handsWithoutGun;
     [SerializeField] GunBase gun;
+
+    private Transform hand1, hand2;
+=======
+    [SerializeField]
+    private Transform rotation;
+    [SerializeField]
+    private Transform hand;
+    [SerializeField]
+    private LinePoints arm1, arm2;
+    [SerializeField]
+    private GameObject handsWithoutGun;
+    [SerializeField]
+    private GunBase gun;
+>>>>>>> Stashed changes
 
     private Transform hand1, hand2;
 
@@ -26,11 +41,26 @@ public class Player : HealthBase
     [SerializeField] LayerMask wallLayerMask;
 
     [Header("Interact")]
+<<<<<<< Updated upstream
     [SerializeField] int money;
     [SerializeField] int bits;
     [SerializeField] LayerMask interactMask;
     [SerializeField] Material outlineMaterial;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
+
+    private Material defaultMaterial;
+=======
+    [SerializeField]
+    private int money;
+    [SerializeField]
+    private int bits;
+    [SerializeField]
+    private LayerMask interactMask;
+    [SerializeField]
+    private Material outlineMaterial;
+    [SerializeField]
+    private ParticleSystem coinParticles, codeParticles;
+>>>>>>> Stashed changes
 
     private Material defaultMaterial;
 
@@ -73,6 +103,9 @@ public class Player : HealthBase
         coinEmission = coinParticles.emission;
         codeShape = codeParticles.shape;
         codeEmission = codeParticles.emission;
+
+        hand1 = handsWithoutGun.transform.GetChild(0);
+        hand2 = handsWithoutGun.transform.GetChild(1);
     }
 
     #region Movement

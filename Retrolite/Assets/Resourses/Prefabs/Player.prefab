@@ -115,8 +115,6 @@ MonoBehaviour:
   hand: {fileID: 3179825005254226916}
   arm1: {fileID: 6498460163385416186}
   arm2: {fileID: 840005569250673569}
-  hand1: {fileID: 259502998954065255}
-  hand2: {fileID: 8362474879578523012}
   handsWithoutGun: {fileID: 7142831337059248852}
   gun: {fileID: 2725822582328639035}
   trailRenderer: {fileID: 3128735029863287220}
@@ -131,7 +129,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2048
   outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
-  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   coinParticles: {fileID: 8541644295032527401}
   codeParticles: {fileID: 2915219203133694524}
 --- !u!70 &1264232799100110172
@@ -531,7 +528,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 0.81736815, b: 0.28773582, a: 1}
-      maxColor: {r: 0, g: 0, b: 0, a: 1}
+      maxColor: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5149,8 +5146,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 807440d86b880ab4c8f73796adf20e2b, type: 2}
+  - {fileID: 2100000, guid: 807440d86b880ab4c8f73796adf20e2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5306,7 +5303,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6229891647009536289
 Transform:
@@ -10082,7 +10079,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 807440d86b880ab4c8f73796adf20e2b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10150,7 +10147,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6985120141025546136
 Transform:
@@ -10267,7 +10264,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7967063597275555765
 Transform:
@@ -10304,7 +10301,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 0
 --- !u!4 &6176045978660439036
 Transform:
@@ -10392,7 +10389,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2184825514538075095
 Transform:
@@ -10543,8 +10540,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Positions:
-  - {x: 0.36122757, y: 1.2256095, z: 0}
-  - {x: 0.3, y: 0.8, z: -2}
+  - {x: -0.2, y: 1.2256095, z: 0}
+  - {x: -0.3, y: 0.7, z: -2}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -10635,7 +10632,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2522225911147186290
 Transform:
@@ -10912,7 +10909,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6476878969016732552
 Transform:
@@ -10953,7 +10950,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 2517d6b6f90b8984c9fbae7268f9ad54, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10973,7 +10970,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Time: 0.6
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -11005,7 +11002,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 0.78431374}
+      key0: {r: 0, g: 0, b: 0, a: 1}
       key1: {r: 0, g: 0, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -16027,7 +16024,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5203072995894744932
 Transform:
@@ -16207,8 +16204,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Positions:
-  - {x: 0.78822756, y: 1.2216095, z: 0}
-  - {x: 1.3082275, y: 1.1136096, z: -2}
+  - {x: 0.2, y: 1.2216095, z: 0}
+  - {x: 0.4, y: 0.7, z: -2}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
