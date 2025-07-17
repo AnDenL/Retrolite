@@ -14,9 +14,10 @@ public class Player : HealthBase
     [SerializeField] Transform rotation;
     [SerializeField] Transform hand;
     [SerializeField] LinePoints arm1, arm2;
-    [SerializeField] Transform hand1, hand2;
     [SerializeField] GameObject handsWithoutGun;
     [SerializeField] GunBase gun;
+
+    private Transform hand1, hand2;
 
     [Header("Dash Effects")]
     [SerializeField] TrailRenderer trailRenderer;
@@ -29,8 +30,9 @@ public class Player : HealthBase
     [SerializeField] int bits;
     [SerializeField] LayerMask interactMask;
     [SerializeField] Material outlineMaterial;
-    [SerializeField] Material defaultMaterial;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
+
+    private Material defaultMaterial;
 
     private ParticleSystem.ShapeModule coinShape, codeShape;
     private ParticleSystem.EmissionModule coinEmission, codeEmission;
@@ -58,7 +60,11 @@ public class Player : HealthBase
         mainCamera = Camera.main;
         playerCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
+        defaultMaterial = GetComponent<SpriteRenderer>().material;
         trailRenderer.autodestruct = false;
+
+        hand1 = handsWithoutGun.transform.GetChild(0);
+        hand2 = handsWithoutGun.transform.GetChild(1);
 
         SetValues(SaveSystem.CurrentSave);
 
@@ -131,7 +137,7 @@ public class Player : HealthBase
             }
             else
             {
-                transform.position += (Vector3)(direction * moveDistance);
+                transform.position += direction * moveDistance;
             }
 
             glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 2);

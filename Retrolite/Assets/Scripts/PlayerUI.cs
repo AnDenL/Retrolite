@@ -20,15 +20,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TMP_Text moneyText;
     [SerializeField] TMP_Text codeText;
 
-    private Vector3 originalTextPos;
     private float healthPercent;
 
     private Coroutine healthBarAnimationCoroutine, healthTextCoroutine, moneyCoroutine, bitsCoroutine;
 
     private void Awake()
     {
-        originalTextPos = transform.localPosition;
-
         Player player = FindAnyObjectByType<Player>();
 
         player.OnHealthChanged += UpdateHealthUI;
@@ -103,7 +100,8 @@ public class PlayerUI : MonoBehaviour
         {
             t -= Time.deltaTime * 2;
             bar2.value = Mathf.Lerp(currentHealthPercentage, v, t * t);
-            healthBarFill.color = Color.Lerp(lowHealthColor, healthBarColor, healthBar.value);
+            effect.intensity = 1 - bar2.value - 0.3f;
+            healthBarFill.color = Color.Lerp(lowHealthColor, healthBarColor, bar2.value);
             yield return null;
         }
     }

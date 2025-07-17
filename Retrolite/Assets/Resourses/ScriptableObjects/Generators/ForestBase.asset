@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5e68c5ec99bd841ae33f6ff98ecbdf, type: 3}
+  m_Name: ForestBase
+  m_EditorClassIdentifier: 
+  Size: {x: 300, y: 300}
+  MinDistance: 1
+  MaxDistance: 2
+  MinAreaSize: 10
+  MaxAreaSize: 20
+  RandomAngle: 30
+  JitterAmount: 26.2
+  NoiseStrength: -0.5
+  scale: 10
+  BranchCount: 3
+  MinPointsPerBranch: 2
+  MaxPointsPerBranch: 12

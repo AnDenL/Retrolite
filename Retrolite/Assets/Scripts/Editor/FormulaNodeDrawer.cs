@@ -18,11 +18,9 @@ public class FormulaNodeDrawer : PropertyDrawer
 
         if (node is Expression)
         {
-            // Для Expression беремо висоту 1 рядка
             return EditorGUIUtility.singleLineHeight;
         }
 
-        // Для інших — стандартно
         return EditorGUIUtility.singleLineHeight;
     }
 
@@ -40,7 +38,6 @@ public class FormulaNodeDrawer : PropertyDrawer
             return;
         }
 
-        // Загальна область без кнопки
         Rect fieldRect = new Rect(
             position.x,
             position.y,
@@ -48,7 +45,6 @@ public class FormulaNodeDrawer : PropertyDrawer
             EditorGUIUtility.singleLineHeight
         );
 
-        // Кнопка Set
         Rect buttonRect = new Rect(
             fieldRect.xMax + Spacing,
             position.y,
@@ -80,7 +76,6 @@ public class FormulaNodeDrawer : PropertyDrawer
             float contentX = labelRect.xMax + Spacing;
             float contentWidth = fieldRect.width - labelWidth - Spacing;
 
-            // Віднімаємо ширину операції та спейсінги
             float nodeWidth = (contentWidth - OperationWidth - Spacing * 2) / 2f;
 
             var leftProp = property.FindPropertyRelative("Left");
