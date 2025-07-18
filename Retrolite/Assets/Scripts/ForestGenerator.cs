@@ -53,7 +53,7 @@ public class ForestGenerator : MapGenerator
                 KeyPoint point = new KeyPoint
                 {
                     Position = posInt,
-                    AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value),
+                    AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value) + Vector2.Distance(Vector2.zero, jitter),
                     Angle = angle + Random.Range(-RandomAngle, RandomAngle)
                 };
 

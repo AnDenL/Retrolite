@@ -34,12 +34,12 @@ public class SaveData
 
     public SaveData(float health, float maxHealth, GunData weapon, int money, int code, int lives)
     {
-        this.PlayerHealth = health;
-        this.PlayerMaxHealth = maxHealth;
-        this.PlayerWeapon = weapon;
-        this.PlayerMoney = money;
-        this.PlayerCode = code;
-        this.PlayerLives = lives;
+        PlayerHealth = health;
+        PlayerMaxHealth = maxHealth;
+        PlayerWeapon = weapon;
+        PlayerMoney = money;
+        PlayerCode = code;
+        PlayerLives = lives;
     }
 }
 

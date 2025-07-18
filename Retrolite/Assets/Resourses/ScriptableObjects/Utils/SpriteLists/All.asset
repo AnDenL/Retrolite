@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: AllWeapons
+  m_Name: All
   m_EditorClassIdentifier: Assembly-CSharp::SpriteList
   Parts1:
   - {fileID: -8908357137115312222, guid: 879f7133a453a9c4b8ed9461e73a493b, type: 3}
