@@ -25,21 +25,28 @@ public class ForestGenerator : MapGenerator
         keyPoints = new List<KeyPoint>();
 
         Vector2 center = new Vector2(Size.x / 2f, Size.y / 2f);
-        KeyPoint startPoint = new KeyPoint();
-        startPoint.Position = Vector2Int.RoundToInt(center);
-        startPoint.AreaSize = MaxAreaSize;
+        KeyPoint startPoint = new KeyPoint
+        {
+            Position = Vector2Int.RoundToInt(center),
+            AreaSize = MaxAreaSize,
+            Angle = 0f
+        };
         keyPoints.Add(startPoint);
 
         for (int b = 0; b < BranchCount; b++)
         {
-            float angle = (360f / BranchCount) * b + Random.Range(-RandomAngle, RandomAngle);
-            Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
+            float baseAngle = (360f / BranchCount) * b + Random.Range(-RandomAngle, RandomAngle);
+            Vector2 direction = new Vector2(Mathf.Cos(baseAngle * Mathf.Deg2Rad), Mathf.Sin(baseAngle * Mathf.Deg2Rad));
 
             Vector2 currentPos = center;
             int PointsPerBranch = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
 
             for (int p = 0; p < PointsPerBranch; p++)
             {
+                float angleJitter = Random.Range(-RandomAngle, RandomAngle);
+                float finalAngle = baseAngle + angleJitter;
+                direction = new Vector2(Mathf.Cos(finalAngle * Mathf.Deg2Rad), Mathf.Sin(finalAngle * Mathf.Deg2Rad));
+
                 float value = Random.value;
                 float distance = Mathf.Lerp(MinDistance, MaxDistance, value);
                 Vector2 jitter = Random.insideUnitCircle * JitterAmount;
@@ -54,23 +61,24 @@ public class ForestGenerator : MapGenerator
                 {
                     Position = posInt,
                     AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value) + Vector2.Distance(Vector2.zero, jitter),
-                    Angle = angle + Random.Range(-RandomAngle, RandomAngle)
+                    Angle = finalAngle
                 };
 
                 keyPoints.Add(point);
             }
         }
 
+
         for (int y = 0; y < Size.y; y++)
         {
             for (int x = 0; x < Size.x; x++)
             {
-                float value = 1;
+                float value = 10;
                 
                 foreach (KeyPoint point in keyPoints)
                 {
                     float dist = Vector2Int.Distance(new Vector2Int(x, y), point.Position);
-                    value -= Mathf.Clamp((point.AreaSize - dist) / point.AreaSize, 0, 1);
+                    value -= Mathf.Clamp((point.AreaSize - dist) / point.AreaSize, 0, 10);
                 }
 
                 map[x, y] = value;

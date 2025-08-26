@@ -1,6 +1,22 @@
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
-    public abstract void Interact(Player player);
+    [SerializeField] protected Material outlineMaterial;
+
+    protected SpriteRenderer sr;
+    protected Material defaultMaterial;
+
+    protected void Awake()
+    {
+        sr = GetComponent<SpriteRenderer>();
+        defaultMaterial = sr.material;
+        var newMaterial = new Material(outlineMaterial);
+        newMaterial.SetTexture("_MainTex", sr.sprite.texture);
+        outlineMaterial = newMaterial;
+    }
+
+    public virtual void Outline() { sr.material = outlineMaterial; }
+    public virtual void CancelOutline() { sr.material = defaultMaterial; }
+    public virtual void Interact(Player player) { }
 }

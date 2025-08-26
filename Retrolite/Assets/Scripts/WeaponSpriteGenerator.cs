@@ -73,9 +73,3 @@ public class WeaponSpriteGenerator : MonoBehaviour
         color.a = alpha;
     }
 }
-
-[CreateAssetMenu(fileName = "SpriteList", menuName = "Game/SpriteList")]
-public class SpriteList : ScriptableObject
-{
-    public Sprite[] Parts1, Parts2;
-}

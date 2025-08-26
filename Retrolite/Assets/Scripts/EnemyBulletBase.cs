@@ -9,7 +9,7 @@ public class EnemyBulletBase : MonoBehaviour
     public virtual void Shoot(Vector2 direction)
     {
         Invoke("DestroyBullet", lifetime);
-        GetComponent<Rigidbody2D>().linearVelocity = direction * speed;
+        GetComponent<Rigidbody2D>().velocity = direction * speed;
     }
 
     protected virtual void DestroyBullet()

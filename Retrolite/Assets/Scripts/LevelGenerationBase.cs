@@ -24,7 +24,7 @@ public class LevelGenerationBase : MonoBehaviour
     [ContextMenu("Regenerate")]
     private void Regenerate()
     {
-        ClearMaps();
+        ClearMap();
         Generate();
     }
 
@@ -66,13 +66,14 @@ public class LevelGenerationBase : MonoBehaviour
         {
             if (value >= tile.MinValue)
             {
-                tile.Layer?.SetTile(pos, tile.Tile);
+                tile.Layer?.SetTile(pos, tile.Tiles[Random.Range(0, tile.Tiles.Length)]);
                 break;
             }
         }
     }
 
-    private void ClearMaps()
+    [ContextMenu("ClearMap")]
+    private void ClearMap()
     {
         foreach (var tile in mapTiles)
         {
@@ -85,7 +86,7 @@ public class LevelGenerationBase : MonoBehaviour
 public class MapTile
 {
     public Tilemap Layer;
-    public Tile Tile;
+    public Tile[] Tiles;
     [Tooltip("Minimum value to use this tile (inclusive).")]
     public float MinValue;
 }

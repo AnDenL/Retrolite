@@ -23,27 +23,23 @@ public class Player : HealthBase
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] SpriteRenderer glitchRenderer;
     [SerializeField] ParticleSystem glitchParticles;
-    [SerializeField] LayerMask wallLayerMask;
-
     [Header("Interact")]
     [SerializeField] int money;
     [SerializeField] int bits;
-    [SerializeField] LayerMask interactMask;
-    [SerializeField] Material outlineMaterial;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
 
-    private Material defaultMaterial;
-
+    private LayerMask interactMask, wallLayerMask;
     private ParticleSystem.ShapeModule coinShape, codeShape;
     private ParticleSystem.EmissionModule coinEmission, codeEmission;
     private Vector2 velocity;
     private Camera mainCamera;
     private Collider2D playerCollider;
-    private Animator animator;
+    private Animator Animator;
     private GameObject lastInteractedObject;
 
     private float dashCooldown;
     private float invincibilityTimer;
+    private float offset;
 
     public static Player instance;
     public static bool canInteract = true;
@@ -59,8 +55,7 @@ public class Player : HealthBase
     {
         mainCamera = Camera.main;
         playerCollider = GetComponent<Collider2D>();
-        animator = GetComponent<Animator>();
-        defaultMaterial = GetComponent<SpriteRenderer>().material;
+        Animator = GetComponent<Animator>();
         trailRenderer.autodestruct = false;
 
         hand1 = handsWithoutGun.transform.GetChild(0);
@@ -76,19 +71,33 @@ public class Player : HealthBase
 
         hand1 = handsWithoutGun.transform.GetChild(0);
         hand2 = handsWithoutGun.transform.GetChild(1);
+
+        interactMask = 1 << 11;
+        wallLayerMask = 1 << 0; 
     }
 
-    #region Movement
     private void Update()
     {
         if (!canInteract)
             return;
 
+        Move();
+
+        Rotate();
+        OutlineObject();
+        if (Input.GetKeyDown(KeyCode.E)) InteractObject();
+        if (Input.GetKeyDown(KeyCode.Q)) StartCoroutine(SlashAttack());
+    }
+
+    #region Movement
+
+    private void Move()
+    {
         Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        if (direction.magnitude == 0) animator.SetBool("IsWalking", false);
+        if (direction.magnitude == 0) Animator.SetBool("IsWalking", false);
         else
         {
-            animator.SetBool("IsWalking", true);
+            Animator.SetBool("IsWalking", true);
             if (Input.GetKeyDown(KeyCode.LeftShift) && dashCooldown <= Time.time && bits >= 2) StartCoroutine(Dash());
         }
 
@@ -99,15 +108,6 @@ public class Player : HealthBase
 
         transform.position += (Vector3)velocity * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y - 0.5f);
-
-        Rotate();
-        OutlineObject();
-        if (Input.GetKeyDown(KeyCode.E)) InteractObject();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            gun.Data.GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
-            gun.Set(gun.Data);
-        }
     }
 
     private IEnumerator Dash()
@@ -120,13 +120,13 @@ public class Player : HealthBase
         canInteract = false;
         trailRenderer.emitting = true;
 
-        float dashTime = 0.5f;
+        float dashTime = 0.25f;
         Vector3 direction = velocity.normalized;
 
         dashCooldown = Time.time + 0.8f;
         float elapsed = 0f;
 
-        float dashSpeed = 48f;
+        float dashSpeed = 186f;
 
         while (elapsed < dashTime)
         {
@@ -143,9 +143,9 @@ public class Player : HealthBase
                 transform.position += direction * moveDistance;
             }
 
-            glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 2);
+            glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 4);
 
-            if (elapsed > dashTime - 0.25f)
+            if (elapsed > dashTime - 0.10f)
             {
                 playerCollider.enabled = true;
                 canInteract = true;
@@ -174,18 +174,18 @@ public class Player : HealthBase
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
             direction = -direction;
-            animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") > 0);
+            Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") > 0);
         }
         else
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-            animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") < 0);
+            Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") < 0);
         }
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         hand.localPosition = new Vector3(0.65f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
-        rotation.rotation = Quaternion.Euler(0f, 0f, angle);
+        rotation.rotation = Quaternion.Euler(0f, 0f, angle + offset);
     }
     #endregion
     #region Health
@@ -214,6 +214,19 @@ public class Player : HealthBase
     #endregion
     #region Interact
 
+    IEnumerator SlashAttack()
+    {
+        float t = 0f;
+        float duration = 0.2f;
+        while (t < duration)
+        {
+            t += Time.deltaTime;
+            offset = -90f + t / duration * 180f;
+            yield return null;
+        }
+        offset = 0;
+    }
+
     public GunData SetGun(GunData gunData)
     {
         GunData previousGunData = gun.Data;
@@ -239,7 +252,7 @@ public class Player : HealthBase
 
     private void InteractObject()
     {
-        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f, interactMask);
 
         Collider2D nearestCollider = null;
         float nearestDistance = float.MaxValue;
@@ -265,7 +278,7 @@ public class Player : HealthBase
 
     private void OutlineObject()
     {
-        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f);
+        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f, interactMask);
 
         Collider2D nearestCollider = null;
         float nearestDistance = float.MaxValue;
@@ -285,18 +298,13 @@ public class Player : HealthBase
 
         if (nearestCollider != lastInteractedObject)
         {
-            if (lastInteractedObject != null) lastInteractedObject.GetComponent<SpriteRenderer>().material = defaultMaterial;
+            if (lastInteractedObject != null) lastInteractedObject.GetComponent<Interactable>().CancelOutline();
             if (nearestCollider != null) lastInteractedObject = nearestCollider.gameObject;
             else lastInteractedObject = null;
         }
 
         if (nearestCollider != null)
-        {
-            SpriteRenderer spriteRenderer = nearestCollider.GetComponent<SpriteRenderer>();
-            var newMaterial = new Material(outlineMaterial);
-            newMaterial.SetTexture("_MainTex", spriteRenderer.sprite.texture);
-            spriteRenderer.material = newMaterial;
-        }
+            nearestCollider.GetComponent<Interactable>().Outline();
     }
 
     public bool Buy(int value)

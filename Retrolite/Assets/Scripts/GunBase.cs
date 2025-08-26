@@ -7,7 +7,7 @@ using CalculatingSystem;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField] protected BulletRegistry bulletPrefabs;
+    [SerializeField] protected ObjectList bulletPrefabs;
     [SerializeField] protected Material reloadMaterial;
     [SerializeField] protected GameObject reloadBar;
 
@@ -128,12 +128,6 @@ public struct GunData
         GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
         Echo = 0;
     }
-}
-
-[CreateAssetMenu(fileName = "BulletRegistry", menuName = "Game/BulletRegistry")]
-public class BulletRegistry : ScriptableObject
-{
-    public GameObject[] Entries;
 }
 
 public enum GunType

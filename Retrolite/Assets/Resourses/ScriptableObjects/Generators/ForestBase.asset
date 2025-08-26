@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: ForestBase
   m_EditorClassIdentifier: 
   Size: {x: 300, y: 300}
-  MinDistance: 6
-  MaxDistance: 12
-  MinAreaSize: 8
-  MaxAreaSize: 16
-  RandomAngle: 30
-  JitterAmount: 25
-  NoiseStrength: 1
+  MinDistance: 2
+  MaxDistance: 4
+  MinAreaSize: 2
+  MaxAreaSize: 6
+  RandomAngle: 90
+  JitterAmount: 5
+  NoiseStrength: -0.2
   scale: 10
   BranchCount: 3
-  MinPointsPerBranch: 5
-  MaxPointsPerBranch: 12
+  MinPointsPerBranch: 24
+  MaxPointsPerBranch: 60
