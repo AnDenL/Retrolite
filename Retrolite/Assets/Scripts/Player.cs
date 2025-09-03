@@ -15,6 +15,7 @@ public class Player : HealthBase
     [SerializeField] Transform hand;
     [SerializeField] LinePoints arm1, arm2;
     [SerializeField] GameObject handsWithoutGun;
+    [SerializeField] GameObject slashEffect;
     [SerializeField] GunBase gun;
 
     private Transform hand1, hand2;
@@ -216,14 +217,23 @@ public class Player : HealthBase
 
     IEnumerator SlashAttack()
     {
+        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
+        direction.Normalize();
+        Instantiate(slashEffect, rotation).transform.parent = null;
+        float startSpeed = moveSpeed;
+        moveSpeed = 0;
+        float force = 50f;
         float t = 0f;
         float duration = 0.2f;
         while (t < duration)
         {
             t += Time.deltaTime;
-            offset = -90f + t / duration * 180f;
+            offset = -(-90f + t / duration * 180f) * transform.localScale.x;
+            transform.position += (Vector3)direction * Time.deltaTime * (duration - t) * force;
             yield return null;
         }
+        moveSpeed = startSpeed;
         offset = 0;
     }
 
