@@ -4,6 +4,11 @@ namespace CalculatingSystem
     using UnityEngine;
     using static CalculatingSystem.Operator;
     using static CalculatingSystem.StatVariable;
+    using static CalculatingSystem.LogicOperator;
+    using static CalculatingSystem.ComparisonOperator;
+    using static CalculatingSystem.ConditionVariable;
+
+    #region FormulaNodes
 
     [Serializable]
     public abstract class FormulaNode
@@ -27,13 +32,26 @@ namespace CalculatingSystem
     }
 
     [Serializable]
+    public class AbsoluteNode : FormulaNode
+    {
+        public FormulaNode Node;
+        public override bool IsConstant() => true;
+
+        public AbsoluteNode() => Node = new ConstantNode(0);
+
+        public AbsoluteNode(FormulaNode node) => Node = node;
+        public override float Evaluate(FormulaContext context) => Math.Abs(Node.Evaluate(context));
+        public override string ToReadableString() => "|" + Node.ToReadableString() + "|";
+    }
+
+    [Serializable]
     public class SinNode : FormulaNode
     {
         [SerializeReference]
         public FormulaNode Node;
         public override bool IsConstant() => Node.IsConstant();
 
-        public SinNode() {}
+        public SinNode() { }
 
         public SinNode(FormulaNode value) => Node = value;
         public override float Evaluate(FormulaContext context) => Mathf.Sin(Node.Evaluate(context));
@@ -47,7 +65,7 @@ namespace CalculatingSystem
         public FormulaNode Node;
         public override bool IsConstant() => Node.IsConstant();
 
-        public CosNode() {}
+        public CosNode() { }
 
         public CosNode(FormulaNode value) => Node = value;
         public override float Evaluate(FormulaContext context) => Mathf.Cos(Node.Evaluate(context));
@@ -111,15 +129,11 @@ namespace CalculatingSystem
             _ => "?"
         };
     }
+    #endregion
 
     public enum Operator { Add, Subtract, Multiply, Divide }
 
-    public struct FormulaContext
-    {
-        public HealthBase Health;
-        public GunBase Gun;
-        public BulletBase Bullet;
-    }
+    #region Variables
 
     public static class VariableResolver
     {
@@ -164,5 +178,111 @@ namespace CalculatingSystem
         Size,
         BulletSpread,
         BulletDestroyTime
+    }
+
+    #endregion
+    #region ConditionNodes
+    
+    [Serializable]
+    public abstract class ConditionNode
+    {
+        public abstract bool Evaluate(FormulaContext context);
+        public abstract string ToReadableString();
+    }
+
+    public enum ComparisonOperator { Greater, Less, Equal, NotEqual, GreaterOrEqual, LessOrEqual }
+
+    [Serializable]
+    public class ComparisonNode : ConditionNode
+    {
+        [SerializeReference] public FormulaNode Left;
+        [SerializeReference] public FormulaNode Right;
+        public ComparisonOperator Operator;
+
+        public override bool Evaluate(FormulaContext context)
+        {
+            float a = Left.Evaluate(context);
+            float b = Right.Evaluate(context);
+
+            return Operator switch
+            {
+                Greater => a > b,
+                Less => a < b,
+                Equal => Mathf.Approximately(a, b),
+                NotEqual => !Mathf.Approximately(a, b),
+                GreaterOrEqual => a >= b,
+                LessOrEqual => a <= b,
+                _ => false
+            };
+        }
+
+        public override string ToReadableString() =>
+            $"({Left.ToReadableString()} {OperatorToString()} {Right.ToReadableString()})";
+
+        private string OperatorToString() => Operator switch
+        {
+            Greater => ">",
+            Less => "<",
+            Equal => "==",
+            NotEqual => "!=",
+            GreaterOrEqual => ">=",
+            LessOrEqual => "<=",
+            _ => "?"
+        };
+    }
+    public enum LogicOperator { And, Or, Not }
+
+    [Serializable]
+    public class LogicNode : ConditionNode
+    {
+        public LogicOperator Operator;
+        [SerializeReference] public ConditionNode Left;
+        [SerializeReference] public ConditionNode Right;
+
+        public override bool Evaluate(FormulaContext context)
+        {
+            return Operator switch
+            {
+                And => Left.Evaluate(context) && Right.Evaluate(context),
+                Or => Left.Evaluate(context) || Right.Evaluate(context),
+                Not => !Left.Evaluate(context),
+                _ => false
+            };
+        }
+
+        public override string ToReadableString() =>
+            Operator switch
+            {
+                And => $"({Left.ToReadableString()} and {Right.ToReadableString()})",
+                Or => $"({Left.ToReadableString()} or {Right.ToReadableString()})",
+                Not => $"(not {Left.ToReadableString()})",
+                _ => "?"
+            };
+    }
+
+    public static class ConditionResolver
+    {
+        public static bool Resolve(ConditionVariable variable, FormulaContext context)
+        {
+            return variable switch
+            {
+                IsDead => context.Health.IsDead,
+                _ => false
+            };
+        }
+    }
+
+    public enum ConditionVariable
+    {
+        IsDead
+    }
+    
+    #endregion
+
+    public struct FormulaContext
+    {
+        public HealthBase Health;
+        public GunBase Gun;
+        public BulletBase Bullet;
     }
 }

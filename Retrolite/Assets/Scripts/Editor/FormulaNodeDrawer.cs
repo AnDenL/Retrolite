@@ -57,7 +57,7 @@ public class FormulaNodeDrawer : PropertyDrawer
             var valueProp = property.FindPropertyRelative("Value");
             EditorGUI.PropertyField(fieldRect, valueProp, label);
         }
-        else if (node is SinNode || node is CosNode)
+        else if (node is SinNode || node is CosNode || node is AbsoluteNode)
         {
             var nodeProp = property.FindPropertyRelative("Node");
             EditorGUI.PropertyField(fieldRect, nodeProp, label);
@@ -105,6 +105,7 @@ public class FormulaNodeDrawer : PropertyDrawer
     {
         GenericMenu menu = new GenericMenu();
         menu.AddItem(new GUIContent("Constant"), false, () => SetNodeType(property, new ConstantNode(0)));
+        menu.AddItem(new GUIContent("Absolute"), false, () => SetNodeType(property, new AbsoluteNode()));
         menu.AddItem(new GUIContent("SinNode"), false, () => SetNodeType(property, new SinNode()));
         menu.AddItem(new GUIContent("CosNode"), false, () => SetNodeType(property, new CosNode()));
         menu.AddItem(new GUIContent("Variable"), false, () => SetNodeType(property, new VariableNode()));

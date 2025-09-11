@@ -1,20 +1,31 @@
 using UnityEngine;
+using CalculatingSystem;
 using System;
 
 public class HealthBase : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] protected float maxHealth = 100f;
+    public float MaxHealth => maxHealth; 
     [SerializeField] protected float health;
+    public float Health => health;
+    [SerializeField] protected bool isDead;
+    public bool IsDead => isDead;
+
+    [SerializeField] protected ConditionNode weakness;
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;
     public event Action<float> OnDamaged;
     public event Action OnDeath;
 
+    [HideInInspector] public Knockback knockback;
+
+
     protected virtual void Start()
     {
         health = maxHealth;
+        knockback = GetComponent<Knockback>();
     }
 
     public virtual void Heal(float amount)

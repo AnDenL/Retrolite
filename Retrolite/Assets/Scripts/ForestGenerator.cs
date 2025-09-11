@@ -11,6 +11,7 @@ public class ForestGenerator : MapGenerator
     public float RandomAngle;
     public float JitterAmount = 1.5f;
     public float NoiseStrength, scale;
+    public float distanceScale = 0;
 
     [Header("Branching")]
     public int BranchCount = 4;
@@ -35,8 +36,8 @@ public class ForestGenerator : MapGenerator
 
         for (int b = 0; b < BranchCount; b++)
         {
-            float baseAngle = (360f / BranchCount) * b + Random.Range(-RandomAngle, RandomAngle);
-            Vector2 direction = new Vector2(Mathf.Cos(baseAngle * Mathf.Deg2Rad), Mathf.Sin(baseAngle * Mathf.Deg2Rad));
+            float baseAngle = 360f / BranchCount * b + Random.Range(-RandomAngle, RandomAngle);
+            Vector2 direction = new(Mathf.Cos(baseAngle * Mathf.Deg2Rad), Mathf.Sin(baseAngle * Mathf.Deg2Rad));
 
             Vector2 currentPos = center;
             int PointsPerBranch = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
@@ -60,7 +61,7 @@ public class ForestGenerator : MapGenerator
                 KeyPoint point = new KeyPoint
                 {
                     Position = posInt,
-                    AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value) + Vector2.Distance(Vector2.zero, jitter),
+                    AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value) + Vector2.Distance(Vector2.zero, jitter) + Vector2.Distance(Vector2.zero, posInt) * distanceScale,
                     Angle = finalAngle
                 };
 

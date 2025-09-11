@@ -30,6 +30,7 @@ public class BulletBase : MonoBehaviour
         DestroyBullet();
         context.Bullet = this;
         context.Gun = gun;
+        bulletRenderer = GetComponent<SpriteRenderer>();
     }
 
     public virtual void Fire(float spread)
@@ -65,7 +66,7 @@ public class BulletBase : MonoBehaviour
             if (!data.Angle.IsConstant()) transform.rotation = Quaternion.Euler(0, 0, angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
             SetRendererColor();
         }
-        transform.position += transform.up * speed * Time.deltaTime;
+        transform.position += speed * Time.deltaTime * transform.up;
     }
 
     protected IEnumerator LifeTimer()
@@ -89,11 +90,10 @@ public class BulletBase : MonoBehaviour
 
     protected void SetRendererColor()
     {
-        float r = data.Damage.Evaluate(context) / 10;
+        float r = data.Damage.Evaluate(context);
         float g = life / 3;
         float b = speed / 5;
-        color = new Color(Mathf.Clamp(r, 0, 5), Mathf.Clamp(g, 0, 5), Mathf.Clamp(b, 0, 5), 1 / scale);
-        bulletRenderer = GetComponent<SpriteRenderer>();
+        color = new Color(Mathf.Clamp(r, 0, 5), Mathf.Clamp(g, 0, 5), Mathf.Clamp(b, 0, 5), 1 /  Mathf.Clamp(scale, 1, 5));
         bulletRenderer.color = color;
     }
 
@@ -105,6 +105,7 @@ public class BulletBase : MonoBehaviour
             context.Health = other.GetComponent<HealthBase>();
             float damage = data.Damage.Evaluate(context);
             context.Health.TakeDamage(damage);
+            context.Health.knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
             gun.Data.Echo = damage;
             if (lifeCoroutine != null)
                 StopCoroutine(lifeCoroutine);
@@ -130,6 +131,8 @@ public class BulletData
     public FormulaNode Damage;
     [SerializeReference]
     public FormulaNode LifeTime;
+    [SerializeReference]
+    public FormulaNode Knockback;
 
     // Dynamic stats
     [SerializeReference]
@@ -141,13 +144,14 @@ public class BulletData
 
     public bool IsDynamic;
 
-    public BulletData(float speed = 5, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0)
+    public BulletData(float speed = 5, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0, float knockback = 1)
     {
         Speed = new ConstantNode(speed);
         Damage = new ConstantNode(damage);
         LifeTime = new ConstantNode(lifeTime);
         Scale = new ConstantNode(scale);
         Angle = new ConstantNode(angle);
+        Knockback = new ConstantNode(knockback);
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;

@@ -12,7 +12,6 @@ public class SlimeBase : HealthBase
     [SerializeField] protected ParticleSystem hitEffect;
 
     protected bool isAttacking = false;
-    protected bool isDead = false;
     protected Animator animator;
     protected Vector3 targetPosition;
 

@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a5e68c5ec99bd841ae33f6ff98ecbdf, type: 3}
   m_Name: ForestBase
   m_EditorClassIdentifier: 
-  Size: {x: 300, y: 300}
+  Size: {x: 250, y: 250}
   MinDistance: 2
-  MaxDistance: 4
+  MaxDistance: 3
   MinAreaSize: 2
   MaxAreaSize: 6
   RandomAngle: 90
   JitterAmount: 5
   NoiseStrength: -0.2
   scale: 10
+  distanceScale: 0
   BranchCount: 3
   MinPointsPerBranch: 24
   MaxPointsPerBranch: 60

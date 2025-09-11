@@ -17,6 +17,7 @@ public class Player : HealthBase
     [SerializeField] GameObject handsWithoutGun;
     [SerializeField] GameObject slashEffect;
     [SerializeField] GunBase gun;
+    [SerializeField] TrailRenderer attackTrail;
 
     private Transform hand1, hand2;
 
@@ -24,6 +25,7 @@ public class Player : HealthBase
     [SerializeField] TrailRenderer trailRenderer;
     [SerializeField] SpriteRenderer glitchRenderer;
     [SerializeField] ParticleSystem glitchParticles;
+
     [Header("Interact")]
     [SerializeField] int money;
     [SerializeField] int bits;
@@ -217,6 +219,7 @@ public class Player : HealthBase
 
     IEnumerator SlashAttack()
     {
+        attackTrail.emitting = true;
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
         direction.Normalize();
@@ -233,6 +236,7 @@ public class Player : HealthBase
             transform.position += (Vector3)direction * Time.deltaTime * (duration - t) * force;
             yield return null;
         }
+        attackTrail.emitting = false;
         moveSpeed = startSpeed;
         offset = 0;
     }

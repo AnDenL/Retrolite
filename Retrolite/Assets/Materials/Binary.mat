@@ -51,11 +51,11 @@ Material:
     - _Scroll: 0.1
     - _Shift: 0.1
     - _Strenght: 0
-    - _Strength: 0.56
+    - _Strength: 1
+    - _scale: 20
     m_Colors:
     - _Text_scale: {r: 6, g: 1.8, b: 0, a: 0}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &9182259498192918742
 MonoBehaviour:
   m_ObjectHideFlags: 11

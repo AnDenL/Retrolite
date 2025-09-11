@@ -32,6 +32,12 @@ public class GunBase : MonoBehaviour
     {
         Data = gun;
         GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
+        if (bullets == null) return;
+        foreach (BulletBase bullet in bullets)
+            Destroy(bullet.gameObject);
+        bullets = new List<BulletBase>();
+        lastBulletIndex = 0;
+        CreateBullet();
     }
 
     protected void Update()
@@ -90,7 +96,7 @@ public class GunBase : MonoBehaviour
 
     protected void CreateBullet()
     {
-        var bullet = Instantiate(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0).transform).GetComponent<BulletBase>();
+        var bullet = Instantiate(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0)).GetComponent<BulletBase>();
 
         bullet.Initialize(this, Data.BulletData, context);
         bullets.Insert(lastBulletIndex, bullet);

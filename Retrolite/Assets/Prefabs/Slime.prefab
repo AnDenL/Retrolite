@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 094ae410929e5d04ea7863fb695b3106, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4977,9 +4977,10 @@ GameObject:
   - component: {fileID: 4097306354824427693}
   - component: {fileID: 4120710415541001590}
   - component: {fileID: 27495872785086504}
+  - component: {fileID: 2528882075990716098}
   m_Layer: 10
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5097,13 +5098,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3087c971a863c5bab418bbfcf9f892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
-  health: 0
+  maxHealth: 9999
+  health: 9999
+  isDead: 0
+  knockback: {fileID: 0}
   healthLabel: {fileID: 1751840163702195203}
   jumpTime: 1
   speed: 3
   damage: 15
   hitEffect: {fileID: 3161671145994946276}
+--- !u!114 &2528882075990716098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658632795700602020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c466da5e641fcf843b8093d9ec94580d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weigth: 1
 --- !u!1001 &4433577176949044783
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5183,6 +5199,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -5238,10 +5258,53 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6346988631002496421}
   m_SourcePrefab: {fileID: 100100000, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
 --- !u!4 &1784670741396113501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
   m_PrefabInstance: {fileID: 7048494035231468751}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9176702605332385765 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
+  m_PrefabInstance: {fileID: 7048494035231468751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &6346988631002496421
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9176702605332385765}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.3
