@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Creature))]
 public class Player : HealthBase
 {
     [SerializeField] float lives;
@@ -31,6 +34,8 @@ public class Player : HealthBase
     [SerializeField] int bits;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
 
+    [HideInInspector] public Creature Creature; 
+
     private LayerMask interactMask, wallLayerMask;
     private ParticleSystem.ShapeModule coinShape, codeShape;
     private ParticleSystem.EmissionModule coinEmission, codeEmission;
@@ -59,6 +64,7 @@ public class Player : HealthBase
         mainCamera = Camera.main;
         playerCollider = GetComponent<Collider2D>();
         Animator = GetComponent<Animator>();
+        Creature = GetComponent<Creature>();
         trailRenderer.autodestruct = false;
 
         hand1 = handsWithoutGun.transform.GetChild(0);

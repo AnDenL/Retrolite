@@ -102,10 +102,10 @@ public class BulletBase : MonoBehaviour
         if (other.isTrigger) return;
         if (other.CompareTag("Enemy"))
         {
-            context.Health = other.GetComponent<HealthBase>();
+            context.EnemyHealth = other.GetComponent<HealthBase>();
             float damage = data.Damage.Evaluate(context);
-            context.Health.TakeDamage(damage);
-            context.Health.knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
+            context.EnemyHealth.TakeDamage(damage, context);
+            context.EnemyHealth.knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
             gun.Data.Echo = damage;
             if (lifeCoroutine != null)
                 StopCoroutine(lifeCoroutine);

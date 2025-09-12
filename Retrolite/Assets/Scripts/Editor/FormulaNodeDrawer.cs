@@ -6,21 +6,13 @@ using CalculatingSystem;
 [CustomPropertyDrawer(typeof(FormulaNode), true)]
 public class FormulaNodeDrawer : PropertyDrawer
 {
-    private const float ButtonWidth = 30f;
+    private const float ButtonWidth = 20f;
     private const float Spacing = 2f;
     private const float OperationWidth = 50f;
+    private const float FixedLabelWidth = 120f;
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        var node = property.managedReferenceValue;
-        if (node == null)
-            return EditorGUIUtility.singleLineHeight;
-
-        if (node is Expression)
-        {
-            return EditorGUIUtility.singleLineHeight;
-        }
-
         return EditorGUIUtility.singleLineHeight;
     }
 
@@ -30,61 +22,61 @@ public class FormulaNodeDrawer : PropertyDrawer
 
         var node = property.managedReferenceValue;
 
-        if (node == null)
-        {
-            if (GUI.Button(position, "Set Formula"))
-                ShowTypeMenu(property);
-            EditorGUI.EndProperty();
-            return;
-        }
+        Rect buttonRect = new Rect(
+            position.xMax - ButtonWidth,
+            position.y,
+            ButtonWidth,
+            EditorGUIUtility.singleLineHeight
+        );
 
-        Rect fieldRect = new Rect(
+        Rect mainRect = new Rect(
             position.x,
             position.y,
             position.width - ButtonWidth - Spacing,
             EditorGUIUtility.singleLineHeight
         );
 
-        Rect buttonRect = new Rect(
-            fieldRect.xMax + Spacing,
-            position.y,
-            ButtonWidth,
-            EditorGUIUtility.singleLineHeight
-        );
+        if (node == null)
+        {
+            if (GUI.Button(mainRect, "Set Formula"))
+                ShowTypeMenu(property);
+
+            EditorGUI.EndProperty();
+            return;
+        }
+
+        float originalLabelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth = FixedLabelWidth;
+        Rect contentRect = EditorGUI.PrefixLabel(mainRect, label);
+        EditorGUIUtility.labelWidth = originalLabelWidth;
 
         if (node is ConstantNode)
         {
             var valueProp = property.FindPropertyRelative("Value");
-            EditorGUI.PropertyField(fieldRect, valueProp, label);
+
+            EditorGUI.PropertyField(contentRect, valueProp, GUIContent.none);
         }
         else if (node is SinNode || node is CosNode || node is AbsoluteNode)
         {
             var nodeProp = property.FindPropertyRelative("Node");
-            EditorGUI.PropertyField(fieldRect, nodeProp, label);
+            EditorGUI.PropertyField(contentRect, nodeProp, GUIContent.none, true);
         }
         else if (node is VariableNode)
         {
             var varProp = property.FindPropertyRelative("Variable");
-            EditorGUI.PropertyField(fieldRect, varProp, label);
+            EditorGUI.PropertyField(contentRect, varProp, GUIContent.none);
         }
         else if (node is Expression)
         {
-            float labelWidth = EditorGUIUtility.labelWidth;
-            Rect labelRect = new Rect(fieldRect.x, fieldRect.y, labelWidth, fieldRect.height);
-            EditorGUI.LabelField(labelRect, label);
-
-            float contentX = labelRect.xMax + Spacing;
-            float contentWidth = fieldRect.width - labelWidth - Spacing;
-
-            float nodeWidth = (contentWidth - OperationWidth - Spacing * 2) / 2f;
+            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
 
             var leftProp = property.FindPropertyRelative("Left");
             var opProp = property.FindPropertyRelative("Operation");
             var rightProp = property.FindPropertyRelative("Right");
 
-            Rect leftRect = new Rect(contentX, fieldRect.y, nodeWidth, fieldRect.height);
-            Rect opRect = new Rect(leftRect.xMax + Spacing, fieldRect.y, OperationWidth, fieldRect.height);
-            Rect rightRect = new Rect(opRect.xMax + Spacing, fieldRect.y, nodeWidth, fieldRect.height);
+            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
 
             EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
@@ -92,10 +84,10 @@ public class FormulaNodeDrawer : PropertyDrawer
         }
         else
         {
-            EditorGUI.LabelField(fieldRect, $"Unsupported node: {node.GetType().Name}");
+            EditorGUI.LabelField(contentRect, $"Unsupported node: {node.GetType().Name}");
         }
 
-        if (GUI.Button(buttonRect, "Set"))
+        if (GUI.Button(buttonRect, "☰"))
             ShowTypeMenu(property);
 
         EditorGUI.EndProperty();
@@ -106,8 +98,8 @@ public class FormulaNodeDrawer : PropertyDrawer
         GenericMenu menu = new GenericMenu();
         menu.AddItem(new GUIContent("Constant"), false, () => SetNodeType(property, new ConstantNode(0)));
         menu.AddItem(new GUIContent("Absolute"), false, () => SetNodeType(property, new AbsoluteNode()));
-        menu.AddItem(new GUIContent("SinNode"), false, () => SetNodeType(property, new SinNode()));
-        menu.AddItem(new GUIContent("CosNode"), false, () => SetNodeType(property, new CosNode()));
+        menu.AddItem(new GUIContent("Sin"), false, () => SetNodeType(property, new SinNode()));
+        menu.AddItem(new GUIContent("Cos"), false, () => SetNodeType(property, new CosNode()));
         menu.AddItem(new GUIContent("Variable"), false, () => SetNodeType(property, new VariableNode()));
         menu.AddItem(new GUIContent("Expression"), false, () => SetNodeType(property, new Expression()));
         menu.ShowAsContext();
@@ -119,4 +111,117 @@ public class FormulaNodeDrawer : PropertyDrawer
         property.serializedObject.ApplyModifiedProperties();
     }
 }
+
+[CustomPropertyDrawer(typeof(ConditionNode), true)]
+public class ConditionNodeDrawer : PropertyDrawer
+{
+    private const float ButtonWidth = 20f;
+    private const float Spacing = 2f;
+    private const float OperationWidth = 80f;
+    private const float FixedLabelWidth = 120f;
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        return EditorGUIUtility.singleLineHeight;
+    }
+
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        EditorGUI.BeginProperty(position, label, property);
+
+        var node = property.managedReferenceValue;
+
+        Rect buttonRect = new Rect(
+            position.xMax - ButtonWidth,
+            position.y,
+            ButtonWidth,
+            EditorGUIUtility.singleLineHeight
+        );
+
+        Rect mainRect = new Rect(
+            position.x,
+            position.y,
+            position.width - ButtonWidth - Spacing,
+            EditorGUIUtility.singleLineHeight
+        );
+
+        if (node == null)
+        {
+            if (GUI.Button(mainRect, "Set Condition"))
+                ShowTypeMenu(property);
+
+            EditorGUI.EndProperty();
+            return;
+        }
+
+        float originalLabelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth = FixedLabelWidth;
+        Rect contentRect = EditorGUI.PrefixLabel(mainRect, label);
+        EditorGUIUtility.labelWidth = originalLabelWidth;
+
+        // --- Specific node types ---
+        if (node is ConditionVariableNode)
+        {
+            var varProp = property.FindPropertyRelative("Variable");
+            EditorGUI.PropertyField(contentRect, varProp, GUIContent.none);
+        }
+        else if (node is ComparisonNode)
+        {
+            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
+
+            var leftProp = property.FindPropertyRelative("Left");
+            var opProp = property.FindPropertyRelative("Operator");
+            var rightProp = property.FindPropertyRelative("Right");
+
+            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
+
+            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
+            EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
+            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
+        }
+        else if (node is LogicNode)
+        {
+            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
+
+            var leftProp = property.FindPropertyRelative("Left");
+            var opProp = property.FindPropertyRelative("Operator");
+            var rightProp = property.FindPropertyRelative("Right");
+
+            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
+
+            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
+            EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
+            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
+        }
+        else
+        {
+            EditorGUI.LabelField(contentRect, $"Unsupported condition: {node.GetType().Name}");
+        }
+
+        if (GUI.Button(buttonRect, "☰"))
+            ShowTypeMenu(property);
+
+        EditorGUI.EndProperty();
+    }
+
+    private void ShowTypeMenu(SerializedProperty property)
+    {
+        GenericMenu menu = new GenericMenu();
+        menu.AddItem(new GUIContent("Variable Condition"), false, () => SetNodeType(property, new ConditionVariableNode()));
+        menu.AddItem(new GUIContent("Comparison"), false, () => SetNodeType(property, new ComparisonNode(new ConstantNode(0), ComparisonOperator.Equal, new ConstantNode(0))));
+        menu.AddItem(new GUIContent("Logic"), false, () => SetNodeType(property, new LogicNode()));
+        menu.ShowAsContext();
+    }
+
+    private void SetNodeType(SerializedProperty property, ConditionNode node)
+    {
+        property.managedReferenceValue = node;
+        property.serializedObject.ApplyModifiedProperties();
+    }
+}
+
 #endif

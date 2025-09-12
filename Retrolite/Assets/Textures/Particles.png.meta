@@ -749,7 +749,7 @@ TextureImporter:
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -757,6 +757,153 @@ TextureImporter:
       bones: []
       spriteID: cde52f0141a8bc94b8e92a4d7a88cc0a
       internalID: -1920384752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 47
+        width: 5
+        height: 1
+      alignment: 9
+      pivot: {x: 0, y: 1}
+      border: {x: 2, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd58371afb49eda41892b98b254819ce
+      internalID: -1168248961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crit1
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 57
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd5f7a906b06fc04d8e064b621305aa6
+      internalID: -1406976447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crit2
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 57
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b53c72f75987fa640aea620015c8bc33
+      internalID: 1507273579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crit3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 59
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d20169e480ec1542907875bec534f0b
+      internalID: -178670883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crit4
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 60
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c181e37752996bf41b1f8c6b037fce3a
+      internalID: -1287945852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: crit5
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 61
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0810d2dec6944b428cb08064cbc87a4
+      internalID: -2043034602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_18
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 63
+        width: 1
+        height: 1
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 846daaa9b8fd15b4a9e143852068ac2e
+      internalID: 413039291
       vertices: []
       indices: 
       edges: []
@@ -772,6 +919,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      0: -1168248961
       Particles_0: -6189289526238714443
       Particles_1: -7699328018653931357
       Particles_10: 351364544
@@ -782,6 +930,7 @@ TextureImporter:
       Particles_15: 1630730810
       Particles_16: 1627831424
       Particles_17: -622560346
+      Particles_18: 413039291
       Particles_19: -888703454
       Particles_2: -186343322299716006
       Particles_20: 302233238
@@ -800,6 +949,11 @@ TextureImporter:
       Particles_7: -765980378
       Particles_8: 702544234
       Particles_9: -1686637916
+      crit1: -1406976447
+      crit2: 1507273579
+      crit3: -178670883
+      crit4: -1287945852
+      crit5: -2043034602
       glowfly1: -1920384752
       glowfly2: 652863465
   mipmapLimitGroupName: 

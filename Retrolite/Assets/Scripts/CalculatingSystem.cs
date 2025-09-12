@@ -34,6 +34,7 @@ namespace CalculatingSystem
     [Serializable]
     public class AbsoluteNode : FormulaNode
     {
+        [SerializeReference]
         public FormulaNode Node;
         public override bool IsConstant() => true;
 
@@ -142,7 +143,7 @@ namespace CalculatingSystem
             return variable switch
             {
                 PlayerHP => Player.instance.GetHealthPercent(),
-                EnemyHP => context.Health?.GetHealthPercent() ?? Break(variable, context),
+                EnemyHP => context.EnemyHealth?.GetHealthPercent() ?? Break(variable, context),
                 BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
                 Echo => context.Gun.Data.Echo,
                 Distance => context.Bullet?.GetDistanceTravelled() ?? Break(variable, context),
@@ -199,6 +200,15 @@ namespace CalculatingSystem
         [SerializeReference] public FormulaNode Right;
         public ComparisonOperator Operator;
 
+        public ComparisonNode() { }
+
+        public ComparisonNode(FormulaNode left, ComparisonOperator op, FormulaNode right)
+        {
+            Left = left;
+            Right = right;
+            Operator = op;
+        }
+
         public override bool Evaluate(FormulaContext context)
         {
             float a = Left.Evaluate(context);
@@ -239,6 +249,15 @@ namespace CalculatingSystem
         [SerializeReference] public ConditionNode Left;
         [SerializeReference] public ConditionNode Right;
 
+        public LogicNode() {}
+
+        public LogicNode(ConditionNode left, LogicOperator logicOperator, ConditionNode right)
+        {
+            Left = left;
+            Operator = logicOperator;
+            Right = right;
+        }
+
         public override bool Evaluate(FormulaContext context)
         {
             return Operator switch
@@ -260,13 +279,27 @@ namespace CalculatingSystem
             };
     }
 
+    [Serializable]
+    public class ConditionVariableNode : ConditionNode
+    {
+        public ConditionVariable Variable;
+
+        public ConditionVariableNode() { }
+        public ConditionVariableNode(ConditionVariable var) => Variable = var;
+        public override bool Evaluate(FormulaContext context) => ConditionResolver.Resolve(Variable, context);
+        public override string ToReadableString() => Variable.ToString();
+    }
+
     public static class ConditionResolver
     {
         public static bool Resolve(ConditionVariable variable, FormulaContext context)
         {
             return variable switch
             {
-                IsDead => context.Health.IsDead,
+                IsDead => context.EnemyHealth.IsDead,
+                IsCorrupted => context.EnemyHealth.Stability == 0,
+                IsBoss => false, //Change later
+                IsFullHealth => context.EnemyHealth.Health == context.EnemyHealth.MaxHealth,
                 _ => false
             };
         }
@@ -274,14 +307,17 @@ namespace CalculatingSystem
 
     public enum ConditionVariable
     {
-        IsDead
+        IsDead,
+        IsCorrupted,
+        IsBoss,
+        IsFullHealth,
     }
     
     #endregion
 
     public struct FormulaContext
     {
-        public HealthBase Health;
+        public HealthBase EnemyHealth;
         public GunBase Gun;
         public BulletBase Bullet;
     }

@@ -1,30 +1,29 @@
 using UnityEngine;
 using System.Collections;
 
-public class SlimeBase : HealthBase
+public class SlimeBase : Creature
 {
-    [SerializeField] protected TextMesh healthLabel;
-
     [Header("Slime")]
-    [SerializeField] protected float jumpTime;
-    [SerializeField] protected float speed;
-    [SerializeField] protected float damage;
-    [SerializeField] protected ParticleSystem hitEffect;
+    [SerializeField] private float jumpTime;
+    [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    [SerializeField] private ParticleSystem hitEffect;
 
-    protected bool isAttacking = false;
-    protected Animator animator;
-    protected Vector3 targetPosition;
+    private bool isAttacking = false;
+    private Animator animator;
+    private Vector3 targetPosition;
 
     protected override void Start()
     {
         base.Start();
+        Health.OnDeath += DeathEffect;
         animator = GetComponent<Animator>();
         StartCoroutine(AttackTimer());
     }
 
-    protected IEnumerator AttackTimer()
+    private IEnumerator AttackTimer()
     {
-        while (!isDead)
+        while (!Health.IsDead)
         {
             float attackTime = Random.Range(3f, 4f);
             yield return new WaitForSeconds(attackTime);
@@ -33,16 +32,17 @@ public class SlimeBase : HealthBase
             {
                 animator.SetTrigger("Attack");
                 yield return new WaitForSeconds(0.5f);
+                target = FindTarget();
                 StartCoroutine(Attack());
             }
         }
     }
 
-    protected IEnumerator Attack()
+    private IEnumerator Attack()
     {
         isAttacking = true;
-        if (Vector2.Distance(transform.position, Player.instance.transform.position) < 8f)
-            targetPosition = Player.instance.transform.position - transform.position;
+        if (target != null)
+            targetPosition = target.transform.position - transform.position;
         else
             targetPosition = Random.insideUnitCircle * speed;
 
@@ -58,25 +58,17 @@ public class SlimeBase : HealthBase
         isAttacking = false;
     }
 
-    public override void TakeDamage(float damage)
+    private void DeathEffect()
     {
-        base.TakeDamage(damage);
-        healthLabel.text = health.ToString();
-        hitEffect.Play();
-    }
-
-    protected override void Die()
-    {
-        isDead = true;
         animator.SetTrigger("Death");
         Destroy(gameObject, 1f);
     }
 
-    protected void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isDead)
+        if (collision.gameObject.TryGetComponent(out Creature creature))
         {
-            collision.gameObject.GetComponent<Player>()?.TakeDamage(damage);
+            if (IsEnemyTo(creature)) creature.Health.TakeDamage(damage);
         }
     }
 }

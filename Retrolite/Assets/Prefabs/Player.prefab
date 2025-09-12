@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1264232799100110172}
   - component: {fileID: 3811287405736332542}
   - component: {fileID: 4647600661972657186}
+  - component: {fileID: 8617120841074525038}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -106,6 +107,12 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   isDead: 0
+  maxStability: 1
+  stability: 0
+  weakness:
+    rid: -2
+  criticalDamage:
+    rid: -2
   knockback: {fileID: 0}
   lives: 0
   moveSpeed: 50
@@ -125,6 +132,12 @@ MonoBehaviour:
   bits: 0
   coinParticles: {fileID: 8541644295032527401}
   codeParticles: {fileID: 2915219203133694524}
+  Creature: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!70 &1264232799100110172
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -208,6 +221,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &8617120841074525038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135032362516127119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alignment: 0
+  target: {fileID: 0}
+  Health: {fileID: 0}
 --- !u!1 &903132766320555172
 GameObject:
   m_ObjectHideFlags: 0
@@ -10880,11 +10908,11 @@ MonoBehaviour:
     BulletType: 0
     BulletData:
       Damage:
-        rid: 1717894067389464681
+        rid: 7873060987853078582
       LifeTime:
         rid: 1717894067389464680
       Knockback:
-        rid: -2
+        rid: 7873060987853078541
       Scale:
         rid: 1717894067389464679
       Speed:
@@ -10909,11 +10937,15 @@ MonoBehaviour:
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
-    - rid: 1717894067389464681
+    - rid: 7218930000412016723
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
-    - rid: 7218930000412016723
+    - rid: 7873060987853078541
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0
+    - rid: 7873060987853078582
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
@@ -11023,7 +11055,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0, b: 0, a: 1}
+      key0: {r: 0, g: 0, b: 0, a: 0.5019608}
       key1: {r: 0, g: 0, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}

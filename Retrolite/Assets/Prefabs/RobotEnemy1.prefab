@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2577982970405211645}
   - component: {fileID: 5485227419975647226}
   - component: {fileID: 5916615937921370306}
+  - component: {fileID: 8620996929532720784}
+  - component: {fileID: 5458897580908407405}
   m_Layer: 0
   m_Name: RobotEnemy1
   m_TagString: Untagged
@@ -151,6 +153,53 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8620996929532720784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456781641387130848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ad960439ffde746926d638355c64f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alignment: 4
+  target: {fileID: 0}
+  Health: {fileID: 0}
+  bullet: {fileID: 0}
+--- !u!114 &5458897580908407405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456781641387130848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487cfcee6ff72bcc1a30eec853868f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 80
+  health: 80
+  isDead: 0
+  maxStability: 2
+  stability: 2
+  weakness:
+    rid: 7873060987853078633
+  criticalDamage:
+    rid: -2
+  knockback: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 7873060987853078633
+      type: {class: ConditionVariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 0
 --- !u!1 &1778924087871457430
 GameObject:
   m_ObjectHideFlags: 0
