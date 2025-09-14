@@ -151,10 +151,11 @@ namespace CalculatingSystem
                 Ammo => context.Gun?.Data.CurrentAmmo ?? Break(variable, context),
                 RandomNum => UnityEngine.Random.Range(-5f, 5f),
                 Money => Player.instance.GetMoney(),
-                Speed => context.Bullet?.speed ?? Break(variable, context),
-                Size => context.Bullet?.scale ?? Break(variable, context),
-                BulletSpread => context.Bullet?.spread ?? Break(variable, context) * Mathf.Deg2Rad,
+                Speed => context.Bullet?.Speed ?? Break(variable, context),
+                Size => context.Bullet?.Scale ?? Break(variable, context),
+                BulletSpread => context.Bullet?.Spread ?? Break(variable, context) * Mathf.Deg2Rad,
                 BulletDestroyTime => context.Bullet?.GetDestroyTime() ?? Break(variable, context),
+                HomingAngle => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };
         }
@@ -178,7 +179,8 @@ namespace CalculatingSystem
         Speed,
         Size,
         BulletSpread,
-        BulletDestroyTime
+        BulletDestroyTime,
+        HomingAngle
     }
 
     #endregion
@@ -196,8 +198,10 @@ namespace CalculatingSystem
     [Serializable]
     public class ComparisonNode : ConditionNode
     {
-        [SerializeReference] public FormulaNode Left;
-        [SerializeReference] public FormulaNode Right;
+        [SerializeReference]
+        public FormulaNode Left;
+        [SerializeReference]
+        public FormulaNode Right;
         public ComparisonOperator Operator;
 
         public ComparisonNode() { }
@@ -245,11 +249,13 @@ namespace CalculatingSystem
     [Serializable]
     public class LogicNode : ConditionNode
     {
+        [SerializeReference]
+        public ConditionNode Left;
+        [SerializeReference]
+        public ConditionNode Right;
         public LogicOperator Operator;
-        [SerializeReference] public ConditionNode Left;
-        [SerializeReference] public ConditionNode Right;
 
-        public LogicNode() {}
+        public LogicNode() { }
 
         public LogicNode(ConditionNode left, LogicOperator logicOperator, ConditionNode right)
         {
@@ -318,6 +324,7 @@ namespace CalculatingSystem
     public struct FormulaContext
     {
         public HealthBase EnemyHealth;
+        public Creature Owner;
         public GunBase Gun;
         public BulletBase Bullet;
     }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7381389891534151738}
   - component: {fileID: 1479315304281842020}
   m_Layer: 6
-  m_Name: Bullet
+  m_Name: RobotBullet
   m_TagString: PlayerBullets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 45568d65adf12eda9bba2fd35258ba2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -272297546, guid: 2dab99eecd8460614b2dbe61127e1923, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 1369742279, guid: 2dab99eecd8460614b2dbe61127e1923, type: 3}
+  m_Color: {r: 1, g: 0.042452812, b: 0.042452812, a: 0.5176471}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

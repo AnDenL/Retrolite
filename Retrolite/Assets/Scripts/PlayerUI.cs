@@ -100,10 +100,10 @@ public class PlayerUI : MonoBehaviour
         {
             t -= Time.deltaTime * 2;
             bar2.value = Mathf.Lerp(currentHealthPercentage, v, t * t);
-            effect.intensity = 1 - bar2.value - 0.3f;
             healthBarFill.color = Color.Lerp(lowHealthColor, healthBarColor, bar2.value);
             yield return null;
         }
+        effect.intensity = 1 - bar2.value - 0.3f;
     }
 
     private IEnumerator TextAnimation(TMP_Text label, int start, int end)

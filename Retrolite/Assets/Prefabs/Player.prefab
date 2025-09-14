@@ -111,7 +111,7 @@ MonoBehaviour:
   stability: 0
   weakness:
     rid: -2
-  criticalDamage:
+  criticalAction:
     rid: -2
   knockback: {fileID: 0}
   lives: 0
@@ -233,8 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignment: 0
+  alignment: 1
   target: {fileID: 0}
+  visionRange: 0
   Health: {fileID: 0}
 --- !u!1 &903132766320555172
 GameObject:

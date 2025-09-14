@@ -4,124 +4,150 @@ using System.Collections;
 
 public class BulletBase : MonoBehaviour
 {
+    protected BulletPool pool;
     protected BulletData data;
-    protected GunBase gun;
     protected FormulaContext context;
-    protected float time = 0;
+    protected float time;
     protected Coroutine lifeCoroutine;
     protected Vector2 start;
-    protected SpriteRenderer bulletRenderer;
+    protected SpriteRenderer projectileRenderer;
 
     protected Color color;
     protected float life;
+    protected bool handleDestroy;
 
-    public float spread { get; protected set; }
-    public float speed { get; protected set; }
-    public float angle { get; protected set; }
-    public float scale { get; protected set; }
+    public Creature Owner { get; private set; }
+    public Alignment OwnerAlignment { get; private set; }
 
-    public bool Destroyed { get; protected set; }
+    public float Spread { get; protected set; }
+    public float Speed { get; protected set; }
+    public float Angle { get; protected set; }
+    public float Scale { get; protected set; }
 
-    public void Initialize(GunBase Gun, BulletData Data, FormulaContext Context)
+    public bool Inactive { get; protected set; }
+
+    public virtual void Initialize(Creature owner, BulletData Data, FormulaContext Context, BulletPool Pool)
     {
-        gun = Gun;
+        pool = Pool;
+        Owner = owner;
+        OwnerAlignment = owner.Alignment;
         data = Data;
         context = Context;
-        DestroyBullet();
+
         context.Bullet = this;
-        context.Gun = gun;
-        bulletRenderer = GetComponent<SpriteRenderer>();
+        context.Owner = owner;
+
+        projectileRenderer = GetComponent<SpriteRenderer>();
     }
 
     public virtual void Fire(float spread)
     {
+        gameObject.SetActive(true);
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
 
-        this.spread = spread;
+        Spread = spread;
         lifeCoroutine = StartCoroutine(LifeTimer());
 
-        angle = transform.rotation.eulerAngles.z;
+        Angle = transform.rotation.eulerAngles.z;
         start = (Vector2)transform.position;
         transform.parent = null;
         time = Time.time;
-        Destroyed = false;
-        speed = data.Speed.Evaluate(context);
-        scale = data.Scale.Evaluate(context);
-        transform.localScale = Vector3.one * scale;
-        transform.rotation = Quaternion.Euler(0, 0, spread + (angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg)));
+        Inactive = false;
+
+        Speed = data.Speed.Evaluate(context);
+        Scale = data.Scale.Evaluate(context);
+
+        transform.localScale = Vector3.one * Scale;
+        transform.rotation = Quaternion.Euler(0, 0, spread + (Angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg)));
         SetRendererColor();
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (data.IsDynamic)
         {
             if (!data.Scale.IsConstant())
             {
-                scale = Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context)));
-                transform.localScale = Vector3.one * scale;
+                Scale = Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context)));
+                transform.localScale = Vector3.one * Scale;
             }
-            if (!data.Speed.IsConstant()) speed = data.Speed.Evaluate(context);
-            if (!data.Angle.IsConstant()) transform.rotation = Quaternion.Euler(0, 0, angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
+            if (!data.Speed.IsConstant()) Speed = data.Speed.Evaluate(context);
+            if (!data.Angle.IsConstant())
+                transform.rotation = Quaternion.Euler(0, 0, Angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
+
             SetRendererColor();
         }
-        transform.position += speed * Time.deltaTime * transform.up;
+
+        transform.position += Speed * Time.deltaTime * transform.up;
     }
 
     protected IEnumerator LifeTimer()
     {
         life = data.LifeTime.Evaluate(context);
-
         yield return new WaitForSeconds(life);
-
-        gun.Data.Echo = 0;
-        DestroyBullet();
+        Deactivate();
     }
 
-    protected void DestroyBullet()
+    public void HandleProjectileDestroy()
     {
-        gameObject.SetActive(false);
-        Destroyed = true;
-        transform.parent = gun.transform;
-        transform.position = gun.transform.position;
+        if (Inactive) Destroy(gameObject);
+        handleDestroy = true;
+    }
+
+    protected virtual void Deactivate()
+    {
+        if (handleDestroy) Destroy(gameObject);
+        Inactive = true;
+
+        pool.Return(this);
+
         transform.localRotation = Quaternion.Euler(0, 0, -90);
     }
 
-    protected void SetRendererColor()
+    protected virtual void SetRendererColor()
     {
         float r = data.Damage.Evaluate(context);
         float g = life / 3;
-        float b = speed / 5;
-        color = new Color(Mathf.Clamp(r, 0, 5), Mathf.Clamp(g, 0, 5), Mathf.Clamp(b, 0, 5), 1 /  Mathf.Clamp(scale, 1, 5));
-        bulletRenderer.color = color;
+        float b = Speed / 5;
+        color = new Color(
+            Mathf.Clamp(r, 0, 5),
+            Mathf.Clamp(g, 0, 5),
+            Mathf.Clamp(b, 0, 5),
+            1 / Mathf.Clamp(Scale, 1, 5)
+        );
+        projectileRenderer.color = color;
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.isTrigger) return;
-        if (other.CompareTag("Enemy"))
+
+        if (other.TryGetComponent(out Creature creature))
         {
-            context.EnemyHealth = other.GetComponent<HealthBase>();
+            if (!creature.IsEnemyTo(OwnerAlignment)) return;
+
+            context.EnemyHealth = creature.Health;
             float damage = data.Damage.Evaluate(context);
             context.EnemyHealth.TakeDamage(damage, context);
-            context.EnemyHealth.knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
-            gun.Data.Echo = damage;
+            context.EnemyHealth.Knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
+
             if (lifeCoroutine != null)
                 StopCoroutine(lifeCoroutine);
-            DestroyBullet();
+            Deactivate();
         }
         else
         {
-            gun.Data.Echo = 0;
-            DestroyBullet();
+            Deactivate();
         }
     }
 
+    // Helpers
     public float GetLifetime() => Time.time - time;
     public float GetDestroyTime() => life - (Time.time - time);
     public float GetDistanceTravelled() => Vector2.Distance(start, transform.position);
 }
+
 
 [System.Serializable]
 public class BulletData
@@ -144,7 +170,7 @@ public class BulletData
 
     public bool IsDynamic;
 
-    public BulletData(float speed = 5, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0, float knockback = 1)
+    public BulletData(float speed = 8, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0, float knockback = 1)
     {
         Speed = new ConstantNode(speed);
         Damage = new ConstantNode(damage);

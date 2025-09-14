@@ -14,17 +14,15 @@ public class GunBase : MonoBehaviour
     [SerializeField] public GunData Data;
 
     protected float fireTime;
-    protected List<BulletBase> bullets;
-    protected int lastBulletIndex;
     protected bool isReloading;
     protected FormulaContext context;
+
+    private BulletPool bulletPool;
 
     protected void Awake()
     {
         context = new FormulaContext();
-        bullets = new List<BulletBase>();
-        CreateBullet();
-        lastBulletIndex = 0;
+        context.Gun = this;
         reloadBar.SetActive(false);
     }
 
@@ -32,19 +30,17 @@ public class GunBase : MonoBehaviour
     {
         Data = gun;
         GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
-        if (bullets == null) return;
-        foreach (BulletBase bullet in bullets)
-            Destroy(bullet.gameObject);
-        bullets = new List<BulletBase>();
-        lastBulletIndex = 0;
-        CreateBullet();
+
+        bulletPool?.Clear();
+
+        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), Player.instance.Creature, Data.BulletData, context);
     }
 
     protected void Update()
     {
         if (Data.GunType == GunType.Empty) return;
         if (Time.time >= fireTime && Input.GetButton("Fire1")) Fire();
-        else if (Input.GetKeyDown(KeyCode.R)) StartCoroutine(Reload());
+        else if (Input.GetKeyDown(KeyCode.R) && Data.CurrentAmmo != Data.MagazineSize && !isReloading) StartCoroutine(Reload());
     }
 
     protected void Fire()
@@ -54,7 +50,6 @@ public class GunBase : MonoBehaviour
             if (!isReloading) StartCoroutine(Reload());
             return;
         }
-        if (!bullets[lastBulletIndex].Destroyed) CreateBullet();
 
         float shootSpeed = Data.FireRate.Evaluate(context);
 
@@ -64,13 +59,10 @@ public class GunBase : MonoBehaviour
 
         float Spread = 5 / Data.Accuracy.Evaluate(context);
 
-        bullets[lastBulletIndex].gameObject.SetActive(true);
-        bullets[lastBulletIndex].Fire(Random.Range(-Spread, Spread));
-        lastBulletIndex++;
+        bulletPool.Get().Fire(Spread);
+
         isReloading = false;
         if (Data.MagazineSize != 0) Data.CurrentAmmo -= 1;
-
-        if (lastBulletIndex >= bullets.Count) lastBulletIndex = 0;
     }
 
     protected IEnumerator Reload()
@@ -92,15 +84,6 @@ public class GunBase : MonoBehaviour
             Data.CurrentAmmo = Data.MagazineSize;
         }
         reloadBar.SetActive(false);
-    }
-
-    protected void CreateBullet()
-    {
-        var bullet = Instantiate(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0)).GetComponent<BulletBase>();
-
-        bullet.Initialize(this, Data.BulletData, context);
-        bullets.Insert(lastBulletIndex, bullet);
-        bullets[lastBulletIndex].gameObject.SetActive(false);
     }
 }
 [Serializable]

@@ -1,0 +1,59 @@
+using System.Collections.Generic;
+using UnityEngine;
+using CalculatingSystem;
+
+public class BulletPool
+{
+    private Queue<BulletBase> freeBullets = new Queue<BulletBase>();
+    private List<BulletBase> allBullets = new List<BulletBase>();
+
+    private GameObject prefab;
+    private Transform parent;
+    private Creature owner;
+    private BulletData bulletData;
+    private FormulaContext context;
+
+    public BulletPool(GameObject prefab, Transform parent, Creature owner, BulletData bulletData, FormulaContext context)
+    {
+        this.prefab = prefab;
+        this.parent = parent;
+        this.owner = owner;
+        this.bulletData = bulletData;
+        this.context = context;
+    }
+
+    public BulletBase Get()
+    {
+        if (freeBullets.Count > 0)
+        {
+            var bullet = freeBullets.Dequeue();
+            bullet.gameObject.SetActive(true);
+            return bullet;
+        }
+
+        var newBullet = Object.Instantiate(prefab, parent).GetComponent<BulletBase>();
+        newBullet.Initialize(owner, bulletData, context, this);
+        allBullets.Add(newBullet);
+        return newBullet;
+    }
+
+    public void Return(BulletBase bullet)
+    {
+        bullet.gameObject.SetActive(false);
+        freeBullets.Enqueue(bullet);
+
+        bullet.transform.parent = parent.transform;
+        bullet.transform.position = parent.transform.position;
+    }
+
+    public void Clear()
+    {
+        foreach (var b in allBullets)
+        {
+            if (b != null)
+                b.HandleProjectileDestroy();
+        }
+        allBullets.Clear();
+        freeBullets.Clear();
+    }
+}

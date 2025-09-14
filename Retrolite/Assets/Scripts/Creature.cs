@@ -11,6 +11,8 @@ public class Creature : MonoBehaviour
     [SerializeField] protected Creature target;
     public Creature Target => target;
 
+    [SerializeField] protected float visionRange;
+
     [HideInInspector] public HealthBase Health;
 
     protected virtual void Start()
@@ -18,39 +20,61 @@ public class Creature : MonoBehaviour
         Health = GetComponent<HealthBase>();
     }
 
-    public bool IsEnemyTo(Creature other)
+    public bool IsEnemyTo(Alignment other)
     {
-        if (other == null) return false;
-        if (other == this) return false;
-
         switch (alignment)
         {
             default:
                 return false;
             case Ally:
-                return other.alignment == Enemy || other.alignment == EvilEnemy;
+                return other == Enemy || other == EvilEnemy;
             case EvilAlly:
-                return other.alignment != Enemy || other.alignment != EvilAlly;
+                return !(other == Ally || other == EvilAlly);
             case Neutral:
-                return other.alignment == EvilEnemy || other.alignment == EvilAlly;
+                return other == EvilEnemy || other == EvilAlly;
             case Evil:
                 return true;
             case Enemy:
-                return other.alignment == Ally || other.alignment == EvilAlly;
+                return other == Ally || other == EvilAlly;
             case EvilEnemy:
-                return other.alignment != Enemy || other.alignment != EvilEnemy;
+                return !(other == Enemy || other == EvilEnemy);
             case FullyFriendly:
                 return false;
         }
     }
 
-    protected virtual Creature FindTarget()
+    public virtual Creature FindTarget()
     {
-        Creature creature = null;
+        LayerMask obstacleMask = LayerMask.GetMask("Walls");
 
-        if (alignment == Enemy) return Player.instance.Creature;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, visionRange);
 
-        return creature;
+        Creature bestTarget = null;
+        float bestDist = Mathf.Infinity;
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out Creature creature))
+            {
+                if (creature == this) continue;
+
+                if (!creature.IsEnemyTo(alignment)) continue;
+
+                Vector2 dir = (creature.transform.position - transform.position).normalized;
+                float dist = Vector2.Distance(transform.position, creature.transform.position);
+
+                RaycastHit2D block = Physics2D.Raycast(transform.position, dir, dist, obstacleMask);
+                if (block.collider != null) continue; 
+
+                if (dist < bestDist)
+                {
+                    bestDist = dist;
+                    bestTarget = creature;
+                }
+            }
+        }
+
+        return bestTarget;
     }
 }
 public enum Alignment { Ally,  EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }

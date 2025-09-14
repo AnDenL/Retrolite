@@ -5099,8 +5099,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3087c971a863c5bab418bbfcf9f892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alignment: 4
+  alignment: 2
   target: {fileID: 0}
+  visionRange: 8
   Health: {fileID: 0}
   jumpTime: 1
   speed: 3
@@ -5119,7 +5120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weigth: 1
-  Multiplier: 1
+  inMoveNow: 0
 --- !u!114 &5182044036734216103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5132,21 +5133,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487cfcee6ff72bcc1a30eec853868f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
+  maxHealth: 30
+  health: 30
   isDead: 0
   maxStability: 1
   stability: 1
-  weakness:
-    rid: -2
-  criticalDamage:
-    rid: -2
-  knockback: {fileID: 0}
+  weaknesses: []
+  Knockback: {fileID: 0}
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    RefIds: []
 --- !u!1001 &5936930261417329357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5235,7 +5231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalScale.x

@@ -12,6 +12,7 @@ public class SlimeBase : Creature
     private bool isAttacking = false;
     private Animator animator;
     private Vector3 targetPosition;
+    private float attackTime;
 
     protected override void Start()
     {
@@ -66,9 +67,14 @@ public class SlimeBase : Creature
 
     private void OnCollisionStay2D(Collision2D collision)
     {
+        if (attackTime > Time.time) return;
         if (collision.gameObject.TryGetComponent(out Creature creature))
         {
-            if (IsEnemyTo(creature)) creature.Health.TakeDamage(damage);
+            if (creature.IsEnemyTo(alignment))
+            {
+                creature.Health.TakeDamage(damage);
+                attackTime = Time.time + 1f;
+            }
         }
     }
 }

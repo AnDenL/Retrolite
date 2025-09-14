@@ -16,8 +16,8 @@ public class HealthBase : MonoBehaviour
     [SerializeField] protected int stability;
     public int Stability => stability;
 
-    [SerializeReference] protected ConditionNode weakness;
-    [SerializeReference] protected FormulaNode criticalDamage;
+    [SerializeField] protected Rule[] weaknesses;
+
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;
@@ -25,13 +25,13 @@ public class HealthBase : MonoBehaviour
     public event Action OnDeath;
     public event Action<int> OnStabilityChange;
 
-    [HideInInspector] public Knockback knockback;
+    [HideInInspector] public Knockback Knockback;
 
     protected virtual void Start()
     {
         health = maxHealth;
         stability = maxStability;
-        knockback = GetComponent<Knockback>();
+        Knockback = GetComponent<Knockback>();
     }
 
     public virtual void Heal(float amount)
@@ -49,13 +49,21 @@ public class HealthBase : MonoBehaviour
 
     public void TakeDamage(float damage, FormulaContext context)
     {
-        if (weakness.Evaluate(context))
-        {
-            damage += criticalDamage.Evaluate(context);
-            if (knockback) knockback.Multiplier = 3;
-            ParticleManager.PlayParticle(3, transform.position);
-        }
+        if (stability != 0)
+        foreach (Rule rule in weaknesses)
+            rule.Check(context);
+        
+        else 
+        foreach (Rule rule in weaknesses)
+            rule.ExecuteAll(context);
+
         TakeDamage(damage);
+    }
+
+    public virtual void Corrupt(int strength)
+    {
+        stability -= strength;
+        OnStabilityChange(stability);
     }
 
     public virtual void TakeDamage(float damage)
@@ -69,13 +77,6 @@ public class HealthBase : MonoBehaviour
         OnDamaged?.Invoke(damage);
         OnHealthChanged?.Invoke(health, maxHealth);
     }
-
-    public virtual void Corrupt(int strength)
-    {
-        stability -= strength;
-        OnStabilityChange?.Invoke(stability);
-    }
-
     public virtual float GetHealthPercent() => health / maxHealth;
 
     protected virtual void Die()

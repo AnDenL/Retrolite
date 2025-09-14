@@ -46,6 +46,7 @@ public class Player : HealthBase
     private GameObject lastInteractedObject;
 
     private float dashCooldown;
+    private float attackCooldown;
     private float invincibilityTimer;
     private float offset;
 
@@ -95,7 +96,7 @@ public class Player : HealthBase
         Rotate();
         OutlineObject();
         if (Input.GetKeyDown(KeyCode.E)) InteractObject();
-        if (Input.GetKeyDown(KeyCode.Q)) StartCoroutine(SlashAttack());
+        if (Input.GetKeyDown(KeyCode.Q) && Time.time > attackCooldown) StartCoroutine(SlashAttack());
     }
 
     #region Movement
@@ -223,18 +224,36 @@ public class Player : HealthBase
     #endregion
     #region Interact
 
-    IEnumerator SlashAttack()
+    private IEnumerator SlashAttack()
     {
         attackTrail.emitting = true;
         Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
         direction.Normalize();
+        attackCooldown = Time.time + 1f;
+
         Instantiate(slashEffect, rotation).transform.parent = null;
+
+        var hits = Physics2D.OverlapCircleAll(rotation.position, 1.2f, LayerMask.GetMask("Creature", "OnlyHits"));
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out Creature creature))
+            {
+                if (creature.IsEnemyTo(Alignment.EvilAlly))
+                {
+                    creature.Health.Corrupt(1);
+                    creature.Health.Knockback?.StartKnockback(8, direction);
+                }
+            }
+        }
+
         float startSpeed = moveSpeed;
         moveSpeed = 0;
         float force = 50f;
         float t = 0f;
         float duration = 0.2f;
+
         while (t < duration)
         {
             t += Time.deltaTime;
@@ -242,6 +261,7 @@ public class Player : HealthBase
             transform.position += (Vector3)direction * Time.deltaTime * (duration - t) * force;
             yield return null;
         }
+
         attackTrail.emitting = false;
         moveSpeed = startSpeed;
         offset = 0;
@@ -338,6 +358,8 @@ public class Player : HealthBase
         return false;
     }
 
+    public void AddMoney(int value) => AddMoney(value, transform.position);
+
     public void AddMoney(int value, Vector3 spawnPosition)
     {
         money += value;
@@ -348,6 +370,8 @@ public class Player : HealthBase
 
         coinParticles.Play();
     }
+
+    public void AddCode(int value) => AddCode(value, transform.position);
 
     public void AddCode(int value, Vector3 spawnPosition)
     {

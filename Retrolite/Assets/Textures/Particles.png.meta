@@ -771,7 +771,7 @@ TextureImporter:
         height: 1
       alignment: 9
       pivot: {x: 0, y: 1}
-      border: {x: 2, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -896,7 +896,7 @@ TextureImporter:
         width: 1
         height: 1
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -904,6 +904,90 @@ TextureImporter:
       bones: []
       spriteID: 846daaa9b8fd15b4a9e143852068ac2e
       internalID: 413039291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_29
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 57
+        width: 4
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea26175c1a860f43afcab83a4a41e1e
+      internalID: 2040322482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_30
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 59
+        width: 3
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fc7431f4a9c89c48b20834aa375e977
+      internalID: 2056101356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_31
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 59
+        width: 2
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27779174f2f453149ae4e382b085cf26
+      internalID: -1661165597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_32
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 60
+        width: 2
+        height: 3
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89dce09fada72924ba012a69f51416b0
+      internalID: -1800857662
       vertices: []
       indices: 
       edges: []
@@ -942,7 +1026,11 @@ TextureImporter:
       Particles_26: -1587113554
       Particles_27: -310107404
       Particles_28: -1990243813
+      Particles_29: 2040322482
       Particles_3: -1887465688
+      Particles_30: 2056101356
+      Particles_31: -1661165597
+      Particles_32: -1800857662
       Particles_4: -860420167
       Particles_5: -548852013
       Particles_6: 26687269
