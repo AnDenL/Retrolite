@@ -43763,6 +43763,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime
       objectReference: {fileID: 0}
+    - target: {fileID: 7666773843353710683, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7735797894203160589, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.75
@@ -627724,7 +627728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: orthographic size
-      value: 9.625
+      value: 8.4375
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
@@ -628161,10 +628165,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotEnemy1
       objectReference: {fileID: 0}
-    - target: {fileID: 1581265429570286819, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.01
-      objectReference: {fileID: 0}
     - target: {fileID: 6276315321488050909, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.6742826
@@ -628204,10 +628204,6 @@ PrefabInstance:
     - target: {fileID: 6276315321488050909, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614833966296965761, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

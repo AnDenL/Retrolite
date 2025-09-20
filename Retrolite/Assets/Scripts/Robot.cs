@@ -27,13 +27,20 @@ public class Robot : Creature
 
     private BulletPool pool;
     private Knockback knockback;
+    private Vector2 targetPosition;
 
-    protected override void Start()
+    private Vector2 headPosition;
+    private Vector2 leftTurbinePosition;
+    private Vector2 rightTurbinePosition;
+
+    private void Start()
     {
-        base.Start();
         knockback = GetComponent<Knockback>();
-        Health.OnDamaged += Damage;
-        Health.OnDeath += Death;
+        HealthComponent.OnDamaged += Damage;
+        HealthComponent.OnDeath += Death;
+        HealthComponent.Damaged += ChangeTarget;
+        Corruption.OnCorrupting += DestabilizationAnim;
+        Corruption.OnBecameVulnerable += Corrupt;
 
         var context = new FormulaContext
         {
@@ -42,17 +49,30 @@ public class Robot : Creature
 
         pool = new BulletPool(bullet, clip, this, bulletData, context);
         animator = GetComponent<Animator>();
+        headPosition = head.localPosition;
+        leftTurbinePosition = leftTurbine.localPosition;
+        rightTurbinePosition = rightTurbine.localPosition;
     }
+
+    private void Corrupt()
+    {
+        HealthComponent.IsWeak = true;
+        animator.SetBool("IsCorrupted", true);
+    }
+
+    private void DestabilizationAnim(int i) => animator.SetTrigger("Corrupt");
+
+    private void ChangeTarget(float v, FormulaContext context) => target = context.Owner;
 
     private void Damage(float t)
     {
         ParticleManager.PlayParticle(6, transform.position);
 
-        head.position += 0.005f * t * (Vector3)Random.insideUnitCircle;
-        leftTurbine.position += 0.005f * t * (Vector3)Random.insideUnitCircle;
-        rightTurbine.position += 0.005f * t * (Vector3)Random.insideUnitCircle;
+        headPosition += 0.005f * t * Random.insideUnitCircle;
+        leftTurbinePosition += 0.005f * t * Random.insideUnitCircle;
+        rightTurbinePosition += 0.005f * t * Random.insideUnitCircle;
 
-        if (Health.Health < 40 && !isCracked)
+        if (HealthComponent.Health < 40 && !isCracked)
         {
             StartCoroutine(AttackTimer());
             isCracked = true;
@@ -73,8 +93,10 @@ public class Robot : Creature
 
     private void Update()
     {
-        if (Health.IsDead) return;
-        if (target == null || target.Health.IsDead) target = FindTarget();
+        if (HealthComponent.IsDead) return;
+        AnimateParts();
+        if (HealthComponent.IsWeak) return;
+        if (target == null || target.HealthComponent.IsDead) target = FindTarget();
 
         if (target != null)
         {
@@ -97,7 +119,7 @@ public class Robot : Creature
         else seeEnemy = false;
 
         if (dist < 3 && !knockback.inMoveNow)
-            knockback.StartKnockback(8, Health.Health < 40 ? target.transform.position - transform.position : transform.position - target.transform.position);
+            knockback.StartKnockback(8, HealthComponent.Health < 40 ? target.transform.position - transform.position : transform.position - target.transform.position);
 
         if (dist < 4)
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, -speed * Time.deltaTime);
@@ -108,12 +130,16 @@ public class Robot : Creature
             knockback.StartKnockback(5, target.transform.position - transform.position + (Vector3)Random.insideUnitCircle * 4);
 
         if (attackTime < Time.time && !knockback.inMoveNow) Shoot();
-
-        AnimateParts();
     }
 
     private void AnimateParts()
     {
+        float strenght = (1 - HealthComponent.GetHealthPercent());
+
+        head.localPosition = headPosition + 0.1f * strenght * Random.insideUnitCircle;
+        leftTurbine.localPosition = leftTurbinePosition + 0.1f * strenght * Random.insideUnitCircle;
+        rightTurbine.localPosition = rightTurbinePosition + 0.1f * strenght * Random.insideUnitCircle;
+
         if (target == null) return;
 
         Vector2 dir = (target.transform.position - transform.position).normalized;
@@ -127,18 +153,6 @@ public class Robot : Creature
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
             UI.localScale = new Vector3(-1f, 1f, 1f);
-        }
-
-            float tilt = Mathf.Clamp(dir.x * 30f, -30f, 30f);
-        if (leftTurbine != null)
-        {
-            Quaternion targetRot = Quaternion.Euler(0, 0, tilt);
-            leftTurbine.localRotation = Quaternion.Lerp(leftTurbine.localRotation, targetRot, Time.deltaTime * 5f);
-        }
-        if (rightTurbine != null)
-        {
-            Quaternion targetRot = Quaternion.Euler(0, 0, -tilt);
-            rightTurbine.localRotation = Quaternion.Lerp(rightTurbine.localRotation, targetRot, Time.deltaTime * -5f);
         }
     }
 
@@ -156,7 +170,7 @@ public class Robot : Creature
             (Random.Range(0, 2) == 0 ? leftDodge : rightDodge) :
             (leftDist > rightDist ? leftDodge : rightDodge);
 
-        knockback.StartKnockback(Random.Range(5, 6), dodgeDirection);
+        knockback.StartKnockback(Random.Range(3 + speed, 4 + speed), dodgeDirection);
     }
 
     private float CheckFreeDistance(Vector2 dir)
@@ -175,12 +189,12 @@ public class Robot : Creature
 
         Vector2 direction = target.transform.position - transform.position;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 12f, LayerMask.GetMask("Walls"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, direction.magnitude, LayerMask.GetMask("Walls"));
         if (hit.collider == null)
         {
             seeEnemy = true;
-            knockback.StartKnockback(3, transform.position - target.transform.position);
-            clip.rotation = Quaternion.Euler(0,0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (transform.localScale.x == 1 ? 0 : 180));
+            knockback.StartKnockback(2.5f, transform.position - target.transform.position);
+            clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (transform.localScale.x == 1 ? 0 : 180));
             ParticleManager.PlayParticle(5, clip.position);
             pool.Get().Fire(0);
         }
@@ -189,9 +203,9 @@ public class Robot : Creature
 
     private IEnumerator AttackTimer()
     {
-        while (!Health.IsDead)
+        while (!HealthComponent.IsDead)
         {
-            yield return new WaitForSeconds(0.3f + Health.GetHealthPercent());
+            yield return new WaitForSeconds(0.3f + HealthComponent.GetHealthPercent());
             ShockAttack();
         }
     }
@@ -204,7 +218,7 @@ public class Robot : Creature
         {
             if (hit.TryGetComponent(out Creature creature))
             {
-                if (creature.IsEnemyTo(alignment)) creature.Health.TakeDamage(10);
+                if (creature.IsEnemyTo(this)) creature.HealthComponent.TakeDamage(10);
             }
         }
 
@@ -213,7 +227,7 @@ public class Robot : Creature
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Health.IsDead) return;
+        if (HealthComponent.IsDead || HealthComponent.IsWeak) return;
         if (collision.CompareTag("PlayerBullets"))
             Evade(collision.transform.position - transform.position);
     }

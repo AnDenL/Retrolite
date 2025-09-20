@@ -6,31 +6,27 @@ public class HealthBase : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] protected float maxHealth = 100f;
-    public float MaxHealth => maxHealth; 
+    public float MaxHealth => maxHealth;
     [SerializeField] protected float health;
     public float Health => health;
     [SerializeField] protected bool isDead;
     public bool IsDead => isDead;
 
-    [SerializeField] protected int maxStability = 1;
-    [SerializeField] protected int stability;
-    public int Stability => stability;
+    public bool IsWeak;
 
     [SerializeField] protected Rule[] weaknesses;
-
 
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;
     public event Action<float> OnDamaged;
+    public event Action<float, FormulaContext> Damaged;
     public event Action OnDeath;
-    public event Action<int> OnStabilityChange;
 
     [HideInInspector] public Knockback Knockback;
 
     protected virtual void Start()
     {
         health = maxHealth;
-        stability = maxStability;
         Knockback = GetComponent<Knockback>();
     }
 
@@ -49,21 +45,15 @@ public class HealthBase : MonoBehaviour
 
     public void TakeDamage(float damage, FormulaContext context)
     {
-        if (stability != 0)
-        foreach (Rule rule in weaknesses)
-            rule.Check(context);
-        
-        else 
-        foreach (Rule rule in weaknesses)
-            rule.ExecuteAll(context);
+        if (!IsWeak)
+            foreach (Rule rule in weaknesses)
+                rule.Check(context);
+        else
+            foreach (Rule rule in weaknesses)
+                rule.ExecuteAll(context);
 
+        Damaged?.Invoke(damage, context);
         TakeDamage(damage);
-    }
-
-    public virtual void Corrupt(int strength)
-    {
-        stability -= strength;
-        OnStabilityChange(stability);
     }
 
     public virtual void TakeDamage(float damage)

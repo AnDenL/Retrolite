@@ -2,6 +2,7 @@ using UnityEngine;
 using static Alignment;
 
 [RequireComponent(typeof(HealthBase))]
+[RequireComponent(typeof(Corruptible))]
 public class Creature : MonoBehaviour
 {
     [Header("Creature")]
@@ -13,31 +14,36 @@ public class Creature : MonoBehaviour
 
     [SerializeField] protected float visionRange;
 
-    [HideInInspector] public HealthBase Health;
+    [HideInInspector] public HealthBase HealthComponent;
+    [HideInInspector] public Corruptible Corruption;
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
-        Health = GetComponent<HealthBase>();
+        HealthComponent = GetComponent<HealthBase>();
+        Corruption = GetComponent<Corruptible>();
     }
 
-    public bool IsEnemyTo(Alignment other)
+    public bool IsEnemyTo(Creature other)
     {
+        if (other == null) return false;
+        if (other == this) return false;
+
         switch (alignment)
         {
             default:
                 return false;
             case Ally:
-                return other == Enemy || other == EvilEnemy;
+                return other.Alignment == Enemy || other.Alignment == EvilEnemy;
             case EvilAlly:
-                return !(other == Ally || other == EvilAlly);
+                return !(other.Alignment == Ally || other.Alignment == EvilAlly);
             case Neutral:
-                return other == EvilEnemy || other == EvilAlly;
+                return other.Alignment == EvilEnemy || other.Alignment == EvilAlly || other.Alignment == Evil;
             case Evil:
                 return true;
             case Enemy:
-                return other == Ally || other == EvilAlly;
+                return other.Alignment == Ally || other.Alignment == EvilAlly;
             case EvilEnemy:
-                return !(other == Enemy || other == EvilEnemy);
+                return !(other.Alignment == Enemy || other.Alignment == EvilEnemy);
             case FullyFriendly:
                 return false;
         }
@@ -58,13 +64,13 @@ public class Creature : MonoBehaviour
             {
                 if (creature == this) continue;
 
-                if (!creature.IsEnemyTo(alignment)) continue;
+                if (!creature.IsEnemyTo(this)) continue;
 
                 Vector2 dir = (creature.transform.position - transform.position).normalized;
                 float dist = Vector2.Distance(transform.position, creature.transform.position);
 
                 RaycastHit2D block = Physics2D.Raycast(transform.position, dir, dist, obstacleMask);
-                if (block.collider != null) continue; 
+                if (block.collider != null) continue;
 
                 if (dist < bestDist)
                 {
@@ -77,4 +83,4 @@ public class Creature : MonoBehaviour
         return bestTarget;
     }
 }
-public enum Alignment { Ally,  EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
+public enum Alignment { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }

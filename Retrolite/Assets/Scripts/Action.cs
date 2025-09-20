@@ -17,10 +17,10 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            if (context.EnemyHealth != null)
+            if (context.TargetHealth != null)
             {
-                context.EnemyHealth.TakeDamage(Damage.Evaluate(context));
-                ParticleManager.PlayParticle(3, context.EnemyHealth.transform.position);
+                context.TargetHealth.TakeDamage(Damage.Evaluate(context));
+                ParticleManager.PlayParticle(3, context.TargetHealth.transform.position);
             }
         }
 
@@ -73,8 +73,8 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            if (Prefab != null && context.EnemyHealth != null)
-                UnityEngine.Object.Instantiate(Prefab, context.EnemyHealth.transform.position, Quaternion.identity);
+            if (Prefab != null && context.TargetHealth != null)
+                UnityEngine.Object.Instantiate(Prefab, context.TargetHealth.transform.position, Quaternion.identity);
         }
 
         public override string ToReadableString() => $"Spawn {Prefab?.name}";
@@ -103,7 +103,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            Vector2 position = context.EnemyHealth.transform.position;
+            Vector2 position = context.TargetHealth.transform.position;
             ParticleManager.PlayParticle(2, position);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 

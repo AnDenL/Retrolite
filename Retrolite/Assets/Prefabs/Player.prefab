@@ -109,11 +109,8 @@ MonoBehaviour:
   isDead: 0
   maxStability: 1
   stability: 0
-  weakness:
-    rid: -2
-  criticalAction:
-    rid: -2
-  knockback: {fileID: 0}
+  weaknesses: []
+  Knockback: {fileID: 0}
   lives: 0
   moveSpeed: 50
   inertia: 8
@@ -135,9 +132,7 @@ MonoBehaviour:
   Creature: {fileID: 0}
   references:
     version: 2
-    RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    RefIds: []
 --- !u!70 &1264232799100110172
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -207,7 +202,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 25
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}

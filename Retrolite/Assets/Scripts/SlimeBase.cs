@@ -14,17 +14,16 @@ public class SlimeBase : Creature
     private Vector3 targetPosition;
     private float attackTime;
 
-    protected override void Start()
+    private void Start()
     {
-        base.Start();
-        Health.OnDeath += DeathEffect;
+        HealthComponent.OnDeath += DeathEffect;
         animator = GetComponent<Animator>();
         StartCoroutine(AttackTimer());
     }
 
     private IEnumerator AttackTimer()
     {
-        while (!Health.IsDead)
+        while (!HealthComponent.IsDead)
         {
             float attackTime = Random.Range(3f, 4f);
             yield return new WaitForSeconds(attackTime);
@@ -70,9 +69,9 @@ public class SlimeBase : Creature
         if (attackTime > Time.time) return;
         if (collision.gameObject.TryGetComponent(out Creature creature))
         {
-            if (creature.IsEnemyTo(alignment))
+            if (creature.IsEnemyTo(this))
             {
-                creature.Health.TakeDamage(damage);
+                creature.HealthComponent.TakeDamage(damage);
                 attackTime = Time.time + 1f;
             }
         }

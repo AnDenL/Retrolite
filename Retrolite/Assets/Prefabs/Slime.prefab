@@ -4979,6 +4979,7 @@ GameObject:
   - component: {fileID: 27495872785086504}
   - component: {fileID: 2528882075990716098}
   - component: {fileID: 5182044036734216103}
+  - component: {fileID: 7192889135446808242}
   m_Layer: 10
   m_Name: Slime
   m_TagString: Enemy
@@ -5073,7 +5074,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -5102,7 +5103,8 @@ MonoBehaviour:
   alignment: 2
   target: {fileID: 0}
   visionRange: 8
-  Health: {fileID: 0}
+  HealthComponent: {fileID: 0}
+  Corruption: {fileID: 0}
   jumpTime: 1
   speed: 3
   damage: 15
@@ -5120,7 +5122,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Weigth: 1
-  inMoveNow: 0
 --- !u!114 &5182044036734216103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5136,13 +5137,26 @@ MonoBehaviour:
   maxHealth: 30
   health: 30
   isDead: 0
-  maxStability: 1
-  stability: 1
+  isWeak: 0
   weaknesses: []
   Knockback: {fileID: 0}
   references:
     version: 2
     RefIds: []
+--- !u!114 &7192889135446808242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658632795700602020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2ca1348dc261fa6bb575e9c46bb7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStability: 1
+  stability: 0
 --- !u!1001 &5936930261417329357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5206,7 +5220,7 @@ PrefabInstance:
     - target: {fileID: 9124847053714675594, guid: 3db8bb26149ad30459f74996f5e324fd, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 5182044036734216103}
+      objectReference: {fileID: 27495872785086504}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

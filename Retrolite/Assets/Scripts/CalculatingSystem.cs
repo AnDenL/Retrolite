@@ -143,7 +143,7 @@ namespace CalculatingSystem
             return variable switch
             {
                 PlayerHP => Player.instance.GetHealthPercent(),
-                EnemyHP => context.EnemyHealth?.GetHealthPercent() ?? Break(variable, context),
+                EnemyHP => context.TargetHealth?.GetHealthPercent() ?? Break(variable, context),
                 BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
                 Echo => context.Gun.Data.Echo,
                 Distance => context.Bullet?.GetDistanceTravelled() ?? Break(variable, context),
@@ -185,7 +185,7 @@ namespace CalculatingSystem
 
     #endregion
     #region ConditionNodes
-    
+
     [Serializable]
     public abstract class ConditionNode
     {
@@ -302,10 +302,10 @@ namespace CalculatingSystem
         {
             return variable switch
             {
-                IsDead => context.EnemyHealth.IsDead,
-                IsCorrupted => context.EnemyHealth.Stability == 0,
+                IsDead => context.TargetHealth.IsDead,
+                IsCorrupted => context.TargetCreature.Corruption.Stability == 0,
                 IsBoss => false, //Change later
-                IsFullHealth => context.EnemyHealth.Health == context.EnemyHealth.MaxHealth,
+                IsFullHealth => context.TargetHealth.Health == context.TargetHealth.MaxHealth,
                 _ => false
             };
         }
@@ -318,12 +318,13 @@ namespace CalculatingSystem
         IsBoss,
         IsFullHealth,
     }
-    
+
     #endregion
 
     public struct FormulaContext
     {
-        public HealthBase EnemyHealth;
+        public HealthBase TargetHealth;
+        public Creature TargetCreature;
         public Creature Owner;
         public GunBase Gun;
         public BulletBase Bullet;

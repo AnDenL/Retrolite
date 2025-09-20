@@ -34,7 +34,7 @@ public class Player : HealthBase
     [SerializeField] int bits;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
 
-    [HideInInspector] public Creature Creature; 
+    [HideInInspector] public Creature Creature;
 
     private LayerMask interactMask, wallLayerMask;
     private ParticleSystem.ShapeModule coinShape, codeShape;
@@ -83,7 +83,7 @@ public class Player : HealthBase
         hand2 = handsWithoutGun.transform.GetChild(1);
 
         interactMask = 1 << 11;
-        wallLayerMask = 1 << 0; 
+        wallLayerMask = 1 << 0;
     }
 
     private void Update()
@@ -96,7 +96,7 @@ public class Player : HealthBase
         Rotate();
         OutlineObject();
         if (Input.GetKeyDown(KeyCode.E)) InteractObject();
-        if (Input.GetKeyDown(KeyCode.Q) && Time.time > attackCooldown) StartCoroutine(SlashAttack());
+        if (Input.GetMouseButtonDown(1) && Time.time > attackCooldown) StartCoroutine(SlashAttack());
     }
 
     #region Movement
@@ -127,16 +127,15 @@ public class Player : HealthBase
         glitchRenderer.enabled = true;
         glitchParticles.Play();
         playerCollider.enabled = false;
-        canInteract = false;
         trailRenderer.emitting = true;
 
         float dashTime = 0.25f;
         Vector3 direction = velocity.normalized;
 
-        dashCooldown = Time.time + 0.8f;
+        dashCooldown = Time.time + 0.5f;
         float elapsed = 0f;
 
-        float dashSpeed = 186f;
+        float dashSpeed = 146f;
 
         while (elapsed < dashTime)
         {
@@ -155,10 +154,9 @@ public class Player : HealthBase
 
             glitchRenderer.material.SetFloat("_Strength", (dashTime - elapsed) * 4);
 
-            if (elapsed > dashTime - 0.10f)
+            if (elapsed > dashTime - 0.1f)
             {
                 playerCollider.enabled = true;
-                canInteract = true;
             }
 
             elapsed += Time.deltaTime;
@@ -240,10 +238,10 @@ public class Player : HealthBase
         {
             if (hit.TryGetComponent(out Creature creature))
             {
-                if (creature.IsEnemyTo(Alignment.EvilAlly))
+                if (creature.IsEnemyTo(Creature))
                 {
-                    creature.Health.Corrupt(1);
-                    creature.Health.Knockback?.StartKnockback(8, direction);
+                    creature.Corruption.ApplyCorruption(1);
+                    creature.HealthComponent.Knockback?.StartKnockback(12, direction);
                 }
             }
         }

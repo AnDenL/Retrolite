@@ -79,7 +79,7 @@ public class BulletBase : MonoBehaviour
             SetRendererColor();
         }
 
-        transform.position += Speed * Time.deltaTime * transform.up;
+        transform.position += Speed * Time.deltaTime * 2 * transform.up;
     }
 
     protected IEnumerator LifeTimer()
@@ -107,7 +107,7 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void SetRendererColor()
     {
-        float r = data.Damage.Evaluate(context) / 5 + (context.Owner.IsEnemyTo(Alignment.EvilAlly) ? 0 : 5);
+        float r = data.Damage.Evaluate(context) / 5 + (context.Owner.IsEnemyTo(Player.instance.Creature) ? 0 : 5);
         float g = life / 3;
         float b = Speed / 5;
         color = new Color(
@@ -125,21 +125,36 @@ public class BulletBase : MonoBehaviour
 
         if (other.TryGetComponent(out Creature creature))
         {
-            if (!creature.IsEnemyTo(OwnerAlignment)) return;
+            // якщо це істота — маємо і Health, і Alignment
+            if (!creature.IsEnemyTo(Owner)) return;
 
-            context.EnemyHealth = creature.Health;
-            float damage = data.Damage.Evaluate(context);
-            context.EnemyHealth.TakeDamage(damage, context);
-            context.EnemyHealth.Knockback?.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
-
-            if (lifeCoroutine != null)
-                StopCoroutine(lifeCoroutine);
-            Deactivate();
+            context.TargetCreature = creature;
+            context.TargetHealth = creature.HealthComponent;
         }
         else
         {
-            Deactivate();
+            // не істота → шукаємо лише Health
+            if (!other.TryGetComponent(out HealthBase health))
+            {
+                Deactivate();
+                return;
+            }
+
+            context.TargetCreature = null;
+            context.TargetHealth = health;
         }
+
+        float damage = data.Damage.Evaluate(context);
+        context.TargetHealth.TakeDamage(damage, context);
+        context.TargetHealth.Knockback?.StartKnockback(
+            data.Knockback.Evaluate(context) / 10,
+            transform.up
+        );
+
+        if (lifeCoroutine != null)
+            StopCoroutine(lifeCoroutine);
+
+        Deactivate();
     }
 
     // Helpers

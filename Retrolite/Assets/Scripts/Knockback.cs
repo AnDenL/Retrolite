@@ -4,28 +4,19 @@ using System.Collections;
 public class Knockback : MonoBehaviour
 {
     public float Weigth = 1;
-    public bool inMoveNow;
+    public bool inMoveNow => knockbackDuration > Time.time;
 
+    private float knockbackDuration;
     private Coroutine coroutine;
+    private Rigidbody2D rb;
+
+    private void Awake() => rb = GetComponent<Rigidbody2D>();
 
     public void StartKnockback(float strength, Vector2 dir)
     {
         dir.Normalize();
-        if (coroutine != null) StopCoroutine(coroutine);
-        coroutine = StartCoroutine(DoKnockback(strength, dir));
-    }
-    private IEnumerator DoKnockback(float strength, Vector2 dir)
-    {
-        inMoveNow = true;
-        float duration = Mathf.Sqrt(strength) / Weigth;
-        float elapsed = 0;
-        while (elapsed < duration)
-        {
-            float factor = 1 - (elapsed / duration);
-            transform.position += factor * strength * Time.deltaTime * (Vector3)dir;
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        inMoveNow = false;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(strength * dir, ForceMode2D.Impulse);
+        knockbackDuration = Mathf.Sqrt(strength) / Weigth;
     }
 }
