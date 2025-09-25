@@ -6,12 +6,12 @@ public class SaveSystem : MonoBehaviour
 
     [SerializeField] DataMode dataMode;
 
-    private void Awake()
+    private void Start()
     {
         switch (dataMode)
         {
             case DataMode.Run:
-                CurrentSave = new SaveData(100f, 100f, new GunData(2, 5, 8, 2, GunType.Pistol, BulletType.Bullet, new BulletData()), 0, 50, 0);
+                CurrentSave = new SaveData(100f, 100f, new GunData("Basic pistol", 2, 5, 8, 2, GunType.Pistol, BulletType.Bullet, new BulletData()), 0, 50, 0);
                 break;
             case DataMode.Tutorial:
                 CurrentSave = new SaveData(1, 100f, new GunData(), 0, 0, 0);
@@ -20,6 +20,8 @@ public class SaveSystem : MonoBehaviour
                 CurrentSave = new SaveData(100f, 100f, new GunData(), 0, 0, 0);
                 break;
         }
+
+        Player.instance.SetSaveData(CurrentSave);
     }
 }
 

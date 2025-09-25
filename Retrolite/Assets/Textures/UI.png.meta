@@ -527,6 +527,174 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: UI_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 9
+        width: 5
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056a08b69277c2c9e901816ce9379a68
+      internalID: 145334689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet0
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 4
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37f578e5204f1718ba3181151e897cd
+      internalID: 716858545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_25
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 2
+        width: 17
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6baa5037738c22acd9c332debd25354b
+      internalID: 1301862547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet1
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b4fd7b8a025269baa3f23e57d89a066
+      internalID: 1157310447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 12
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d836b20c88cfe9a8b7df806e9731725
+      internalID: 874383040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet3
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 8
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5e2b1e8bafec63e8fd4e82b40d2f3f
+      internalID: -1966035353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet4
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 4
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24eb158b05d144c2ae735acbaf964fa
+      internalID: -1863467552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bullet5
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 0
+        width: 7
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd40625fffe750f3395b6fe61e4c6d5f
+      internalID: -811726568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -549,7 +717,13 @@ TextureImporter:
       UI_16: 1862299812
       UI_17: -1683798627
       UI_18: -1388344242
+      UI_19: 145334689
       UI_2: 1092125312
+      UI_21: 561253333
+      UI_22: -508728528
+      UI_23: -1978025308
+      UI_24: 1240262687
+      UI_25: 1301862547
       UI_3: -1572656834
       UI_4: -592347570
       UI_5: -1531236806
@@ -557,6 +731,12 @@ TextureImporter:
       UI_7: 1879563959
       UI_8: -668213522
       UI_9: 701196098
+      bullet0: 716858545
+      bullet1: 1157310447
+      bullet2: 874383040
+      bullet3: -1966035353
+      bullet4: -1863467552
+      bullet5: -811726568
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

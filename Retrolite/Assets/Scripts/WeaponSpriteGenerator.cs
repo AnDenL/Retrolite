@@ -3,14 +3,16 @@ using UnityEngine;
 public class WeaponSpriteGenerator : MonoBehaviour
 {
     public static WeaponSpriteGenerator instance;
-    public SpriteList List;
+    public SpriteList List1;
+    public SpriteList List2;
+    public SpriteList BulletList;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public Sprite RandomSprite() => CombineSprites(List.Parts1[Random.Range(0, List.Parts1.Length - 1)], List.Parts2[Random.Range(0, List.Parts2.Length - 1)], Random.Range(0f, 1f));
+    public Sprite RandomSprite() => CombineSprites(List1.RandomSprite(), List2.RandomSprite(), Random.Range(0f, 1f));
 
     public static Sprite CombineSprites(Sprite part1, Sprite part2, float hueShift)
     {
