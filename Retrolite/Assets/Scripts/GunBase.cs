@@ -19,6 +19,8 @@ public class GunBase : MonoBehaviour
 
     private BulletPool bulletPool;
 
+    public event Action OnFire;
+
     protected void Awake()
     {
         context = new FormulaContext();
@@ -63,6 +65,7 @@ public class GunBase : MonoBehaviour
 
         isReloading = false;
         if (Data.MagazineSize != 0) Data.CurrentAmmo -= 1;
+        OnFire?.Invoke();
     }
 
     protected IEnumerator Reload()
@@ -86,13 +89,14 @@ public class GunBase : MonoBehaviour
         reloadBar.SetActive(false);
     }
 }
+
 [Serializable]
-public struct GunData
+public class GunData
 {
-    [SerializeReference]
-    public FormulaNode FireRate;
-    [SerializeReference]
-    public FormulaNode Accuracy;
+    public string Name;
+
+    [SerializeReference] public FormulaNode FireRate;
+    [SerializeReference] public FormulaNode Accuracy;
 
     public int MagazineSize;
     public int CurrentAmmo;
@@ -100,12 +104,23 @@ public struct GunData
     public float ReloadTime;
     public GunType GunType;
     public Sprite GunSprite;
+    public Sprite BulletSprite;
 
     public BulletType BulletType;
     public BulletData BulletData;
 
-    public GunData(float fireRate = 0, float accuracy = 1, int magazineSize = 0, float reload = 0, GunType gunType = GunType.Empty, BulletType bulletType = BulletType.Bullet, BulletData bulletData = null)
+    public GunData(
+        string name = "",
+        float fireRate = 0,
+        float accuracy = 1,
+        int magazineSize = 0,
+        float reload = 0,
+        GunType gunType = GunType.Empty,
+        BulletType bulletType = BulletType.Bullet,
+        BulletData bulletData = null
+    )
     {
+        Name = name;
         FireRate = new ConstantNode(fireRate);
         Accuracy = new ConstantNode(accuracy);
         ReloadTime = reload;
@@ -115,9 +130,11 @@ public struct GunData
         BulletType = bulletType;
         BulletData = bulletData;
         GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
+        BulletSprite = WeaponSpriteGenerator.instance.BulletList.RandomSprite();
         Echo = 0;
     }
 }
+
 
 public enum GunType
 {

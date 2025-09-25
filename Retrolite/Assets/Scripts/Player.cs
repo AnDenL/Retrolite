@@ -71,8 +71,6 @@ public class Player : HealthBase
         hand1 = handsWithoutGun.transform.GetChild(0);
         hand2 = handsWithoutGun.transform.GetChild(1);
 
-        SetValues(SaveSystem.CurrentSave);
-
         TakeDamage(0);
         coinShape = coinParticles.shape;
         coinEmission = coinParticles.emission;
@@ -397,7 +395,7 @@ public class Player : HealthBase
 
     #endregion
 
-    public void SetValues(SaveData data)
+    public void SetSaveData(SaveData data)
     {
         health = data.PlayerHealth;
         maxHealth = data.PlayerMaxHealth;
