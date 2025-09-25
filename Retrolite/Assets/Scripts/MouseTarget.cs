@@ -9,5 +9,5 @@ public class MouseTarget : Creature
         base.Awake();
         instance = this;
     }
-    private void Update() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    private void LateUpdate() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 }

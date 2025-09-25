@@ -23,10 +23,10 @@ public class ArcAnim : MonoBehaviour
 
     public void DropTo(Vector3 targetPosition, System.Action onFinish = null)
     {
-        StartCoroutine(DropCo(targetPosition, onFinish));
+        StartCoroutine(DropCoroutine(targetPosition, onFinish));
     }
 
-    IEnumerator DropCo(Vector3 targetPos, System.Action onFinish)
+    private IEnumerator DropCoroutine(Vector3 targetPos, System.Action onFinish)
     {
         Vector3 startPos = transform.position;
 

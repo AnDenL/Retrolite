@@ -1,6 +1,7 @@
 using UnityEngine;
 using CalculatingSystem;
 using System.Collections;
+using CreatureAI;
 
 public class BulletBase : MonoBehaviour
 {

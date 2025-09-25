@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Robot : Creature
 {
+    /* 
     [SerializeField] private GameObject bullet;
     [SerializeField] private BulletData bulletData;
     [SerializeField] private float attackCooldown = 1;
@@ -231,4 +232,5 @@ public class Robot : Creature
         if (collision.CompareTag("PlayerBullets"))
             Evade(collision.transform.position - transform.position);
     }
+    */
 }

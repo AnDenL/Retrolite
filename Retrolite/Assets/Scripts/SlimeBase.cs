@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SlimeBase : Creature
 {
+    /*
     [Header("Slime")]
     [SerializeField] private float jumpTime;
     [SerializeField] private float speed;
@@ -76,4 +77,5 @@ public class SlimeBase : Creature
             }
         }
     }
+    */
 }
