@@ -8,6 +8,56 @@ namespace CalculatingSystem
     using static CalculatingSystem.ComparisonOperator;
     using static CalculatingSystem.ConditionVariable;
 
+    public static class FormulaGenerator
+    {
+        private static System.Random rnd = new System.Random();
+
+        public static FormulaNode GenerateRandomFormula(int depth = 0, int maxDepth = 3)
+        {
+            if (depth >= maxDepth)
+                return RandomLeaf();
+
+            int choice = rnd.Next(0, 6);
+            return choice switch
+            {
+                0 => RandomConstant(),
+                1 => RandomVariable(),
+                2 => new Expression(
+                        GenerateRandomFormula(depth + 1, maxDepth),
+                        RandomOperator(),
+                        GenerateRandomFormula(depth + 1, maxDepth)),
+                3 => new AbsoluteNode(GenerateRandomFormula(depth + 1, maxDepth)),
+                4 => new SinNode(GenerateRandomFormula(depth + 1, maxDepth)),
+                5 => new CosNode(GenerateRandomFormula(depth + 1, maxDepth)),
+                _ => RandomConstant()
+            };
+        }
+
+        private static FormulaNode RandomLeaf()
+        {
+            return rnd.Next(0, 2) == 0 ? RandomConstant() : RandomVariable();
+        }
+
+        private static ConstantNode RandomConstant()
+        {
+            float value = (float)Math.Round(rnd.NextDouble() * 10 - 5, 2);
+            return new ConstantNode(value);
+        }
+
+        private static VariableNode RandomVariable()
+        {
+            Array values = Enum.GetValues(typeof(StatVariable));
+            StatVariable randomVar = (StatVariable)values.GetValue(rnd.Next(values.Length));
+            return new VariableNode(randomVar);
+        }
+
+        private static Operator RandomOperator()
+        {
+            Array values = Enum.GetValues(typeof(Operator));
+            return (Operator)values.GetValue(rnd.Next(values.Length));
+        }
+    }
+
     #region FormulaNodes
 
     [Serializable]
@@ -56,7 +106,7 @@ namespace CalculatingSystem
 
         public SinNode(FormulaNode value) => Node = value;
         public override float Evaluate(FormulaContext context) => Mathf.Sin(Node.Evaluate(context));
-        public override string ToReadableString() => "Sin(" + Node.ToString() + ")";
+        public override string ToReadableString() => "Sin(" + Node.ToReadableString() + ")";
     }
 
     [Serializable]
@@ -70,7 +120,7 @@ namespace CalculatingSystem
 
         public CosNode(FormulaNode value) => Node = value;
         public override float Evaluate(FormulaContext context) => Mathf.Cos(Node.Evaluate(context));
-        public override string ToReadableString() => "Cos(" + Node.ToString() + ")";
+        public override string ToReadableString() => "Cos(" + Node.ToReadableString() + ")";
     }
 
     [Serializable]
@@ -142,19 +192,19 @@ namespace CalculatingSystem
         {
             return variable switch
             {
-                PlayerHP => Player.instance.GetHealthPercent(),
+                OwnerHP => context.Owner.HealthComponent.GetHealthPercent(),
                 EnemyHP => context.TargetHealth?.GetHealthPercent() ?? Break(variable, context),
                 BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
                 Echo => context.Gun.Data.Echo,
-                Distance => context.Bullet?.GetDistanceTravelled() ?? Break(variable, context),
+                Distance => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
                 PlayerDistance => Vector2.Distance(Player.instance.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
-                Ammo => context.Gun?.Data.CurrentAmmo ?? Break(variable, context),
+                Ammo => context.Gun != null ? context.Gun.Data.CurrentAmmo : Break(variable, context),
                 RandomNum => UnityEngine.Random.Range(-5f, 5f),
                 Money => Player.instance.GetMoney(),
-                Speed => context.Bullet?.Speed ?? Break(variable, context),
-                Size => context.Bullet?.Scale ?? Break(variable, context),
-                BulletSpread => context.Bullet?.Spread ?? Break(variable, context) * Mathf.Deg2Rad,
-                BulletDestroyTime => context.Bullet?.GetDestroyTime() ?? Break(variable, context),
+                Speed => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),
+                Size => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
+                BulletSpread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
+                BulletDestroyTime => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
                 HomingAngle => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };
@@ -167,7 +217,7 @@ namespace CalculatingSystem
 
     public enum StatVariable
     {
-        PlayerHP,
+        OwnerHP,
         EnemyHP,
         BulletTime,
         Echo,

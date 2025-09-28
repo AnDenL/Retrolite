@@ -113,7 +113,6 @@ public class Player : HealthBase
         velocity -= velocity * (inertia * Time.deltaTime);
         velocity = velocity + direction * moveSpeed * Time.deltaTime;
 
-
         transform.position += (Vector3)velocity * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y - 0.5f);
     }
@@ -239,7 +238,7 @@ public class Player : HealthBase
                 if (creature.IsEnemyTo(Creature))
                 {
                     creature.Corruption.ApplyCorruption(1);
-                    creature.HealthComponent.Knockback?.StartKnockback(12, direction);
+                    creature.StartKnockback(12, direction);
                 }
             }
         }

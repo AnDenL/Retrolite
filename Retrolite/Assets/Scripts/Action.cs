@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using CreatureAI;
 
 namespace CalculatingSystem
 {
@@ -70,11 +72,12 @@ namespace CalculatingSystem
     public class SpawnObjectAction : ActionNode
     {
         public GameObject Prefab;
+        public bool onEnemy = false;
 
         public override void Execute(FormulaContext context)
         {
             if (Prefab != null && context.TargetHealth != null)
-                UnityEngine.Object.Instantiate(Prefab, context.TargetHealth.transform.position, Quaternion.identity);
+                UnityEngine.Object.Instantiate(Prefab, onEnemy ? context.TargetHealth.transform.position : context.Owner.transform.position, Quaternion.identity);
         }
 
         public override string ToReadableString() => $"Spawn {Prefab?.name}";
@@ -94,12 +97,61 @@ namespace CalculatingSystem
     }
 
     [Serializable]
+    public class AnimationAction : ActionNode
+    {
+        public string Trigger;
+
+        public override void Execute(FormulaContext context)
+        {
+            if (context.Owner.Animator != null)
+                context.Owner.Animator.SetTrigger(Trigger);
+        }
+
+        public override string ToReadableString() => $"Play animation {Trigger}";
+    }
+
+    [Serializable]
+    public class PlayParticleAction : ActionNode
+    {
+        public int ParticleId;
+
+        public override void Execute(FormulaContext context)
+        {
+            if (context.TargetHealth != null)
+                ParticleManager.PlayParticle(ParticleId, context.Owner.transform.position);
+        }
+
+        public override string ToReadableString() => $"Play particle {ParticleId}";
+    }
+
+    [Serializable]
+    public class DelayedAction : ActionNode
+    {
+        [SerializeReference] public FormulaNode Delay;
+        [SerializeReference] public ActionNode Action;
+
+        public override void Execute(FormulaContext context)
+        {
+            context.Owner.StartCoroutine(DelayedExecute(context));
+        }
+
+        private IEnumerator DelayedExecute(FormulaContext context)
+        {
+            yield return new WaitForSeconds(Delay.Evaluate(context));
+            Action.Execute(context);
+        }
+
+        public override string ToReadableString() => $"Wait for {Delay.ToReadableString()} seconds, then {Action.ToReadableString()}";
+    }
+
+    [Serializable]
     public class ExplosionAction : ActionNode
     {
         [SerializeReference] public FormulaNode Damage;
         [SerializeReference] public FormulaNode Knockback;
         [SerializeReference] public FormulaNode Radius;
         public LayerMask Layers;
+        public Alignment alignment;
 
         public override void Execute(FormulaContext context)
         {
@@ -109,10 +161,11 @@ namespace CalculatingSystem
 
             foreach (var hit in hits)
             {
-                if (hit.TryGetComponent(out HealthBase health))
+                if (hit.TryGetComponent(out Creature creature))
                 {
-                    health.TakeDamage(Damage.Evaluate(context));
-                    health.Knockback?.StartKnockback(Knockback.Evaluate(context), hit.transform.position - (Vector3)position);
+                    if (!creature.IsEnemyTo(context.Owner)) continue;
+                    creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
+                    creature.StartKnockback(Knockback.Evaluate(context), hit.transform.position - (Vector3)position);
                 }
             }
         }

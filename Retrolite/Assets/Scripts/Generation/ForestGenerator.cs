@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class ForestGenerator : MapGenerator
 {
     [Header("Generation Options")]
-    public Vector2Int Size;
     public float MinDistance, MaxDistance;
     public float MinAreaSize, MaxAreaSize;
     public float RandomAngle;

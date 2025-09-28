@@ -16,7 +16,7 @@ namespace CreatureAI
 
         public override void Activate(Vector3 position)
         {
-            owner.transform.position = Vector2.MoveTowards(owner.transform.position, position, Speed * Time.deltaTime);
+            owner.transform.position += Speed * Time.deltaTime * (position - owner.transform.position);
         }
     }
 }

@@ -60,7 +60,13 @@ public class BulletBase : MonoBehaviour
         Scale = data.Scale.Evaluate(context);
 
         transform.localScale = Vector3.one * Scale;
-        transform.rotation = Quaternion.Euler(0, 0, spread + (Angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg)));
+        float formulaAngle = data.Angle.Evaluate(context);
+        float angle = spread + (Angle + (formulaAngle * Mathf.Rad2Deg));
+        Angle -= formulaAngle + Speed < 0 ? 180 : 0;
+
+        if (float.IsNaN(angle) || float.IsInfinity(angle))
+            angle = 0;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
         SetRendererColor();
     }
 
@@ -73,7 +79,8 @@ public class BulletBase : MonoBehaviour
                 Scale = Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context)));
                 transform.localScale = Vector3.one * Scale;
             }
-            if (!data.Speed.IsConstant()) Speed = data.Speed.Evaluate(context);
+            if (!data.Speed.IsConstant())
+                Speed = data.Speed.Evaluate(context);
             if (!data.Angle.IsConstant())
                 transform.rotation = Quaternion.Euler(0, 0, Angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
 
@@ -126,15 +133,17 @@ public class BulletBase : MonoBehaviour
 
         if (other.TryGetComponent(out Creature creature))
         {
-            // якщо це істота — маємо і Health, і Alignment
             if (!creature.IsEnemyTo(Owner)) return;
 
             context.TargetCreature = creature;
             context.TargetHealth = creature.HealthComponent;
+            context.TargetCreature.StartKnockback(
+            data.Knockback.Evaluate(context) / 10,
+            transform.up
+        );
         }
         else
         {
-            // не істота → шукаємо лише Health
             if (!other.TryGetComponent(out HealthBase health))
             {
                 Deactivate();
@@ -142,15 +151,10 @@ public class BulletBase : MonoBehaviour
             }
 
             context.TargetCreature = null;
-            context.TargetHealth = health;
         }
 
         float damage = data.Damage.Evaluate(context);
         context.TargetHealth.TakeDamage(damage, context);
-        context.TargetHealth.Knockback?.StartKnockback(
-            data.Knockback.Evaluate(context) / 10,
-            transform.up
-        );
 
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
@@ -194,6 +198,27 @@ public class BulletData
         Scale = new ConstantNode(scale);
         Angle = new ConstantNode(angle);
         Knockback = new ConstantNode(knockback);
+
+        if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
+        else IsDynamic = true;
+    }
+
+    public void GenerateRandomFormulas()
+    {
+        Speed = FormulaGenerator.GenerateRandomFormula();
+        Damage = FormulaGenerator.GenerateRandomFormula();
+        LifeTime = FormulaGenerator.GenerateRandomFormula();
+        Scale = FormulaGenerator.GenerateRandomFormula();
+        FormulaNode tempAngle = FormulaGenerator.GenerateRandomFormula();
+        Angle = tempAngle.IsConstant() ? new ConstantNode(0) : tempAngle;
+        Knockback = FormulaGenerator.GenerateRandomFormula();
+
+        Debug.Log($"Speed: {Speed.ToReadableString()}");
+        Debug.Log($"Damage: {Damage.ToReadableString()}");
+        Debug.Log($"LifeTime: {LifeTime.ToReadableString()}");
+        Debug.Log($"Scale: {Scale.ToReadableString()}");
+        Debug.Log($"Angle: {Angle.ToReadableString()}");
+        Debug.Log($"Knockback: {Knockback.ToReadableString()}");
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;

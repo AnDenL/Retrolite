@@ -33,7 +33,11 @@ namespace CreatureAI
         protected float lastUsedTime;
 
         public virtual SkillType Type => SkillType.Empty;
-        public virtual void Init(Creature owner) => this.owner = owner;
+        public virtual void Init(Creature owner)
+        {
+            this.owner = owner;
+            lastUsedTime = Time.time + cooldownTime;
+        }
 
         public virtual bool CanUse(Creature target) => false;
         public virtual bool CanUse(Vector3 position) => false;
@@ -105,5 +109,5 @@ namespace CreatureAI
     }
 
     public enum Alignment { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
-    public enum SkillType { Attack, Defence, PowerUp, Utility, Movement, Empty }
+    public enum SkillType { Attack, Defense, PowerUp, Utility, Movement, Empty }
 }

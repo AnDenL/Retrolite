@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403cc967568ce8e44bbdaefc8e87cfb0, type: 3}
+  m_Name: SpawnSlime
+  m_EditorClassIdentifier: 
+  Priority: 0
+  MinRange: 0
+  MaxRange: 9999
+  cooldownTime: 3
+  action:
+    rid: 7873061277871112192
+  references:
+    version: 2
+    RefIds:
+    - rid: 7873061277871112192
+      type: {class: SpawnObjectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Prefab: {fileID: 4658632795700602020, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}

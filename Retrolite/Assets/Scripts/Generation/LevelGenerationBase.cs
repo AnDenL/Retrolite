@@ -93,5 +93,6 @@ public class MapTile
 
 public abstract class MapGenerator : ScriptableObject
 {
+    public Vector2Int Size;
     public abstract float[,] Generate();
 }

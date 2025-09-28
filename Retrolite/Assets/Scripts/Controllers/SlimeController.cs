@@ -8,6 +8,7 @@ namespace CreatureAI
     {
         private float checkInterval = 2f;
         private PositionSkill baseMovementSkill;
+        private Vector2 targetPosition;
 
         public override void Init(Creature owner)
         {
@@ -19,33 +20,35 @@ namespace CreatureAI
 
         public override void UpdateAI()
         {
+            if (owner.HealthComponent.IsDead || owner.Corruption.isCorrupted) return;
             if (checkInterval < Time.time)
             {
                 target = owner.FindTarget();
-                checkInterval = Time.time + 2f;
-            }
-            if (target != null)
-            {
-                Skill chosen = owner.ActiveSkills
-                    .OrderByDescending(s => s.Priority)
-                    .FirstOrDefault(s => s.CanUse(target));
+                checkInterval = Time.time + 1f;
+                targetPosition = Random.insideUnitCircle;
 
-                if (chosen != null)
+                if (target != null)
                 {
-                    if (chosen is TargetedSkill targeted)
-                        targeted.Use(target);
-                    else if (chosen is PositionSkill pos)
-                        pos.Use(target.transform.position);
-                    else if (chosen is SelfSkill self)
-                        self.Use();
+                    Skill chosen = owner.ActiveSkills
+                        .OrderByDescending(s => s.Priority)
+                        .FirstOrDefault(s => s.CanUse(target));
+
+                    if (chosen != null)
+                    {
+                        if (chosen is TargetedSkill targeted)
+                            targeted.Use(target);
+                        else if (chosen is PositionSkill pos)
+                            pos.Use(target.transform.position);
+                        else if (chosen is SelfSkill self)
+                            self.Use();
+                    }
                 }
             }
             else
             {
                 if (baseMovementSkill != null)
                 {
-                    Vector3 randomDir = Random.insideUnitCircle.normalized;
-                    if (baseMovementSkill.Use(owner.transform.position + randomDir))
+                    if (baseMovementSkill.Use(owner.transform.position + (Vector3)targetPosition))
                     {
                         target = owner.FindTarget();
                     }

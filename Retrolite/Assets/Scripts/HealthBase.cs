@@ -14,6 +14,8 @@ public class HealthBase : MonoBehaviour
 
     public bool IsWeak;
 
+    [SerializeField] protected float destroyDelay = 2f;
+
     [SerializeField] protected Rule[] weaknesses;
 
     public event Action<float, float> OnHealthChanged;
@@ -22,12 +24,9 @@ public class HealthBase : MonoBehaviour
     public event Action<float, FormulaContext> Damaged;
     public event Action OnDeath;
 
-    [HideInInspector] public Knockback Knockback;
-
     protected virtual void Start()
     {
         health = maxHealth;
-        Knockback = GetComponent<Knockback>();
     }
 
     public virtual void Heal(float amount)
@@ -74,5 +73,6 @@ public class HealthBase : MonoBehaviour
         if (isDead) return;
         isDead = true;
         OnDeath?.Invoke();
+        Destroy(gameObject, destroyDelay);
     }
 }

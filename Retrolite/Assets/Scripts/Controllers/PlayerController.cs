@@ -12,6 +12,8 @@ namespace CreatureAI
         {
             base.Init(owner);
 
+            target = MouseTarget.instance;
+
             baseMovementSkill = owner.ActiveSkills
                 .FirstOrDefault(s => s.Type == SkillType.Movement) as PositionSkill;
         }

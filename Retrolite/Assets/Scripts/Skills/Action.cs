@@ -4,8 +4,8 @@ using CalculatingSystem;
 
 namespace CreatureAI
 {
-    [CreateAssetMenu(fileName = "ExplosionAction", menuName = "CreatureAI/Skills/ExplosionAction")]
-    public class ExplosionAction : TargetedSkill
+    [CreateAssetMenu(fileName = "Action", menuName = "CreatureAI/Skills/Action")]
+    public class Action : TargetedSkill
     {
         [SerializeReference] public ActionNode action;
 

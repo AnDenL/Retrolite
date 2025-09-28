@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using CalculatingSystem;
 using CreatureAI;
 using static CreatureAI.Alignment;
 using System;
 
 [RequireComponent(typeof(HealthBase))]
-[RequireComponent(typeof(Corruptible))]
+
 public class Creature : MonoBehaviour
 {
     [Header("Creature")]
@@ -32,12 +33,16 @@ public class Creature : MonoBehaviour
     [HideInInspector] public Animator Animator;
     [HideInInspector] public HealthBase HealthComponent;
     [HideInInspector] public Corruptible Corruption;
+    [HideInInspector] public Rigidbody2D Rb;
+
+    private Transform ui;
 
     protected virtual void Awake()
     {
         HealthComponent = GetComponent<HealthBase>();
         Corruption = GetComponent<Corruptible>();
         Animator = GetComponent<Animator>();
+        Rb = GetComponent<Rigidbody2D>();
 
         foreach (var template in skillTemplates)
         {
@@ -55,9 +60,18 @@ public class Creature : MonoBehaviour
 
         controller = Instantiate(controller);
         controller.Init(this);
+
+        ui = transform.Find("UI");
+
+        if (Corruption != null)
+        {
+            Corruption.OnCorrupting += DestabilizationAnim;
+            Corruption.OnBecameVulnerable += Corrupt;
+        }
+        HealthComponent.OnDeath += DeathEffect;
     }
 
-    public void Update() => controller.UpdateAI();
+    protected virtual void Update() => controller.UpdateAI();
 
     public void AddSkill(Skill skill)
     {
@@ -69,6 +83,43 @@ public class Creature : MonoBehaviour
     {
         passiveSkills.Add(passive);
         passive.Subscribe(this);
+    }
+
+    public void LookAt(Vector3 position)
+    {
+        if (position.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            ui.localScale = new Vector3(1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            ui.localScale = new Vector3(-1, 1, 1);
+        }
+    }
+
+    private void DeathEffect()
+    {
+        Animator.SetTrigger("Death");
+    }
+
+    private void Corrupt()
+    {
+        HealthComponent.IsWeak = true;
+        Animator.SetBool("IsCorrupted", true);
+    }
+
+    private void DestabilizationAnim(int i)
+    {
+        Animator.SetTrigger("Corrupt");
+    }
+
+    public void StartKnockback(float strength, Vector2 dir)
+    {
+        dir.Normalize();
+        Rb.velocity = Vector2.zero;
+        Rb.AddForce(strength * dir, ForceMode2D.Impulse);
     }
 
     public bool IsEnemyTo(Creature other)

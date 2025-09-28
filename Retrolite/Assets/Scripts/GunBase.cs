@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using CalculatingSystem;
@@ -13,7 +12,6 @@ public class GunBase : MonoBehaviour
 
     [SerializeField] public GunData Data;
 
-    protected float fireTime;
     protected bool isReloading;
     protected FormulaContext context;
 
@@ -23,13 +21,12 @@ public class GunBase : MonoBehaviour
 
     protected void Awake()
     {
-        context = new FormulaContext();
-        context.Gun = this;
         reloadBar.SetActive(false);
     }
 
     public void Set(GunData gun)
     {
+        context = new FormulaContext { Gun = this };
         Data = gun;
         GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
 
@@ -40,8 +37,10 @@ public class GunBase : MonoBehaviour
 
     protected void Update()
     {
+        if (Input.GetKeyDown(KeyCode.G)) GenerateRandomFormulas();
+
         if (Data.GunType == GunType.Empty) return;
-        if (Time.time >= fireTime && Input.GetButton("Fire1")) Fire();
+        if (Time.time >= Data.fireTime && Input.GetButton("Fire1")) Fire();
         else if (Input.GetKeyDown(KeyCode.R) && Data.CurrentAmmo != Data.MagazineSize && !isReloading) StartCoroutine(Reload());
     }
 
@@ -56,16 +55,29 @@ public class GunBase : MonoBehaviour
         float shootSpeed = Data.FireRate.Evaluate(context);
 
         if (shootSpeed != 0)
-            fireTime = Time.time + 1f / Mathf.Abs(shootSpeed);
-        else fireTime = float.NaN;
+            Data.fireTime = Time.time + 1f / Mathf.Abs(shootSpeed);
+        else Data.fireTime = float.NaN;
 
-        float Spread = 5 / Data.Accuracy.Evaluate(context);
+        float Accuracy = Data.Accuracy.Evaluate(context);
+        float Spread = Accuracy == 0 ? 0 : 5 / Accuracy;
 
-        bulletPool.Get().Fire(Spread);
+        bulletPool.Get().Fire(Random.Range(-Spread, Spread));
 
         isReloading = false;
         if (Data.MagazineSize != 0) Data.CurrentAmmo -= 1;
         OnFire?.Invoke();
+    }
+
+    protected void GenerateRandomFormulas()
+    {
+        Data.FireRate = FormulaGenerator.GenerateRandomFormula();
+        Data.Accuracy = FormulaGenerator.GenerateRandomFormula();
+
+        Debug.Log($"Fire rate: {Data.FireRate.ToReadableString()}");
+        Debug.Log($"Accuracy: {Data.Accuracy.ToReadableString()}");
+
+        if (Data.BulletData != null)
+            Data.BulletData.GenerateRandomFormulas();
     }
 
     protected IEnumerator Reload()
@@ -85,6 +97,7 @@ public class GunBase : MonoBehaviour
         if (t > 1)
         {
             Data.CurrentAmmo = Data.MagazineSize;
+            Data.fireTime = 0;
         }
         reloadBar.SetActive(false);
     }
@@ -105,6 +118,7 @@ public class GunData
     public GunType GunType;
     public Sprite GunSprite;
     public Sprite BulletSprite;
+    public float fireTime;
 
     public BulletType BulletType;
     public BulletData BulletData;

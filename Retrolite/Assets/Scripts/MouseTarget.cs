@@ -6,8 +6,7 @@ public class MouseTarget : Creature
 
     protected override void Awake()
     {
-        base.Awake();
         instance = this;
     }
-    private void LateUpdate() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    protected override void Update() => transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 }

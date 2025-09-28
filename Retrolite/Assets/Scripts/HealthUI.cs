@@ -10,7 +10,7 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Creature target;
 
     [Header("Scaling")]
-    [SerializeField] private Vector2 uiScale = new Vector2(1f, 1f); // головний параметр
+    [SerializeField] private Vector2 uiScale = new Vector2(1f, 1f);
 
     private const float healthWidth = 1.1f;
     private const float healthHeight = 0.25f;
@@ -37,6 +37,11 @@ public class HealthUI : MonoBehaviour
 
     private void OnStabilityChange(int stability)
     {
+        if (stability <= 0)
+        {
+            stabilitySlider.size = Vector2.zero;
+            return;
+        }
         float segmentWidth = stabilityWidth * uiScale.x;
         stabilitySlider.size = new Vector2(segmentWidth * stability, stabilityHeight * uiScale.y);
     }

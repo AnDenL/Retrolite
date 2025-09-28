@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b387fa93a0856b9439c768ea69a00a0f, type: 3}
+  m_Name: DungeonGenerator
+  m_EditorClassIdentifier: 
+  Size: {x: 400, y: 400}
+  roomCount: 128
+  roomMinSize: {x: 4, y: 4}
+  roomMaxSize: {x: 25, y: 25}
+  wallValue: 10
+  floorValue: 0
