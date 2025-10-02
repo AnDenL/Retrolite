@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 1613340375773011642}
   - component: {fileID: 7388053792659990969}
   - component: {fileID: 2899237436734489123}
+  - component: {fileID: 3995849010913012543}
   m_Layer: 5
   m_Name: Console
   m_TagString: Untagged
@@ -359,6 +360,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3995849010913012543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317355948979942959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a1c4e60eafec1a45a0078b662493cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consoleOutput: {fileID: 733618340476007830}
+  inputField: {fileID: 2909250535940069298}
 --- !u!1 &1623939076689071948
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,7 +3142,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8550403239907120744}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Console, Assembly-CSharp
         m_MethodName: RunCommand
         m_Mode: 1
@@ -3392,7 +3407,6 @@ GameObject:
   - component: {fileID: 9040487219833527783}
   - component: {fileID: 6699226459935921223}
   - component: {fileID: 7620156686938773784}
-  - component: {fileID: 8550403239907120744}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3500,20 +3514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 6748607562734682027}
   selected: {fileID: 0}
---- !u!114 &8550403239907120744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7678366299447890873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a1c4e60eafec1a45a0078b662493cdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consoleOutput: {fileID: 733618340476007830}
-  inputField: {fileID: 2909250535940069298}
+  console: {fileID: 1317355948979942959}
 --- !u!1 &7751810550064051830
 GameObject:
   m_ObjectHideFlags: 0

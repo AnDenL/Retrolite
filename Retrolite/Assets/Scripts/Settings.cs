@@ -1,4 +1,5 @@
 using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
@@ -16,12 +17,7 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
-        masterSlider.value = settings.MasterVolume;
-        musicSlider.value = settings.MusicVolume;
-        effectSlider.value = settings.EffectVolume;
-        masterSlider.onValueChanged.AddListener(OnMasterSliderChanged);
-        musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
-        effectSlider.onValueChanged.AddListener(OnEffectSliderChanged);
+        LoadSettings();
     }
 
     private void OnMasterSliderChanged(float value)
@@ -40,7 +36,48 @@ public class Settings : MonoBehaviour
         mixer.audioMixer.SetFloat("EffectVolume", NumToDecibel(value));
     }
 
-    //public void Save() => settings.Save();
+    private void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+    }
+
+    private void SetFullscreen(bool isFullscreen)
+    {
+        settings.Fullscreen = isFullscreen;
+        Screen.fullScreen = isFullscreen;
+    }
+
+    private void LoadSettings()
+    {
+        masterSlider.value = settings.MasterVolume;
+        musicSlider.value = settings.MusicVolume;
+        effectSlider.value = settings.EffectVolume;
+        masterSlider.onValueChanged.AddListener(OnMasterSliderChanged);
+        musicSlider.onValueChanged.AddListener(OnMusicSliderChanged);
+        effectSlider.onValueChanged.AddListener(OnEffectSliderChanged);
+
+        resolutionDropdown.value = settings.ResolutionIndex;
+        resolutionDropdown.onValueChanged.AddListener(SetResolution);
+        fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
+        fullscreenToggle.isOn = settings.Fullscreen;
+        SetResolution(settings.ResolutionIndex);
+        SetFullscreen(settings.Fullscreen);
+
+        resolutions = Screen.resolutions;
+
+        if (PlayerPrefs.HasKey("ResolutionPreference"))
+            resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");
+        else
+            resolutionDropdown.value = settings.ResolutionIndex;
+
+        if (PlayerPrefs.HasKey("FullscreenPreference"))
+            Screen.fullScreen = Convert.ToBoolean(PlayerPrefs.GetInt("FullscreenPreference"));
+        else
+            Screen.fullScreen = true;
+    }
+
+    public void Save() => settings.Save();
 
     public float NumToDecibel(float num) => Mathf.Log10(num) * 20;
 }
@@ -52,28 +89,30 @@ public class SettingsData
     public float EffectVolume { get; set; }
     public int ResolutionIndex { get; set; }
     public bool Fullscreen { get; set; }
+    public bool UseLua { get; set; }
 
     public SettingsData()
     {
-        //Load();
+        Load();
     }
-    /*  does not work because it is not MonoBehavior
-        public void Save()
-        {
-            PlayerPrefs.SetFloat("MasterVolume", MasterVolume);
-            PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
-            PlayerPrefs.SetFloat("EffectVolume", EffectVolume);
-            PlayerPrefs.SetInt("ResolutionIndex", ResolutionIndex);
-            PlayerPrefs.SetInt("Fullscreen", Fullscreen ? 1 : 0);
-        }
 
-        public void Load()
-        {
-            MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
-            MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
-            EffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);
-            ResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
-            Fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
-        }
-        */
+    public void Save()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", MasterVolume);
+        PlayerPrefs.SetFloat("MusicVolume", MusicVolume);
+        PlayerPrefs.SetFloat("EffectVolume", EffectVolume);
+        PlayerPrefs.SetInt("ResolutionIndex", ResolutionIndex);
+        PlayerPrefs.SetInt("Fullscreen", Fullscreen ? 1 : 0);
+        PlayerPrefs.SetInt("UseLua", UseLua ? 1 : 0);
+    }
+
+    public void Load()
+    {
+        MasterVolume = PlayerPrefs.GetFloat("MasterVolume", 0.5f);
+        MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        EffectVolume = PlayerPrefs.GetFloat("EffectVolume", 1f);
+        ResolutionIndex = PlayerPrefs.GetInt("ResolutionIndex", 0);
+        Fullscreen = PlayerPrefs.GetInt("Fullscreen", 1) == 1;
+        UseLua = PlayerPrefs.GetInt("UseLua", 0) == 1;
+    }
 }

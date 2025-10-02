@@ -8,7 +8,9 @@ public class Menu : MonoBehaviour
     public static float timeScale = 1;
     public static bool isPaused;
 
-    [SerializeField] GameObject menu, selected;
+    [SerializeField] private GameObject menu;
+    [SerializeField] private GameObject selected;
+    [SerializeField] private GameObject console;
 
     private void Awake()
     {
@@ -21,24 +23,32 @@ public class Menu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && menu)
         {
             isPaused = !isPaused;
-            if (isPaused) PauseGame();
-            else ResumeGame();
+            console.SetActive(false);
+            if (isPaused) PauseGame(menu);
+            else ResumeGame(menu);
+        }
+        else if ((Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.BackQuote)) && LuaApi.UseLua)
+        {
+            console.SetActive(!console.activeSelf);
+            menu.SetActive(false);
+            if (console.activeInHierarchy) PauseGame(console);
+            else ResumeGame(console);
         }
     }
 
-    public void PauseGame()
+    public void PauseGame(GameObject panel)
     {
         Time.timeScale = 0;
         Player.canInteract = false;
-        menu.SetActive(true);
+        panel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(selected);
     }
 
-    public void ResumeGame()
+    public void ResumeGame(GameObject panel)
     {
         Time.timeScale = timeScale;
         Player.canInteract = true;
-        menu.SetActive(false);
+        panel.SetActive(false);
     }
 
     public void LoadLevel(int levelIndex)

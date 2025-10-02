@@ -37,7 +37,7 @@ public class GunBase : MonoBehaviour
 
     protected void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G)) GenerateRandomFormulas();
+        if (Input.GetKeyDown(KeyCode.F8)) GenerateRandomFormulas();
 
         if (Data.GunType == GunType.Empty) return;
         if (Time.time >= Data.fireTime && Input.GetButton("Fire1")) Fire();
