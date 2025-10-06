@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public static Menu instance;
-    public static float timeScale = 1;
-    public static bool isPaused;
+    public static float TimeSpeed { get; private set; } = 1;
+    public static bool IsPaused { get; private set; }
 
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject selected;
@@ -22,9 +22,9 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menu)
         {
-            isPaused = !isPaused;
+            IsPaused = !IsPaused;
             console.SetActive(false);
-            if (isPaused) PauseGame(menu);
+            if (IsPaused) PauseGame(menu);
             else ResumeGame(menu);
         }
         else if ((Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.BackQuote)) && LuaApi.UseLua)
@@ -46,7 +46,7 @@ public class Menu : MonoBehaviour
 
     public void ResumeGame(GameObject panel)
     {
-        Time.timeScale = timeScale;
+        Time.timeScale = TimeSpeed;
         Player.canInteract = true;
         panel.SetActive(false);
     }

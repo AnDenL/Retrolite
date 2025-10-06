@@ -7,7 +7,7 @@ public class CameraFollow : MonoBehaviour
 
     private void Update()
     {
-        if (Menu.isPaused) return;
+        if (Menu.IsPaused) return;
         Vector3 mousePosition = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - target.position) / targetWeight;
         transform.position = target.position + mousePosition;
     }
