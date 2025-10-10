@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CalculatingSystem;
+using Unity.VisualScripting;
 
 public class BulletPool
 {
@@ -27,6 +28,7 @@ public class BulletPool
         if (freeBullets.Count > 0)
         {
             var bullet = freeBullets.Dequeue();
+            bullet.Initialize(owner, bulletData, context, this);
             bullet.gameObject.SetActive(true);
             return bullet;
         }

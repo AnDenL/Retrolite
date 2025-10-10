@@ -21,7 +21,7 @@ public class HealthBase : MonoBehaviour
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;
     public event Action<float> OnDamaged;
-    public event Action<float, FormulaContext> Damaged;
+    public event Action<float, FormulaContext> ContextDamaged;
     public event Action OnDeath;
 
     protected virtual void Start()
@@ -51,7 +51,8 @@ public class HealthBase : MonoBehaviour
             foreach (Rule rule in weaknesses)
                 rule.ExecuteAll(context);
 
-        Damaged?.Invoke(damage, context);
+        ContextDamaged?.Invoke(damage, context);
+
         TakeDamage(damage);
     }
 

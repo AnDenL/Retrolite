@@ -8,7 +8,6 @@ namespace CreatureAI
     {
         private float checkTime;
         private bool isSleeping = true;
-        private PositionSkill baseMovementSkill;
 
         public override void Init(Creature owner)
         {
@@ -16,8 +15,6 @@ namespace CreatureAI
 
             if (owner.HealthComponent != null)
                 owner.HealthComponent.OnDamaged += (_) => WakeUp();
-
-            baseMovementSkill = owner.ActiveSkills.FirstOrDefault(s => s.Type == SkillType.Movement) as PositionSkill;
         }
 
         private void WakeUp()
@@ -76,7 +73,7 @@ namespace CreatureAI
                 }
                 else if (dist > 6f)
                 {
-                    baseMovementSkill.Use(owner.transform.position + (owner.transform.position - target.transform.position).normalized * (dist * -0.05f));
+                    movement.Use(owner.transform.position + (owner.transform.position - target.transform.position).normalized * (dist * -0.05f));
                 }
             }
             else

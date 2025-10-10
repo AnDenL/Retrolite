@@ -5,6 +5,11 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] short targetWeight;
 
+    private void Start()
+    {
+        Game.mainCamera = Camera.main;
+    }
+
     private void Update()
     {
         if (Menu.IsPaused) return;

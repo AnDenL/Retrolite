@@ -3,7 +3,7 @@ using UnityEngine;
 namespace CreatureAI
 {
     [CreateAssetMenu(fileName = "Movement", menuName = "CreatureAI/Skills/Movement")]
-    public class Movement : PositionSkill
+    public class Movement : DirectionSkill
     {
         public float Speed = 3f;
 
@@ -14,9 +14,11 @@ namespace CreatureAI
             base.Init(owner);
         }
 
-        public override void Activate(Vector3 position)
+        public override bool CanUse(Vector2 position) => true;
+
+        public override void Activate(Vector2 position)
         {
-            owner.transform.position += Speed * Time.deltaTime * (position - owner.transform.position);
+            owner.transform.position += Speed * Time.deltaTime * (Vector3)position;
         }
     }
 }

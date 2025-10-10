@@ -16,14 +16,13 @@ namespace CreatureAI
         public override void Subscribe(Creature owner)
         {
             base.Subscribe(owner);
-            owner.HealthComponent.OnHealthChanged += CheckAndStartShock;
+            owner.HealthComponent.OnDamaged += OnDamaged;
         }
 
-        public void CheckAndStartShock(float current, float max)
+        public void OnDamaged(float current)
         {
             if (owner.HealthComponent.GetHealthPercent() < 0.5f && shockCoroutine == null)
                 shockCoroutine = owner.StartCoroutine(ShockCoroutine());
-            else if (shockCoroutine != null) owner.StopCoroutine(shockCoroutine);
         }
 
         private IEnumerator ShockCoroutine()

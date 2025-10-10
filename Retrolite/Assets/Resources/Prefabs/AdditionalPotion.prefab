@@ -137,7 +137,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 0.3
-  m_LinearDrag: 0
+  m_LinearDrag: 15
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -178,34 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb95763155c7600bb825b8d9643b9d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 3.9225094
-      outSlope: 3.9225094
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.08168475
-    - serializedVersion: 3
-      time: 1
-      value: 0.006248474
-      inSlope: -4.1937613
-      outSlope: -4.1937613
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.06998521
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
   maxHeight: 0.75
   duration: 0.6
   shadow: {fileID: 2784673796466811786}
-  shadowOffset: {x: 0, y: -0.25, z: 0}
 --- !u!1001 &6895025864508081944
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -236,7 +211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalPosition.z

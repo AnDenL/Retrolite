@@ -15,12 +15,12 @@ namespace CreatureAI
             base.Init(owner);
         }
 
-        public override void Activate(Vector3 position)
+        public override void Activate(Vector2 position)
         {
-            owner.StartKnockback(Speed, position - owner.transform.position);
+            owner.StartKnockback(Speed, (Vector3)position - owner.transform.position);
         }
 
-        public override bool CanUse(Vector3 position)
+        public override bool CanUse(Vector2 position)
         {
             return base.CanUse(position) && owner.Rb.velocity.magnitude < Threshold;
         }

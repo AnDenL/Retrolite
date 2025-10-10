@@ -18,17 +18,6 @@ public class WeaponUI : MonoBehaviour
         UpdateUI();
     }
 
-    private void Update()
-    {
-        if (!Player.canInteract) return;
-        if (guns.Count < 2) return;
-        else if (Input.mouseScrollDelta.y != 0)
-        {
-            int direction = Input.mouseScrollDelta.y > 0 ? -1 : 1;
-            Scroll(direction);
-        }
-    }
-
     private void Scroll(int direction)
     {
         int previousSelected = selected;

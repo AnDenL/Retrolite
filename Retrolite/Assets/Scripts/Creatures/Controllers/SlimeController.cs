@@ -7,28 +7,24 @@ namespace CreatureAI
     public class SlimeController : AIController
     {
         private float checkInterval = 2f;
-        private PositionSkill baseMovementSkill;
         private Vector2 targetPosition;
 
         public override void Init(Creature owner)
         {
             base.Init(owner);
-
-            baseMovementSkill = owner.ActiveSkills
-                .FirstOrDefault(s => s.Type == SkillType.Movement) as PositionSkill;
         }
 
         public override void UpdateAI()
         {
-            if (owner.HealthComponent.IsDead || owner.Corruption.isCorrupted) return;
             if (checkInterval < Time.time)
             {
                 target = owner.FindTarget();
                 checkInterval = Time.time + 1f;
-                targetPosition = Random.insideUnitCircle;
+
 
                 if (target != null)
                 {
+                    targetPosition = target.transform.position - owner.transform.position;
                     Skill chosen = owner.ActiveSkills
                         .OrderByDescending(s => s.Priority)
                         .FirstOrDefault(s => s.CanUse(target));
@@ -43,12 +39,14 @@ namespace CreatureAI
                             self.Use();
                     }
                 }
+                else
+                    targetPosition = Random.insideUnitCircle;
             }
             else
             {
-                if (baseMovementSkill != null)
+                if (movement != null && targetPosition.magnitude != 0)
                 {
-                    if (baseMovementSkill.Use(owner.transform.position + (Vector3)targetPosition))
+                    if (movement.Use(targetPosition))
                     {
                         target = owner.FindTarget();
                     }

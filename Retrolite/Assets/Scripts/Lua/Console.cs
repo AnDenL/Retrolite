@@ -106,6 +106,7 @@ public class Console : MonoBehaviour
     private void OnEnable()
     {
         EventSystem.current.SetSelectedGameObject(inputField.gameObject);
+        inputField.ActivateInputField();
     }
 
     public void RunCommand()
@@ -140,6 +141,7 @@ public class Console : MonoBehaviour
         commandHistory.Insert(1, code);
         historyIndex = 0;
         eventSystem.SetSelectedGameObject(inputField.gameObject);
+        inputField.ActivateInputField();
     }
 
     public void OnTextChange(string text)

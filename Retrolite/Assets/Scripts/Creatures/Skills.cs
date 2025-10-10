@@ -1,24 +1,8 @@
-using System;
 using UnityEngine;
+using System;
 
 namespace CreatureAI
 {
-    [Serializable]
-    public class AIController : ScriptableObject
-    {
-        protected Creature owner;
-        public Creature Owner => owner;
-
-        protected Creature target;
-        public Creature Target => target;
-
-        [SerializeField] protected Alignment alignment;
-        public Alignment Alignment => alignment;
-
-        public virtual void Init(Creature owner) => this.owner = owner;
-        public virtual void UpdateAI() { }
-    }
-
     [Serializable]
     public class Skill : ScriptableObject
     {
@@ -26,8 +10,6 @@ namespace CreatureAI
         public Creature Owner => owner;
 
         public int Priority;
-        public float MinRange = 0f;
-        public float MaxRange = 5f;
 
         public float cooldownTime;
         protected float lastUsedTime;
@@ -40,20 +22,23 @@ namespace CreatureAI
         }
 
         public virtual bool CanUse(Creature target) => false;
-        public virtual bool CanUse(Vector3 position) => false;
+        public virtual bool CanUse(Vector2 position) => false;
         public virtual bool CanUse() => false;
 
         public virtual bool Use(Creature target) => false;
-        public virtual bool Use(Vector3 position) => false;
+        public virtual bool Use(Vector2 position) => false;
         public virtual bool Use() => false;
 
         public virtual void Activate(Creature target) { }
-        public virtual void Activate(Vector3 position) { }
+        public virtual void Activate(Vector2 position) { }
         public virtual void Activate() { }
     }
 
     public abstract class TargetedSkill : Skill
     {
+        public float MinRange = 0f;
+        public float MaxRange = 5f;
+
         public override bool CanUse(Creature target) => target != null && Time.time >= lastUsedTime + cooldownTime &&
             Vector2.Distance(owner.transform.position, target.transform.position) >= MinRange &&
             Vector2.Distance(owner.transform.position, target.transform.position) <= MaxRange;
@@ -67,17 +52,35 @@ namespace CreatureAI
         }
     }
 
+    public abstract class DirectionSkill : Skill
+    {
+        public override bool CanUse(Creature target) => Time.time >= lastUsedTime + cooldownTime;
+        public override bool CanUse(Vector2 position) => Time.time >= lastUsedTime + cooldownTime;
+
+        public override bool Use(Creature target) => Use(target.transform.position);
+        public override bool Use(Vector2 position)
+        {
+            if (!CanUse(position)) return false;
+            lastUsedTime = Time.time;
+            Activate(position.normalized);
+            return true;
+        }
+    }
+
     public abstract class PositionSkill : Skill
     {
+        public float MinRange = 0f;
+        public float MaxRange = 5f;
+
         public override bool CanUse(Creature target) => CanUse(target.transform.position);
 
         public override bool Use(Creature target) => Use(target.transform.position);
 
-        public override bool CanUse(Vector3 position) => Time.time >= lastUsedTime + cooldownTime &&
+        public override bool CanUse(Vector2 position) => Time.time >= lastUsedTime + cooldownTime &&
             Vector2.Distance(owner.transform.position, position) >= MinRange &&
             Vector2.Distance(owner.transform.position, position) <= MaxRange;
 
-        public override bool Use(Vector3 position)
+        public override bool Use(Vector2 position)
         {
             if (!CanUse(position)) return false;
             lastUsedTime = Time.time;
@@ -108,6 +111,5 @@ namespace CreatureAI
         public virtual void Subscribe(Creature owner) => this.owner = owner;
     }
 
-    public enum Alignment { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
     public enum SkillType { Attack, Defense, PowerUp, Utility, Movement, Empty }
 }

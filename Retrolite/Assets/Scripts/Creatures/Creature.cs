@@ -1,12 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
-using CalculatingSystem;
 using CreatureAI;
 using static CreatureAI.Alignment;
 using System;
 
 [RequireComponent(typeof(HealthBase))]
-
+[RequireComponent(typeof(Corruptible))]
 public class Creature : MonoBehaviour
 {
     [Header("Creature")]
@@ -18,17 +17,23 @@ public class Creature : MonoBehaviour
 
     [SerializeField] private List<Skill> skillTemplates = new();
     [SerializeField] private List<PassiveSkill> passiveTemplates = new();
+    [SerializeField] private DirectionSkill baseMovementSkill;
 
     private readonly List<Skill> activeSkills = new();
     private readonly List<PassiveSkill> passiveSkills = new();
 
     public IReadOnlyList<Skill> ActiveSkills => activeSkills;
     public IReadOnlyList<PassiveSkill> PassiveSkills => passiveSkills;
+    public DirectionSkill BaseMovement { get; private set; }
+
     public Creature Target => controller.Target;
     public Alignment Alignment => controller.Alignment;
 
     public event Action<Collision2D> CollisionEnter2D;
     public event Action<Collision2D> CollisionStay2D;
+
+    public event Action<Skill> OnNewSkill;
+    public event Action<PassiveSkill> OnNewPassive;
 
     [HideInInspector] public Animator Animator;
     [HideInInspector] public HealthBase HealthComponent;
@@ -36,6 +41,7 @@ public class Creature : MonoBehaviour
     [HideInInspector] public Rigidbody2D Rb;
 
     private Transform ui;
+    private int _isBackwards;
 
     protected virtual void Awake()
     {
@@ -43,6 +49,9 @@ public class Creature : MonoBehaviour
         Corruption = GetComponent<Corruptible>();
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
+
+        controller = Instantiate(controller);
+        controller.Init(this);
 
         foreach (var template in skillTemplates)
         {
@@ -58,8 +67,8 @@ public class Creature : MonoBehaviour
             AddPassive(instance);
         }
 
-        controller = Instantiate(controller);
-        controller.Init(this);
+        BaseMovement = Instantiate(baseMovementSkill);
+        BaseMovement.Init(this);
 
         ui = transform.Find("UI");
 
@@ -69,20 +78,27 @@ public class Creature : MonoBehaviour
             Corruption.OnBecameVulnerable += Corrupt;
         }
         HealthComponent.OnDeath += DeathEffect;
+        _isBackwards = Animator.StringToHash("IsBackwards");
     }
 
-    protected virtual void Update() => controller.UpdateAI();
+    protected virtual void Update()
+    {
+        if (HealthComponent.IsDead || Corruption.isCorrupted) return;
+        controller.UpdateAI();
+    }
 
     public void AddSkill(Skill skill)
     {
         activeSkills.Add(skill);
         skill.Init(this);
+        OnNewSkill?.Invoke(skill);
     }
 
     public void AddPassive(PassiveSkill passive)
     {
         passiveSkills.Add(passive);
         passive.Subscribe(this);
+        OnNewPassive?.Invoke(passive);
     }
 
     public void LookAt(Vector3 position)
@@ -91,11 +107,13 @@ public class Creature : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
             ui.localScale = new Vector3(1, 1, 1);
+            Animator.SetBool(_isBackwards, false);
         }
         else
         {
             transform.localScale = new Vector3(-1, 1, 1);
             ui.localScale = new Vector3(-1, 1, 1);
+            Animator.SetBool(_isBackwards, true);
         }
     }
 

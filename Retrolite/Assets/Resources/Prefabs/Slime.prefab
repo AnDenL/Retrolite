@@ -9831,9 +9831,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1784670741396113501}
   - {fileID: 4704283252637609224}
   - {fileID: 5572823601709949424}
-  - {fileID: 1784670741396113501}
   - {fileID: 2860169070962625441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9969,10 +9969,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   visionRange: 8
   controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
-  skillTemplates:
-  - {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
+  skillTemplates: []
   passiveTemplates:
   - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
+  baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
@@ -10169,7 +10169,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.27
+      value: -0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
       propertyPath: m_LocalPosition.z

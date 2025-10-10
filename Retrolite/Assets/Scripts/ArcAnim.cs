@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class ArcAnim : MonoBehaviour
 {
-    [Header("Curve")]
-    [SerializeField] AnimationCurve heightCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-    [SerializeField] float maxHeight = 0.75f;
-    [SerializeField] float duration = 0.6f;
-
-    [Header("Shadow")]
+    [SerializeField] float maxHeight = 1f;
+    public float duration = 0.6f;
     [SerializeField] Transform shadow;
-    [SerializeField] Vector3 shadowOffset = new Vector3(0, -0.25f, 0);
+
+    private Vector3 shadowOffset = new Vector3(0, -0.25f, 0);
 
     private SpriteRenderer sr;
 
@@ -19,6 +16,8 @@ public class ArcAnim : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         if (shadow == null && transform.childCount > 0)
             shadow = transform.GetChild(0);
+
+        shadowOffset = shadow.localPosition;
     }
 
     public void DropTo(Vector3 targetPosition, System.Action onFinish = null)
@@ -36,7 +35,8 @@ public class ArcAnim : MonoBehaviour
 
         for (float t = 0; t < 1f; t += Time.deltaTime / duration)
         {
-            float h = heightCurve.Evaluate(t) * maxHeight;
+            float h = (1f - Mathf.Pow(2f * t - 1f, 2f)) * maxHeight;
+
             transform.position = Vector3.Lerp(startPos, targetPos, t) + Vector3.up * h;
 
             if (shadow)
