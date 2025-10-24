@@ -7,8 +7,8 @@ public class HealingPotion : Interactable
 
     public override void Interact(Player player)
     {
-        player.Heal(healAmount);
-        if (additionalHeal != 0) player.AddHealth(additionalHeal);
+        player.HealthComponent.Heal(healAmount);
+        if (additionalHeal != 0) player.HealthComponent.AddMaximumHealth(additionalHeal);
         Destroy(gameObject);
     }
 }

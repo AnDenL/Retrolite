@@ -23,11 +23,13 @@ public class Chest : Interactable
             isOpen = false;
             return;
         }
+
         isOpen = true;
         animator.SetBool("IsOpen", true);
         player.AddMoney(reward.money, transform.position);
         player.AddCode(reward.code, transform.position);
-        player.AddHealth(reward.health);
+        player.HealthComponent.AddMaximumHealth(reward.health);
+        
         if (reward.items != null && reward.items.Length > 0) StartCoroutine(SpawnObjects(reward.items, player.transform.position));
         reward = new Reward();
     }

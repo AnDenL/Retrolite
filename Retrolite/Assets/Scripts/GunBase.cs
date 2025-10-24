@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using CalculatingSystem;
+using CreatureAI;
 
 public class GunBase : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class GunBase : MonoBehaviour
 
         bulletPool?.Clear();
 
-        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), Player.instance.Creature, Data.BulletData, context);
+        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), PlayerController.Player, Data.BulletData, context);
     }
 
     protected void Update()

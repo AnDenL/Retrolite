@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1264232799100110172}
   - component: {fileID: 3811287405736332542}
   - component: {fileID: 4647600661972657186}
-  - component: {fileID: 8617120841074525038}
+  - component: {fileID: 6631921096664524877}
   - component: {fileID: 6411304929489194089}
   m_Layer: 3
   m_Name: Player
@@ -112,23 +112,6 @@ MonoBehaviour:
   destroyDelay: 2
   weaknesses: []
   lives: 0
-  moveSpeed: 0
-  inertia: 8
-  rotation: {fileID: 3473850372348920174}
-  hand: {fileID: 3179825005254226916}
-  arm1: {fileID: 6498460163385416186}
-  arm2: {fileID: 840005569250673569}
-  handsWithoutGun: {fileID: 7142831337059248852}
-  slashEffect: {fileID: 158567522758415259, guid: 8462e718081595e46a6e807f696a0beb, type: 3}
-  gun: {fileID: 2725822582328639035}
-  attackTrail: {fileID: 3363244228137025050}
-  trailRenderer: {fileID: 3128735029863287220}
-  glitchRenderer: {fileID: 2169259412866065879}
-  glitchParticles: {fileID: 1861381205673227825}
-  money: 0
-  bits: 0
-  coinParticles: {fileID: 8541644295032527401}
-  codeParticles: {fileID: 2915219203133694524}
   Creature: {fileID: 0}
   references:
     version: 2
@@ -216,7 +199,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &8617120841074525038
+--- !u!114 &6631921096664524877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,19 +208,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 135032362516127119}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
+  m_Script: {fileID: 11500000, guid: f956bb98e7058c34fb7aad4294f3fe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 12
+  visionRange: 24
+  speed: 110
   controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
-  skillTemplates:
-  - {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
+  skillTemplates: []
   passiveTemplates: []
   baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
   Rb: {fileID: 0}
+  rotation: {fileID: 3473850372348920174}
+  hand: {fileID: 3179825005254226916}
+  arm1: {fileID: 6498460163385416186}
+  arm2: {fileID: 840005569250673569}
+  handsWithoutGun: {fileID: 7142831337059248852}
+  slashEffect: {fileID: 1499127128374902471}
+  gun: {fileID: 2725822582328639035}
+  attackTrail: {fileID: 3128735029863287220}
+  money: 0
+  bits: 0
+  coinParticles: {fileID: 8541644295032527401}
+  codeParticles: {fileID: 2915219203133694524}
 --- !u!114 &6411304929489194089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5241,7 +5236,7 @@ GameObject:
   - component: {fileID: 3932443247017405139}
   - component: {fileID: 3363244228137025050}
   m_Layer: 0
-  m_Name: Trail
+  m_Name: AttackSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5401,7 +5396,7 @@ Transform:
   m_GameObject: {fileID: 1796431053214943738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.334, y: -0.285, z: 0}
+  m_LocalPosition: {x: 0.334, y: -0.285, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5471,7 +5466,7 @@ GameObject:
   - component: {fileID: 1861381205673227825}
   - component: {fileID: 5556733449710188306}
   m_Layer: 3
-  m_Name: Particles
+  m_Name: FloorTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10564,7 +10559,7 @@ Transform:
   m_GameObject: {fileID: 4587782505591128997}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.155, y: 0.10500002, z: 0}
+  m_LocalPosition: {x: -0.155, y: 0.10500002, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10609,9 +10604,9 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1841817529
+  m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Positions:
   - {x: -0.2, y: 1.2256095, z: 0}
   - {x: -0.3, y: 0.7, z: -2}
@@ -10985,7 +10980,7 @@ GameObject:
   - component: {fileID: 6476878969016732552}
   - component: {fileID: 3128735029863287220}
   m_Layer: 3
-  m_Name: Trail
+  m_Name: DashTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16376,7 +16371,7 @@ Transform:
   m_GameObject: {fileID: 8908068526602855373}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.252, y: -0.34, z: 0}
+  m_LocalPosition: {x: -0.252, y: -0.34, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

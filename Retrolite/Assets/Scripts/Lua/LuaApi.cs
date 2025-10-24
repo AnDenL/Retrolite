@@ -19,7 +19,7 @@ public static class LuaApi
     public static void Register(Script lua)
     {
         UserData.RegisterAssembly();
-        UserData.RegisterType<Player>();
+        UserData.RegisterType<PlayerHealth>();
         UserData.RegisterType<Creature>();
         UserData.RegisterType<FormulaNode>();
         UserData.RegisterType<HealthBase>();
@@ -46,7 +46,7 @@ public static class LuaApi
         lua.Globals["RandomRange"] = (Func<float, float, float>)UnityEngine.Random.Range;
         lua.Globals["CreateEmpty"] = (Func<string, GameObject>)((name) => new GameObject(name));
 
-        lua.Globals["Player"] = Player.instance;
+        lua.Globals["Player"] = PlayerController.Player;
     }
 
     public static Creature FindCreatureByName(string name)

@@ -5,8 +5,7 @@ namespace CreatureAI
     [CreateAssetMenu(fileName = "SmoothMovement", menuName = "CreatureAI/Skills/SmoothMovement")]
     public class SmoothMovement : DirectionSkill
     {
-        public float Speed = 3f;
-
+        public float Speed = 3;
         public override SkillType Type => SkillType.Movement;
 
         public override void Init(Creature owner)
@@ -18,7 +17,7 @@ namespace CreatureAI
 
         public override void Activate(Vector2 direction)
         {
-            owner.Rb.velocity += direction * Speed * Time.deltaTime;
+            owner.Rb.velocity += owner.Speed * Speed * Time.deltaTime * direction;
         }
     }
 }

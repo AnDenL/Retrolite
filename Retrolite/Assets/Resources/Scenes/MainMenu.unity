@@ -496,14 +496,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.0015649452
     width: 1
-    height: 1
+    height: 0.9953052
   near clip plane: -1000
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.625
+  orthographic size: 6.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5708,7 +5708,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 1
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 17
@@ -5748,6 +5748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 869294799}
   selected: {fileID: 1909047546}
+  console: {fileID: 0}
 --- !u!114 &1657271096
 MonoBehaviour:
   m_ObjectHideFlags: 0

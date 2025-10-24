@@ -10,10 +10,10 @@ public class Creature : MonoBehaviour
 {
     [Header("Creature")]
 
+    [SerializeField] private AIController controller;
+    
     [SerializeField] protected float visionRange;
     public float VisionRange => visionRange;
-
-    [SerializeField] private AIController controller;
 
     [SerializeField] private List<Skill> skillTemplates = new();
     [SerializeField] private List<PassiveSkill> passiveTemplates = new();
@@ -24,6 +24,12 @@ public class Creature : MonoBehaviour
 
     public IReadOnlyList<Skill> ActiveSkills => activeSkills;
     public IReadOnlyList<PassiveSkill> PassiveSkills => passiveSkills;
+
+
+    [Header("Movement")]
+
+    [SerializeField] protected float speed = 5;
+    public float Speed => speed;
     public DirectionSkill BaseMovement { get; private set; }
 
     public Creature Target => controller.Target;
@@ -41,7 +47,10 @@ public class Creature : MonoBehaviour
     [HideInInspector] public Rigidbody2D Rb;
 
     private Transform ui;
+
     private int _isBackwards;
+
+    private bool facingLeft;
 
     protected virtual void Awake()
     {
@@ -107,13 +116,24 @@ public class Creature : MonoBehaviour
         {
             transform.localScale = new Vector3(1, 1, 1);
             ui.localScale = new Vector3(1, 1, 1);
-            Animator.SetBool(_isBackwards, false);
+            facingLeft = true;
         }
         else
         {
             transform.localScale = new Vector3(-1, 1, 1);
             ui.localScale = new Vector3(-1, 1, 1);
-            Animator.SetBool(_isBackwards, true);
+            facingLeft = false;
+        }
+    }
+
+    public void UpdateAnimationState()
+    {
+        if (Rb.velocity.sqrMagnitude > 0.001f)
+        {
+            bool movingLeft = Rb.velocity.x < 0f;
+            bool isBackwards = movingLeft != facingLeft;
+
+            Animator.SetBool(_isBackwards, isBackwards);
         }
     }
 

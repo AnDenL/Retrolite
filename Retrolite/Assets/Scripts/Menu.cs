@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using CreatureAI;
 
 public class Menu : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class Menu : MonoBehaviour
     public void PauseGame(GameObject panel)
     {
         Time.timeScale = 0;
-        Player.canInteract = false;
+        PlayerController.CanInteract = false;
         panel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(selected);
     }
@@ -47,7 +48,7 @@ public class Menu : MonoBehaviour
     public void ResumeGame(GameObject panel)
     {
         Time.timeScale = TimeSpeed;
-        Player.canInteract = true;
+        PlayerController.CanInteract = true;
         panel.SetActive(false);
     }
 

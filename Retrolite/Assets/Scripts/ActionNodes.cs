@@ -36,7 +36,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            Player.instance.Heal(Amount.Evaluate(context));
+            context.TargetCreature.HealthComponent.Heal(Amount.Evaluate(context));
         }
 
         public override string ToReadableString() => $"Heal player for {Amount.ToReadableString()}";
@@ -49,7 +49,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            Player.instance.AddMoney((int)Money.Evaluate(context));
+            PlayerController.Player.AddMoney((int)Money.Evaluate(context), context.TargetCreature.transform.position);
         }
 
         public override string ToReadableString() => $"Give {Money.ToReadableString()} money";
@@ -62,7 +62,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            Player.instance.AddCode((int)Code.Evaluate(context));
+            PlayerController.Player.AddCode((int)Code.Evaluate(context));
         }
 
         public override string ToReadableString() => $"Give {Code.ToReadableString()} money";

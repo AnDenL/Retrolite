@@ -5,7 +5,7 @@ using CalculatingSystem;
 namespace CreatureAI
 {
     [CreateAssetMenu(fileName = "Action", menuName = "CreatureAI/Skills/Action")]
-    public class Action : TargetedSkill
+    public class ActionSkill : TargetedSkill
     {
         [SerializeReference] public ActionNode action;
 

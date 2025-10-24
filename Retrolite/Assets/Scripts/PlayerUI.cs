@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using CreatureAI;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -26,9 +27,9 @@ public class PlayerUI : MonoBehaviour
 
     private void Awake()
     {
-        Player player = FindAnyObjectByType<Player>();
+        Player player = PlayerController.Player;
 
-        player.OnHealthChanged += UpdateHealthUI;
+        player.HealthComponent.OnHealthChanged += UpdateHealthUI;
         player.OnMoneyChange += UpdateMoneyText;
         player.OnBitsChange += UpdateBitsText;
     }

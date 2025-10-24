@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
+    public static SaveSystem instance;
     public static SaveData CurrentSave;
 
     [SerializeField] DataMode dataMode;
 
-    private void Start()
+    private void Awake()
     {
+        instance = this;
+
         switch (dataMode)
         {
             case DataMode.Run:
@@ -20,8 +23,6 @@ public class SaveSystem : MonoBehaviour
                 CurrentSave = new SaveData(100f, 100f, new GunData(), 0, 0, 0);
                 break;
         }
-
-        Player.instance.SetSaveData(CurrentSave);
     }
 }
 

@@ -115,7 +115,7 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void SetRendererColor()
     {
-        float r = data.Damage.Evaluate(context) / 5 + (context.Owner.IsEnemyTo(Player.instance.Creature) ? 0 : 5);
+        float r = data.Damage.Evaluate(context) / 5 + (context.Owner.IsEnemyTo(PlayerController.Player) ? 0 : 5);
         float g = life / 3;
         float b = Speed / 5;
         color = new Color(

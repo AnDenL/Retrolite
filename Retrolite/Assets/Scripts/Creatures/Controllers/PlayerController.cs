@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace CreatureAI
 {
@@ -9,9 +8,21 @@ namespace CreatureAI
     {
         public Dictionary<KeyCode, ISkillSlot> SkillSlots = new();
 
+        public static Player Player => (Player)instance.Owner;
+
+        public static PlayerController instance;
+        public static bool CanInteract = true;
+
         public override void Init(Creature owner)
         {
             base.Init(owner);
+
+            if (instance != null)
+            {
+                Debug.LogWarning("Multiple PlayerController instances detected!");
+                return;
+            }
+            instance = this;
 
             target = MouseTarget.instance;
             owner.OnNewSkill += NewSlot;
@@ -19,6 +30,9 @@ namespace CreatureAI
 
         public override void UpdateAI()
         {
+            if (!CanInteract)
+                return;
+            
             Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
 
             foreach (var slot in SkillSlots)

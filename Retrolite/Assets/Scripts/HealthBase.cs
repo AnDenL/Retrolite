@@ -67,6 +67,23 @@ public class HealthBase : MonoBehaviour
         OnDamaged?.Invoke(damage);
         OnHealthChanged?.Invoke(health, maxHealth);
     }
+
+    public virtual void AddMaximumHealth(float amount)
+    {
+        if (amount <= 0)
+            return;
+
+        maxHealth += amount;
+        OnHealthChanged?.Invoke(health, maxHealth);
+    }
+
+    public virtual void SetHealth(float Health, float Maxhealth)
+    {
+        health = Health;
+        maxHealth = MaxHealth;
+        OnHealthChanged?.Invoke(health, maxHealth);
+    }
+
     public virtual float GetHealthPercent() => health / maxHealth;
 
     protected virtual void Die()

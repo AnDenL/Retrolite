@@ -29,7 +29,6 @@ public class ArcAnim : MonoBehaviour
     {
         Vector3 startPos = transform.position;
 
-        if (sr) sr.sortingOrder = -2;
         Collider2D col = GetComponent<Collider2D>();
         if (col) col.enabled = false;
 
@@ -48,7 +47,6 @@ public class ArcAnim : MonoBehaviour
         transform.position = targetPos;
         if (shadow) shadow.localPosition = shadowOffset;
 
-        if (sr) sr.sortingOrder = -3;
         if (col) col.enabled = true;
 
         onFinish?.Invoke();

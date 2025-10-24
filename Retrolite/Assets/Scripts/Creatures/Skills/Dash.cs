@@ -3,7 +3,7 @@ using UnityEngine;
 namespace CreatureAI
 {
     [CreateAssetMenu(fileName = "Dash", menuName = "CreatureAI/Skills/Dash")]
-    public class Dash : PositionSkill
+    public class Dash : DirectionSkill
     {
         public float Speed = 3f;
         public float Threshold = 0.25f;
@@ -15,9 +15,9 @@ namespace CreatureAI
             base.Init(owner);
         }
 
-        public override void Activate(Vector2 position)
+        public override void Activate(Vector2 direction)
         {
-            owner.StartKnockback(Speed, (Vector3)position - owner.transform.position);
+            owner.StartKnockback(Speed, direction);
         }
 
         public override bool CanUse(Vector2 position)

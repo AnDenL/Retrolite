@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using CreatureAI;
 
 public class Dummy : HealthBase
 {
@@ -19,7 +20,7 @@ public class Dummy : HealthBase
         text.gameObject.SetActive(true);
         text.text = Math.Round(damage, 2).ToString();
 
-        if (Player.instance.transform.position.x > transform.position.x) animator.SetTrigger("Hit");
+        if (PlayerController.Player.transform.position.x > transform.position.x) animator.SetTrigger("Hit");
         else animator.SetTrigger("HitBack");
 
         StartCoroutine(TextFade());

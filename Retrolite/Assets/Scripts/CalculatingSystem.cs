@@ -7,6 +7,7 @@ namespace CalculatingSystem
     using static CalculatingSystem.LogicOperator;
     using static CalculatingSystem.ComparisonOperator;
     using static CalculatingSystem.ConditionVariable;
+    using CreatureAI;
 
     public static class FormulaGenerator
     {
@@ -197,10 +198,10 @@ namespace CalculatingSystem
                 BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
                 Echo => context.Gun.Data.Echo,
                 Distance => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
-                PlayerDistance => Vector2.Distance(Player.instance.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
+                PlayerDistance => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
                 Ammo => context.Gun != null ? context.Gun.Data.CurrentAmmo : Break(variable, context),
                 RandomNum => UnityEngine.Random.Range(-5f, 5f),
-                Money => Player.instance.GetMoney(),
+                Money => PlayerController.Player.GetMoney(),
                 Speed => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),
                 Size => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
                 BulletSpread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,

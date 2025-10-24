@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority: 0
   cooldownTime: 0
-  Speed: 145
+  Speed: 3
