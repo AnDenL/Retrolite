@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace CreatureAI
 {
-    public class UseWeapon : DirectionSkill
+    [CreateAssetMenu(fileName = "UseWeapon", menuName = "CreatureAI/Skills/UseWeapon")]
+    public class UseWeapon : SelfSkill
     {
         public override SkillType Type => SkillType.Attack;
 
@@ -14,16 +15,21 @@ namespace CreatureAI
         {
             base.Init(owner);
             weaponManager = Instantiate(weaponManagerPrefab, owner.transform).GetComponent<WeaponManager>();
+            weaponManager.Init(owner);
+            if (owner is Player player)
+            {
+                player.WeaponManager = weaponManager;
+            }
         }
 
-        public override bool CanUse(Creature target)
+        public override bool CanUse()
         {
-            return base.CanUse(target) && weaponManager != null;
+            return weaponManager.CanShoot();
         }
 
-        public override void Activate(Creature target)
+        public override void Activate()
         {
-            
+            weaponManager.Shoot();
         }
     }
 }

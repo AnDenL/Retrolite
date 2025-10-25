@@ -32,14 +32,19 @@ namespace CreatureAI
         {
             if (!CanInteract)
                 return;
-            
+
             Vector2 moveDir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+
+            owner.LookAt(Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
 
             foreach (var slot in SkillSlots)
                 if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
 
             movement.Use(moveDir);
         }
+        
+        public override Vector3 GetDirectionToTarget() =>
+            (Game.mainCamera.ScreenToWorldPoint(Input.mousePosition) - Owner.transform.position).normalized;
 
         private void NewSlot(Skill skill)
         {
@@ -59,7 +64,7 @@ namespace CreatureAI
         }
 
         //Default key bindings for different skill types, can be customized by player later
-        private KeyCode GetKeyCodeByType(SkillType type)
+        private static KeyCode GetKeyCodeByType(SkillType type)
         {
             KeyCode result = KeyCode.None;
 
@@ -89,7 +94,7 @@ namespace CreatureAI
 
             foreach (var key in keys)
             {
-                if (!SkillSlots.ContainsKey(key))
+                if (!instance.SkillSlots.ContainsKey(key))
                     return key;
             }
 

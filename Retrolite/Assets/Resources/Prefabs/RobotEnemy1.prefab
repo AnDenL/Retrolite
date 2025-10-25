@@ -55,14 +55,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7ad960439ffde746926d638355c64f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 16
   controller: {fileID: 11400000, guid: d1991754f7401704c98db3d3eeff6fc5, type: 2}
+  visionRange: 16
   skillTemplates:
   - {fileID: 11400000, guid: 8edbf97dec639ed4db3760974cf7c4a7, type: 2}
   passiveTemplates:
   - {fileID: 11400000, guid: bad3eb06392d311459a48b0173f5830d, type: 2}
   - {fileID: 11400000, guid: 994ac98ddbf9a824d9ec95df6dfde6fb, type: 2}
   baseMovementSkill: {fileID: 11400000, guid: 650f9d3e95b076b4da7daaa00087f380, type: 2}
+  speed: 5
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
@@ -352,7 +353,7 @@ Transform:
   m_GameObject: {fileID: 1527559790730764259}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.189, y: 0, z: 0}
+  m_LocalPosition: {x: -0.184, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15128,7 +15129,7 @@ Transform:
   m_GameObject: {fileID: 8139260781874101948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.249, z: 0}
+  m_LocalPosition: {x: 0.127, y: 0.249, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

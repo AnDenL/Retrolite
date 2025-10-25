@@ -5,27 +5,17 @@ using UnityEngine;
 public class Player : Creature
 {
     [Header("Player")]
-    [SerializeField] Transform rotation;
-    [SerializeField] Transform hand;
-    [SerializeField] LinePoints arm1, arm2;
-    [SerializeField] GameObject handsWithoutGun;
-    [SerializeField] GameObject slashEffect;
-    [SerializeField] GunBase gun;
-    [SerializeField] TrailRenderer attackTrail;
-
-    private Transform hand1, hand2;
-
-    [Header("Interact")]
     [SerializeField] int money;
     [SerializeField] int bits;
     [SerializeField] ParticleSystem coinParticles, codeParticles;
 
     private GameObject lastInteractedObject;
-    private Camera mainCamera;
     private LayerMask interactMask;
 
     private ParticleSystem.ShapeModule coinShape, codeShape;
     private ParticleSystem.EmissionModule coinEmission, codeEmission;
+
+    public WeaponManager WeaponManager;
 
     public event Action<int> OnMoneyChange;
     public event Action<int> OnBitsChange;
@@ -33,15 +23,11 @@ public class Player : Creature
     protected override void Awake()
     {
         base.Awake();
-        mainCamera = Camera.main;
     }
 
     private void Start()
     {
         interactMask = LayerMask.GetMask("Interactable");
-
-        hand1 = handsWithoutGun.transform.GetChild(0);
-        hand2 = handsWithoutGun.transform.GetChild(1);
 
         coinShape = coinParticles.shape;
         coinEmission = coinParticles.emission;
@@ -53,56 +39,12 @@ public class Player : Creature
     protected override void Update()
     {
         base.Update();
-        Rotate();
 
         OutlineObject();
         if (Input.GetKeyDown(KeyCode.E))
             InteractObject();
     }
 
-    #region Gun
-
-    public GunData SetGun(GunData gunData)
-    {
-        GunData previousGunData = gun.Data;
-        gun.Set(gunData);
-        if (gunData.GunType == GunType.Empty)
-        {
-            rotation.gameObject.SetActive(false);
-            handsWithoutGun.SetActive(true);
-            //arm1.points[1] = hand1;
-            //arm2.points[1] = hand2;
-        }
-        else
-        {
-            rotation.gameObject.SetActive(true);
-            handsWithoutGun.SetActive(false);
-            //arm1.points[1] = hand;
-            //arm2.points[1] = hand;
-        }
-
-        return previousGunData;
-    }
-
-    private void Rotate()
-    {
-        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
-        direction.Normalize();
-
-        if (direction.x < 0)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-            Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") > 0);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-            Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") < 0);
-        }
-    }
-
-    #endregion
     #region Interact
 
     private void InteractObject()
@@ -209,7 +151,6 @@ public class Player : Creature
     public void SetSaveData(SaveData data)
     {
         HealthComponent.SetHealth(data.PlayerHealth, data.PlayerMaxHealth);
-        SetGun(data.PlayerWeapon);
         money = data.PlayerMoney;
         OnMoneyChange?.Invoke(money);
         bits = data.PlayerCode;

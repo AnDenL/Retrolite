@@ -14,61 +14,82 @@ public class WeaponManager : MonoBehaviour
     private LinePoints handController;
     private Transform[] handsWithoutGun;
 
+    private int selected = 0;
 
-    private void Init(Creature owner)
+    public void Init(Creature owner)
     {
         this.owner = owner;
-        handController = owner.transform.Find("Arms").GetComponent<LinePoints>();
-        handsWithoutGun = handController.GetEndPointPositions();
+        var arms = owner.transform.Find("Arms");
+        if (arms != null) handController = arms.GetComponent<LinePoints>();
+        else handController = null; // або знайти іншу логіку
+        guns = new List<GunData> { new() };
+        SelectGun(0);
     }
 
     private void ToggleHands(bool active)
     {
+        if (handController == null) return;
         if (active)
         {
-            handController.gameObject.SetActive(true);
+            handController.transform.GetChild(0).gameObject.SetActive(true);
             handController.SetEndPointPositions(handsWithoutGun);
+            handTransform.gameObject.SetActive(false);
         }
         else
         {
-            handController.gameObject.SetActive(false);
+            handController.transform.GetChild(0).gameObject.SetActive(false);
             handController.SetEndPointPositions(handTransform);
+            handTransform.gameObject.SetActive(true);
         }
     }
 
     private void Update()
     {
-        Rotate();
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            int direction = Input.mouseScrollDelta.y > 0 ? -1 : 1;
+            Scroll(direction);
+        }
     }
 
     public void AddGun(GunData gunData)
     {
+        if (gunData.GunType == GunType.Empty) return;
         guns.Add(gunData);
     }
 
-    public void SelectGun(int index)
+    private void Scroll(int direction)
     {
-        GunData selectedGun = guns[index];
-        gun.Set(selectedGun);
-        if (selectedGun.GunType == GunType.Empty)
-        {
-            ToggleHands(true);
-        }
-        else
-        {
-            ToggleHands(false);
-        }
+        if (guns.Count <= 1) return;
+        int previousSelected = selected;
+        selected += direction;
+
+        if (selected < 0) selected = guns.Count - 1;
+        else if (selected > guns.Count - 1) selected = 0;
+        if (previousSelected != selected) SelectGun(selected);
     }
 
-    public void Shoot(Vector3 direction)
+    private void SelectGun(int index)
     {
-        // Implement shooting logic here
+        GunData selectedGun = guns[index];
+        gun.Set(selectedGun, owner);
+        Hints.Show("Equipped " + selectedGun.Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));
+        ToggleHands(selectedGun.GunType == GunType.Empty);
+    }
+
+    public void Shoot()
+    {
+        gun.Fire();
+        transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + UnityEngine.Random.Range(-90f, 90f));
+    }
+
+    public bool CanShoot()
+    {
+        return gun.Data.GunType != GunType.Empty && (gun.Data.fireTime <= Time.time || float.IsNaN(gun.Data.fireTime));
     }
     
-    private void Rotate()
+    public void Rotate(Vector3 direction)
     {
-        Vector2 mousePosition = Game.mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction = mousePosition - (Vector2)transform.position + Vector2.down;
         direction.Normalize();
 
         direction = direction.x < 0 ? -direction : direction;
@@ -76,6 +97,6 @@ public class WeaponManager : MonoBehaviour
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         handTransform.localPosition = new Vector3(0.65f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        transform.rotation = Quaternion.Euler(0f, 0f, Mathf.LerpAngle(transform.rotation.eulerAngles.z, angle, Time.deltaTime * 10f));
     }
 }

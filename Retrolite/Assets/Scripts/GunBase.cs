@@ -25,27 +25,19 @@ public class GunBase : MonoBehaviour
         reloadBar.SetActive(false);
     }
 
-    public void Set(GunData gun)
+    public void Set(GunData gun, Creature owner)
     {
-        context = new FormulaContext { Gun = this, Owner = PlayerController.Player };
+        context = new FormulaContext { Gun = this, Owner = owner };
         Data = gun;
         GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
 
         bulletPool?.Clear();
 
-        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), Data.BulletData, context);
+        Transform spawn = transform.childCount > 0 ? transform.GetChild(0) : transform;
+        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], spawn, Data.BulletData, context);
     }
 
-    protected void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F8)) GenerateRandomFormulas();
-
-        if (Data.GunType == GunType.Empty) return;
-        if (Time.time >= Data.fireTime && Input.GetButton("Fire1")) Fire();
-        else if (Input.GetKeyDown(KeyCode.R) && Data.CurrentAmmo != Data.MagazineSize && !isReloading) StartCoroutine(Reload());
-    }
-
-    protected void Fire()
+    public void Fire()
     {
         if (Data.CurrentAmmo <= 0)
         {
@@ -146,6 +138,22 @@ public class GunData
         BulletData = bulletData;
         GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
         BulletSprite = WeaponSpriteGenerator.instance.BulletList.RandomSprite();
+        Echo = 0;
+    }
+
+    public GunData()
+    {
+        Name = "Empty";
+        FireRate = new ConstantNode(0);
+        Accuracy = new ConstantNode(1);
+        ReloadTime = 0;
+        MagazineSize = 0;
+        CurrentAmmo = 1;
+        GunType = GunType.Empty;
+        BulletType = BulletType.Bullet;
+        BulletData = null;
+        GunSprite = null;
+        BulletSprite = null;
         Echo = 0;
     }
 }

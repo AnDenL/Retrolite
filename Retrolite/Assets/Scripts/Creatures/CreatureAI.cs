@@ -19,6 +19,12 @@ namespace CreatureAI
 
         public virtual void Init(Creature owner) => this.owner = owner;
         public virtual void UpdateAI() { }
+
+        public virtual Vector3 GetDirectionToTarget()
+        {
+            if (target == null) return Vector3.zero;
+            return (target.transform.position - owner.transform.position).normalized;
+        }
     }
 
     public enum Alignment { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }

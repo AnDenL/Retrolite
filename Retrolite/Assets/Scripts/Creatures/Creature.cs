@@ -11,6 +11,7 @@ public class Creature : MonoBehaviour
     [Header("Creature")]
 
     [SerializeField] private AIController controller;
+    public AIController Controller => controller;
     
     [SerializeField] protected float visionRange;
     public float VisionRange => visionRange;
@@ -35,9 +36,9 @@ public class Creature : MonoBehaviour
     public Creature Target => controller.Target;
     public Alignment Alignment => controller.Alignment;
 
-    public event Action<Collision2D> CollisionEnter2D;
+    public event Action OnUpdateAI;
+    public event Action OnFixedUpdate;
     public event Action<Collision2D> CollisionStay2D;
-
     public event Action<Skill> OnNewSkill;
     public event Action<PassiveSkill> OnNewPassive;
 
@@ -94,6 +95,12 @@ public class Creature : MonoBehaviour
     {
         if (HealthComponent.IsDead || Corruption.isCorrupted) return;
         controller.UpdateAI();
+        OnUpdateAI?.Invoke();
+    }
+
+    protected virtual void FixedUpdate()
+    {
+        OnFixedUpdate?.Invoke();
     }
 
     public void AddSkill(Skill skill)
@@ -114,14 +121,14 @@ public class Creature : MonoBehaviour
     {
         if (position.x < transform.position.x)
         {
-            transform.localScale = new Vector3(1, 1, 1);
-            ui.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(-1, 1, 1);
+            if (ui) ui.localScale = new Vector3(1, 1, 1);
             facingLeft = true;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
-            ui.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(1, 1, 1);
+            if (ui) ui.localScale = new Vector3(-1, 1, 1);
             facingLeft = false;
         }
     }
@@ -186,7 +193,6 @@ public class Creature : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) => CollisionEnter2D?.Invoke(collision);
     public void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
 
     public virtual Creature FindTarget()
