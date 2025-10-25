@@ -4,7 +4,7 @@ using CalculatingSystem;
 namespace CreatureAI
 {
     [CreateAssetMenu(fileName = "ShootBullet", menuName = "CreatureAI/Skills/ShootBullet")]
-    public class ShootBullet : TargetedSkill
+    public class ShootBullet : EnemyTargetedSkill
     {
         public BulletPool Pool;
         public GameObject BulletPrefab;
@@ -28,7 +28,7 @@ namespace CreatureAI
 
             Clip = owner.transform.Find("Clip");
 
-            Pool = new BulletPool(BulletPrefab, Clip, owner, BulletData, Context);
+            Pool = new BulletPool(BulletPrefab, Clip, BulletData, Context);
         }
 
         public void OnDestroy()

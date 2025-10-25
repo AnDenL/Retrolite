@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Obsolete script used only in tutorial level to create bullets at intervals
 public class CreateBullet : MonoBehaviour
 {
     [SerializeField] float shootCooldown = 3f;

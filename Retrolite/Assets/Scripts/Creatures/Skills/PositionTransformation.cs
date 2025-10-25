@@ -8,9 +8,15 @@ namespace CreatureAI
     {
         public float strength = 0.1f;
         public override SkillType Type => SkillType.Movement;
+
+        private LayerMask obstacleLayer;
+        private Collider2D ownerCollider;
+
         public override void Init(Creature owner)
         {
             base.Init(owner);
+            obstacleLayer = LayerMask.GetMask("Walls");
+            ownerCollider = owner.GetComponent<Collider2D>();
         }
         public override bool CanUse(Vector2 direction)
         {
@@ -24,19 +30,40 @@ namespace CreatureAI
         
         private IEnumerator Anim(Vector2 direction)
         {
-            float t = 1;
+            float t = 0f;
+            float duration = 0.06f;
+            Vector3 startPos = owner.transform.position;
 
-            ParticleManager.PlayParticle(7, owner.transform.position);
+            ParticleManager.PlayParticle(8, startPos);
+            ownerCollider.enabled = false;
 
-            while (t > 0f)
+            while (t < duration)
             {
-                t -= Time.deltaTime * 7;
-                float dt = 1 - t * t;
-                owner.transform.position += owner.Speed * dt * Time.deltaTime * (Vector3)direction;
+                t += Time.deltaTime;
+
+                float distance = owner.Speed * Time.deltaTime;
+                RaycastHit2D hit = Physics2D.Raycast(
+                    owner.transform.position,
+                    direction.normalized,
+                    distance,
+                    obstacleLayer
+                );
+
+                if (hit.collider != null)
+                {
+                    owner.transform.position = hit.point;
+                    break;
+                }
+                else
+                {
+                    owner.transform.position += (Vector3)(direction.normalized * distance);
+                }
+
                 yield return null;
             }
 
-            ParticleManager.PlayParticle(7, owner.transform.position);
+            ParticleManager.PlayParticle(8, owner.transform.position);
+            ownerCollider.enabled = true;
         }
     }
 }

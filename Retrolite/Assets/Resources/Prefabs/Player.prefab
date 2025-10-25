@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4647600661972657186}
   - component: {fileID: 6631921096664524877}
   - component: {fileID: 6411304929489194089}
+  - component: {fileID: 3563075710799962988}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -211,12 +212,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f956bb98e7058c34fb7aad4294f3fe13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 24
-  speed: 110
   controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
-  skillTemplates: []
+  visionRange: 24
+  skillTemplates:
+  - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   passiveTemplates: []
   baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
+  speed: 60
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
@@ -247,6 +249,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 100
   stability: 100
+--- !u!114 &3563075710799962988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135032362516127119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &903132766320555172
 GameObject:
   m_ObjectHideFlags: 0
@@ -5381,7 +5395,7 @@ GameObject:
   - component: {fileID: 259502998954065255}
   - component: {fileID: 3417523190237438834}
   m_Layer: 0
-  m_Name: weapons_1 (1)
+  m_Name: Hand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10356,10 +10370,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2368763126422438049}
-  - {fileID: 2005852501118021681}
+  - {fileID: 861152893549071017}
   - {fileID: 3473850372348920174}
-  - {fileID: 3990201699941085026}
   - {fileID: 6176045978660439036}
   m_Father: {fileID: 1152285883391924825}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10563,7 +10575,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7967063597275555765}
+  m_Father: {fileID: 861152893549071017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &1127240027396745071
 LineRenderer:
@@ -10681,9 +10693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9470911383bcbe4aef6cb46ae890c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 2005852501118021681}
-  - {fileID: 8362474879578523012}
+  lines: []
 --- !u!1 &4936486983014578050
 GameObject:
   m_ObjectHideFlags: 0
@@ -16070,14 +16080,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7142831337059248852}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 259502998954065255}
   - {fileID: 8362474879578523012}
-  m_Father: {fileID: 7967063597275555765}
+  m_Father: {fileID: 861152893549071017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7630235547089015067
 GameObject:
@@ -16193,6 +16203,62 @@ Transform:
   - {fileID: 3179825005254226916}
   m_Father: {fileID: 7967063597275555765}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8515516440305265430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 861152893549071017}
+  - component: {fileID: 2160825754144635081}
+  m_Layer: 0
+  m_Name: Arms
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &861152893549071017
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8515516440305265430}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2368763126422438049}
+  - {fileID: 2005852501118021681}
+  - {fileID: 3990201699941085026}
+  m_Father: {fileID: 7967063597275555765}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2160825754144635081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8515516440305265430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b9470911383bcbe4aef6cb46ae890c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lines:
+  - lineRenderer: {fileID: 6386035971000908232}
+    pointTransform:
+    - {fileID: 2368763126422438049}
+    - {fileID: 259502998954065255}
+  - lineRenderer: {fileID: 1127240027396745071}
+    pointTransform:
+    - {fileID: 2005852501118021681}
+    - {fileID: 8362474879578523012}
 --- !u!1 &8645087415594554088
 GameObject:
   m_ObjectHideFlags: 0
@@ -16224,7 +16290,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7967063597275555765}
+  m_Father: {fileID: 861152893549071017}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &6386035971000908232
 LineRenderer:
@@ -16342,9 +16408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9470911383bcbe4aef6cb46ae890c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points:
-  - {fileID: 2368763126422438049}
-  - {fileID: 259502998954065255}
+  lines: []
 --- !u!1 &8908068526602855373
 GameObject:
   m_ObjectHideFlags: 0
@@ -16356,7 +16420,7 @@ GameObject:
   - component: {fileID: 8362474879578523012}
   - component: {fileID: 5004654193037301585}
   m_Layer: 0
-  m_Name: weapons_1
+  m_Name: Hand 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

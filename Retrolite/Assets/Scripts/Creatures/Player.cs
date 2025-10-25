@@ -55,8 +55,9 @@ public class Player : Creature
         base.Update();
         Rotate();
 
-        InteractObject();
         OutlineObject();
+        if (Input.GetKeyDown(KeyCode.E))
+            InteractObject();
     }
 
     #region Gun
@@ -69,17 +70,16 @@ public class Player : Creature
         {
             rotation.gameObject.SetActive(false);
             handsWithoutGun.SetActive(true);
-            arm1.points[1] = hand1;
-            arm2.points[1] = hand2;
+            //arm1.points[1] = hand1;
+            //arm2.points[1] = hand2;
         }
         else
         {
             rotation.gameObject.SetActive(true);
             handsWithoutGun.SetActive(false);
-            arm1.points[1] = hand;
-            arm2.points[1] = hand;
+            //arm1.points[1] = hand;
+            //arm2.points[1] = hand;
         }
-        //gunUI.UpdateGunUI(gun);
 
         return previousGunData;
     }
@@ -93,7 +93,6 @@ public class Player : Creature
         if (direction.x < 0)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
-            direction = -direction;
             Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") > 0);
         }
         else
@@ -101,11 +100,6 @@ public class Player : Creature
             transform.localScale = new Vector3(1f, 1f, 1f);
             Animator.SetBool("IsBackwards", Input.GetAxisRaw("Horizontal") < 0);
         }
-
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        hand.localPosition = new Vector3(0.65f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
-        rotation.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 
     #endregion
@@ -209,6 +203,7 @@ public class Player : Creature
     }
 
     public float GetMoney() => money / 100;
+
     #endregion
 
     public void SetSaveData(SaveData data)

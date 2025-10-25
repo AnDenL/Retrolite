@@ -7,7 +7,10 @@ public class BulletBase : MonoBehaviour
 {
     protected BulletPool pool;
     protected BulletData data;
+
     protected FormulaContext context;
+    public FormulaContext Context => context;
+
     protected float time;
     protected Coroutine lifeCoroutine;
     protected Vector2 start;
@@ -17,7 +20,6 @@ public class BulletBase : MonoBehaviour
     protected float life;
     protected bool handleDestroy;
 
-    public Creature Owner { get; private set; }
     public Alignment OwnerAlignment { get; private set; }
 
     public float Spread { get; protected set; }
@@ -27,16 +29,14 @@ public class BulletBase : MonoBehaviour
 
     public bool Inactive { get; protected set; }
 
-    public virtual void Initialize(Creature owner, BulletData Data, FormulaContext Context, BulletPool Pool)
+    public virtual void Initialize(BulletData Data, FormulaContext Context, BulletPool Pool)
     {
         pool = Pool;
-        Owner = owner;
-        OwnerAlignment = owner.Alignment;
         data = Data;
         context = Context;
 
         context.Bullet = this;
-        context.Owner = owner;
+        OwnerAlignment = context.Owner.Alignment;
 
         projectileRenderer = GetComponent<SpriteRenderer>();
     }
@@ -133,7 +133,7 @@ public class BulletBase : MonoBehaviour
 
         if (other.TryGetComponent(out Creature creature))
         {
-            if (!creature.IsEnemyTo(Owner)) return;
+            if (!creature.IsEnemyTo(context.Owner)) return;
 
             context.TargetCreature = creature;
             context.TargetHealth = creature.HealthComponent;

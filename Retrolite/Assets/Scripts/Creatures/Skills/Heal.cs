@@ -4,7 +4,7 @@ using CalculatingSystem;
 namespace CreatureAI
 {
     [CreateAssetMenu(menuName = "CreatureAI/Skills/HealAlly")]
-    public class HealAllySkill : TargetedSkill
+    public class HealAllySkill : AllyTargetedSkill
     {
         public FormulaNode healAmount;
         public override SkillType Type => SkillType.Utility;

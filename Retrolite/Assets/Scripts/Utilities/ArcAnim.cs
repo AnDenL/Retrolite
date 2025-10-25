@@ -15,7 +15,7 @@ public class ArcAnim : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         if (shadow == null && transform.childCount > 0)
-            shadow = transform.GetChild(0);
+            shadow = transform.Find("Shadow");
 
         shadowOffset = shadow.localPosition;
     }

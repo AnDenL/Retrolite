@@ -106,7 +106,7 @@ public class Creature : MonoBehaviour
     public void AddPassive(PassiveSkill passive)
     {
         passiveSkills.Add(passive);
-        passive.Subscribe(this);
+        passive.Init(this);
         OnNewPassive?.Invoke(passive);
     }
 

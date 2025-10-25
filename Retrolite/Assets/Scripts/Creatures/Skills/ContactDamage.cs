@@ -11,9 +11,9 @@ namespace CreatureAI
 
         public override SkillType Type => SkillType.Attack;
 
-        public override void Subscribe(Creature owner)
+        public override void Init(Creature owner)
         {
-            base.Subscribe(owner);
+            base.Init(owner);
             owner.CollisionStay2D += OnCollisionEnterEvent;
         }
 

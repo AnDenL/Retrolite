@@ -13,9 +13,9 @@ namespace CreatureAI
 
         private Coroutine shockCoroutine;
 
-        public override void Subscribe(Creature owner)
+        public override void Init(Creature owner)
         {
-            base.Subscribe(owner);
+            base.Init(owner);
             owner.HealthComponent.OnDamaged += OnDamaged;
         }
 

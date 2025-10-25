@@ -38,8 +38,7 @@ namespace CreatureAI
             foreach (var slot in SkillSlots)
                 if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
 
-            if (movement != null && moveDir.magnitude != 0)
-                movement.Use(moveDir);
+            movement.Use(moveDir);
         }
 
         private void NewSlot(Skill skill)
@@ -59,6 +58,7 @@ namespace CreatureAI
             SkillSlots.Add(key, skillSlot);
         }
 
+        //Default key bindings for different skill types, can be customized by player later
         private KeyCode GetKeyCodeByType(SkillType type)
         {
             KeyCode result = KeyCode.None;

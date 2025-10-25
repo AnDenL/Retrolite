@@ -12,9 +12,9 @@ namespace CreatureAI
 
         public override SkillType Type => SkillType.Movement;
 
-        public override void Subscribe(Creature owner)
+        public override void Init(Creature owner)
         {
-            base.Subscribe(owner);
+            base.Init(owner);
 
             GameObject triggerArea = Instantiate(TriggerAreaPrefab, owner.transform);
 
@@ -27,7 +27,7 @@ namespace CreatureAI
                 if (other.CompareTag("Bullet"))
                 {
                     if (other.TryGetComponent(out BulletBase bullet))
-                        if (!bullet.Owner.IsEnemyTo(owner)) return;
+                        if (!bullet.Context.Owner.IsEnemyTo(owner)) return;
                     if (owner.Rb.velocity.magnitude < SpeedThreshold) Evade(other.transform.up);
                 }
             };

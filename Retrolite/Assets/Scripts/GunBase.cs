@@ -11,7 +11,7 @@ public class GunBase : MonoBehaviour
     [SerializeField] protected Material reloadMaterial;
     [SerializeField] protected GameObject reloadBar;
 
-    [SerializeField] public GunData Data;
+    public GunData Data;
 
     protected bool isReloading;
     protected FormulaContext context;
@@ -27,13 +27,13 @@ public class GunBase : MonoBehaviour
 
     public void Set(GunData gun)
     {
-        context = new FormulaContext { Gun = this };
+        context = new FormulaContext { Gun = this, Owner = PlayerController.Player };
         Data = gun;
         GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
 
         bulletPool?.Clear();
 
-        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), PlayerController.Player, Data.BulletData, context);
+        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], transform.GetChild(0), Data.BulletData, context);
     }
 
     protected void Update()

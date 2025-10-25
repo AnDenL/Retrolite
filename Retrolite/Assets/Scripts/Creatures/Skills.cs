@@ -52,10 +52,48 @@ namespace CreatureAI
         }
     }
 
+    public abstract class EnemyTargetedSkill : Skill
+    {
+        public float MinRange = 0f;
+        public float MaxRange = 5f;
+
+        public override bool CanUse(Creature target) => target != null && Time.time >= lastUsedTime + cooldownTime &&
+            Vector2.Distance(owner.transform.position, target.transform.position) >= MinRange &&
+            Vector2.Distance(owner.transform.position, target.transform.position) <= MaxRange &&
+            owner.IsEnemyTo(target);
+
+        public override bool Use(Creature target)
+        {
+            if (!CanUse(target)) return false;
+            lastUsedTime = Time.time;
+            Activate(target);
+            return true;
+        }
+    }
+
+    public abstract class AllyTargetedSkill : Skill
+    {
+        public float MinRange = 0f;
+        public float MaxRange = 5f;
+
+        public override bool CanUse(Creature target) => target != null && Time.time >= lastUsedTime + cooldownTime &&
+            Vector2.Distance(owner.transform.position, target.transform.position) >= MinRange &&
+            Vector2.Distance(owner.transform.position, target.transform.position) <= MaxRange &&
+            !owner.IsEnemyTo(target);
+
+        public override bool Use(Creature target)
+        {
+            if (!CanUse(target)) return false;
+            lastUsedTime = Time.time;
+            Activate(target);
+            return true;
+        }
+    }
+
     public abstract class DirectionSkill : Skill
     {
-        public override bool CanUse(Creature target) => Time.time >= lastUsedTime + cooldownTime;
-        public override bool CanUse(Vector2 position) => Time.time >= lastUsedTime + cooldownTime;
+        public override bool CanUse(Creature target) => Time.time >= lastUsedTime + cooldownTime && target != null;
+        public override bool CanUse(Vector2 position) => Time.time >= lastUsedTime + cooldownTime && position != Vector2.zero;
 
         public override bool Use(Creature target) => Use(target.transform.position);
         public override bool Use(Vector2 position)
@@ -108,7 +146,7 @@ namespace CreatureAI
         public Creature Owner => owner;
         public virtual SkillType Type => SkillType.Empty;
 
-        public virtual void Subscribe(Creature owner) => this.owner = owner;
+        public virtual void Init(Creature owner) => this.owner = owner;
     }
 
     public enum SkillType { Attack, Defense, PowerUp, Utility, Movement, Empty }

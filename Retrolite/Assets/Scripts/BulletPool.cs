@@ -10,15 +10,13 @@ public class BulletPool
 
     private GameObject prefab;
     private Transform parent;
-    private Creature owner;
     private BulletData bulletData;
     private FormulaContext context;
 
-    public BulletPool(GameObject prefab, Transform parent, Creature owner, BulletData bulletData, FormulaContext context)
+    public BulletPool(GameObject prefab, Transform parent, BulletData bulletData, FormulaContext context)
     {
         this.prefab = prefab;
         this.parent = parent;
-        this.owner = owner;
         this.bulletData = bulletData;
         this.context = context;
     }
@@ -28,13 +26,13 @@ public class BulletPool
         if (freeBullets.Count > 0)
         {
             var bullet = freeBullets.Dequeue();
-            bullet.Initialize(owner, bulletData, context, this);
+            bullet.Initialize(bulletData, context, this);
             bullet.gameObject.SetActive(true);
             return bullet;
         }
 
         var newBullet = Object.Instantiate(prefab, parent).GetComponent<BulletBase>();
-        newBullet.Initialize(owner, bulletData, context, this);
+        newBullet.Initialize(bulletData, context, this);
         allBullets.Add(newBullet);
         return newBullet;
     }

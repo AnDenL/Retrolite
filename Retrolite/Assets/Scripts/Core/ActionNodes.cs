@@ -80,7 +80,7 @@ namespace CalculatingSystem
                 UnityEngine.Object.Instantiate(Prefab, onEnemy ? context.TargetHealth.transform.position : context.Owner.transform.position, Quaternion.identity);
         }
 
-        public override string ToReadableString() => $"Spawn {Prefab?.name}";
+        public override string ToReadableString() => $"Spawn {Prefab.name}";
     }
 
     [Serializable]
@@ -93,7 +93,7 @@ namespace CalculatingSystem
             UnityEngine.Object.Destroy(Object);
         }
 
-        public override string ToReadableString() => $"Destroy {Object?.name}";
+        public override string ToReadableString() => $"Destroy {Object.name}";
     }
 
     [Serializable]

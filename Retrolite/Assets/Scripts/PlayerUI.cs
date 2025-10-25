@@ -25,7 +25,7 @@ public class PlayerUI : MonoBehaviour
 
     private Coroutine healthBarAnimationCoroutine, healthTextCoroutine, moneyCoroutine, bitsCoroutine;
 
-    private void Awake()
+    private void Start()
     {
         Player player = PlayerController.Player;
 

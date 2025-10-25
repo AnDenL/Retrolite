@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Health UI for any creature, showing health and stability bars along with health text.
 public class HealthUI : MonoBehaviour
 {
     [Header("UI References")]

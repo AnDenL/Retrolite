@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Obsolete enemy bullet class, used only in tutrorial level
 public class EnemyBulletBase : MonoBehaviour
 {
     [SerializeField] protected float speed = 5f;

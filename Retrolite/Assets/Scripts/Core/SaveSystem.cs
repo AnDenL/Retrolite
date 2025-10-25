@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//Now useless
 public class SaveSystem : MonoBehaviour
 {
     public static SaveSystem instance;
