@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "PlayerController", menuName = "CreatureAI/Controllers/PlayerController")]
     public class PlayerController : AIController
@@ -12,6 +12,8 @@ namespace CreatureAI
 
         public static PlayerController instance;
         public static bool CanInteract = true;
+
+        public override bool IsPlayer => true;
 
         public override void Init(Creature owner)
         {
@@ -73,7 +75,7 @@ namespace CreatureAI
             switch (type)
             {
                 case SkillType.Attack:
-                    keys = new KeyCode[] { KeyCode.Mouse0, KeyCode.Mouse1, KeyCode.Q, KeyCode.E, KeyCode.F };
+                    keys = new KeyCode[] { KeyCode.Mouse0, KeyCode.Mouse1, KeyCode.Q, KeyCode.F };
                     break;
                 case SkillType.Movement:
                     keys = new KeyCode[] { KeyCode.Space, KeyCode.LeftShift, KeyCode.LeftControl };
@@ -85,7 +87,7 @@ namespace CreatureAI
                     keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 };
                     break;
                 case SkillType.Utility:
-                    keys = new KeyCode[] { KeyCode.V, KeyCode.B, KeyCode.N };
+                    keys = new KeyCode[] { KeyCode.E, KeyCode.V, KeyCode.B, KeyCode.N };
                     break;
                 default:
                     keys = new KeyCode[0];

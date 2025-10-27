@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using CreatureAI;
+using Creatures;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -30,8 +30,8 @@ public class PlayerUI : MonoBehaviour
         Player player = PlayerController.Player;
 
         player.HealthComponent.OnHealthChanged += UpdateHealthUI;
-        player.OnMoneyChange += UpdateMoneyText;
-        player.OnBitsChange += UpdateBitsText;
+        player.Resources.Get(ResourceType.Money).OnChanged += UpdateMoneyText;
+        player.Resources.Get(ResourceType.Bits).OnChanged += UpdateBitsText;
     }
 
     public void UpdateMoneyText(int money)

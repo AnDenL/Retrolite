@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using CreatureAI;
+using Creatures;
 
 public static class Game
 {

@@ -18,5 +18,5 @@ public class Interactable : MonoBehaviour
 
     public virtual void Outline() { sr.material = outlineMaterial; }
     public virtual void CancelOutline() { sr.material = defaultMaterial; }
-    public virtual void Interact(Player player) { }
+    public virtual void Interact(Creature creature) { }
 }

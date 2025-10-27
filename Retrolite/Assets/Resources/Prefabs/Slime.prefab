@@ -9967,11 +9967,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 8
   controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
-  skillTemplates: []
+  visionRange: 8
+  skillTemplates:
+  - {fileID: 11400000, guid: ded458a89c6ff0c4d9ec73afda7d40ed, type: 2}
   passiveTemplates:
   - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
+  speed: 5
   baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}

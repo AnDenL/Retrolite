@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using CreatureAI;
+using Creatures;
 
 public class Menu : MonoBehaviour
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "SmoothMovement", menuName = "CreatureAI/Skills/SmoothMovement")]
     public class SmoothMovement : DirectionSkill

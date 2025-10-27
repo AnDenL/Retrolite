@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using CalculatingSystem;
-using CreatureAI;
+using Creatures;
 
 public class GunBase : MonoBehaviour
 {

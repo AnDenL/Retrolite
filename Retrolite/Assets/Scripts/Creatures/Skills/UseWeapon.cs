@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "UseWeapon", menuName = "CreatureAI/Skills/UseWeapon")]
     public class UseWeapon : SelfSkill
@@ -18,7 +18,7 @@ namespace CreatureAI
             weaponManager.Init(owner);
             if (owner is Player player)
             {
-                player.WeaponManager = weaponManager;
+                //player.WeaponManager = weaponManager;
             }
         }
 

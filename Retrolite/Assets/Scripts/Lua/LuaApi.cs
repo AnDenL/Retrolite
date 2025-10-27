@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using CalculatingSystem;
-using CreatureAI;
+using Creatures;
 using MoonSharp.Interpreter;
 using UnityEngine;
 

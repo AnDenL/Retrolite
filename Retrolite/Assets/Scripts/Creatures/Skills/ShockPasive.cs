@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "ShockPasive", menuName = "CreatureAI/Skills/ShockPasive")]
     public class ShockPasive : PassiveSkill

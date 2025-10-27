@@ -1,7 +1,7 @@
 using UnityEngine;
 using CalculatingSystem;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "ShootBullet", menuName = "CreatureAI/Skills/ShootBullet")]
     public class ShootBullet : EnemyTargetedSkill

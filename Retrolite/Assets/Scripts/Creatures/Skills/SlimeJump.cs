@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "JumpAttack", menuName = "CreatureAI/Skills/JumpAttack")]
     public class JumpAttack : DirectionSkill

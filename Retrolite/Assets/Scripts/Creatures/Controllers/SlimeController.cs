@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "SlimeController", menuName = "CreatureAI/Controllers/SlimeController")]
     public class SlimeController : AIController
@@ -33,8 +33,12 @@ namespace CreatureAI
                     {
                         if (chosen is TargetedSkill targeted)
                             targeted.Use(target);
+                        else if (chosen is EnemyTargetedSkill enemyTargeted)
+                            enemyTargeted.Use(target.transform.position);
                         else if (chosen is PositionSkill pos)
                             pos.Use(target.transform.position);
+                        else if (chosen is DirectionSkill dir)
+                            dir.Use(targetPosition);
                         else if (chosen is SelfSkill self)
                             self.Use();
                     }

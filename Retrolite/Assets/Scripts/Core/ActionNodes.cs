@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
-using CreatureAI;
+using Creatures;
 
 namespace CalculatingSystem
 {
@@ -49,7 +49,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            PlayerController.Player.AddMoney((int)Money.Evaluate(context), context.TargetCreature.transform.position);
+            //PlayerController.Player.AddMoney((int)Money.Evaluate(context), context.TargetCreature.transform.position);
         }
 
         public override string ToReadableString() => $"Give {Money.ToReadableString()} money";
@@ -62,7 +62,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            PlayerController.Player.AddCode((int)Code.Evaluate(context));
+            //PlayerController.Player.AddCode((int)Code.Evaluate(context));
         }
 
         public override string ToReadableString() => $"Give {Code.ToReadableString()} money";

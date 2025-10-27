@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1152285883391924825}
   - component: {fileID: 1999531737182584216}
+  - component: {fileID: 6631921096664524877}
   - component: {fileID: 4437067109139031039}
   - component: {fileID: 1264232799100110172}
   - component: {fileID: 3811287405736332542}
   - component: {fileID: 4647600661972657186}
-  - component: {fileID: 6631921096664524877}
   - component: {fileID: 6411304929489194089}
   - component: {fileID: 3563075710799962988}
   m_Layer: 3
@@ -94,6 +94,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6631921096664524877
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135032362516127119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f956bb98e7058c34fb7aad4294f3fe13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
+  visionRange: 24
+  skillTemplates:
+  - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
+  - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
+  - {fileID: 11400000, guid: ded458a89c6ff0c4d9ec73afda7d40ed, type: 2}
+  passiveTemplates: []
+  speed: 60
+  baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
+  Animator: {fileID: 0}
+  HealthComponent: {fileID: 0}
+  Corruption: {fileID: 0}
+  Rb: {fileID: 0}
 --- !u!114 &4437067109139031039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,36 +225,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &6631921096664524877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135032362516127119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f956bb98e7058c34fb7aad4294f3fe13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
-  visionRange: 24
-  skillTemplates:
-  - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
-  - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
-  passiveTemplates:
-  - {fileID: 11400000, guid: 3a9f44039051e3844ac5b84060c61e0a, type: 2}
-  baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
-  speed: 60
-  Animator: {fileID: 0}
-  HealthComponent: {fileID: 0}
-  Corruption: {fileID: 0}
-  Rb: {fileID: 0}
-  money: 0
-  bits: 0
-  coinParticles: {fileID: 8541644295032527401}
-  codeParticles: {fileID: 2915219203133694524}
-  WeaponManager: {fileID: 0}
 --- !u!114 &6411304929489194089
 MonoBehaviour:
   m_ObjectHideFlags: 0

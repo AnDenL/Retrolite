@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-namespace CreatureAI
+namespace Creatures
 {
     [Serializable]
     public class Skill : ScriptableObject

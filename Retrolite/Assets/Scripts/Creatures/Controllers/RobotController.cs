@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Linq;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "RobotController", menuName = "CreatureAI/Controllers/RobotController")]
     public class RobotController : AIController

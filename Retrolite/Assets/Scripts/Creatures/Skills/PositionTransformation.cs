@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "PositionTransformation", menuName = "CreatureAI/Skills/PositionTransformation")]
     public class PositionTransformation : DirectionSkill

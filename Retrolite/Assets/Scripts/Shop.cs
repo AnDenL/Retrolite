@@ -1,6 +1,6 @@
 using UnityEngine;
-
-public class Shop : Interactable
+using Creatures;
+public class ShopItem : Interactable
 {
     public int price;
 
@@ -15,15 +15,16 @@ public class Shop : Interactable
         priceText.text = price.ToString();
     }
 
-    public override void Interact(Player player)
+    public override void Interact(Creature creature)
     {
         if (isBought)
             return;
-        if (player.Buy(price))
+
+        if (creature.Resources.TrySpend(ResourceType.Money, price))
         {
             isBought = true;
             GetComponent<SpriteRenderer>().sprite = soldSprite;
-            transform.GetChild(1).GetComponent<ArcAnim>().DropTo(player.transform.position);
+            transform.GetChild(1).GetComponent<ArcAnim>().DropTo(creature.transform.position);
             priceText.gameObject.SetActive(false);
         }
     }

@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Creatures;
 
 public class Chest : Interactable
 {
+    private static WaitForSeconds _waitForSeconds0_5 = new(0.5f);
     [SerializeField] Reward reward;
 
     private bool isOpen = false;
@@ -15,7 +18,7 @@ public class Chest : Interactable
         animator = GetComponent<Animator>();
     }
 
-    public override void Interact(Player player)
+    public override void Interact(Creature creature)
     {
         if (isOpen)
         {
@@ -26,11 +29,18 @@ public class Chest : Interactable
 
         isOpen = true;
         animator.SetBool("IsOpen", true);
-        player.AddMoney(reward.money, transform.position);
-        player.AddCode(reward.code, transform.position);
-        player.HealthComponent.AddMaximumHealth(reward.health);
-        
-        if (reward.items != null && reward.items.Length > 0) StartCoroutine(SpawnObjects(reward.items, player.transform.position));
+        if (reward.Resources != null)
+        {
+            foreach (var res in reward.Resources)
+            {
+                ParticleManager.PlayParticle(res.Type, transform.position, creature.transform, res.Amount);
+                creature.Resources.Add(res.Type, res.Amount);
+            }
+        }
+        creature.HealthComponent.Heal(reward.Heal);
+        creature.HealthComponent.AddMaximumHealth(reward.Health);
+
+        if (reward.Items != null && reward.Items.Length > 0) StartCoroutine(SpawnObjects(reward.Items, creature.transform.position));
         reward = new Reward();
     }
 
@@ -44,7 +54,7 @@ public class Chest : Interactable
                 item.GetComponent<ArcAnim>()?.DropTo(pos);
             }
             else Instantiate(item, transform.position, Quaternion.identity).GetComponent<ArcAnim>()?.DropTo(pos);
-            yield return new WaitForSeconds(0.5f);
+            yield return _waitForSeconds0_5;
         }
     }
 }
@@ -52,16 +62,23 @@ public class Chest : Interactable
 [Serializable]
 public struct Reward
 {
-    public int money;
-    public int code;
-    public float health;
-    public GameObject[] items;
-
-    public Reward(int money = 0, int code = 0, float health = 0, GameObject[] items = null)
+    [Serializable]
+    public struct ResourceReward
     {
-        this.money = money;
-        this.code = code;
-        this.health = health;
-        this.items = items;
+        public ResourceType Type;
+        public int Amount;
+    }
+    
+    public float Heal;
+    public float Health;
+    public GameObject[] Items;
+    public ResourceReward[] Resources;
+
+    public Reward(float heal = 0, float health = 0, GameObject[] items = null, ResourceReward[] resources = null)
+    {
+        Heal = heal;
+        Health = health;
+        Items = items;
+        Resources = resources;
     }
 }

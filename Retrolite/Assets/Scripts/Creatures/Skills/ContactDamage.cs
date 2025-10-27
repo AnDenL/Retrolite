@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "ContactDamage", menuName = "CreatureAI/Skills/ContactDamage")]
     public class ContactDamage : PassiveSkill

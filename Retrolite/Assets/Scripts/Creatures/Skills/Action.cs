@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using CalculatingSystem;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "Action", menuName = "CreatureAI/Skills/Action")]
     public class ActionSkill : TargetedSkill

@@ -1,24 +1,24 @@
+using System;
+using Creatures;
 using UnityEngine;
 using System.Collections.Generic;
-using CreatureAI;
-using static CreatureAI.Alignment;
-using System;
+using static Creatures.Alignment;
 
 [RequireComponent(typeof(HealthBase))]
 [RequireComponent(typeof(Corruptible))]
 public class Creature : MonoBehaviour
 {
-    [Header("Creature")]
+    #region Fields and Properties
 
+    [Header("Creature")]
     [SerializeField] private AIController controller;
+    [SerializeField] protected float visionRange = 8f;
+
     public AIController Controller => controller;
-    
-    [SerializeField] protected float visionRange;
     public float VisionRange => visionRange;
 
     [SerializeField] private List<Skill> skillTemplates = new();
     [SerializeField] private List<PassiveSkill> passiveTemplates = new();
-    [SerializeField] private DirectionSkill baseMovementSkill;
 
     private readonly List<Skill> activeSkills = new();
     private readonly List<PassiveSkill> passiveSkills = new();
@@ -26,21 +26,18 @@ public class Creature : MonoBehaviour
     public IReadOnlyList<Skill> ActiveSkills => activeSkills;
     public IReadOnlyList<PassiveSkill> PassiveSkills => passiveSkills;
 
+    private ResourceContainer resources;
+    public ResourceContainer Resources => resources;
 
     [Header("Movement")]
+    [SerializeField] protected float speed = 5f;
+    [SerializeField] private DirectionSkill baseMovementSkill;
 
-    [SerializeField] protected float speed = 5;
     public float Speed => speed;
-    public DirectionSkill BaseMovement { get; private set; }
+    public DirectionSkill BaseMovement => baseMovementSkill;
 
     public Creature Target => controller.Target;
     public Alignment Alignment => controller.Alignment;
-
-    public event Action OnUpdateAI;
-    public event Action OnFixedUpdate;
-    public event Action<Collision2D> CollisionStay2D;
-    public event Action<Skill> OnNewSkill;
-    public event Action<PassiveSkill> OnNewPassive;
 
     [HideInInspector] public Animator Animator;
     [HideInInspector] public HealthBase HealthComponent;
@@ -48,10 +45,25 @@ public class Creature : MonoBehaviour
     [HideInInspector] public Rigidbody2D Rb;
 
     private Transform ui;
-
-    private int _isBackwards;
-
+    private int _isBackwardsHash;
+    private int _isCorruptedHash;
+    private int _corruptHash;
+    private int _isDeadHash;
     private bool facingLeft;
+
+    #endregion
+
+    #region Events
+
+    public event Action OnUpdateAI;
+    public event Action OnFixedUpdate;
+    public event Action<Collision2D> CollisionStay2D;
+    public event Action<Skill> OnNewSkill;
+    public event Action<PassiveSkill> OnNewPassive;
+
+    #endregion
+
+    #region Unity Lifecycle
 
     protected virtual void Awake()
     {
@@ -77,18 +89,20 @@ public class Creature : MonoBehaviour
             AddPassive(instance);
         }
 
-        BaseMovement = Instantiate(baseMovementSkill);
-        BaseMovement.Init(this);
+        baseMovementSkill = Instantiate(baseMovementSkill);
+        baseMovementSkill.Init(this);
 
         ui = transform.Find("UI");
 
-        if (Corruption != null)
-        {
-            Corruption.OnCorrupting += DestabilizationAnim;
-            Corruption.OnBecameVulnerable += Corrupt;
-        }
+        Corruption.OnCorrupting += DestabilizationAnim;
+        Corruption.OnBecameVulnerable += Corrupt;
         HealthComponent.OnDeath += DeathEffect;
-        _isBackwards = Animator.StringToHash("IsBackwards");
+
+        resources = new(this);
+
+        _isBackwardsHash = Animator.StringToHash("IsBackwards");
+        _isCorruptedHash = Animator.StringToHash("IsCorrupted");
+        _isDeadHash = Animator.StringToHash("IsDead");
     }
 
     protected virtual void Update()
@@ -102,6 +116,9 @@ public class Creature : MonoBehaviour
     {
         OnFixedUpdate?.Invoke();
     }
+
+    #endregion
+    #region Public Methods
 
     public void AddSkill(Skill skill)
     {
@@ -135,29 +152,10 @@ public class Creature : MonoBehaviour
 
     public void UpdateAnimationState()
     {
-        if (Rb.velocity.sqrMagnitude > 0.001f)
-        {
-            bool movingLeft = Rb.velocity.x < 0f;
-            bool isBackwards = movingLeft != facingLeft;
+        if (Rb.velocity.sqrMagnitude <= 0.001f) return;
 
-            Animator.SetBool(_isBackwards, isBackwards);
-        }
-    }
-
-    private void DeathEffect()
-    {
-        Animator.SetTrigger("Death");
-    }
-
-    private void Corrupt()
-    {
-        HealthComponent.IsWeak = true;
-        Animator.SetBool("IsCorrupted", true);
-    }
-
-    private void DestabilizationAnim(int i)
-    {
-        Animator.SetTrigger("Corrupt");
+        bool movingLeft = Rb.velocity.x < 0f;
+        Animator.SetBool(_isBackwardsHash, movingLeft != facingLeft);
     }
 
     public void StartKnockback(float strength, Vector2 dir)
@@ -169,31 +167,20 @@ public class Creature : MonoBehaviour
 
     public bool IsEnemyTo(Creature other)
     {
-        if (other == null) return false;
-        if (other == this) return false;
+        if (other == null || other == this) return false;
 
-        switch (Alignment)
+        return Alignment switch
         {
-            default:
-                return false;
-            case Ally:
-                return other.Alignment == Enemy || other.Alignment == EvilEnemy;
-            case EvilAlly:
-                return !(other.Alignment == Ally || other.Alignment == EvilAlly);
-            case Neutral:
-                return other.Alignment == EvilEnemy || other.Alignment == EvilAlly || other.Alignment == Evil;
-            case Evil:
-                return true;
-            case Enemy:
-                return other.Alignment == Ally || other.Alignment == EvilAlly;
-            case EvilEnemy:
-                return !(other.Alignment == Enemy || other.Alignment == EvilEnemy);
-            case FullyFriendly:
-                return false;
-        }
+            Ally => other.Alignment is Enemy or EvilEnemy,
+            EvilAlly => !(other.Alignment is Ally or EvilAlly),
+            Neutral => other.Alignment is EvilEnemy or EvilAlly or Evil,
+            Evil => true,
+            Enemy => other.Alignment is Ally or EvilAlly,
+            EvilEnemy => !(other.Alignment is Enemy or EvilEnemy),
+            FullyFriendly => false,
+            _ => false
+        };
     }
-
-    public void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
 
     public virtual Creature FindTarget()
     {
@@ -227,4 +214,19 @@ public class Creature : MonoBehaviour
 
         return bestTarget;
     }
+
+    #endregion
+    #region Private Methods
+
+    private void Corrupt()
+    {
+        HealthComponent.IsWeak = true;
+        Animator.SetBool(_isCorruptedHash, true);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
+    private void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
+    private void DeathEffect() => Animator.SetTrigger(_isDeadHash);
+
+    #endregion
 }

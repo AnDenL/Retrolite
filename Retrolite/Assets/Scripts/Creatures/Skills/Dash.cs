@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "Dash", menuName = "CreatureAI/Skills/Dash")]
     public class Dash : DirectionSkill

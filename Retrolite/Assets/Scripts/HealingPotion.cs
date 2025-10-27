@@ -5,10 +5,10 @@ public class HealingPotion : Interactable
     [SerializeField] float healAmount = 10f;
     [SerializeField] float additionalHeal;
 
-    public override void Interact(Player player)
+    public override void Interact(Creature creature)
     {
-        player.HealthComponent.Heal(healAmount);
-        if (additionalHeal != 0) player.HealthComponent.AddMaximumHealth(additionalHeal);
+        creature.HealthComponent.Heal(healAmount);
+        if (additionalHeal != 0) creature.HealthComponent.AddMaximumHealth(additionalHeal);
         Destroy(gameObject);
     }
 }

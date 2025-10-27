@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "Movement", menuName = "CreatureAI/Skills/Movement")]
     public class Movement : DirectionSkill

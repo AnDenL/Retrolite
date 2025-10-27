@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [Serializable]
     public class AIController : ScriptableObject
@@ -16,6 +16,8 @@ namespace CreatureAI
         public Alignment Alignment => alignment;
 
         protected DirectionSkill movement => owner.BaseMovement;
+
+        public virtual bool IsPlayer => false;
 
         public virtual void Init(Creature owner) => this.owner = owner;
         public virtual void UpdateAI() { }

@@ -16,9 +16,9 @@ public class GunPickUp : Interactable
         GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
     }
 
-    public override void Interact(Player player)
+    public override void Interact(Creature creature)
     {
-        player.WeaponManager.AddGun(gunData);
+        //creature.WeaponManager.AddGun(gunData);
         Destroy(gameObject);
     }
 }

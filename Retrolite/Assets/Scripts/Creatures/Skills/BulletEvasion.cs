@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(fileName = "BulletEvasion", menuName = "CreatureAI/Skills/BulletEvasion")]
     public class BulletEvasion : PassiveSkill

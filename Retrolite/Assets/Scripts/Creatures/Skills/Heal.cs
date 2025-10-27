@@ -1,7 +1,7 @@
 using UnityEngine;
 using CalculatingSystem;
 
-namespace CreatureAI
+namespace Creatures
 {
     [CreateAssetMenu(menuName = "CreatureAI/Skills/HealAlly")]
     public class HealAllySkill : AllyTargetedSkill

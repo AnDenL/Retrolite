@@ -20,8 +20,11 @@ public class WeaponManager : MonoBehaviour
     {
         this.owner = owner;
         var arms = owner.transform.Find("Arms");
-        if (arms != null) handController = arms.GetComponent<LinePoints>();
-        else handController = null; // або знайти іншу логіку
+        if (arms != null)
+        {
+            handController = arms.GetComponent<LinePoints>();
+            handsWithoutGun = handController.GetEndPointPositions();
+        }
         guns = new List<GunData> { new() };
         SelectGun(0);
     }
