@@ -52,42 +52,21 @@ namespace Creatures
         }
     }
 
-    public abstract class EnemyTargetedSkill : Skill
+    public abstract class EnemyTargetedSkill : TargetedSkill
     {
-        public float MinRange = 0f;
-        public float MaxRange = 5f;
-
         public override bool CanUse(Creature target) => target != null && Time.time >= lastUsedTime + cooldownTime &&
             Vector2.Distance(owner.transform.position, target.transform.position) >= MinRange &&
             Vector2.Distance(owner.transform.position, target.transform.position) <= MaxRange &&
             owner.IsEnemyTo(target);
-
-        public override bool Use(Creature target)
-        {
-            if (!CanUse(target)) return false;
-            lastUsedTime = Time.time;
-            Activate(target);
-            return true;
-        }
     }
 
-    public abstract class AllyTargetedSkill : Skill
+    public abstract class AllyTargetedSkill : TargetedSkill
     {
-        public float MinRange = 0f;
-        public float MaxRange = 5f;
-
         public override bool CanUse(Creature target) => target != null && Time.time >= lastUsedTime + cooldownTime &&
             Vector2.Distance(owner.transform.position, target.transform.position) >= MinRange &&
             Vector2.Distance(owner.transform.position, target.transform.position) <= MaxRange &&
             !owner.IsEnemyTo(target);
 
-        public override bool Use(Creature target)
-        {
-            if (!CanUse(target)) return false;
-            lastUsedTime = Time.time;
-            Activate(target);
-            return true;
-        }
     }
 
     public abstract class DirectionSkill : Skill
@@ -129,6 +108,8 @@ namespace Creatures
 
     public abstract class SelfSkill : Skill
     {
+        public override bool CanUse(Creature target) => CanUse();
+        public override bool CanUse(Vector2 position) => CanUse();
         public override bool CanUse() => Time.time >= lastUsedTime + cooldownTime;
         public override bool Use()
         {

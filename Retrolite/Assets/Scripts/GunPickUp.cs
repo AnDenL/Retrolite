@@ -18,7 +18,9 @@ public class GunPickUp : Interactable
 
     public override void Interact(Creature creature)
     {
-        //creature.WeaponManager.AddGun(gunData);
+        var wm = creature.transform.GetComponentInChildren<WeaponManager>();
+        if (wm == null) return;
+        wm.AddGun(gunData);
         Destroy(gameObject);
     }
 }

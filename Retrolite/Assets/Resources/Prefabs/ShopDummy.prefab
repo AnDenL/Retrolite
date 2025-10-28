@@ -195,6 +195,9 @@ GameObject:
   - component: {fileID: 4622825268475827778}
   - component: {fileID: 7225403359121063253}
   - component: {fileID: 7969842123576662494}
+  - component: {fileID: 1253902926056617599}
+  - component: {fileID: 5245305292108444125}
+  - component: {fileID: 1019020315887624886}
   m_Layer: 6
   m_Name: ShopDummy
   m_TagString: Enemy
@@ -362,6 +365,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8772876e2e2d351855c55d01552e35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1253902926056617599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232788738999612174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2ca1348dc261fa6bb575e9c46bb7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStability: 1
+  stability: 0
+--- !u!114 &5245305292108444125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232788738999612174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 11400000, guid: 4b4d05b1a3292ec408384e3c294a830e, type: 2}
+  visionRange: 0
+  skillTemplates: []
+  passiveTemplates: []
+  speed: 0
+  baseMovementSkill: {fileID: 0}
+  Animator: {fileID: 0}
+  HealthComponent: {fileID: 0}
+  Corruption: {fileID: 0}
+  Rb: {fileID: 0}
+--- !u!50 &1019020315887624886
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5232788738999612174}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &4569151625779682176
 PrefabInstance:
   m_ObjectHideFlags: 0

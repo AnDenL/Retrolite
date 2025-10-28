@@ -59,11 +59,12 @@ public class WeaponManager : MonoBehaviour
     {
         if (gunData.GunType == GunType.Empty) return;
         guns.Add(gunData);
+        SelectGun(guns.Count - 1);
     }
 
-    private void Scroll(int direction)
+    private void Scroll(int direction)  
     {
-        if (guns.Count <= 1) return;
+        if (guns.Count <= 1 || !owner.Controller.IsPlayer) return;
         int previousSelected = selected;
         selected += direction;
 

@@ -12,11 +12,7 @@ public class Chest : Interactable
     private bool isOpen = false;
     private Animator animator;
 
-    private void Start()
-    {
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
-        animator = GetComponent<Animator>();
-    }
+    private void Start() => animator = GetComponent<Animator>();
 
     public override void Interact(Creature creature)
     {

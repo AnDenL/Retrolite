@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8529995573262484061}
   - component: {fileID: 4262160169200695675}
   - component: {fileID: 2798828639258601977}
+  - component: {fileID: 6328531672366655902}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -106,6 +107,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.6}
   m_EdgeRadius: 0
+--- !u!114 &6328531672366655902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700083677819906412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7261478397136688291
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
   reward:
-    money: 30
-    code: 15
-    health: 0
-    items: []
+    Heal: 0
+    Health: 0
+    Items: []
+    Resources: []

@@ -61,19 +61,20 @@ namespace Creatures
                     if (skill.CanUse(target))
                         skill.Use(target);
                 }
-                if (dist < 5f)
+                if (dist < 3f)
                 {
                     foreach (var escape in owner.ActiveSkills
-                        .Where(s => s.Type == SkillType.Movement || s.Type == SkillType.Defense)
-                        .OfType<PositionSkill>())
+                        .Where(s => s.Type == SkillType.Movement || s.Type == SkillType.Defense))
                     {
-                        Vector2 dir = (owner.transform.position - target.transform.position).normalized * (5 - dist);
+                        Vector2 dir = (owner.transform.position - target.transform.position).normalized;
                         escape.Use(owner.transform.position + (Vector3)dir);
                     }
+
+                    movement.Use(-GetDirectionToTarget());
                 }
-                else if (dist > 6f)
+                else if (dist > 7f)
                 {
-                    movement.Use(owner.transform.position + (owner.transform.position - target.transform.position).normalized * (dist * -0.05f));
+                    movement.Use(GetDirectionToTarget());
                 }
             }
             else

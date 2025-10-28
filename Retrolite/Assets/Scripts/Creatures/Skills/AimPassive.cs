@@ -18,7 +18,7 @@ namespace Creatures
 
         public void Activate()
         {
-            weaponManager.Rotate(owner.Controller.GetDirectionToTarget());
+            weaponManager.Rotate(owner.transform.position + Vector3.up * 0.5f - Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 }

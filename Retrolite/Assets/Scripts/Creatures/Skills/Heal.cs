@@ -7,6 +7,7 @@ namespace Creatures
     public class HealAllySkill : AllyTargetedSkill
     {
         public FormulaNode healAmount;
+
         public override SkillType Type => SkillType.Utility;
 
         public override void Activate(Creature target)

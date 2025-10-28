@@ -137,10 +137,7 @@ public class BulletBase : MonoBehaviour
 
             context.TargetCreature = creature;
             context.TargetHealth = creature.HealthComponent;
-            context.TargetCreature.StartKnockback(
-            data.Knockback.Evaluate(context) / 10,
-            transform.up
-        );
+            creature.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
         }
         else
         {

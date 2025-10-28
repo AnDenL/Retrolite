@@ -89,8 +89,11 @@ public class Creature : MonoBehaviour
             AddPassive(instance);
         }
 
-        baseMovementSkill = Instantiate(baseMovementSkill);
-        baseMovementSkill.Init(this);
+        if (baseMovementSkill != null)
+        {
+            baseMovementSkill = Instantiate(baseMovementSkill);
+            baseMovementSkill.Init(this);
+        }
 
         ui = transform.Find("UI");
 
@@ -139,13 +142,13 @@ public class Creature : MonoBehaviour
         if (position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-            if (ui) ui.localScale = new Vector3(1, 1, 1);
+            if (ui) ui.localScale = new Vector3(-1, 1, 1);
             facingLeft = true;
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
-            if (ui) ui.localScale = new Vector3(-1, 1, 1);
+            if (ui) ui.localScale = new Vector3(1, 1, 1);
             facingLeft = false;
         }
     }
