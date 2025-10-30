@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80fc5561398241942bb98a9833437bb9, type: 3}
   m_Name: UseWeapon
   m_EditorClassIdentifier: 
-  Priority: 0
+  Priority: 2
   cooldownTime: 0
   weaponManagerPrefab: {fileID: 2631612035885631530, guid: 6ee9725e45b1fa640b425807ffd02de8, type: 3}

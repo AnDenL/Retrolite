@@ -20,7 +20,7 @@ GameObject:
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -112,13 +112,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
   - {fileID: 11400000, guid: ded458a89c6ff0c4d9ec73afda7d40ed, type: 2}
-  passiveTemplates: []
+  passiveTemplates:
+  - {fileID: 11400000, guid: 3a9f44039051e3844ac5b84060c61e0a, type: 2}
   speed: 60
   baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
   Rb: {fileID: 0}
+  money: 0
+  bits: 0
+  coinParticles: {fileID: 0}
+  codeParticles: {fileID: 0}
+  WeaponManager: {fileID: 0}
 --- !u!114 &4437067109139031039
 MonoBehaviour:
   m_ObjectHideFlags: 0

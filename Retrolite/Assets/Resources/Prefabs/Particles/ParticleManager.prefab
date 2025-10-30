@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3876951528993386996
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8800234981376417901}
+  - component: {fileID: 6695569952892824157}
+  m_Layer: 0
+  m_Name: ParticleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8800234981376417901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3876951528993386996}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6695569952892824157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3876951528993386996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f84cd990a2274d042adb8f374f89dd1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleSystems:
+  - {fileID: 1164772456324674975, guid: ca20f92ae68494048aa946edfcba25ad, type: 3}
+  - {fileID: 4192803108029581992, guid: 24c56781a3fa27d45a52161b098b88a0, type: 3}
+  - {fileID: 6532311161760424515, guid: 39a0b0eb44bc80743ab6e795fc97d062, type: 3}
+  - {fileID: 5002743788197597168, guid: 51fb036e6b6d0c54f8beda173ede5aef, type: 3}
+  - {fileID: 2988900003801551570, guid: 437ed2bb10bb3de44a4a909b21a8e5d6, type: 3}
+  - {fileID: 451529274201439752, guid: 0348c5b2bcb450c43af88fa66306c335, type: 3}
+  - {fileID: 580552656032633808, guid: 91d604491bbb65c4d86028b4a203a7a1, type: 3}
+  - {fileID: 8562194413412107121, guid: 3988c1fb7e296914fa4902ad1579edfe, type: 3}
+  - {fileID: 1566013392878265237, guid: 8ef8faf18b9a68e45b01a5bb31a61b34, type: 3}
+  - {fileID: 5685545449391973281, guid: fcfa3e15c4dd9234e953c03fd22a51e5, type: 3}
+  ResourceParticles:
+  - {fileID: 3209216098298142608, guid: 0b482827f2a24694693c0acbe3b32cdc, type: 3}
+  - {fileID: 1619951632404652843, guid: ba8c0336d12e2ef4bb38f1d0e56f07e2, type: 3}
+  - {fileID: 3623130141191393828, guid: 198878f61e498db4285d9cc26b5513f9, type: 3}
