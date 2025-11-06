@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
 
 public class WeaponManager : MonoBehaviour
@@ -46,15 +45,6 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.mouseScrollDelta.y != 0)
-        {
-            int direction = Input.mouseScrollDelta.y > 0 ? -1 : 1;
-            Scroll(direction);
-        }
-    }
-
     public void AddGun(GunData gunData)
     {
         if (gunData.GunType == GunType.Empty) return;
@@ -62,7 +52,7 @@ public class WeaponManager : MonoBehaviour
         SelectGun(guns.Count - 1);
     }
 
-    private void Scroll(int direction)  
+    public void Scroll(int direction)  
     {
         if (guns.Count <= 1 || !owner.Controller.IsPlayer) return;
         int previousSelected = selected;
@@ -76,31 +66,29 @@ public class WeaponManager : MonoBehaviour
     private void SelectGun(int index)
     {
         GunData selectedGun = guns[index];
-        gun.Set(selectedGun, owner);
+        gun.Initialize(selectedGun, owner);
         Hints.Show("Equipped " + selectedGun.Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));
         ToggleHands(selectedGun.GunType == GunType.Empty);
     }
 
-    public void Shoot()
+    public void Shoot() => gun.Fire();
+    public void Reload()
     {
-        gun.Fire();
-        transform.rotation = Quaternion.Euler(0f, 0f, transform.rotation.eulerAngles.z + UnityEngine.Random.Range(-90f, 90f));
+        if (gun.isActiveAndEnabled) gun.Reload();
     }
-
-    public bool CanShoot()
-    {
-        return gun.Data.GunType != GunType.Empty && (gun.Data.fireTime <= Time.time || float.IsNaN(gun.Data.fireTime));
-    }
+    public bool CanShoot() => gun.CanShoot();
     
-    public void Rotate(Vector3 direction)
+    public void Rotate(Vector3 position)
     {
+        Vector2 direction = position - transform.position;
+
         direction.Normalize();
 
         direction = direction.x < 0 ? -direction : direction;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        handTransform.localPosition = new Vector3(0.65f - Mathf.Abs(direction.y) / 6, 0f, direction.y);
-        transform.rotation = Quaternion.Euler(0f, 0f, Mathf.LerpAngle(transform.rotation.eulerAngles.z, angle, Time.deltaTime * 10f));
+        handTransform.localPosition = new Vector3(0.7f - Mathf.Abs(direction.y) / 8, 0f, direction.y);
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

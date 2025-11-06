@@ -100,16 +100,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefabs: {fileID: 11400000, guid: 2d3b67caa0117fcc1901dd70deab86c3, type: 2}
-  reloadMaterial: {fileID: 2100000, guid: 6078671cf4630504fbeaf7ce34182f2b, type: 2}
-  reloadBar: {fileID: 7551143569481935602}
-  Data:
-    Name: "\u043F\u0443"
+  data:
+    Name: Empty
     FireRate:
-      rid: 1916589722793148417
+      rid: 1425606034702991376
     Accuracy:
-      rid: 1916589722793148416
+      rid: 1425606034702991377
     MagazineSize: 0
-    CurrentAmmo: 0
+    CurrentAmmo: 1
     Echo: 0
     ReloadTime: 0
     GunType: 0
@@ -119,53 +117,31 @@ MonoBehaviour:
     BulletType: 0
     BulletData:
       Damage:
-        rid: 7873060987853078582
+        rid: -2
       LifeTime:
-        rid: 1717894067389464680
+        rid: -2
       Knockback:
-        rid: 7873060987853078541
+        rid: -2
       Scale:
-        rid: 1717894067389464679
+        rid: -2
       Speed:
-        rid: 1717894067389464678
+        rid: -2
       Angle:
-        rid: 7218930000412016723
+        rid: -2
       IsDynamic: 0
   references:
     version: 2
     RefIds:
-    - rid: 1717894067389464678
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 1425606034702991376
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
-    - rid: 1717894067389464679
+    - rid: 1425606034702991377
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 0
-    - rid: 1717894067389464680
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0
-    - rid: 1916589722793148416
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0
-    - rid: 1916589722793148417
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 2
-    - rid: 7218930000412016723
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0
-    - rid: 7873060987853078541
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0
-    - rid: 7873060987853078582
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0
+        Value: 1
 --- !u!1 &2631612035885631530
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +153,7 @@ GameObject:
   - component: {fileID: 6999250476178650825}
   - component: {fileID: 7203431138603453672}
   m_Layer: 0
-  m_Name: rotation
+  m_Name: WeaponManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,7 +168,7 @@ Transform:
   m_GameObject: {fileID: 2631612035885631530}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -323,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 6746216097032602371}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.629, y: -0.17499995, z: 0}
+  m_LocalPosition: {x: 0.629, y: -0.075, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

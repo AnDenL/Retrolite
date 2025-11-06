@@ -15,6 +15,8 @@ namespace Creatures
 
         public override bool IsPlayer => true;
 
+        private WeaponManager weaponManager;
+
         public override void Init(Creature owner)
         {
             base.Init(owner);
@@ -26,8 +28,17 @@ namespace Creatures
             }
             instance = this;
 
+            foreach (var skill in owner.ActiveSkills)
+                NewSlot(skill);
+
             target = MouseTarget.instance;
             owner.OnNewSkill += NewSlot;
+
+            weaponManager = owner.GetComponentInChildren<WeaponManager>();
+            if (weaponManager)
+            {
+                SkillSlots.Add(KeyCode.R, new EventSkillSlot(weaponManager.Reload));
+            }
         }
 
         public override void UpdateAI()
@@ -43,8 +54,18 @@ namespace Creatures
                 if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
 
             movement.Use(moveDir);
+            if (weaponManager != null) HandleWeaponManager();
         }
-        
+
+        private void HandleWeaponManager()
+        {
+            weaponManager.Rotate(Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
+
+            if (Input.mouseScrollDelta.y == 0) return;
+            int direction = Input.mouseScrollDelta.y > 0 ? -1 : 1;
+            weaponManager.Scroll(direction);
+        }
+
         public override Vector3 GetDirectionToTarget() =>
             (Game.mainCamera.ScreenToWorldPoint(Input.mousePosition) - Owner.transform.position).normalized;
 
@@ -104,6 +125,19 @@ namespace Creatures
         }
     }
     
+    public class EventSkillSlot  : ISkillSlot
+    {
+        public event System.Action OnPressed;
+        public bool OnKeyDown { get; set; }
+
+        public EventSkillSlot (System.Action action)
+        {
+            OnPressed = action;
+        }
+
+        public void Use() => OnPressed?.Invoke();
+    }
+    
     public class SelfSkillSlot  : ISkillSlot
     {
         public SelfSkill Skill;
@@ -158,7 +192,16 @@ namespace Creatures
             Skill = skill;
         }
 
-        public void Use() => Skill.Use(Game.FindNearestToMouse());
+        public void Use()
+        {
+            Creature target = Game.FindNearestToMouse();
+            if (!target)
+            {
+                Hints.Show("No target", 1, AnimationCurve.Linear(0, 1, 1, 0));
+                return;
+            }
+            Skill.Use(target);
+        }
     }
 
     public interface ISkillSlot

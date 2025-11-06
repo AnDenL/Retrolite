@@ -11,27 +11,27 @@ public class Creature : MonoBehaviour
     #region Fields and Properties
 
     [Header("Creature")]
-    [SerializeField] private AIController controller;
+    [SerializeField] protected AIController controller;
     [SerializeField] protected float visionRange = 8f;
 
     public AIController Controller => controller;
     public float VisionRange => visionRange;
 
-    [SerializeField] private List<Skill> skillTemplates = new();
-    [SerializeField] private List<PassiveSkill> passiveTemplates = new();
+    [SerializeField] protected List<Skill> skillTemplates = new();
+    [SerializeField] protected List<PassiveSkill> passiveTemplates = new();
 
-    private readonly List<Skill> activeSkills = new();
-    private readonly List<PassiveSkill> passiveSkills = new();
+    protected readonly List<Skill> activeSkills = new();
+    protected readonly List<PassiveSkill> passiveSkills = new();
 
     public IReadOnlyList<Skill> ActiveSkills => activeSkills;
     public IReadOnlyList<PassiveSkill> PassiveSkills => passiveSkills;
 
-    private ResourceContainer resources;
+    protected ResourceContainer resources;
     public ResourceContainer Resources => resources;
 
     [Header("Movement")]
     [SerializeField] protected float speed = 5f;
-    [SerializeField] private DirectionSkill baseMovementSkill;
+    [SerializeField] protected DirectionSkill baseMovementSkill;
 
     public float Speed => speed;
     public DirectionSkill BaseMovement => baseMovementSkill;
@@ -44,12 +44,12 @@ public class Creature : MonoBehaviour
     [HideInInspector] public Corruptible Corruption;
     [HideInInspector] public Rigidbody2D Rb;
 
-    private Transform ui;
-    private int _isBackwardsHash;
-    private int _isCorruptedHash;
-    private int _corruptHash;
-    private int _isDeadHash;
-    private bool facingLeft;
+    protected Transform ui;
+    protected int _isBackwardsHash;
+    protected int _isCorruptedHash;
+    protected int _corruptHash;
+    protected int _isDeadHash;
+    protected bool facingLeft;
 
     #endregion
 
@@ -71,9 +71,6 @@ public class Creature : MonoBehaviour
         Corruption = GetComponent<Corruptible>();
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
-
-        controller = Instantiate(controller);
-        controller.Init(this);
 
         foreach (var template in skillTemplates)
         {
@@ -102,6 +99,9 @@ public class Creature : MonoBehaviour
         HealthComponent.OnDeath += DeathEffect;
 
         resources = new(this);
+
+        controller = Instantiate(controller);
+        controller.Init(this);
 
         _isBackwardsHash = Animator.StringToHash("IsBackwards");
         _isCorruptedHash = Animator.StringToHash("IsCorrupted");

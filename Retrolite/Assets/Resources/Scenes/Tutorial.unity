@@ -40933,7 +40933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0017064846
+      value: 0.0017035775
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -40941,7 +40941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.996587
+      value: 0.99488926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41249,6 +41249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1127240027396745071, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c28d914150daf9f45b933a8f10fcb02b, type: 2}
     - target: {fileID: 1152285883391924825, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -41287,6 +41291,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152285883391924825, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005852501118021681, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.081
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005852501118021681, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5004654193037301585, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1440027686, guid: 67111596fda7f1609b45f13384bd01ea, type: 3}
+    - target: {fileID: 6631921096664524877, guid: da62ebfbef2de021787fd81a1a734d3e, type: 3}
+      propertyPath: passiveTemplates.Array.size
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

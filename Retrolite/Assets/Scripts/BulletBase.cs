@@ -5,9 +5,10 @@ using Creatures;
 
 public class BulletBase : MonoBehaviour
 {
-    protected BulletPool pool;
     protected BulletData data;
 
+    protected BulletPool pool;
+    
     protected FormulaContext context;
     public FormulaContext Context => context;
 

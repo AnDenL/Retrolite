@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class Settings : MonoBehaviour
 {
-    public static SettingsData settings = new SettingsData();
+    public static SettingsData settings;
 
     [SerializeField] Slider masterSlider, musicSlider, effectSlider;
     [SerializeField] AudioMixerGroup mixer;
@@ -17,6 +17,7 @@ public class Settings : MonoBehaviour
 
     private void Start()
     {
+        settings ??= new();
         LoadSettings();
     }
 
@@ -61,10 +62,9 @@ public class Settings : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
         fullscreenToggle.onValueChanged.AddListener(SetFullscreen);
         fullscreenToggle.isOn = settings.Fullscreen;
+        resolutions = Screen.resolutions;
         SetResolution(settings.ResolutionIndex);
         SetFullscreen(settings.Fullscreen);
-
-        resolutions = Screen.resolutions;
 
         if (PlayerPrefs.HasKey("ResolutionPreference"))
             resolutionDropdown.value = PlayerPrefs.GetInt("ResolutionPreference");

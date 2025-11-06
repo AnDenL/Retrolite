@@ -22,6 +22,7 @@ namespace Creatures
         {
             owner.Animator.SetBool(isWalkingHash, direction != Vector2.zero);
             owner.Rb.velocity += owner.Speed * Speed * Time.deltaTime * direction;
+            owner.UpdateAnimationState();
         }
     }
 }

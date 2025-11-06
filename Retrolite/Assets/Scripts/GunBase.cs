@@ -3,98 +3,79 @@ using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using CalculatingSystem;
-using Creatures;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField] protected ObjectList bulletPrefabs;
-    [SerializeField] protected Material reloadMaterial;
-    [SerializeField] protected GameObject reloadBar;
-
-    public GunData Data;
-
-    protected bool isReloading;
-    protected FormulaContext context;
-
+    [SerializeField] private ObjectList bulletPrefabs;
     private BulletPool bulletPool;
+    private FormulaContext context;
+    private Coroutine reloadRoutine;
 
+    [SerializeField] private GunData data;
+    public GunData Data => data;
+
+    public bool IsReloading { get; private set; }
     public event Action OnFire;
+    public event Action OnReloadStart;
+    public event Action OnReloadEnd;
 
-    protected void Awake()
+    public void Initialize(GunData data, Creature owner)
     {
-        reloadBar.SetActive(false);
-    }
-
-    public void Set(GunData gun, Creature owner)
-    {
+        this.data = data;
         context = new FormulaContext { Gun = this, Owner = owner };
-        Data = gun;
-        GetComponent<SpriteRenderer>().sprite = Data.GunSprite;
-
-        bulletPool?.Clear();
 
         Transform spawn = transform.childCount > 0 ? transform.GetChild(0) : transform;
-        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)Data.BulletType], spawn, Data.BulletData, context);
+        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)data.BulletType], spawn, data.BulletData, context);
     }
+
+    public bool CanShoot() => data.CurrentAmmo != 0 && (data.fireTime <= Time.time || float.IsNaN(data.fireTime)) && data.GunType != GunType.Empty;
+    public void Reload() => reloadRoutine = StartCoroutine(ReloadCoroutine());
 
     public void Fire()
     {
-        if (Data.CurrentAmmo <= 0)
+        if (!CanShoot()) return;
+        if (IsReloading || reloadRoutine != null)
         {
-            if (!isReloading) StartCoroutine(Reload());
-            return;
+            StopCoroutine(reloadRoutine);
         }
 
-        float shootSpeed = Data.FireRate.Evaluate(context);
+        float shootSpeed = data.FireRate.Evaluate(context);
+        data.fireTime = shootSpeed != 0 ? Time.time + 1f / Mathf.Abs(shootSpeed) : float.NaN;
 
-        if (shootSpeed != 0)
-            Data.fireTime = Time.time + 1f / Mathf.Abs(shootSpeed);
-        else Data.fireTime = float.NaN;
+        float accuracy = data.Accuracy.Evaluate(context);
+        float spread = accuracy == 0 ? 0 : 5 / accuracy;
 
-        float Accuracy = Data.Accuracy.Evaluate(context);
-        float Spread = Accuracy == 0 ? 0 : 5 / Accuracy;
+        bulletPool.Get().Fire(Random.Range(-spread, spread));
 
-        bulletPool.Get().Fire(Random.Range(-Spread, Spread));
-
-        isReloading = false;
-        if (Data.MagazineSize != 0) Data.CurrentAmmo -= 1;
+        if (data.MagazineSize != 0) data.CurrentAmmo--;
+        if (data.CurrentAmmo == 0) reloadRoutine = StartCoroutine(ReloadCoroutine());
         OnFire?.Invoke();
     }
 
-    protected void GenerateRandomFormulas()
+    private void OnDisable()
     {
-        Data.FireRate = FormulaGenerator.GenerateRandomFormula();
-        Data.Accuracy = FormulaGenerator.GenerateRandomFormula();
-
-        Debug.Log($"Fire rate: {Data.FireRate.ToReadableString()}");
-        Debug.Log($"Accuracy: {Data.Accuracy.ToReadableString()}");
-
-        if (Data.BulletData != null)
-            Data.BulletData.GenerateRandomFormulas();
+        if (reloadRoutine != null) StopCoroutine(reloadRoutine);
     }
 
-    protected IEnumerator Reload()
+    private IEnumerator ReloadCoroutine()
     {
+        OnReloadStart?.Invoke();
+        IsReloading = true;
         float t = 0;
-        isReloading = true;
-        reloadBar.SetActive(true);
 
-        while (isReloading)
+        while (t < 1)
         {
-            t += Time.deltaTime / Data.ReloadTime;
-            reloadMaterial.SetFloat("_Fill", t);
-            if (t > 1) isReloading = false;
+            t += Time.deltaTime / data.ReloadTime;
             yield return null;
         }
 
-        if (t > 1)
-        {
-            Data.CurrentAmmo = Data.MagazineSize;
-            Data.fireTime = 0;
-        }
-        reloadBar.SetActive(false);
+        data.CurrentAmmo = data.MagazineSize;
+        data.fireTime = 0;
+        IsReloading = false;
+        OnReloadEnd?.Invoke();
     }
 }
+
 
 [Serializable]
 public class GunData
@@ -162,17 +143,10 @@ public class GunData
 public enum GunType
 {
     Empty,
-    Pistol,
-    Shotgun,
-    Rifle
+    Pistol
 }
 
 public enum BulletType
 {
-    Bullet,
-    Electric,
-    Sound,
-    Laser,
-    Explosive,
-    Poison
+    Bullet
 }
