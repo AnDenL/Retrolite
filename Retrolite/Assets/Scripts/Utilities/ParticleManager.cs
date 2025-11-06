@@ -11,7 +11,6 @@ public class ParticleManager : MonoBehaviour
     public ParticleSystem[] ParticleSystems = new ParticleSystem[0];
     public ParticleSystem[] ResourceParticles = new ParticleSystem[0];
 
-    private ParticlePool[] particlePools;
     private ParticlePool[] resourceParticlePools;
 
     private void Awake()
@@ -22,20 +21,23 @@ public class ParticleManager : MonoBehaviour
             .Select((ps, index) => new { ps, index })
             .ToDictionary(x => x.ps.name, x => x.index);
 
-        particlePools = ParticleSystems.Select(ps => new ParticlePool(ps, 5, transform)).ToArray();
         resourceParticlePools = ResourceParticles.Select(ps => new ParticlePool(ps, 5, transform)).ToArray();
     }
 
     public static void PlayParticle(int index, Vector2 position)
     {
-        ParticlePool pool = Instance.particlePools[index];
-        if (pool == null)
+        ParticleSystem ps = Instance.ParticleSystems[index];
+        if (ps == null)
         {
             Debug.LogError($"Particle pool at index {index} not found.");
             return;
         }
 
-        pool.PlayParticle(position);
+        ps.transform.position = position;
+        ps.gameObject.SetActive(true);
+        ps.Play();
+
+        ps.Play();
     }
 
     public static void PlayParticle(ResourceType index, Vector2 from, Transform to, int amount)

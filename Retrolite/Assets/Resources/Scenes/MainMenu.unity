@@ -3445,13 +3445,10 @@ MonoBehaviour:
   possibleTexts:
   - Exit
   - Goodbye, World!
-  - Time to go home
-  - Back to reality
   - "The End\u2026 for now"
   - Logout
   - Quit
   - Leave
-  - Alt + F4 certified
   - Exit
   - Quit
   - Leave
@@ -5899,6 +5896,7 @@ MonoBehaviour:
   menu: {fileID: 869294799}
   selected: {fileID: 1909047546}
   console: {fileID: 724398389}
+  mixer: {fileID: 0}
 --- !u!114 &1657271096
 MonoBehaviour:
   m_ObjectHideFlags: 0

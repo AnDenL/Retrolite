@@ -70,7 +70,7 @@ public class TextAnimator : MonoBehaviour
             }
 
             textMeshPro.text = new string(displayChars);
-            yield return new WaitForSeconds(glitchSpeed);
+            yield return new WaitForSecondsRealtime(glitchSpeed);
         }
 
         textMeshPro.text = targetText;

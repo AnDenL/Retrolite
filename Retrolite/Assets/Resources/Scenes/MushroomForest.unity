@@ -37923,6 +37923,10 @@ MonoBehaviour:
   mapTiles:
   - Layer: {fileID: 603957917}
     Tiles:
+    - {fileID: 11400000, guid: 9db24eed96fc8564aba6b57f5fc03d6f, type: 2}
+    MinValue: 10
+  - Layer: {fileID: 603957917}
+    Tiles:
     - {fileID: 11400000, guid: 68a8cc0582906c541a4e2d9019701bbc, type: 2}
     - {fileID: 11400000, guid: 60c6f37a7cc71b843a3ae94d5f2261d7, type: 2}
     MinValue: 9.5
@@ -627258,23 +627262,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: orthographic size
-      value: 9.9375
+      value: 9.125
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0
+      value: 0.0008510638
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0015649452
+      value: 0.0017035775
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 1
+      value: 0.9974468
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.9953052
+      value: 0.99488926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
