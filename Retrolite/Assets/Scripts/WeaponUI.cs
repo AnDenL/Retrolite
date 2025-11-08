@@ -2,38 +2,34 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Creatures;
 
 public class WeaponUI : MonoBehaviour
 {
     public Image WeaponImage;
     public AmmoUI AmmoUI;
 
-    private List<GunData> guns = new List<GunData>();
-    private int selected = 0;
+    private WeaponManager weaponManager;
 
-    public void AddGun(GunData gun)
+    private void Start()
     {
-        guns.Add(gun);
-        selected = guns.Count - 1;
-        UpdateUI();
+        weaponManager = PlayerController.Instance.WeaponManager;
+        weaponManager.OnSelected += UpdateUI;
+        weaponManager.Gun.OnFire += UpdateUI;
+        weaponManager.Gun.OnReloadEnd += UpdateUI;
     }
 
-    private void Scroll(int direction)
+    private void UpdateUI(int selected)
     {
-        int previousSelected = selected;
-        selected += direction;
+        WeaponImage.sprite = weaponManager.Guns[selected].GunSprite;
+        AmmoUI.SetAmmoTexture(weaponManager.Guns[selected].BulletSprite);
+        AmmoUI.SetAmmo(weaponManager.Guns[selected].CurrentAmmo, weaponManager.Guns[selected].MagazineSize);
 
-        if (selected < 0) selected = guns.Count - 1;
-        else if (selected > guns.Count - 1) selected = 0;
-        if (previousSelected != selected) UpdateUI();
+        Hints.Show("Equipped " + weaponManager.Get().Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));
     }
 
     private void UpdateUI()
     {
-        WeaponImage.sprite = guns[selected].GunSprite;
-        AmmoUI.SetAmmoTexture(guns[selected].BulletSprite);
-        AmmoUI.SetAmmo(guns[selected].CurrentAmmo, guns[selected].MagazineSize);
-
-        Hints.Show("Selected weapon: " + guns[selected].Name, 2f, AnimationCurve.Linear(0, 1, 1, 0));
+        AmmoUI.SetAmmo(weaponManager.Get().CurrentAmmo, weaponManager.Get().MagazineSize);
     }
 }

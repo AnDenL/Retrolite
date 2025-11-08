@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -7,13 +8,17 @@ public class WeaponManager : MonoBehaviour
 
     [SerializeField] private Transform handTransform;
     [SerializeField] private GunBase gun;
+    public GunBase Gun => gun;
 
     private List<GunData> guns = new();
+    public IReadOnlyList<GunData> Guns => guns;
     private Creature owner;
     private LinePoints handController;
     private Transform[] handsWithoutGun;
 
     private int selected = 0;
+
+    public Action<int> OnSelected;
 
     public void Init(Creature owner)
     {
@@ -67,9 +72,11 @@ public class WeaponManager : MonoBehaviour
     {
         GunData selectedGun = guns[index];
         gun.Initialize(selectedGun, owner);
-        Hints.Show("Equipped " + selectedGun.Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));
         ToggleHands(selectedGun.GunType == GunType.Empty);
+        OnSelected?.Invoke(index);
     }
+
+    public GunData Get() => guns[selected];
 
     public void Shoot() => gun.Fire();
     public void Reload()

@@ -9,17 +9,17 @@ using Creatures;
 public class PlayerUI : MonoBehaviour
 {
     [Header("Health UI")]
-    [SerializeField] TMP_Text healthText;
-    [SerializeField] VertexJitter shakingText;
-    [SerializeField] Slider healthBar, backBar;
-    [SerializeField] Image healthBarFill;
-    [SerializeField] LowHealthVolume effect;
-    [SerializeField] Color healthBarColor;
-    [SerializeField] Color lowHealthColor;
+    [SerializeField] private TMP_Text healthText;
+    [SerializeField] private VertexJitter shakingText;
+    [SerializeField] private Slider healthBar, backBar;
+    [SerializeField] private Image healthBarFill;
+    [SerializeField] private LowHealthVolume effect;
+    [SerializeField] private Color healthBarColor;
+    [SerializeField] private Color lowHealthColor;
 
     [Header("Resources UI")]
-    [SerializeField] TMP_Text moneyText;
-    [SerializeField] TMP_Text codeText;
+    [SerializeField] private TMP_Text moneyText;
+    [SerializeField] private TMP_Text codeText;
 
     private float healthPercent;
 

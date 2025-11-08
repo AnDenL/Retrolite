@@ -4,8 +4,8 @@ public class ShopItem : Interactable
 {
     public int price;
 
-    [SerializeField] Sprite soldSprite;
-    [SerializeField] TextMesh priceText;
+    [SerializeField] private Sprite soldSprite;
+    [SerializeField] private TextMesh priceText;
 
     private bool isBought;
 

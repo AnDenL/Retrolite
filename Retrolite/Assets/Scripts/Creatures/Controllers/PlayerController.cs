@@ -8,25 +8,25 @@ namespace Creatures
     {
         public Dictionary<KeyCode, ISkillSlot> SkillSlots = new();
 
-        public static Player Player => (Player)instance.Owner;
+        public static Player Player => (Player)Instance.Owner;
 
-        public static PlayerController instance;
+        public static PlayerController Instance;
         public static bool CanInteract = true;
 
         public override bool IsPlayer => true;
 
-        private WeaponManager weaponManager;
+        public WeaponManager WeaponManager { get; private set; }
 
         public override void Init(Creature owner)
         {
             base.Init(owner);
 
-            if (instance != null)
+            if (Instance != null)
             {
                 Debug.LogWarning("Multiple PlayerController instances detected!");
                 return;
             }
-            instance = this;
+            Instance = this;
 
             foreach (var skill in owner.ActiveSkills)
                 NewSlot(skill);
@@ -34,10 +34,10 @@ namespace Creatures
             target = MouseTarget.instance;
             owner.OnNewSkill += NewSlot;
 
-            weaponManager = owner.GetComponentInChildren<WeaponManager>();
-            if (weaponManager)
+            WeaponManager = owner.GetComponentInChildren<WeaponManager>();
+            if (WeaponManager)
             {
-                SkillSlots.Add(KeyCode.R, new EventSkillSlot(weaponManager.Reload));
+                SkillSlots.Add(KeyCode.R, new EventSkillSlot(WeaponManager.Reload));
             }
         }
 
@@ -54,16 +54,16 @@ namespace Creatures
                 if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
 
             movement.Use(moveDir);
-            if (weaponManager != null) HandleWeaponManager();
+            if (WeaponManager != null) HandleWeaponManager();
         }
 
         private void HandleWeaponManager()
         {
-            weaponManager.Rotate(Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
+            WeaponManager.Rotate(Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
 
             if (Input.mouseScrollDelta.y == 0) return;
             int direction = Input.mouseScrollDelta.y > 0 ? -1 : 1;
-            weaponManager.Scroll(direction);
+            WeaponManager.Scroll(direction);
         }
 
         public override Vector3 GetDirectionToTarget() =>
@@ -117,7 +117,7 @@ namespace Creatures
 
             foreach (var key in keys)
             {
-                if (!instance.SkillSlots.ContainsKey(key))
+                if (!Instance.SkillSlots.ContainsKey(key))
                     return key;
             }
 

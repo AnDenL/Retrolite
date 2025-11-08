@@ -20,6 +20,7 @@ public class GunPickUp : Interactable
     {
         var wm = creature.transform.GetComponentInChildren<WeaponManager>();
         if (wm == null) return;
+        
         wm.AddGun(gunData);
         Destroy(gameObject);
     }

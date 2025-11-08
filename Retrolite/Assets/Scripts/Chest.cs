@@ -7,7 +7,7 @@ using Creatures;
 public class Chest : Interactable
 {
     private static WaitForSeconds _waitForSeconds0_5 = new(0.5f);
-    [SerializeField] Reward reward;
+    [SerializeField] private Reward reward;
 
     private bool isOpen = false;
     private Animator animator;

@@ -1,7 +1,6 @@
-using UnityEngine;
-
 namespace CalculatingSystem
 {
+    using UnityEngine;
     public static class Utilities
     {
         public static float CalculateHomingAngle(FormulaContext context)
