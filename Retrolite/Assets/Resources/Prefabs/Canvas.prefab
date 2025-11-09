@@ -1144,6 +1144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponImage: {fileID: 7890171767091284515}
   AmmoUI: {fileID: 8469749775271088081}
+  Panel: {fileID: 5329543118782735611}
 --- !u!1 &2847061324315209716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2162,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1901840078172905668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2290,8 +2291,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4, y: 90}
-  m_SizeDelta: {x: 8, y: 180}
+  m_AnchoredPosition: {x: -4, y: 104.05857}
+  m_SizeDelta: {x: 8, y: 208.1171}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5455352164179916353
 MonoBehaviour:
@@ -2311,9 +2312,9 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 7
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_Spacing: 4
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
@@ -2334,7 +2335,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3541931400299593364, guid: df3d8230049f03f66bcffb0b845054bf, type: 3}
   container: {fileID: 4404076998666779718}
   ammoText: {fileID: 8777024473965569082}
-  maxIcons: 40
+  maxIcons: 25
 --- !u!1 &6547246691210051386
 GameObject:
   m_ObjectHideFlags: 0

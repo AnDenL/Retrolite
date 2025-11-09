@@ -17,12 +17,15 @@ public class GunBase : MonoBehaviour
     public bool IsReloading { get; private set; }
     public event Action OnFire;
     public event Action OnReloadStart;
+    public event Action<float> OnReload;
     public event Action OnReloadEnd;
 
     public void Initialize(GunData data, Creature owner)
     {
         this.data = data;
         context = new FormulaContext { Gun = this, Owner = owner };
+
+        GetComponent<SpriteRenderer>().sprite = data.GunSprite;
 
         Transform spawn = transform.childCount > 0 ? transform.GetChild(0) : transform;
         bulletPool = new BulletPool(bulletPrefabs.Entries[(int)data.BulletType], spawn, data.BulletData, context);
@@ -66,6 +69,7 @@ public class GunBase : MonoBehaviour
         while (t < 1)
         {
             t += Time.deltaTime / data.ReloadTime;
+            OnReload?.Invoke(t);
             yield return null;
         }
 

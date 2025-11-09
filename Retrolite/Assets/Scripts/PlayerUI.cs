@@ -94,7 +94,6 @@ public class PlayerUI : MonoBehaviour
             bar2 = healthBar;
         }
 
-
         bar1.value = currentHealthPercentage;
 
         while (t > 0)

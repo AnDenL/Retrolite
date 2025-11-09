@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class GunPickUp : Interactable
 {
-    [SerializeField] GunData gunData;
+    [SerializeField] private GunData gunData;
 
-    [SerializeField] Sprite part1, part2;
-    [SerializeField][Range(0.0f, 1.0f)] float hueShift;
+    [SerializeField] private Sprite part1, part2;
+    [SerializeField][Range(0.0f, 1.0f)] private float hueShift;
 
     private void Start() => SetSprite();
 

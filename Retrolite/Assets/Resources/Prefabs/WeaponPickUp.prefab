@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2838384067363297853
 Transform:
   m_ObjectHideFlags: 0
@@ -165,18 +165,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
   gunData:
-    Name: 
+    Name: Test gun
     FireRate:
       rid: 1717894035193725090
     Accuracy:
       rid: 7218930000412016853
-    MagazineSize: 8
+    MagazineSize: 64
     CurrentAmmo: 8
     Echo: 0
     ReloadTime: 1.5
     GunType: 1
     GunSprite: {fileID: 0}
-    BulletSprite: {fileID: 0}
+    BulletSprite: {fileID: -811726568, guid: fc0967170faad231792a953e56e64c5d, type: 3}
     fireTime: 0
     BulletType: 0
     BulletData:
@@ -185,7 +185,7 @@ MonoBehaviour:
       LifeTime:
         rid: 1717894035193725032
       Knockback:
-        rid: -2
+        rid: 1916590152854274048
       Scale:
         rid: 7218930000412016839
       Speed:
@@ -195,12 +195,10 @@ MonoBehaviour:
       IsDynamic: 1
   part1: {fileID: 7463917477325957117, guid: 879f7133a453a9c4b8ed9461e73a493b, type: 3}
   part2: {fileID: 9097894827093708096, guid: 879f7133a453a9c4b8ed9461e73a493b, type: 3}
-  hueShift: 0.127
+  hueShift: 0.023
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 1717894035193725032
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
@@ -208,11 +206,15 @@ MonoBehaviour:
     - rid: 1717894035193725090
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 2
+        Value: 20
     - rid: 1717894077145415920
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 10
+    - rid: 1916590152854274048
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 1
     - rid: 7218930000412016839
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:

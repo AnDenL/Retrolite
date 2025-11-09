@@ -54,6 +54,7 @@ public class WeaponManager : MonoBehaviour
     {
         if (gunData.GunType == GunType.Empty) return;
         guns.Add(gunData);
+        selected = guns.Count - 1;
         SelectGun(guns.Count - 1);
     }
 

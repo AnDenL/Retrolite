@@ -9,6 +9,8 @@ public class WeaponUI : MonoBehaviour
     public Image WeaponImage;
     public AmmoUI AmmoUI;
 
+    [SerializeField] private GameObject Panel;
+
     private WeaponManager weaponManager;
 
     private void Start()
@@ -21,9 +23,18 @@ public class WeaponUI : MonoBehaviour
 
     private void UpdateUI(int selected)
     {
-        WeaponImage.sprite = weaponManager.Guns[selected].GunSprite;
-        AmmoUI.SetAmmoTexture(weaponManager.Guns[selected].BulletSprite);
-        AmmoUI.SetAmmo(weaponManager.Guns[selected].CurrentAmmo, weaponManager.Guns[selected].MagazineSize);
+        GunData gun = weaponManager.Guns[selected];
+        if (gun.GunType == GunType.Empty)
+        {
+            Panel.SetActive(false);
+            return;
+        }
+
+        Panel.SetActive(true);
+
+        WeaponImage.sprite = gun.GunSprite;
+        AmmoUI.SetAmmoTexture(gun.BulletSprite);
+        AmmoUI.SetAmmo(gun.CurrentAmmo, gun.MagazineSize);
 
         Hints.Show("Equipped " + weaponManager.Get().Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));
     }
