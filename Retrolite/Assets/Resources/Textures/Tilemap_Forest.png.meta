@@ -524,6 +524,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tilemap_Forest_19
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a058119602e09b24e85bc167e120fc4a
+      internalID: -1965295302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -546,6 +567,7 @@ TextureImporter:
       Tilemap_Forest_16: 1545637493
       Tilemap_Forest_17: -1653042859
       Tilemap_Forest_18: -1601322856
+      Tilemap_Forest_19: -1965295302
       Tilemap_Forest_2: 1970506410
       Tilemap_Forest_3: 1746527917
       Tilemap_Forest_4: 580315638

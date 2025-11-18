@@ -24,6 +24,8 @@ public class ParticleManager : MonoBehaviour
         resourceParticlePools = ResourceParticles.Select(ps => new ParticlePool(ps, 5, transform)).ToArray();
     }
 
+    public static void PlayParticle(string index, Vector2 position) => PlayParticle(ParticleIndices[index], position);
+
     public static void PlayParticle(int index, Vector2 position)
     {
         ParticleSystem ps = Instance.ParticleSystems[index];

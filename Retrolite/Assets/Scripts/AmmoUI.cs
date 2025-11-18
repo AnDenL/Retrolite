@@ -13,7 +13,7 @@ public class AmmoUI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private int maxIcons = 40;
 
-    private List<Image> pool = new List<Image>();
+    private List<Image> pool = new();
 
     private void Awake()
     {

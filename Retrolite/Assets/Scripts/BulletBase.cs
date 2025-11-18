@@ -40,6 +40,7 @@ public class BulletBase : MonoBehaviour
         OwnerAlignment = context.Owner.Alignment;
 
         projectileRenderer = GetComponent<SpriteRenderer>();
+        projectileRenderer.sprite = Data.BulletSprite;
     }
 
     public virtual void Fire(float spread)
@@ -186,6 +187,8 @@ public class BulletData
     [SerializeReference]
     public FormulaNode Angle;
 
+    public Sprite BulletSprite;
+
     public bool IsDynamic;
 
     public BulletData(float speed = 8, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0, float knockback = 1)
@@ -196,6 +199,7 @@ public class BulletData
         Scale = new ConstantNode(scale);
         Angle = new ConstantNode(angle);
         Knockback = new ConstantNode(knockback);
+        BulletSprite = WeaponSpriteGenerator.instance.BulletList.RandomSprite();
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;

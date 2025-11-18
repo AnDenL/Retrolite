@@ -34,14 +34,16 @@ namespace Creatures
             float duration = 0.06f;
             Vector3 startPos = owner.transform.position;
 
-            ParticleManager.PlayParticle(8, startPos);
+            ParticleManager.PlayParticle("XYZ", startPos);
+            ParticleManager.PlayParticle("Transform", startPos);
+            ParticleManager.PlayParticle(8, owner.transform.position);
             ownerCollider.enabled = false;
 
             while (t < duration)
             {
                 t += Time.deltaTime;
 
-                float distance = owner.Speed * Time.deltaTime;
+                float distance = 60 * Time.deltaTime;
                 RaycastHit2D hit = Physics2D.Raycast(
                     owner.transform.position,
                     direction.normalized,
@@ -63,6 +65,7 @@ namespace Creatures
             }
 
             ParticleManager.PlayParticle(8, owner.transform.position);
+            ParticleManager.PlayParticle("XYZ", startPos);
             ownerCollider.enabled = true;
         }
     }

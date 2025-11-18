@@ -1,5 +1,3 @@
-using TMPro;
-using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using Creatures;
@@ -33,7 +31,7 @@ public class WeaponUI : MonoBehaviour
         Panel.SetActive(true);
 
         WeaponImage.sprite = gun.GunSprite;
-        AmmoUI.SetAmmoTexture(gun.BulletSprite);
+        AmmoUI.SetAmmoTexture(gun.BulletData.BulletSprite);
         AmmoUI.SetAmmo(gun.CurrentAmmo, gun.MagazineSize);
 
         Hints.Show("Equipped " + weaponManager.Get().Name, 0.5f, AnimationCurve.Linear(0, 1, 1, 0));

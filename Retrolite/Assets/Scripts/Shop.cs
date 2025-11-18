@@ -13,7 +13,20 @@ public class ShopItem : Interactable
     {
         transform.GetChild(1).GetComponent<Collider2D>().enabled = false;
         priceText.text = price.ToString();
+        PlayerController.Player.Resources.Get(ResourceType.Money).OnChanged += ChangeTextColor;
+
+        ChangeTextColor(PlayerController.Player.Resources.Get(ResourceType.Money).Count);
     }
+
+    private void OnEnable()
+    {
+        if (PlayerController.Instance != null)
+            PlayerController.Player.Resources.Get(ResourceType.Money).OnChanged += ChangeTextColor;
+    }
+
+    private void OnDisable() => PlayerController.Player.Resources.Get(ResourceType.Money).OnChanged -= ChangeTextColor;
+
+    private void ChangeTextColor(int value) => priceText.color = value < price ? Color.red : Color.white;
 
     public override void Interact(Creature creature)
     {

@@ -25,7 +25,7 @@ namespace Creatures
             if (checkInterval < Time.time)
             {
                 target = owner.FindTarget();
-                checkInterval = Time.time + 0.25f;
+                checkInterval = Time.time + 0.5f;
 
                 targetPosition = GetDirectionToTarget();
                 Skill chosen = owner.ActiveSkills
@@ -34,21 +34,28 @@ namespace Creatures
 
                 if (chosen != null)
                 {
-                    if (chosen is TargetedSkill targeted && target != null)
-                        targeted.Use(target);
-                    else if (chosen is PositionSkill pos)
-                        pos.Use(target.transform.position);
-                    else if (chosen is DirectionSkill dir)
-                        dir.Use(targetPosition);
-                    else if (chosen is SelfSkill self)
-                        self.Use();
+                    switch (chosen)
+                    {
+                        case TargetedSkill targeted:
+                            targeted.Use(target);
+                            break;
+                        case PositionSkill pos:
+                            pos.Use(target.transform.position);
+                            break;
+                        case DirectionSkill dir:
+                            dir.Use(targetPosition);
+                            break;
+                        case SelfSkill self:
+                            self.Use();
+                            break;
+                    }
                 }
             }
             else
             {
                 if (movement != null && targetPosition.magnitude != 0)
                 {
-                    if (movement.Use(GetDirectionToTarget()))
+                    if (movement.Use(targetPosition))
                     {
                         target = owner.FindTarget();
                     }

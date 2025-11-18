@@ -95,7 +95,6 @@ public class GunData
     public float ReloadTime;
     public GunType GunType;
     public Sprite GunSprite;
-    public Sprite BulletSprite;
     public float fireTime;
 
     public BulletType BulletType;
@@ -122,7 +121,6 @@ public class GunData
         BulletType = bulletType;
         BulletData = bulletData;
         GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
-        BulletSprite = WeaponSpriteGenerator.instance.BulletList.RandomSprite();
         Echo = 0;
     }
 
@@ -138,7 +136,6 @@ public class GunData
         BulletType = BulletType.Bullet;
         BulletData = null;
         GunSprite = null;
-        BulletSprite = null;
         Echo = 0;
     }
 }
