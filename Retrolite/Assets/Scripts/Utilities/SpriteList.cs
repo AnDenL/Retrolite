@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SpriteList", menuName = "Game/SpriteList")]
+[CreateAssetMenu(fileName = "SpriteList", menuName = "Game/Utilities/SpriteList")]
 public class SpriteList : ScriptableObject
 {
     public Sprite[] Entries;

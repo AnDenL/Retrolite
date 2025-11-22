@@ -124,7 +124,7 @@ namespace CalculatingSystem
             return variable switch
             {
                 IsDead => context.TargetHealth.IsDead,
-                IsCorrupted => context.TargetCreature.Corruption.Stability == 0,
+                IsCorrupted => context.Target.Corruption.Stability == 0,
                 IsBoss => false, //Change later
                 IsFullHealth => context.TargetHealth.Health == context.TargetHealth.MaxHealth,
                 _ => false

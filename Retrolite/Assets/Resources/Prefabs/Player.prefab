@@ -81,7 +81,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1841817529
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 4334783836991956000, guid: 67111596fda7f1609b45f13384bd01ea, type: 3}
@@ -113,14 +113,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
   - {fileID: 11400000, guid: ded458a89c6ff0c4d9ec73afda7d40ed, type: 2}
+  - {fileID: 11400000, guid: b7ac29c50336f3e4baa443a86738a550, type: 2}
   passiveTemplates: []
-  speed: 60
+  Speed: 60
   baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
   Rb: {fileID: 0}
   step: {fileID: 8300000, guid: cb53161742880e14187e05c30d1c4e04, type: 3}
+  arm1: {fileID: 6386035971000908232}
+  arm2: {fileID: 1127240027396745071}
+  hand1: {fileID: 3417523190237438834}
+  hand2: {fileID: 5004654193037301585}
 --- !u!114 &4437067109139031039
 MonoBehaviour:
   m_ObjectHideFlags: 0

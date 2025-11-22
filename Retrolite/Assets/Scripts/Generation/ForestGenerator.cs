@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "ForestGenerator", menuName = "Generators/Forest", order = -250)]
+[CreateAssetMenu(fileName = "ForestGenerator", menuName = "Game/Generators/Forest", order = -250)]
 public class ForestGenerator : MapGenerator
 {
     [Header("Generation Options")]

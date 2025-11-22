@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CaveGenerator", menuName = "Generators/CaveGenerator")]
+[CreateAssetMenu(fileName = "CaveGenerator", menuName = "Game/Generators/CaveGenerator")]
 public class CaveGenerator : MapGenerator
 {
     [Header("Cellular Automata")]

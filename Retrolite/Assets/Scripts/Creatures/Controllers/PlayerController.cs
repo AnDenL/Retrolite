@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -174,6 +175,7 @@ namespace Creatures
         public DirectionSkillSlot(DirectionSkill skill)
         {
             Skill = skill;
+            UseWalkInput = skill.Type == SkillType.Movement;
         }
 
         public void Use() => Skill.Use(UseWalkInput

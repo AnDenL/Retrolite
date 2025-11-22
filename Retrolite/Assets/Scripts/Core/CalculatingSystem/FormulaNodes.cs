@@ -149,7 +149,7 @@ namespace CalculatingSystem
                 Size => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
                 BulletSpread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
                 BulletDestroyTime => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
-                Velocity => context.TargetCreature.Rb.velocity.magnitude,
+                Velocity => context.Target.Rb.velocity.magnitude,
                 HomingAngle => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };

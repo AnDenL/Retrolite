@@ -137,7 +137,7 @@ public class BulletBase : MonoBehaviour
         {
             if (!creature.IsEnemyTo(context.Owner)) return;
 
-            context.TargetCreature = creature;
+            context.Target = creature;
             context.TargetHealth = creature.HealthComponent;
             creature.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
         }
@@ -149,7 +149,7 @@ public class BulletBase : MonoBehaviour
                 return;
             }
 
-            context.TargetCreature = null;
+            context.Target = null;
         }
 
         float damage = data.Damage.Evaluate(context);

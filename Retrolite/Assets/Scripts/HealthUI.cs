@@ -49,7 +49,8 @@ public class HealthUI : MonoBehaviour
 
     private void OnHealthChange(float health, float maxHealth)
     {
-        healthSlider.localScale = new Vector3(healthWidth * uiScale.x * (health / maxHealth), healthHeight * uiScale.y, 1);
+        if (health > 0) healthSlider.localScale = new Vector3(healthWidth * uiScale.x * (health / maxHealth), healthHeight * uiScale.y, 1);
+        else healthSlider.localScale = Vector3.zero;
         text.text = health.ToString("0");
     }
 

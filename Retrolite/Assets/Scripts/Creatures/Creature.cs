@@ -30,10 +30,8 @@ public class Creature : MonoBehaviour
     public ResourceContainer Resources => resources;
 
     [Header("Movement")]
-    [SerializeField] protected float speed = 5f;
+    public float Speed = 5f;
     [SerializeField] protected DirectionSkill baseMovementSkill;
-
-    public float Speed => speed;
     public DirectionSkill BaseMovement => baseMovementSkill;
 
     public Creature Target => controller.Target;
@@ -48,8 +46,10 @@ public class Creature : MonoBehaviour
     protected int _isBackwardsHash;
     protected int _isCorruptedHash;
     protected int _corruptHash;
+    protected int _lookUpHash;
     protected int _isDeadHash;
-    protected bool facingLeft;
+    
+    public bool FacingRight { get; private set;}
 
     #endregion
 
@@ -105,7 +105,9 @@ public class Creature : MonoBehaviour
 
         _isBackwardsHash = Animator.StringToHash("IsBackwards");
         _isCorruptedHash = Animator.StringToHash("IsCorrupted");
-        _isDeadHash = Animator.StringToHash("IsDead");
+        _isDeadHash = Animator.StringToHash("Death");
+        _corruptHash = Animator.StringToHash("Corrupt");
+        _lookUpHash = Animator.StringToHash("LookUp");
     }
 
     protected virtual void Update()
@@ -137,20 +139,22 @@ public class Creature : MonoBehaviour
         OnNewPassive?.Invoke(passive);
     }
 
-    public void LookAt(Vector3 position)
+    public virtual void LookAt(Vector3 position)
     {
         if (position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             if (ui) ui.localScale = new Vector3(-1, 1, 1);
-            facingLeft = true;
+            FacingRight = true;
         }
         else
         {
             transform.localScale = new Vector3(1, 1, 1);
             if (ui) ui.localScale = new Vector3(1, 1, 1);
-            facingLeft = false;
+            FacingRight = false;
         }
+
+        Animator.SetBool(_lookUpHash, position.y > transform.position.y + 1);
     }
 
     public void UpdateAnimationState()
@@ -158,7 +162,7 @@ public class Creature : MonoBehaviour
         if (Rb.velocity.sqrMagnitude <= 0.001f) return;
 
         bool movingLeft = Rb.velocity.x < 0f;
-        Animator.SetBool(_isBackwardsHash, movingLeft != facingLeft);
+        Animator.SetBool(_isBackwardsHash, movingLeft != FacingRight);
     }
 
     public void StartKnockback(float strength, Vector2 dir)
@@ -229,7 +233,7 @@ public class Creature : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
     private void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
-    private void DeathEffect() => Animator.SetTrigger(_isDeadHash);
+    private void DeathEffect() => Animator.SetBool(_isDeadHash, true);
 
     #endregion
 }

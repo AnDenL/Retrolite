@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "IslandGenerator", menuName = "Generators/IslandGenerator")]
+[CreateAssetMenu(fileName = "IslandGenerator", menuName = "Game/Generators/IslandGenerator")]
 public class IslandGenerator : MapGenerator
 {
     [Header("Map Settings")]

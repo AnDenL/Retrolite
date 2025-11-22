@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "MazeGenerator", menuName = "Generators/MazeGenerator")]
+[CreateAssetMenu(fileName = "MazeGenerator", menuName = "Game/Generators/MazeGenerator")]
 public class MazeGenerator : MapGenerator
 {
     [Header("Values")]

@@ -21,7 +21,7 @@ namespace Creatures
             action.Execute(new FormulaContext
             {
                 Owner = owner,
-                TargetCreature = target,
+                Target = target,
                 TargetHealth = target.HealthComponent
             });
         }

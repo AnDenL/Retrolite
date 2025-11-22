@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "DungeonGenerator", menuName = "Generators/DungeonGenerator")]
+[CreateAssetMenu(fileName = "DungeonGenerator", menuName = "Game/Generators/DungeonGenerator")]
 public class DungeonGenerator : MapGenerator
 {
     [Header("Rooms")]

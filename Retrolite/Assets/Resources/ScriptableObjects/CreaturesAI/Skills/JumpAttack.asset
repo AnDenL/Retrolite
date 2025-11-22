@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892705b131854634288573fab7d3f5be, type: 3}
   m_Name: JumpAttack
   m_EditorClassIdentifier: 
+  Name: 
   Priority: 1
   cooldownTime: 1
-  Speed: 3
+  Speed: 0.1
   JumpTime: 0.5

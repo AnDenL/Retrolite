@@ -17,11 +17,14 @@ namespace CalculatingSystem
     {
         [SerializeReference] public FormulaNode Damage;
 
+        public bool TargetSelf;
+
         public override void Execute(FormulaContext context)
         {
             if (context.TargetHealth != null)
             {
-                context.TargetHealth.TakeDamage(Damage.Evaluate(context));
+                Creature creature = TargetSelf ? context.Target : context.Owner;
+                creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
                 ParticleManager.PlayParticle(3, context.TargetHealth.transform.position);
             }
         }
@@ -36,7 +39,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            context.TargetCreature.HealthComponent.Heal(Amount.Evaluate(context));
+            context.Target.HealthComponent.Heal(Amount.Evaluate(context));
         }
 
         public override string ToReadableString() => $"Heal player for {Amount.ToReadableString()}";
@@ -117,7 +120,7 @@ namespace CalculatingSystem
 
         public override void Execute(FormulaContext context)
         {
-            if (context.TargetHealth != null)
+            if (context.Target.HealthComponent != null)
                 ParticleManager.PlayParticle(ParticleId, context.Owner.transform.position);
         }
 

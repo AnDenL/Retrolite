@@ -88,15 +88,14 @@ public class WeaponManager : MonoBehaviour
     
     public void Rotate(Vector3 position)
     {
-        Vector2 direction = position - transform.position;
+        Vector2 rawdirection = position - transform.position;
 
-        direction.Normalize();
+        rawdirection.Normalize();
 
-        direction = direction.x < 0 ? -direction : direction;
+        Vector2 direction = rawdirection.x < 0 ? -rawdirection : rawdirection;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-        handTransform.localPosition = new Vector3(0.7f - Mathf.Abs(direction.y) / 8, 0f, direction.y);
+        handTransform.localPosition = new Vector3(0.7f - Mathf.Abs(direction.y) / 10, 0f, rawdirection.y + 0.65f);
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

@@ -395,7 +395,7 @@ MonoBehaviour:
   visionRange: 0
   skillTemplates: []
   passiveTemplates: []
-  speed: 0
+  Speed: 0
   baseMovementSkill: {fileID: 0}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}

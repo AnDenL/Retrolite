@@ -6,6 +6,8 @@ namespace Creatures
     [Serializable]
     public class Skill : ScriptableObject
     {
+        public string Name;
+
         protected Creature owner;
         public Creature Owner => owner;
 

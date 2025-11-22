@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21756a5bcfa530446b1bbad3fdd51cd7, type: 3}
   m_Name: Movement
   m_EditorClassIdentifier: 
+  Name: 
   Priority: 0
-  MinRange: 0
-  MaxRange: 999
   cooldownTime: 0
-  Speed: 5
+  Speed: 0.25

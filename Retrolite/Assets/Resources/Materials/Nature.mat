@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8274179316717122210
+--- !u!114 &-1150404452121362910
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Nature
-  m_Shader: {fileID: -6465566751694194690, guid: 1c459f0d3c96d644e92deab089a2c96a, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 720bad0212d9d8d4e804e3c6aa6162e2, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Multiplayer: 0.05
-    - _NoiseScale: 15
-    - _ScrollSpeed: 0.1
-    - _Yoffset: -0.1
+    - _Multiplayer: 0.1
+    - _NoiseScale: 32
+    - _ScrollSpeed: 0.01
+    - _Yoffset: 15
     m_Colors: []
   m_BuildTextureStacks: []

@@ -4991,7 +4991,7 @@ Transform:
   m_GameObject: {fileID: 3799007567447146194}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.86, y: -1.8600001, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9969,11 +9969,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
   visionRange: 8
-  skillTemplates:
-  - {fileID: 11400000, guid: ded458a89c6ff0c4d9ec73afda7d40ed, type: 2}
+  skillTemplates: []
   passiveTemplates:
   - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
-  speed: 5
+  Speed: 35
   baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}

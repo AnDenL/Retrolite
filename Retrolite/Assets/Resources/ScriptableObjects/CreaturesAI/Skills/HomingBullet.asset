@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7b2aa82b6488f4aa789219d0bebb3c, type: 3}
   m_Name: HomingBullet
   m_EditorClassIdentifier: 
+  Name: 
   Priority: 0
+  cooldownTime: 0.5
   MinRange: 2
   MaxRange: 12
-  cooldownTime: 0.5
   BulletPrefab: {fileID: 4500548146545427392, guid: c72079c2013a8dd4d8abc12e5b40265b, type: 3}
   BulletData:
     Damage:
@@ -30,6 +31,7 @@ MonoBehaviour:
       rid: 7873061349605769225
     Angle:
       rid: 7873061349605769226
+    BulletSprite: {fileID: -386389626, guid: 2dab99eecd8460614b2dbe61127e1923, type: 3}
     IsDynamic: 1
   Knockback: 0
   references:
@@ -58,4 +60,4 @@ MonoBehaviour:
     - rid: 7873061349605769226
       type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Variable: 13
+        Variable: 14
