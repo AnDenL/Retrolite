@@ -108,6 +108,7 @@ public class BulletBase : MonoBehaviour
     protected virtual void Deactivate()
     {
         if (handleDestroy) Destroy(gameObject);
+        data.OnReturn?.Execute(context);
         Inactive = true;
 
         pool.Return(this);
@@ -140,6 +141,7 @@ public class BulletBase : MonoBehaviour
             context.Target = creature;
             context.TargetHealth = creature.HealthComponent;
             creature.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
+            data.OnDamage?.Execute(context);
         }
         else
         {
@@ -186,6 +188,11 @@ public class BulletData
     public FormulaNode Speed;
     [SerializeReference]
     public FormulaNode Angle;
+
+    [SerializeReference]
+    public ActionNode OnReturn;
+    [SerializeReference]
+    public ActionNode OnDamage;
 
     public Sprite BulletSprite;
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8274179316717122210
+--- !u!114 &-3843648745984414469
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Tree
+  m_Name: NatureWobble
   m_Shader: {fileID: -6465566751694194690, guid: 1c459f0d3c96d644e92deab089a2c96a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,7 +37,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 17889a4f975c3cd4ba8d89f6817e9047, type: 3}
+        m_Texture: {fileID: 2800000, guid: e3ea9116b1edc0848946aa3af2c5e92e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Multiplayer: 1
-    - _NoiseScale: 15
-    - _ScrollSpeed: 0.01
-    - _Yoffset: -3
+    - _Multiplayer: 0.8
+    - _NoiseScale: 0.5
+    - _ScrollSpeed: 1
+    - _Yoffset: -2.5
     m_Colors: []
   m_BuildTextureStacks: []

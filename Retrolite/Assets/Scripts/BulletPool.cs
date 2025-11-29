@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CalculatingSystem;
+using System;
+using Object = UnityEngine.Object;
 
 public class BulletPool
 {
@@ -11,6 +13,8 @@ public class BulletPool
     private Transform parent;
     private BulletData bulletData;
     private FormulaContext context;
+
+    public event Action<BulletBase> OnBulletReturn;
 
     public BulletPool(GameObject prefab, Transform parent, BulletData bulletData, FormulaContext context)
     {
@@ -43,6 +47,7 @@ public class BulletPool
 
         bullet.transform.parent = parent.transform;
         bullet.transform.position = parent.transform.position;
+        OnBulletReturn?.Invoke(bullet);
     }
 
     public void Clear()

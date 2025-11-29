@@ -23,7 +23,7 @@ namespace CalculatingSystem
         {
             if (context.TargetHealth != null)
             {
-                Creature creature = TargetSelf ? context.Target : context.Owner;
+                Creature creature = TargetSelf ? context.Owner : context.Target;
                 creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
                 ParticleManager.PlayParticle(3, context.TargetHealth.transform.position);
             }
@@ -46,29 +46,17 @@ namespace CalculatingSystem
     }
 
     [Serializable]
-    public class GiveMoneyAction : ActionNode
+    public class GiveResource : ActionNode
     {
         [SerializeReference] public FormulaNode Money;
+        public ResourceType resource;
 
         public override void Execute(FormulaContext context)
         {
-            //PlayerController.Player.AddMoney((int)Money.Evaluate(context), context.TargetCreature.transform.position);
+            PlayerController.Player.Resources.Get(resource).Add((int)Money.Evaluate(context));
         }
 
         public override string ToReadableString() => $"Give {Money.ToReadableString()} money";
-    }
-
-    [Serializable]
-    public class GiveCodeAction : ActionNode
-    {
-        [SerializeReference] public FormulaNode Code;
-
-        public override void Execute(FormulaContext context)
-        {
-            //PlayerController.Player.AddCode((int)Code.Evaluate(context));
-        }
-
-        public override string ToReadableString() => $"Give {Code.ToReadableString()} money";
     }
 
     [Serializable]
