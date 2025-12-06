@@ -118,10 +118,11 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void SetRendererColor()
     {
-        float r = data.Damage.Evaluate(context) / 5 + (context.Owner.IsEnemyTo(PlayerController.Player) ? 0 : 5);
+        float r = data.Damage.Evaluate(context) / 5;
         float g = life / 3;
         float b = Speed / 5;
-        color = new Color(
+        color = context.Owner.IsEnemyTo(PlayerController.Player) ? Color.red 
+        : new Color(
             Mathf.Clamp(r, 0, 5),
             Mathf.Clamp(g, 0, 5),
             Mathf.Clamp(b, 0, 5),
@@ -140,7 +141,7 @@ public class BulletBase : MonoBehaviour
 
             context.Target = creature;
             context.TargetHealth = creature.HealthComponent;
-            creature.StartKnockback(data.Knockback.Evaluate(context) / 10, transform.up);
+            creature.Rb.AddForce(data.Knockback.Evaluate(context) / 10 * transform.up, ForceMode2D.Impulse);
             data.OnDamage?.Execute(context);
         }
         else

@@ -49,7 +49,8 @@ namespace Creatures
             RaycastHit2D hit = Physics2D.Raycast(owner.transform.position, direction, direction.magnitude, LayerMask.GetMask("Walls"));
             if (hit.collider == null)
             {
-                owner.StartKnockback(Knockback, owner.transform.position - target.transform.position);
+                Vector2 dir = owner.transform.position - target.transform.position;
+                owner.Rb.AddForce(Knockback * dir, ForceMode2D.Impulse);
                 Clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (owner.transform.localScale.x == 1 ? 0 : 180));
                 ParticleManager.PlayParticle(5, Clip.position);
                 Pool.Get().Fire(0);

@@ -29,10 +29,14 @@ public class Creature : MonoBehaviour
     protected ResourceContainer resources;
     public ResourceContainer Resources => resources;
 
+    protected List<Effect> effects = new();
+
     [Header("Movement")]
     public float Speed = 5f;
     [SerializeField] protected DirectionSkill baseMovementSkill;
     public DirectionSkill BaseMovement => baseMovementSkill;
+
+    public bool CanAct = true;
 
     public Creature Target => controller.Target;
     public Alignment Alignment => controller.Alignment;
@@ -112,7 +116,19 @@ public class Creature : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (HealthComponent.IsDead || Corruption.isCorrupted) return;
+        if (HealthComponent.IsDead) return;
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            effects[i].Tick(Time.deltaTime);
+
+            if (effects[i].IsFinished)
+            {
+                effects[i].OnRemove();
+                effects.RemoveAt(i);
+            }
+        }
+
+        if (Corruption.IsCorrupted || !CanAct) return;
         controller.UpdateAI();
         OnUpdateAI?.Invoke();
     }
@@ -124,6 +140,13 @@ public class Creature : MonoBehaviour
 
     #endregion
     #region Public Methods
+
+    public void AddEffect(Effect effect)
+    {
+        Effect newEffect = Instantiate(effect);
+        newEffect.Init(this);
+        effects.Add(newEffect);
+    }
 
     public void AddSkill(Skill skill)
     {
@@ -163,13 +186,6 @@ public class Creature : MonoBehaviour
 
         bool movingLeft = Rb.velocity.x < 0f;
         Animator.SetBool(_isBackwardsHash, movingLeft != FacingRight);
-    }
-
-    public void StartKnockback(float strength, Vector2 dir)
-    {
-        dir.Normalize();
-        Rb.velocity = Vector2.zero;
-        Rb.AddForce(strength * dir, ForceMode2D.Impulse);
     }
 
     public bool IsEnemyTo(Creature other)
@@ -225,15 +241,15 @@ public class Creature : MonoBehaviour
     #endregion
     #region Private Methods
 
-    private void Corrupt()
+    protected void Corrupt()
     {
         HealthComponent.IsWeak = true;
         Animator.SetBool(_isCorruptedHash, true);
     }
 
-    private void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
-    private void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
-    private void DeathEffect() => Animator.SetBool(_isDeadHash, true);
+    protected void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
+    protected void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
+    protected void DeathEffect() => Animator.SetBool(_isDeadHash, true);
 
     #endregion
 }

@@ -34,7 +34,7 @@ namespace Creatures
 
         public override void UpdateAI()
         {
-            if (owner.HealthComponent.IsDead || owner.Corruption.isCorrupted) return;
+            if (owner.HealthComponent.IsDead || owner.Corruption.IsCorrupted) return;
 
             if (Time.time > checkTime)
             {

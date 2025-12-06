@@ -8,7 +8,7 @@ public class Corruptible : MonoBehaviour
     [SerializeField] private int stability;
     public int Stability => stability;
 
-    public bool isCorrupted { get; private set; }
+    public bool IsCorrupted { get; private set; }
 
     public event Action OnBecameVulnerable;
     public event Action<int> OnCorrupting;
@@ -24,7 +24,7 @@ public class Corruptible : MonoBehaviour
         stability -= amount;
         OnCorrupting?.Invoke(stability);
 
-        if (stability <= 0 && !isCorrupted)
+        if (stability <= 0 && !IsCorrupted)
         {
             BecomeCorrupted();
         }
@@ -32,13 +32,13 @@ public class Corruptible : MonoBehaviour
 
     public void BecomeCorrupted()
     {
-        isCorrupted = true;
+        IsCorrupted = true;
         OnBecameVulnerable?.Invoke();
     }
 
     public void ResetStability()
     {
         stability = maxStability;
-        isCorrupted = false;
+        IsCorrupted = false;
     }
 }

@@ -15,7 +15,7 @@ public class CaveGenerator : MapGenerator
     {
         float[,] map = new float[Size.x, Size.y];
 
-        System.Random rand = new System.Random();
+        System.Random rand = new();
 
         // початкове заповнення
         for (int x = 0; x < Size.x; x++)
@@ -24,6 +24,8 @@ public class CaveGenerator : MapGenerator
             {
                 if (x == 0 || y == 0 || x == Size.x - 1 || y == Size.y - 1)
                     map[x, y] = wallValue; // край завжди стіна
+                else if (Mathf.Abs(x - Size.x/2) + Mathf.Abs(y - Size.y/2)< 15)
+                    map[x, y] = floorValue;
                 else
                     map[x, y] = (rand.Next(100) < fillPercent) ? wallValue : floorValue;
             }

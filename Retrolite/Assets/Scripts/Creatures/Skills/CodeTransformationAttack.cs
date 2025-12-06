@@ -57,6 +57,11 @@ namespace Creatures
             {
                 if (coll.gameObject.TryGetComponent(out Creature creature))
                 {
+                    if (creature.Corruption.IsCorrupted)
+                    {
+                        
+                        break;
+                    }
                     creature.Corruption.ApplyCorruption(1);
                     creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
                 }

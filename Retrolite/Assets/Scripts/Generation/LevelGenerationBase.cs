@@ -49,7 +49,7 @@ public class LevelGenerationBase : MonoBehaviour
 
     private void PlaceMap()
     {
-        Vector2Int startPosition = new Vector2Int(map.GetLength(0) / 2, map.GetLength(1) / 2);
+        Vector2Int startPosition = new(map.GetLength(0) / 2, map.GetLength(1) / 2);
 
         for (int y = 0; y < map.GetLength(1); y++)
         {

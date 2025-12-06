@@ -23,7 +23,7 @@ namespace Creatures
 
             triggerArea.GetComponent<TriggerEvent>().OnTriggered += (other) =>
             {
-                if (owner.HealthComponent.IsDead || owner.Corruption.isCorrupted) return;
+                if (owner.HealthComponent.IsDead || owner.Corruption.IsCorrupted) return;
                 if (other.CompareTag("Bullet"))
                 {
                     if (other.TryGetComponent(out BulletBase bullet))
@@ -45,7 +45,7 @@ namespace Creatures
                 (Random.Range(0, 2) == 0 ? leftDodge : rightDodge) :
                 (leftDist > rightDist ? leftDodge : rightDodge);
 
-            owner.StartKnockback(Speed, dodgeDirection);
+            owner.Rb.AddForce(dodgeDirection * Speed, ForceMode2D.Impulse);
         }
 
         private float CheckFreeDistance(Vector2 dir)

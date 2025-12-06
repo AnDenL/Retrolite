@@ -156,7 +156,8 @@ namespace CalculatingSystem
                 {
                     if (!creature.IsEnemyTo(context.Owner)) continue;
                     creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
-                    creature.StartKnockback(Knockback.Evaluate(context), hit.transform.position - (Vector3)position);
+                    Vector2 dir = hit.transform.position - (Vector3)position;
+                    creature.Rb.AddForce(Knockback.Evaluate(context) * dir, ForceMode2D.Impulse);
                 }
             }
         }

@@ -35,6 +35,7 @@ public class SaveData
     public int PlayerMoney;
     public int PlayerCode;
     public int PlayerLives;
+    public int Level;
 
     public SaveData(float health, float maxHealth, GunData weapon, int money, int code, int lives)
     {
@@ -44,6 +45,7 @@ public class SaveData
         PlayerMoney = money;
         PlayerCode = code;
         PlayerLives = lives;
+        Level = 0;
     }
 }
 

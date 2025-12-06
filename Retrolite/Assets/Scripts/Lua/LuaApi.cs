@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
 using CalculatingSystem;
 using Creatures;
 using MoonSharp.Interpreter;
@@ -32,10 +32,10 @@ public static class LuaApi
 
         lua.Globals["FindCreatureByName"] = (Func<string, Creature>)FindCreatureByName;
         lua.Globals["FindObject"] = (Func<string, GameObject>)GameObject.Find;
-        lua.Globals["LoadObject"] = (Func<string, UnityEngine.Object>)(path => Resources.Load(path));
         lua.Globals["Instantiate"] = (Func<GameObject, Vector3, Quaternion, GameObject>)UnityEngine.Object.Instantiate;
         lua.Globals["Instantiate"] = (Func<GameObject, Transform, GameObject>)UnityEngine.Object.Instantiate;
         lua.Globals["Destroy"] = (Action<UnityEngine.Object>)UnityEngine.Object.Destroy;
+        lua.Globals["Load"] = (Func<string, DynValue>) Load;
 
         lua.Globals["GetTime"] = (Func<float>)(() => Time.time);
         lua.Globals["WaitForSeconds"] = (Func<float, DynValue>)((seconds) =>
@@ -70,6 +70,16 @@ public static class LuaApi
             Debug.LogError($"[Lua] Error executing file {path}: {ex.Message}\n{ex.StackTrace}");
         }
     }
+
+    public static DynValue Load(string address)
+    {
+        var handle = Addressables.LoadAssetAsync<UnityEngine.Object>(address);
+        var result = handle.WaitForCompletion();
+
+        return UserData.Create(result);
+    }
+
+    public static string GetTypeName(UnityEngine.Object o) => o.GetType().Name;
 
     public static void ExecuteString(string code)
     {

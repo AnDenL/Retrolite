@@ -17,6 +17,13 @@ public class ParticleManager : MonoBehaviour
     {
         Instance = this;
 
+        var particles = new List<ParticleSystem>();
+
+        foreach (Transform ch in transform)
+            particles.Add(ch.GetComponent<ParticleSystem>());
+
+        ParticleSystems = particles.ToArray();
+
         ParticleIndices = ParticleSystems
             .Select((ps, index) => new { ps, index })
             .ToDictionary(x => x.ps.name, x => x.index);

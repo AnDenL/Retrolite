@@ -17,7 +17,7 @@ namespace Creatures
 
         public override void Activate(Vector2 direction)
         {
-            owner.StartKnockback(Speed, direction);
+            owner.Rb.AddForce(Speed * direction, ForceMode2D.Impulse);
         }
 
         public override bool CanUse(Vector2 position)

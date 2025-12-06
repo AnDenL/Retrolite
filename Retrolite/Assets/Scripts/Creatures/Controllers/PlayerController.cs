@@ -22,11 +22,6 @@ namespace Creatures
         {
             base.Init(owner);
 
-            if (Instance != null)
-            {
-                Debug.LogWarning("Multiple PlayerController instances detected!");
-                return;
-            }
             Instance = this;
 
             foreach (var skill in owner.ActiveSkills)

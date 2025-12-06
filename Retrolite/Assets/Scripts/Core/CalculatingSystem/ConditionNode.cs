@@ -5,7 +5,6 @@ namespace CalculatingSystem
     using static CalculatingSystem.LogicOperator;
     using static CalculatingSystem.ComparisonOperator;
     using static CalculatingSystem.ConditionVariable;
-    using Creatures;
 
     [Serializable]
     public abstract class ConditionNode

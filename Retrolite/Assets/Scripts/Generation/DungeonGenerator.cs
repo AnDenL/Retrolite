@@ -24,6 +24,27 @@ public class DungeonGenerator : MapGenerator
 
         List<RectInt> rooms = new List<RectInt>();
 
+        {
+            int w = Random.Range(roomMinSize.x, roomMaxSize.x + 1);
+            int h = Random.Range(roomMinSize.y, roomMaxSize.y + 1);
+            int x = Size.x/2 - w/2;
+            int y = Size.y/2 - h/2;
+
+            RectInt newRoom = new(x, y, w, h);
+            bool overlaps = false;
+
+            foreach (var r in rooms)
+            {
+                if (newRoom.Overlaps(r)) { overlaps = true; break; }
+            }
+
+            if (!overlaps)
+            {
+                rooms.Add(newRoom);
+                CarveRoom(map, newRoom);
+            }
+        }
+
         // створюємо кімнати
         for (int i = 0; i < roomCount; i++)
         {
@@ -63,9 +84,9 @@ public class DungeonGenerator : MapGenerator
 
     private void CarveRoom(float[,] map, RectInt room)
     {
-        for (int x = room.xMin; x < room.xMax; x++)
+        for (int x = room.xMin + 1; x < room.xMax - 1; x++)
         {
-            for (int y = room.yMin; y < room.yMax; y++)
+            for (int y = room.yMin + 1; y < room.yMax - 1; y++)
             {
                 map[x, y] = floorValue;
             }
@@ -93,8 +114,16 @@ public class DungeonGenerator : MapGenerator
 
         for (int i = start; i <= end; i++)
         {
-            if (horizontal) map[i, fixedCoord] = floorValue;
-            else map[fixedCoord, i] = floorValue;
+            if (horizontal) 
+            {
+                map[i, fixedCoord] = floorValue;
+                map[i, fixedCoord - 1] = floorValue;
+            }
+            else 
+            {
+                map[fixedCoord, i] = floorValue;
+                map[fixedCoord - 1, i] = floorValue;
+            }
         }
     }
 }
