@@ -7,8 +7,6 @@ using UnityEngine.Audio;
 public class Menu : MonoBehaviour
 {
     public static Menu instance;
-    public static float TimeSpeed { get; private set; } = 1;
-    public static bool IsPaused { get; private set; }
 
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject selected;
@@ -25,10 +23,10 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menu)
         {
-            IsPaused = !IsPaused;
+            Game.IsPaused = !Game.IsPaused;
             console.SetActive(false);
 
-            if (IsPaused) PauseGame(menu);
+            if (Game.IsPaused) PauseGame(menu);
             else ResumeGame(menu);
         }
         else if ((Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.BackQuote)) && LuaApi.UseLua)
@@ -52,8 +50,8 @@ public class Menu : MonoBehaviour
 
     public void ResumeGame(GameObject panel)
     {
-        Time.timeScale = TimeSpeed;
-        PlayerController.CanInteract = true;
+        Time.timeScale = Game.TimeSpeed;
+        if (!CodeEditManager.IsEditing) PlayerController.CanInteract = true;
         panel.SetActive(false);
         mixer.SetFloat("AudioLowPass", 22000);
     }

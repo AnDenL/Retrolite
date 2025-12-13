@@ -33,7 +33,7 @@ public class ParticleManager : MonoBehaviour
 
     public static void PlayParticle(string index, Vector2 position) => PlayParticle(ParticleIndices[index], position);
 
-    public static void PlayParticle(int index, Vector2 position)
+    private static void PlayParticle(int index, Vector2 position)
     {
         ParticleSystem ps = Instance.ParticleSystems[index];
         if (ps == null)

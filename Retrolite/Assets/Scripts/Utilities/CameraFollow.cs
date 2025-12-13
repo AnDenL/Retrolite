@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -9,11 +10,12 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         Game.mainCamera = Camera.main;
+        Game.pixelCamera = Game.mainCamera.GetComponent<PixelPerfectCamera>();
     }
 
     private void Update()
     {
-        if (Menu.IsPaused && target != null) return;
+        if (Game.IsPaused && target != null) return;
         Vector3 mousePosition = (Game.mainCamera.ScreenToWorldPoint(Input.mousePosition) - target.position) / targetWeight;
         transform.position = target.position + mousePosition + Vector3.forward * zOffset;
     }

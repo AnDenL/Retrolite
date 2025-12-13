@@ -25,7 +25,7 @@ namespace CalculatingSystem
             {
                 Creature creature = TargetSelf ? context.Owner : context.Target;
                 creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
-                ParticleManager.PlayParticle(3, context.TargetHealth.transform.position);
+                ParticleManager.PlayParticle("Crit", context.TargetHealth.transform.position);
             }
         }
 
@@ -104,15 +104,15 @@ namespace CalculatingSystem
     [Serializable]
     public class PlayParticleAction : ActionNode
     {
-        public int ParticleId;
+        public string Particles;
 
         public override void Execute(FormulaContext context)
         {
             if (context.Target.HealthComponent != null)
-                ParticleManager.PlayParticle(ParticleId, context.Owner.transform.position);
+                ParticleManager.PlayParticle(Particles, context.Owner.transform.position);
         }
 
-        public override string ToReadableString() => $"Play particle {ParticleId}";
+        public override string ToReadableString() => $"Play particle {Particles}";
     }
 
     [Serializable]
@@ -147,7 +147,7 @@ namespace CalculatingSystem
         public override void Execute(FormulaContext context)
         {
             Vector2 position = context.TargetHealth.transform.position;
-            ParticleManager.PlayParticle(2, position);
+            ParticleManager.PlayParticle("SmallExplosion", position);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 
             foreach (var hit in hits)

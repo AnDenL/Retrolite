@@ -50,16 +50,18 @@ namespace Creatures
             
             Vector2 pos = (Vector2)owner.transform.position + direction * 2;
 
-            ParticleManager.PlayParticle("Glitch2", pos);
+            ParticleManager.PlayParticle("Glitch", pos);
             var colls = Physics2D.OverlapCircleAll(pos, 0.75f, creaturesLayer);
 
             foreach(var coll in colls)
             {
                 if (coll.gameObject.TryGetComponent(out Creature creature))
                 {
+                    if (creature.Break()) 
+                        owner.Resources.Add(ResourceType.Bits, Random.Range(2,6));
                     if (creature.Corruption.IsCorrupted)
                     {
-                        
+                        creature.Corruption.Redact();
                         break;
                     }
                     creature.Corruption.ApplyCorruption(1);

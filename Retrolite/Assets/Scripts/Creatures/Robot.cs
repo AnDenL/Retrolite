@@ -24,7 +24,7 @@ public class Robot : Creature
 
     private void Damage(float t)
     {
-        ParticleManager.PlayParticle(6, transform.position);
+        ParticleManager.PlayParticle("RobotDetails", transform.position);
 
         headPosition += 0.005f * t * Random.insideUnitCircle;
         leftTurbinePosition += 0.005f * t * Random.insideUnitCircle;

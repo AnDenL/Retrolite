@@ -17,7 +17,7 @@ namespace Creatures
             float amount = healAmount.Evaluate(new FormulaContext { Owner = owner, Target = target, TargetHealth = target.HealthComponent });
             target.HealthComponent.Heal(amount);
 
-            ParticleManager.PlayParticle(1, target.transform.position);
+            ParticleManager.PlayParticle("Heal", target.transform.position);
         }
     }
 }

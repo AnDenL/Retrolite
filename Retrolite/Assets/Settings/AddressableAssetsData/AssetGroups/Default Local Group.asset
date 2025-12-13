@@ -278,12 +278,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df3d8230049f03f66bcffb0b845054bf
-    m_Address: Prefabs/BulletUI
+    m_Address: Prefabs/UI/BulletUI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1736bf7af642aa39fa86aa5d5caee495
-    m_Address: Prefabs/Canvas
+    m_Address: Prefabs/UI/Canvas
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9fffe56353bc9b04fb65bae188573a16
-    m_Address: Prefabs/Console
+    m_Address: Prefabs/UI/Console
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -349,11 +349,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba8c0336d12e2ef4bb38f1d0e56f07e2
     m_Address: Prefabs/Particles/Coins
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 51fb036e6b6d0c54f8beda173ede5aef
-    m_Address: Prefabs/Particles/Crit
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -458,7 +453,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c55364b95a461a960b5726f863f67369
-    m_Address: Prefabs/TextSample
+    m_Address: Prefabs/UI/TextSample
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -473,7 +468,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3db8bb26149ad30459f74996f5e324fd
-    m_Address: Prefabs/UI
+    m_Address: Prefabs/UI/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1344,6 +1339,51 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8440ea3c54181954a80e3a487b3c9309
     m_Address: Prefabs/Portal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37a593d2df53ffe40a74c6d2b92f0ea2
+    m_Address: Prefabs/Particles/Crit
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c304095cb1065e46bafa99ad922108b
+    m_Address: Textures/Grassinki
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 43801d23597549e4da03e26dd5d9efc7
+    m_Address: Materials/Light
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7f1fb37c9ce23c4d8fdf41ce9f8b310
+    m_Address: Materials/Shaders/Light
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1cfd5043847c339448c212ae223b034f
+    m_Address: Prefabs/UI/Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84a573ee2a59b9d468f71efa51986aa2
+    m_Address: Prefabs/UI/EnumSlot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d553b95f3d210db498488182e94b6c06
+    m_Address: Prefabs/UI/FloatSlot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a057460a6726026479c2344587c9bd65
+    m_Address: Prefabs/UI/IntSlot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6ea792d50ebaf4a4b8471e59ccfeb60d
+    m_Address: Prefabs/UI/Label
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

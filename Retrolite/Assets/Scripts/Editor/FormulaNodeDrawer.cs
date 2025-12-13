@@ -224,45 +224,45 @@ public class ConditionNodeDrawer : PropertyDrawer
         property.managedReferenceValue = node;
         property.serializedObject.ApplyModifiedProperties();
     }
-    
-    [CustomPropertyDrawer(typeof(ActionNode), true)]
-    public class ActionNodeDrawer : PropertyDrawer
+}
+
+[CustomPropertyDrawer(typeof(ActionNode), true)]
+public class ActionNodeDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        if (property.managedReferenceValue == null)
         {
-            if (property.managedReferenceValue == null)
+            // Dropdown для створення нового ActionNode
+            if (GUI.Button(position, "Select ActionNode Type"))
             {
-                // Dropdown для створення нового ActionNode
-                if (GUI.Button(position, "Select ActionNode Type"))
+                var menu = new GenericMenu();
+                var types = TypeCache.GetTypesDerivedFrom<ActionNode>().Where(t => !t.IsAbstract);
+
+                foreach (var type in types)
                 {
-                    var menu = new GenericMenu();
-                    var types = TypeCache.GetTypesDerivedFrom<ActionNode>().Where(t => !t.IsAbstract);
-
-                    foreach (var type in types)
+                    menu.AddItem(new GUIContent(type.Name), false, () =>
                     {
-                        menu.AddItem(new GUIContent(type.Name), false, () =>
-                        {
-                            property.managedReferenceValue = Activator.CreateInstance(type);
-                            property.serializedObject.ApplyModifiedProperties();
-                        });
-                    }
-
-                    menu.ShowAsContext();
+                        property.managedReferenceValue = Activator.CreateInstance(type);
+                        property.serializedObject.ApplyModifiedProperties();
+                    });
                 }
-            }
-            else
-            {
-                // Показуємо всі серіалізовані поля цього ActionNode
-                EditorGUI.PropertyField(position, property, label, true);
-            }
-        }
 
-        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-        {
-            if (property.managedReferenceValue == null)
-                return EditorGUIUtility.singleLineHeight;
-            return EditorGUI.GetPropertyHeight(property, label, true);
+                menu.ShowAsContext();
+            }
         }
+        else
+        {
+            // Показуємо всі серіалізовані поля цього ActionNode
+            EditorGUI.PropertyField(position, property, label, true);
+        }
+    }
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        if (property.managedReferenceValue == null)
+            return EditorGUIUtility.singleLineHeight;
+        return EditorGUI.GetPropertyHeight(property, label, true);
     }
 }
 

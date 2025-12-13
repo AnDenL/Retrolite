@@ -3,6 +3,7 @@ using Creatures;
 using UnityEngine;
 using System.Collections.Generic;
 using static Creatures.Alignment;
+using System.Collections;
 
 [RequireComponent(typeof(HealthBase))]
 [RequireComponent(typeof(Corruptible))]
@@ -54,6 +55,7 @@ public class Creature : MonoBehaviour
     protected int _isDeadHash;
     
     public bool FacingRight { get; private set;}
+    public Coroutine ChannelingSkill { get; private set;}
 
     #endregion
 
@@ -133,10 +135,7 @@ public class Creature : MonoBehaviour
         OnUpdateAI?.Invoke();
     }
 
-    protected virtual void FixedUpdate()
-    {
-        OnFixedUpdate?.Invoke();
-    }
+    protected virtual void FixedUpdate() => OnFixedUpdate?.Invoke();
 
     #endregion
     #region Public Methods
@@ -236,6 +235,29 @@ public class Creature : MonoBehaviour
         }
 
         return bestTarget;
+    }
+
+    public virtual bool Cast(IEnumerator enumerator)
+    {
+        bool notCasting = ChannelingSkill == null;
+        if (notCasting) ChannelingSkill = StartCoroutine(CastWrapper(enumerator));
+        
+        return notCasting;
+    }
+
+    public virtual bool Break()
+    {
+        bool isCasting = ChannelingSkill != null;
+        if (isCasting) StopCoroutine(ChannelingSkill);
+        ChannelingSkill = null;
+
+        return isCasting;
+    }
+
+    IEnumerator CastWrapper(IEnumerator routine)
+    {
+        yield return routine;
+        ChannelingSkill = null;
     }
 
     #endregion

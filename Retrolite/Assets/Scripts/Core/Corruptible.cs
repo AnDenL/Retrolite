@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Corruptible : MonoBehaviour
@@ -7,6 +8,8 @@ public class Corruptible : MonoBehaviour
     public int MaxStability => maxStability;
     [SerializeField] private int stability;
     public int Stability => stability;
+
+    [SerializeReference] public EditableParam[] editables;
 
     public bool IsCorrupted { get; private set; }
 
@@ -20,7 +23,7 @@ public class Corruptible : MonoBehaviour
 
     public void ApplyCorruption(int amount)
     {
-        ParticleManager.PlayParticle(7, transform.position);
+        ParticleManager.PlayParticle("Glitch", transform.position);
         stability -= amount;
         OnCorrupting?.Invoke(stability);
 
@@ -29,6 +32,8 @@ public class Corruptible : MonoBehaviour
             BecomeCorrupted();
         }
     }
+
+    public void Redact() => CodeEditManager.Redact(gameObject.name.Replace("(Clone)", ""), transform.position, editables);
 
     public void BecomeCorrupted()
     {

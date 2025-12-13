@@ -1,11 +1,13 @@
 using UnityEngine;
 using CalculatingSystem;
+using System.Collections;
 
 namespace Creatures
 {
     [CreateAssetMenu(fileName = "ShootBullet", menuName = "CreatureAI/Skills/ShootBullet")]
     public class ShootBullet : EnemyTargetedSkill
     {
+        private static WaitForSeconds _waitForSeconds0_5 = new(0.5f);
         public BulletPool Pool;
         public GameObject BulletPrefab;
         public BulletData BulletData;
@@ -40,11 +42,17 @@ namespace Creatures
         {
             if (target == null) return;
 
+            owner.Cast(Shoot(target));
+        }
+
+        private IEnumerator Shoot(Creature target)
+        {
+            ParticleManager.PlayParticle("Agr", Clip.position);
+
+            yield return _waitForSeconds0_5;
+
             lastUsedTime = Time.time + cooldownTime;
-
             Vector2 direction = target.transform.position - owner.transform.position;
-
-            if (Random.Range(0, direction.magnitude) > 5) return;
 
             RaycastHit2D hit = Physics2D.Raycast(owner.transform.position, direction, direction.magnitude, LayerMask.GetMask("Walls"));
             if (hit.collider == null)
@@ -52,7 +60,7 @@ namespace Creatures
                 Vector2 dir = owner.transform.position - target.transform.position;
                 owner.Rb.AddForce(Knockback * dir, ForceMode2D.Impulse);
                 Clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (owner.transform.localScale.x == 1 ? 0 : 180));
-                ParticleManager.PlayParticle(5, Clip.position);
+                ParticleManager.PlayParticle("Impact", Clip.position);
                 Pool.Get().Fire(0);
             }
         }

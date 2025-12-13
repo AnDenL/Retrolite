@@ -283,23 +283,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: orthographic size
-      value: 9.125
+      value: 6.75
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
-      value: 0.0008510638
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0.0017035775
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
-      value: 0.9974468
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 0.99488926
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5432,6 +5432,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1606263247838759827, guid: 1736bf7af642aa39fa86aa5d5caee495, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606263247838759827, guid: 1736bf7af642aa39fa86aa5d5caee495, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3037532869261586032, guid: 1736bf7af642aa39fa86aa5d5caee495, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3037532869261586032, guid: 1736bf7af642aa39fa86aa5d5caee495, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7260151017131443741, guid: 1736bf7af642aa39fa86aa5d5caee495, type: 3}
       propertyPath: m_Pivot.x
       value: 0
