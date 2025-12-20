@@ -46,4 +46,22 @@ public class Robot : Creature
         leftTurbine.localPosition = leftTurbinePosition + 0.1f * strength * Random.insideUnitCircle;
         rightTurbine.localPosition = rightTurbinePosition + 0.1f * strength * Random.insideUnitCircle;
     }
+
+    public void SelfDestraction(Creature other)
+    {
+        Vector2 position = transform.position;
+        ParticleManager.PlayParticle("SmallExplosion", position);
+        var hits = Physics2D.OverlapCircleAll(position, 3, LayerMask.GetMask("Creatures"));
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent(out Creature creature))
+            {
+                if (!creature.IsEnemyTo(other)) continue;
+                creature.HealthComponent.TakeDamage(HealthComponent.Health);
+                Vector2 dir = hit.transform.position - (Vector3)position;
+                creature.Rb.AddForce(5 * dir, ForceMode2D.Impulse);
+            }
+        }
+    }
 }

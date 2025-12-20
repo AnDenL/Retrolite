@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Corruptible : MonoBehaviour
 {
-    [SerializeField] private int maxStability = 1;
+    [SerializeField] protected int maxStability = 1;
     public int MaxStability => maxStability;
-    [SerializeField] private int stability;
+    [SerializeField] protected int stability;
     public int Stability => stability;
 
     [SerializeReference] public EditableParam[] editables;
 
-    public bool IsCorrupted { get; private set; }
+    public bool IsCorrupted { get; protected set; }
 
     public event Action OnBecameVulnerable;
     public event Action<int> OnCorrupting;
 
-    private void Start()
+    protected void Start()
     {
         stability = maxStability;
     }

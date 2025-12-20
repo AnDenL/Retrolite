@@ -37983,6 +37983,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: RobotEnemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: editables.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[-2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: editables.Array.data[0]
+      value: 9018859882099245056
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[9018859882099245056]
+      value: Assembly-CSharp ActionParam
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[9018859882099245056].cost
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[9018859882099245056].target
+      value: 
+      objectReference: {fileID: 183557272}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[9018859882099245056].methodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5686033811732888920, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+      propertyPath: managedReferences[9018859882099245056].displayName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6276315321488050909, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.41584
@@ -38028,6 +38060,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+--- !u!114 &183557272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8620996929532720784, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+  m_PrefabInstance: {fileID: 183557271}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ad960439ffde746926d638355c64f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &360995377 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3842169550181612288, guid: d553b95f3d210db498488182e94b6c06, type: 3}
@@ -627412,7 +627455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: orthographic size
-      value: 8.4375
+      value: 9.125
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
@@ -627420,7 +627463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.y
-      value: 0
+      value: 0.0017035775
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.width
@@ -627428,7 +627471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7651452484521536254, guid: a8a269cf0ced77d49a27ec7f75b0e3f0, type: 3}
       propertyPath: m_NormalizedViewPortRect.height
-      value: 1
+      value: 0.99488926
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -628452,42 +628495,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1297347016499330578, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: m_Name
-      value: GlitchTrail
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: NoiseModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: NoiseModule.frequency
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: NoiseModule.scrollSpeed.scalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: NoiseModule.positionAmount.scalar
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: InitialModule.startLifetime.minScalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3633184537263456486, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
-      propertyPath: InitialModule.startLifetime.minMaxState
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3876951528993386996, guid: 923787af5af7d4e409ad175d84fb9529, type: 3}
       propertyPath: m_Name
       value: ParticleManager

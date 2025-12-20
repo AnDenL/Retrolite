@@ -59,13 +59,16 @@ namespace Creatures
                 {
                     if (creature.Break()) 
                         owner.Resources.Add(ResourceType.Bits, Random.Range(2,6));
-                    if (creature.Corruption.IsCorrupted)
+                    creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
+                }
+                if (coll.gameObject.TryGetComponent(out Corruptible corruptible))
+                {
+                    if (corruptible.IsCorrupted)
                     {
-                        creature.Corruption.Redact();
+                        corruptible.Redact();
                         break;
                     }
-                    creature.Corruption.ApplyCorruption(1);
-                    creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
+                    corruptible.ApplyCorruption(1);
                 }
             }
         }

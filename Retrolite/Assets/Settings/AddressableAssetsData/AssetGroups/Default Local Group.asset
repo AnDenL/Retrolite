@@ -1387,6 +1387,26 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb29813d74222194f80277714196467f
+    m_Address: Materials/test
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e89b2faa9b3f7264090cb08e56d3b8b6
+    m_Address: Prefabs/Particles/Light
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be3a3cb835e6f44468a93fb695fafecf
+    m_Address: Scenes/Template
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 082b8586109b2f84497f22021208611c
+    m_Address: Textures/snow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 877a82fa269e2964f8c043567aaf1ab1, type: 2}
   m_SchemaSet:
