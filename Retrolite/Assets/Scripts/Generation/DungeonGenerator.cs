@@ -13,22 +13,19 @@ public class DungeonGenerator : MapGenerator
     public float wallValue = 0f;
     public float floorValue = 1f;
 
-    public override float[,] Generate()
+    public override void Generate(GenerationContext context)
     {
-        float[,] map = new float[Size.x, Size.y];
-
-        // спочатку все робимо стінами
-        for (int x = 0; x < Size.x; x++)
-            for (int y = 0; y < Size.y; y++)
-                map[x, y] = wallValue;
+        for (int x = 0; x < context.Size.x; x++)
+            for (int y = 0; y < context.Size.y; y++)
+                context.Map[x, y] = wallValue;
 
         List<RectInt> rooms = new List<RectInt>();
 
         {
             int w = Random.Range(roomMinSize.x, roomMaxSize.x + 1);
             int h = Random.Range(roomMinSize.y, roomMaxSize.y + 1);
-            int x = Size.x/2 - w/2;
-            int y = Size.y/2 - h/2;
+            int x = context.Size.x/2 - w/2;
+            int y = context.Size.y/2 - h/2;
 
             RectInt newRoom = new(x, y, w, h);
             bool overlaps = false;
@@ -41,17 +38,16 @@ public class DungeonGenerator : MapGenerator
             if (!overlaps)
             {
                 rooms.Add(newRoom);
-                CarveRoom(map, newRoom);
+                CarveRoom(context.Map, newRoom);
             }
         }
 
-        // створюємо кімнати
         for (int i = 0; i < roomCount; i++)
         {
             int w = Random.Range(roomMinSize.x, roomMaxSize.x + 1);
             int h = Random.Range(roomMinSize.y, roomMaxSize.y + 1);
-            int x = Random.Range(1, Size.x - w - 1);
-            int y = Random.Range(1, Size.y - h - 1);
+            int x = Random.Range(1, context.Size.x - w - 1);
+            int y = Random.Range(1, context.Size.y - h - 1);
 
             RectInt newRoom = new RectInt(x, y, w, h);
             bool overlaps = false;
@@ -64,20 +60,17 @@ public class DungeonGenerator : MapGenerator
             if (!overlaps)
             {
                 rooms.Add(newRoom);
-                CarveRoom(map, newRoom);
+                CarveRoom(context.Map, newRoom);
             }
         }
 
-        // з’єднуємо кімнати коридорами
         for (int i = 1; i < rooms.Count; i++)
         {
             Vector2Int prevCenter = Vector2ToInt(rooms[i - 1].center);
             Vector2Int currCenter = Vector2ToInt(rooms[i].center);
 
-            CarveCorridor(map, prevCenter, currCenter);
+            CarveCorridor(context.Map, prevCenter, currCenter);
         }
-
-        return map;
     }
 
     private Vector2Int Vector2ToInt(Vector2 v) => new Vector2Int(Mathf.RoundToInt(v.x), Mathf.RoundToInt(v.y));
@@ -95,7 +88,6 @@ public class DungeonGenerator : MapGenerator
 
     private void CarveCorridor(float[,] map, Vector2Int from, Vector2Int to)
     {
-        // L-подібний коридор
         if (Random.value < 0.5f)
         {
             CarveLine(map, from.x, to.x, from.y, true);

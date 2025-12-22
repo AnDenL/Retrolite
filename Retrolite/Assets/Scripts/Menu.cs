@@ -56,7 +56,11 @@ public class Menu : MonoBehaviour
         mixer.SetFloat("AudioLowPass", 22000);
     }
 
-    public void LoadLevel(int levelIndex) => SceneManager.LoadScene(levelIndex);
+    public void LoadLevel(int levelIndex)
+    {
+        Game.IsPaused = false;
+        SceneManager.LoadScene(levelIndex);
+    }
     public void RestartGame() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     public void QuitGame() => Application.Quit();
 }

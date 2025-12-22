@@ -176,7 +176,7 @@ public class Creature : MonoBehaviour
             FacingRight = false;
         }
 
-        Animator.SetBool(_lookUpHash, position.y > transform.position.y + 1);
+        Animator.SetBool(_lookUpHash, position.y > transform.position.y + 1.5f);
     }
 
     public void UpdateAnimationState()
@@ -219,6 +219,7 @@ public class Creature : MonoBehaviour
             {
                 if (creature == this) continue;
                 if (!creature.IsEnemyTo(this)) continue;
+                if (creature.HealthComponent.IsDead) continue;
 
                 Vector2 dir = (creature.transform.position - transform.position).normalized;
                 float dist = Vector2.Distance(transform.position, creature.transform.position);

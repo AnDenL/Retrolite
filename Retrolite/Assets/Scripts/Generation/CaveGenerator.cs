@@ -11,44 +11,38 @@ public class CaveGenerator : MapGenerator
     public float wallValue = 0f;
     public float floorValue = 1f;
 
-    public override float[,] Generate()
+    public override void Generate(GenerationContext context)
     {
-        float[,] map = new float[Size.x, Size.y];
-
         System.Random rand = new();
 
-        // початкове заповнення
-        for (int x = 0; x < Size.x; x++)
+        for (int x = 0; x < context.Size.x; x++)
         {
-            for (int y = 0; y < Size.y; y++)
+            for (int y = 0; y < context.Size.y; y++)
             {
-                if (x == 0 || y == 0 || x == Size.x - 1 || y == Size.y - 1)
-                    map[x, y] = wallValue; // край завжди стіна
-                else if (Mathf.Abs(x - Size.x/2) + Mathf.Abs(y - Size.y/2)< 15)
-                    map[x, y] = floorValue;
+                if (x == 0 || y == 0 || x == context.Size.x - 1 || y == context.Size.y - 1)
+                    context.Map[x, y] = wallValue; 
+                else if (Mathf.Abs(x - context.Size.x/2) + Mathf.Abs(y - context.Size.y/2)< 15)
+                    context.Map[x, y] = floorValue;
                 else
-                    map[x, y] = (rand.Next(100) < fillPercent) ? wallValue : floorValue;
+                    context.Map[x, y] = (rand.Next(100) < fillPercent) ? wallValue : floorValue;
             }
         }
 
-        // згладжування
         for (int i = 0; i < smoothIterations; i++)
         {
-            map = Smooth(map);
+            context.Map = Smooth(context);
         }
-
-        return map;
     }
 
-    private float[,] Smooth(float[,] map)
+    private float[,] Smooth(GenerationContext context)
     {
-        float[,] newMap = (float[,])map.Clone();
+        float[,] newMap = (float[,])context.Map.Clone();
 
-        for (int x = 1; x < Size.x - 1; x++)
+        for (int x = 1; x < context.Size.x - 1; x++)
         {
-            for (int y = 1; y < Size.y - 1; y++)
+            for (int y = 1; y < context.Size.y - 1; y++)
             {
-                int wallCount = GetWallCount(map, x, y);
+                int wallCount = GetWallCount(context.Map, x, y);
 
                 if (wallCount > 4)
                     newMap[x, y] = wallValue;

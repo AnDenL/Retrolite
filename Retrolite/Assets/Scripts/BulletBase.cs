@@ -37,6 +37,7 @@ public class BulletBase : MonoBehaviour
         context = Context;
 
         context.Bullet = this;
+        context.Point = transform;
         OwnerAlignment = context.Owner.Alignment;
 
         projectileRenderer = GetComponent<SpriteRenderer>();
@@ -190,6 +191,7 @@ public class BulletData
     [SerializeReference]
     public FormulaNode Angle;
 
+    [Header("Actions")]
     [SerializeReference]
     public ActionNode OnReturn;
     [SerializeReference]

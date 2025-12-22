@@ -3,18 +3,10 @@ using UnityEngine.Tilemaps;
 
 public class LevelGenerationBase : MonoBehaviour
 {
-    [Header("Map Generator")]
-    [SerializeField] private MapGenerator generator;
+    [SerializeField] private Vector2Int mapSize = new(64, 64);
+    [SerializeField] private Layer[] layers;
 
-    [Header("Tile Settings")]
-    [SerializeField] private MapTile[] mapTiles;
-
-    private float[,] map;
-
-    private void Awake()
-    {
-        System.Array.Sort(mapTiles, (a, b) => b.MinValue.CompareTo(a.MinValue));
-    }
+    private GenerationContext context;
 
     private void Start()
     {
@@ -25,59 +17,64 @@ public class LevelGenerationBase : MonoBehaviour
     private void Regenerate()
     {
         ClearMap();
-        Generate();
+
+        context = new GenerationContext(mapSize);
+
+        foreach (var layer in layers)
+        {
+            RunLayer(layer);
+        }
     }
 
-    private void Generate()
+    private void RunLayer(Layer layer)
     {
-        if (generator == null)
+        foreach (var generator in layer.Generators)
         {
-            Debug.LogError("Map generation asset not assigned.");
-            return;
+            if (generator == null) continue;
+            generator.Generate(context);
         }
 
-        map = generator.Generate();
-
-        if (map == null)
-        {
-            Debug.LogError("Generated map is null.");
-            return;
-        }
-
-        PlaceMap();
+        RenderLayer(layer.MapTiles);
     }
 
-    private void PlaceMap()
+    private void RenderLayer(MapTile[] mapTiles)
     {
-        Vector2Int startPosition = new(map.GetLength(0) / 2, map.GetLength(1) / 2);
+        Vector2Int offset = context.Size / 2;
 
-        for (int y = 0; y < map.GetLength(1); y++)
+        for (int y = 0; y < context.Size.y; y++)
         {
-            for (int x = 0; x < map.GetLength(0); x++)
+            for (int x = 0; x < context.Size.x; x++)
             {
-                SetTile(new Vector3Int(x - startPosition.x, y - startPosition.y, 0), map[x, y]);
+                float value = context.Map[x, y];
+                Vector3Int pos = new(x - offset.x, y - offset.y, 0);
+                SetTile(mapTiles, pos, value);
             }
         }
     }
 
-    private void SetTile(Vector3Int pos, float value)
+    private void SetTile(MapTile[] mapTiles, Vector3Int pos, float value)
     {
         foreach (var tile in mapTiles)
         {
             if (value >= tile.MinValue)
             {
-                tile.Layer?.SetTile(pos, tile.Tiles[Random.Range(0, tile.Tiles.Length)]);
+                tile.Layer?.SetTile(
+                    pos,
+                    tile.Tiles[Random.Range(0, tile.Tiles.Length)]
+                );
                 break;
             }
         }
     }
 
-    [ContextMenu("ClearMap")]
     private void ClearMap()
     {
-        foreach (var tile in mapTiles)
+        foreach (var layer in layers)
         {
-            tile.Layer?.ClearAllTiles();
+            foreach (var tile in layer.MapTiles)
+            {
+                tile.Layer?.ClearAllTiles();
+            }
         }
     }
 }
@@ -86,13 +83,34 @@ public class LevelGenerationBase : MonoBehaviour
 public class MapTile
 {
     public Tilemap Layer;
-    public Tile[] Tiles;
     [Tooltip("Minimum value to use this tile (inclusive).")]
     public float MinValue;
+    public TileBase[] Tiles;
+}
+
+[System.Serializable]
+public class Layer
+{
+    [Header("Map Generator")]
+    public MapGenerator[] Generators;
+
+    [Header("Tile Settings")]
+    public MapTile[] MapTiles;
 }
 
 public abstract class MapGenerator : ScriptableObject
 {
+    public abstract void Generate(GenerationContext context);
+}
+
+public class GenerationContext
+{
+    public float[,] Map;
     public Vector2Int Size;
-    public abstract float[,] Generate();
+
+    public GenerationContext(Vector2Int size)
+    {
+        Size = size;
+        Map = new float[size.x, size.y];
+    }
 }

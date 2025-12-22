@@ -29,6 +29,13 @@ namespace Creatures
             };
 
             Clip = owner.transform.Find("Clip");
+            if (Clip == null)
+            {
+                GameObject clip = new("Clip");
+                clip.transform.parent = owner.transform;
+                clip.transform.position = owner.transform.position;
+                Clip = clip.transform;
+            }
 
             Pool = new BulletPool(BulletPrefab, Clip, BulletData, Context);
         }
@@ -47,7 +54,7 @@ namespace Creatures
 
         private IEnumerator Shoot(Creature target)
         {
-            ParticleManager.PlayParticle("Agr", Clip.position);
+            if (!Owner.Controller.IsPlayer) ParticleManager.PlayParticle("Agr", Clip.position);
 
             yield return _waitForSeconds0_5;
 

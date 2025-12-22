@@ -8,13 +8,12 @@ public class MazeGenerator : MapGenerator
     public float wallValue = 0f;
     public float floorValue = 1f;
 
-    public override float[,] Generate()
+    public override void Generate(GenerationContext context)
     {
-        float[,] map = new float[Size.x, Size.y];
+        float[,] map = new float[context.Size.x, context.Size.y];
 
-        // все стіни
-        for (int x = 0; x < Size.x; x++)
-            for (int y = 0; y < Size.y; y++)
+        for (int x = 0; x < context.Size.x; x++)
+            for (int y = 0; y < context.Size.y; y++)
                 map[x, y] = wallValue;
 
         Vector2Int start = new Vector2Int(1, 1);
@@ -28,7 +27,7 @@ public class MazeGenerator : MapGenerator
         while (stack.Count > 0)
         {
             Vector2Int current = stack.Peek();
-            List<Vector2Int> neighbors = GetNeighbors(current, map);
+            List<Vector2Int> neighbors = GetNeighbors(current, context);
 
             if (neighbors.Count > 0)
             {
@@ -43,11 +42,9 @@ public class MazeGenerator : MapGenerator
                 stack.Pop();
             }
         }
-
-        return map;
     }
 
-    private List<Vector2Int> GetNeighbors(Vector2Int cell, float[,] map)
+    private List<Vector2Int> GetNeighbors(Vector2Int cell, GenerationContext context)
     {
         List<Vector2Int> result = new List<Vector2Int>();
 
@@ -56,9 +53,9 @@ public class MazeGenerator : MapGenerator
         foreach (var dir in dirs)
         {
             Vector2Int n = cell + dir;
-            if (n.x > 0 && n.y > 0 && n.x < Size.x - 1 && n.y < Size.y - 1)
+            if (n.x > 0 && n.y > 0 && n.x < context.Size.x - 1 && n.y < context.Size.y - 1)
             {
-                if (map[n.x, n.y] == wallValue)
+                if (context.Map[n.x, n.y] == wallValue)
                     result.Add(n);
             }
         }

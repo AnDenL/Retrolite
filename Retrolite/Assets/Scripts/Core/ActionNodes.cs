@@ -142,12 +142,12 @@ namespace CalculatingSystem
         [SerializeReference] public FormulaNode Knockback;
         [SerializeReference] public FormulaNode Radius;
         public LayerMask Layers;
-        public Alignment alignment;
+        public string Particle = "SmallExplosion";
 
         public override void Execute(FormulaContext context)
         {
-            Vector2 position = context.TargetHealth.transform.position;
-            ParticleManager.PlayParticle("SmallExplosion", position);
+            Vector2 position = context.Point.position;
+            ParticleManager.PlayParticle(Particle, position);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 
             foreach (var hit in hits)

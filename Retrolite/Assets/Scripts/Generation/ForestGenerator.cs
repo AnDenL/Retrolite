@@ -17,14 +17,12 @@ public class ForestGenerator : MapGenerator
     public int MinPointsPerBranch, MaxPointsPerBranch;
 
     private List<KeyPoint> keyPoints;
-    private float[,] map;
 
-    public override float[,] Generate()
+    public override void Generate(GenerationContext context)
     {
-        map = new float[Size.x, Size.y];
         keyPoints = new List<KeyPoint>();
 
-        Vector2 center = new Vector2(Size.x / 2f, Size.y / 2f);
+        Vector2 center = new Vector2(context.Size.x / 2f, context.Size.y / 2f);
         KeyPoint startPoint = new KeyPoint
         {
             Position = Vector2Int.RoundToInt(center),
@@ -54,7 +52,7 @@ public class ForestGenerator : MapGenerator
                 currentPos += direction * distance + jitter;
                 Vector2Int posInt = Vector2Int.RoundToInt(currentPos);
 
-                if (posInt.x < 0 || posInt.y < 0 || posInt.x >= Size.x || posInt.y >= Size.y)
+                if (posInt.x < 0 || posInt.y < 0 || posInt.x >= context.Size.x || posInt.y >= context.Size.y)
                     continue;
 
                 KeyPoint point = new KeyPoint
@@ -69,9 +67,9 @@ public class ForestGenerator : MapGenerator
         }
 
 
-        for (int y = 0; y < Size.y; y++)
+        for (int y = 0; y < context.Size.y; y++)
         {
-            for (int x = 0; x < Size.x; x++)
+            for (int x = 0; x < context.Size.x; x++)
             {
                 float value = 10;
                 
@@ -81,23 +79,21 @@ public class ForestGenerator : MapGenerator
                     value -= Mathf.Clamp((point.AreaSize - dist) / point.AreaSize, 0, 10);
                 }
 
-                map[x, y] = value;
+                context.Map[x, y] = value;
             }
         } 
 
-        AddNoise();
-
-        return map;
+        AddNoise(context);
     }
 
-    private void AddNoise()
+    private void AddNoise(GenerationContext context)
     {
         float offset = Random.Range(-10,10);
-        for (int y = 0; y < Size.y; y++)
+        for (int y = 0; y < context.Size.y; y++)
         {
-            for (int x = 0; x < Size.x; x++)
+            for (int x = 0; x < context.Size.x; x++)
             {
-                map[x, y] += Mathf.PerlinNoise((x / scale) + offset, (y / scale) + offset) * NoiseStrength;
+                context.Map[x, y] += Mathf.PerlinNoise((x / scale) + offset, (y / scale) + offset) * NoiseStrength;
             }
         }
     }

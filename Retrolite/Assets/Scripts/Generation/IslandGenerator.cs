@@ -10,30 +10,25 @@ public class IslandGenerator : MapGenerator
     public float waterValue = 0f;
     public float landValue = 1f;
 
-    public override float[,] Generate()
+    public override void Generate(GenerationContext context)
     {
-        float[,] map = new float[Size.x, Size.y];
-
-        Vector2 center = new Vector2(Size.x / 2f, Size.y / 2f);
+        Vector2 center = new Vector2(context.Size.x / 2f, context.Size.y / 2f);
         float maxDist = center.magnitude;
 
-        for (int x = 0; x < Size.x; x++)
+        for (int x = 0; x < context.Size.x; x++)
         {
-            for (int y = 0; y < Size.y; y++)
+            for (int y = 0; y < context.Size.y; y++)
             {
                 float nx = x * scale;
                 float ny = y * scale;
 
                 float noise = Mathf.PerlinNoise(nx, ny);
 
-                // робимо "радіальний" острів
                 float dist = Vector2.Distance(new Vector2(x, y), center) / maxDist;
                 noise -= dist * 0.5f;
 
-                map[x, y] = noise > 0 ? landValue : waterValue;
+                context.Map[x, y] = noise > 0 ? landValue : waterValue;
             }
         }
-
-        return map;
     }
 }

@@ -22,7 +22,8 @@ namespace Creatures
             {
                 Owner = owner,
                 Target = target,
-                TargetHealth = target.HealthComponent
+                TargetHealth = target.HealthComponent,
+                Point = target.transform
             });
         }
     }

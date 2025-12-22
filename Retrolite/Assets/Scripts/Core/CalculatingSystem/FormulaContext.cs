@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace CalculatingSystem
 {
     public struct FormulaContext
@@ -7,5 +9,6 @@ namespace CalculatingSystem
         public Creature Owner;
         public GunBase Gun;
         public BulletBase Bullet;
+        public Transform Point;
     }
 }

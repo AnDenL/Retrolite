@@ -32,6 +32,10 @@ public class PlayerUI : MonoBehaviour
         player.HealthComponent.OnHealthChanged += UpdateHealthUI;
         player.Resources.Get(ResourceType.Money).OnChanged += UpdateMoneyText;
         player.Resources.Get(ResourceType.Bits).OnChanged += UpdateBitsText;
+        
+        UpdateHealthUI(player.HealthComponent.Health, player.HealthComponent.MaxHealth);
+        UpdateMoneyText(player.Resources.Get(ResourceType.Money).Count);
+        UpdateBitsText(player.Resources.Get(ResourceType.Bits).Count);
     }
 
     public void UpdateMoneyText(int money)

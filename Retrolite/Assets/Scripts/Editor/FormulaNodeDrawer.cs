@@ -229,41 +229,107 @@ public class ConditionNodeDrawer : PropertyDrawer
 [CustomPropertyDrawer(typeof(ActionNode), true)]
 public class ActionNodeDrawer : PropertyDrawer
 {
+    private const float ButtonWidth = 60f;
+    private const float Spacing = 2f;
+
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        if (property.managedReferenceValue == null)
+        EditorGUI.BeginProperty(position, label, property);
+
+        // HEADER
+        Rect headerRect = new Rect(
+            position.x,
+            position.y,
+            position.width,
+            EditorGUIUtility.singleLineHeight
+        );
+
+        DrawHeader(headerRect, property, label);
+
+        // BODY
+        if (property.managedReferenceValue != null)
         {
-            // Dropdown для створення нового ActionNode
-            if (GUI.Button(position, "Select ActionNode Type"))
+            Rect bodyRect = new Rect(
+                position.x,
+                position.y + EditorGUIUtility.singleLineHeight + Spacing,
+                position.width,
+                EditorGUI.GetPropertyHeight(property, label, true)
+            );
+
+            EditorGUI.PropertyField(bodyRect, property, GUIContent.none, true);
+        }
+
+        EditorGUI.EndProperty();
+    }
+
+    private void DrawHeader(Rect rect, SerializedProperty property, GUIContent label)
+    {
+        // Label
+        Rect labelRect = rect;
+        labelRect.width -= ButtonWidth + Spacing;
+
+        string title = property.managedReferenceValue == null
+            ? $"{label.text} (None)"
+            : $"{label.text} ({property.managedReferenceValue.GetType().Name})";
+
+        EditorGUI.LabelField(labelRect, title, EditorStyles.boldLabel);
+
+        // Button
+        Rect buttonRect = rect;
+        buttonRect.x = rect.xMax - ButtonWidth;
+        buttonRect.width = ButtonWidth;
+
+        if (GUI.Button(buttonRect, "Change"))
+        {
+            ShowTypeMenu(property);
+        }
+    }
+
+    private void ShowTypeMenu(SerializedProperty property)
+    {
+        var menu = new GenericMenu();
+        var types = TypeCache
+            .GetTypesDerivedFrom<ActionNode>()
+            .Where(t => !t.IsAbstract);
+
+        // None option
+        menu.AddItem(new GUIContent("None"), property.managedReferenceValue == null, () =>
+        {
+            property.managedReferenceValue = null;
+            property.serializedObject.ApplyModifiedProperties();
+        });
+
+        menu.AddSeparator("");
+
+        foreach (var type in types)
+        {
+            bool isCurrent =
+                property.managedReferenceValue != null &&
+                property.managedReferenceValue.GetType() == type;
+
+            menu.AddItem(new GUIContent(type.Name), isCurrent, () =>
             {
-                var menu = new GenericMenu();
-                var types = TypeCache.GetTypesDerivedFrom<ActionNode>().Where(t => !t.IsAbstract);
-
-                foreach (var type in types)
-                {
-                    menu.AddItem(new GUIContent(type.Name), false, () =>
-                    {
-                        property.managedReferenceValue = Activator.CreateInstance(type);
-                        property.serializedObject.ApplyModifiedProperties();
-                    });
-                }
-
-                menu.ShowAsContext();
-            }
+                property.managedReferenceValue = Activator.CreateInstance(type);
+                property.serializedObject.ApplyModifiedProperties();
+            });
         }
-        else
-        {
-            // Показуємо всі серіалізовані поля цього ActionNode
-            EditorGUI.PropertyField(position, property, label, true);
-        }
+
+        menu.ShowAsContext();
     }
 
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
-        if (property.managedReferenceValue == null)
-            return EditorGUIUtility.singleLineHeight;
-        return EditorGUI.GetPropertyHeight(property, label, true);
+        float height = EditorGUIUtility.singleLineHeight;
+
+        if (property.managedReferenceValue != null)
+        {
+            height += Spacing;
+            height += EditorGUI.GetPropertyHeight(property, label, true);
+        }
+
+        return height;
     }
 }
+
 
 #endif

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403cc967568ce8e44bbdaefc8e87cfb0, type: 3}
+  m_Name: Explosion
+  m_EditorClassIdentifier: 
+  Name: 
+  Priority: 0
+  cooldownTime: 0.5
+  MinRange: 0
+  MaxRange: 8
+  action:
+    rid: 9018860093364240506
+  references:
+    version: 2
+    RefIds:
+    - rid: 9018860093364240506
+      type: {class: ExplosionAction, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Damage:
+          rid: 9018860093364240507
+        Knockback:
+          rid: 9018860093364240508
+        Radius:
+          rid: 9018860093364240509
+        Layers:
+          serializedVersion: 2
+          m_Bits: 8
+        Particle: Explosion
+    - rid: 9018860093364240507
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 100
+    - rid: 9018860093364240508
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 15
+    - rid: 9018860093364240509
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 4

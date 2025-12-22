@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403cc967568ce8e44bbdaefc8e87cfb0, type: 3}
   m_Name: ExplosionAction
   m_EditorClassIdentifier: 
+  Name: 
   Priority: 0
+  cooldownTime: 0.1
   MinRange: 0
   MaxRange: 5
-  cooldownTime: 0
   action:
     rid: 7873061268673265680
   references:
