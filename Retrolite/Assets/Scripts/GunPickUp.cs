@@ -13,7 +13,7 @@ public class GunPickUp : Interactable
     private void SetSprite()
     {
         gunData.GunSprite = WeaponSpriteGenerator.CombineSprites(part1, part2, hueShift);
-        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
+        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite; // Using GetComponent instead cached variable in order to invoke method in inspector 
     }
 
     public override void Interact(Creature creature)

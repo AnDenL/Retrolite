@@ -44,6 +44,9 @@ public class CodeEditManager : MonoBehaviour
                 case FloatParam param:
                     Instantiate(instance.prefabs[2], win.transform);
                     break;
+                case EnumParam param:
+                    Instantiate(instance.prefabs[3], win.transform);
+                    break;
                 case ActionParam param:
                     Instantiate(instance.prefabs[4], win.transform);
                     break;
@@ -56,7 +59,7 @@ public class CodeEditManager : MonoBehaviour
     {
         while (Game.pixelCamera.assetsPPU < 48)
         {
-            yield return new WaitForSecondsRealtime(2/(60 - Game.pixelCamera.assetsPPU));
+            yield return new WaitForSecondsRealtime(2/Game.pixelCamera.assetsPPU);
             Game.pixelCamera.assetsPPU++;
         }
     }
@@ -94,6 +97,13 @@ public class FloatParam : EditableParam
 
     public float min;
     public float max;
+}
+
+[Serializable]
+public class EnumParam : EditableParam
+{
+    public Component target;
+    public string fieldName;
 }
 
 [Serializable]

@@ -1217,6 +1217,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c2ae6b4ca55409943950fb6732302919
+    m_Address: Prefabs/Particles/Fireflies
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61ec16c4aca3a7f4c8224588d5ec4794
+    m_Address: ScriptableObjects/Items/New Item
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 877a82fa269e2964f8c043567aaf1ab1, type: 2}
   m_SchemaSet:

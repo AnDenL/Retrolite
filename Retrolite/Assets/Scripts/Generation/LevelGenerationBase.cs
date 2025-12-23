@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 
 public class LevelGenerationBase : MonoBehaviour
 {
     [SerializeField] private Vector2Int mapSize = new(64, 64);
     [SerializeField] private Layer[] layers;
+
+    [SerializeField] private GameObject portal;
 
     private GenerationContext context;
 
@@ -24,6 +27,8 @@ public class LevelGenerationBase : MonoBehaviour
         {
             RunLayer(layer);
         }
+
+        portal.transform.position = new Vector3(context.EndPoint.x - context.Size.x/2, context.EndPoint.y - context.Size.y/2);
     }
 
     private void RunLayer(Layer layer)
@@ -34,22 +39,69 @@ public class LevelGenerationBase : MonoBehaviour
             generator.Generate(context);
         }
 
-        RenderLayer(layer.MapTiles);
+        RenderLayerOptimized(layer.MapTiles);
     }
 
-    private void RenderLayer(MapTile[] mapTiles)
+    private void RenderLayerOptimized(MapTile[] mapTiles)
     {
-        Vector2Int offset = context.Size / 2;
+        Vector2Int size = context.Size;
+        Vector2Int offset = size / 2;
 
-        for (int y = 0; y < context.Size.y; y++)
+        foreach (var mapTile in mapTiles)
         {
-            for (int x = 0; x < context.Size.x; x++)
+            if (mapTile.Layer == null)
+                continue;
+
+            RenderSingleTilemap(mapTile, mapTiles, size, offset);
+        }
+    }
+
+    private void RenderSingleTilemap(
+        MapTile target,
+        MapTile[] allTiles,
+        Vector2Int size,
+        Vector2Int offset)
+    {
+        Tilemap tilemap = target.Layer;
+
+        var positions = new List<Vector3Int>();
+        var tiles = new List<TileBase>();
+
+        for (int y = 0; y < size.y; y++)
+        {
+            for (int x = 0; x < size.x; x++)
             {
                 float value = context.Map[x, y];
-                Vector3Int pos = new(x - offset.x, y - offset.y, 0);
-                SetTile(mapTiles, pos, value);
+
+                MapTile chosen = null;
+                foreach (var tile in allTiles)
+                {
+                    if (value >= tile.MinValue)
+                    {
+                        chosen = tile;
+                        break;
+                    }
+                }
+
+                if (chosen != target)
+                    continue;
+
+                Vector3Int pos = new(
+                    x - offset.x,
+                    y - offset.y,
+                    0
+                );
+
+                positions.Add(pos);
+                tiles.Add(
+                    target.Tiles[Random.Range(0, target.Tiles.Length)]
+                );
             }
         }
+
+        tilemap.gameObject.SetActive(false);
+        tilemap.SetTiles(positions.ToArray(), tiles.ToArray());
+        tilemap.gameObject.SetActive(true);
     }
 
     private void SetTile(MapTile[] mapTiles, Vector3Int pos, float value)
@@ -73,7 +125,11 @@ public class LevelGenerationBase : MonoBehaviour
         {
             foreach (var tile in layer.MapTiles)
             {
-                tile.Layer?.ClearAllTiles();
+                if (tile.Layer == null) continue;
+
+                tile.Layer.gameObject.SetActive(false);
+                tile.Layer.ClearAllTiles();
+                tile.Layer.gameObject.SetActive(true);
             }
         }
     }
@@ -107,6 +163,7 @@ public class GenerationContext
 {
     public float[,] Map;
     public Vector2Int Size;
+    public Vector2Int EndPoint;
 
     public GenerationContext(Vector2Int size)
     {

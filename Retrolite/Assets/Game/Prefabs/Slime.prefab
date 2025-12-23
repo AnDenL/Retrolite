@@ -9955,6 +9955,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 1
   stability: 1
+  editables:
+  - rid: 9018860106614571015
+  - rid: 9018860106614571016
+  references:
+    version: 2
+    RefIds:
+    - rid: 9018860106614571015
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displayName: Health
+        cost: 1
+        target: {fileID: 5182044036734216103}
+        fieldName: health
+        min: 0
+        max: 30
+    - rid: 9018860106614571016
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displayName: Speed
+        cost: 1
+        target: {fileID: 9179757483088107891}
+        fieldName: speed
+        min: 0
+        max: 70
 --- !u!114 &9179757483088107891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9974,6 +9998,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
   Speed: 35
   baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
+  CanAct: 1
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}

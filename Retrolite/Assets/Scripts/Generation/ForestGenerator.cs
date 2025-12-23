@@ -22,8 +22,8 @@ public class ForestGenerator : MapGenerator
     {
         keyPoints = new List<KeyPoint>();
 
-        Vector2 center = new Vector2(context.Size.x / 2f, context.Size.y / 2f);
-        KeyPoint startPoint = new KeyPoint
+        Vector2 center = new(context.Size.x / 2f, context.Size.y / 2f);
+        KeyPoint startPoint = new()
         {
             Position = Vector2Int.RoundToInt(center),
             AreaSize = MaxAreaSize,
@@ -34,7 +34,7 @@ public class ForestGenerator : MapGenerator
         for (int b = 0; b < BranchCount; b++)
         {
             float baseAngle = 360f / BranchCount * b + Random.Range(-RandomAngle, RandomAngle);
-            Vector2 direction = new(Mathf.Cos(baseAngle * Mathf.Deg2Rad), Mathf.Sin(baseAngle * Mathf.Deg2Rad));
+            Vector2 direction;
 
             Vector2 currentPos = center;
             int PointsPerBranch = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
@@ -84,6 +84,8 @@ public class ForestGenerator : MapGenerator
         } 
 
         AddNoise(context);
+
+        context.EndPoint = keyPoints[^2].Position;
     }
 
     private void AddNoise(GenerationContext context)

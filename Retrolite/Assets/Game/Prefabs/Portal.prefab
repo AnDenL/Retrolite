@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
-  sceneIndex: 0
+  sceneIndex: -1
 --- !u!95 &2290549033930229658
 Animator:
   serializedVersion: 5
