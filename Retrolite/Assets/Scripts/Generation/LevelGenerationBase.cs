@@ -13,7 +13,7 @@ public class LevelGenerationBase : MonoBehaviour
 
     private void Start()
     {
-        Regenerate();
+        //Regenerate();
     }
 
     [ContextMenu("Regenerate")]

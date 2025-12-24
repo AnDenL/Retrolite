@@ -1,11 +1,9 @@
 using UnityEngine;
 using Creatures;
-using UnityEngine.Experimental.Rendering.Universal;
 
 public static class Game
 {
     public static Camera mainCamera;
-    public static PixelPerfectCamera pixelCamera;
     
     public static float TimeSpeed = 1;
     public static bool IsPaused;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Reflection;
 using Creatures;
 using TMPro;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class CodeEditManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private Transform window;
+    [SerializeField] private TextMeshProUGUI label;
+    [SerializeField] private Slider slider;
 
     public static bool IsEditing;
     public static CodeEditManager instance;
@@ -16,24 +19,25 @@ public class CodeEditManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-    }
+    }   
 
     public static void Redact(string name, Vector3 position, EditableParam[] editables)
     {
         if (IsEditing) return;
 
         IsEditing = true;
-        var win = instance.window;
-        Time.timeScale = 0.1f;
+        Transform win = instance.window;
+        Time.timeScale = 0.08f;
         PlayerController.CanInteract = false;
 
-        foreach (Transform t in win.transform)
-            Destroy(t.gameObject);
+        instance.label.text = name;
+
+        for (int i = 1; i < win.childCount - 1; i++)
+            Destroy(win.GetChild(i).gameObject);
         
         win.gameObject.SetActive(true);
         win.transform.position = Game.mainCamera.WorldToScreenPoint(position);
 
-        Instantiate(instance.prefabs[0], win.transform).GetComponent<TextMeshProUGUI>().text = name;
         foreach (EditableParam editable in editables)
         {
             switch (editable)
@@ -48,7 +52,25 @@ public class CodeEditManager : MonoBehaviour
                     Instantiate(instance.prefabs[3], win.transform);
                     break;
                 case ActionParam param:
-                    Instantiate(instance.prefabs[4], win.transform);
+                    var button = Instantiate(instance.prefabs[4], win.transform).GetComponent<Button>();
+                    button.transform.SetSiblingIndex(1);
+                    button.GetComponentInChildren<TextMeshProUGUI>().text = param.displableName;
+
+                    var target = param.component;
+                    var method = target.GetType().GetMethod(param.fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+
+                    if (method == null)
+                    {
+                        Debug.LogError($"Method not found: {param.fieldName}");
+                        break;
+                    }
+
+                    button.onClick.RemoveAllListeners();
+                    button.onClick.AddListener(() =>
+                    {
+                        if (param.singleuse) instance.Apply();
+                        method.Invoke(target, new object[1] {PlayerController.Player});
+                    });
                     break;
             }
         }
@@ -57,58 +79,77 @@ public class CodeEditManager : MonoBehaviour
 
     private IEnumerator Animate()
     {
-        while (Game.pixelCamera.assetsPPU < 48)
+        float t = 0;
+        CameraController.SetZoom(32);
+        while (t < 0.5f)
         {
-            yield return new WaitForSecondsRealtime(2/Game.pixelCamera.assetsPPU);
-            Game.pixelCamera.assetsPPU++;
+            t += Time.deltaTime;
+            slider.value = t*2;
+
+            yield return null;
         }
+
+        Apply();
     }
 
-    public void Apply()
+    public bool Apply()
     {
         Time.timeScale = Game.TimeSpeed;
         IsEditing = false;
-        Game.pixelCamera.assetsPPU = 16;
+        CameraController.SetZoom(16);
+        PlayerController.CanInteract = true;
+        window.gameObject.SetActive(false);
+
+        return true;
     }
 }
 
 [Serializable]
 public abstract class EditableParam
 {
-    public string displayName;
+    public string displableName;
+    public string fieldName;
+    public Component component;
     public int cost;
+
+    public abstract int CalculateCost();
 }
 
 [Serializable]
 public class IntParam : EditableParam
 {
-    public Component target;
-    public string fieldName;
-
+    public int originalValue;
+    public int pendingValue;
     public int min;
     public int max;
+
+    public override int CalculateCost() => Math.Abs(originalValue - pendingValue) * cost;
 }
 
 [Serializable]
 public class FloatParam : EditableParam
 {
-    public Component target;
-    public string fieldName;
-
+    public float originalValue;
+    public float pendingValue;
     public float min;
     public float max;
+
+    public override int CalculateCost() => (int)(Math.Abs(originalValue - pendingValue) * cost);
 }
 
 [Serializable]
 public class EnumParam : EditableParam
 {
-    public Component target;
-    public string fieldName;
+    public int originalValue;
+    public int pendingValue;
+
+    public override int CalculateCost() => originalValue == pendingValue ? 0 : cost;
 }
 
 [Serializable]
 public class ActionParam : EditableParam
 {
-    public Component target;
-    public string methodName;
+    public bool singleuse;
+
+    public override int CalculateCost() => cost;
 }

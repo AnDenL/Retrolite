@@ -50,18 +50,21 @@ public class Robot : Creature
     public void SelfDestraction(Creature other)
     {
         Vector2 position = transform.position;
-        ParticleManager.PlayParticle("SmallExplosion", position);
-        var hits = Physics2D.OverlapCircleAll(position, 3, LayerMask.GetMask("Creatures"));
+        ParticleManager.PlayParticle("Explosion", position);
+        var hits = Physics2D.OverlapCircleAll(position, 5, LayerMask.GetMask("Creature"));
 
         foreach (var hit in hits)
         {
             if (hit.TryGetComponent(out Creature creature))
             {
-                if (!creature.IsEnemyTo(other)) continue;
+                if (!creature.IsEnemyTo(other) || creature == this) continue;
                 creature.HealthComponent.TakeDamage(HealthComponent.Health);
                 Vector2 dir = hit.transform.position - (Vector3)position;
-                creature.Rb.AddForce(5 * dir, ForceMode2D.Impulse);
+                creature.Rb.AddForce(15 * dir, ForceMode2D.Impulse);
             }
         }
+        Destroy(gameObject);
+
+        ParticleManager.PlayParticle("RobotDetails", transform.position);
     }
 }

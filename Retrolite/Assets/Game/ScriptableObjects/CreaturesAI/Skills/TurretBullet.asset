@@ -17,7 +17,7 @@ MonoBehaviour:
   cooldownTime: 1
   MinRange: 0
   MaxRange: 12
-  BulletPrefab: {fileID: 4500548146545427392, guid: 620984b893359c632bee55693b414ce3, type: 3}
+  BulletPrefab: {fileID: 4500548146545427392, guid: c72079c2013a8dd4d8abc12e5b40265b, type: 3}
   BulletData:
     Damage:
       rid: 9018860093364240384
@@ -35,7 +35,7 @@ MonoBehaviour:
       rid: -2
     OnDamage:
       rid: -2
-    BulletSprite: {fileID: -2007769973, guid: 3aae7acf1ea78a2b3b174f975d2b5046, type: 3}
+    BulletSprite: {fileID: 416926172, guid: 3aae7acf1ea78a2b3b174f975d2b5046, type: 3}
     IsDynamic: 0
   Knockback: 0
   references:
@@ -62,7 +62,7 @@ MonoBehaviour:
     - rid: 9018860093364240388
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 12
+        Value: 14
     - rid: 9018860093364240389
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:

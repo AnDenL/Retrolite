@@ -145,7 +145,7 @@ MonoBehaviour:
         Layers:
           serializedVersion: 2
           m_Bits: 8
-        alignment: 0
+        Particle: SmallExplosion
     - rid: 7873061014183346385
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
@@ -259,10 +259,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 2
   stability: 2
-  editables: []
+  editables:
+  - rid: 9018860128952909824
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9018860128952909824
+      type: {class: ActionParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: 
+        fieldName: 
+        component: {fileID: 8620996929532720784}
+        cost: 0
+        singleuse: 0
 --- !u!1 &1053139358009348349
 GameObject:
   m_ObjectHideFlags: 0

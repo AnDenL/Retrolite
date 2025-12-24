@@ -581,7 +581,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -589,6 +589,48 @@ TextureImporter:
       bones: []
       spriteID: bba234cf7a7fc6346a4e51c8964241ee
       internalID: 1032725551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponParts_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c972ec10f376af34d8040eb32cae084b
+      internalID: -224471888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WeaponParts_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4241aef71ac83b842b3bdb46ca69b358
+      internalID: 1586811851
       vertices: []
       indices: 
       edges: []
@@ -624,6 +666,8 @@ TextureImporter:
       ConsrWeaponsSaturated_7: 1394816848469569488
       ConsrWeaponsSaturated_8: 5638134517992728937
       ConsrWeaponsSaturated_9: -8521522718095209913
+      WeaponParts_0: -224471888
+      WeaponParts_1: 1586811851
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1227,6 +1227,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25c38271ee5f2bd4bbb0c42cdc44d86d
+    m_Address: Prefabs/UI/Slider
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b3053e8ab15c484981043329d156c27
+    m_Address: Materials/Shaders/WallTransparency
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e25cf40814cfa7247ab0c30c1b9635a7
+    m_Address: Materials/WallTransparency
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 877a82fa269e2964f8c043567aaf1ab1, type: 2}
   m_SchemaSet:
