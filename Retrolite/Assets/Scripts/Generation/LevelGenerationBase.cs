@@ -8,6 +8,7 @@ public class LevelGenerationBase : MonoBehaviour
     [SerializeField] private Layer[] layers;
 
     [SerializeField] private GameObject portal;
+    [SerializeField] private GameObject[] enemies;
 
     private GenerationContext context;
 
@@ -29,6 +30,12 @@ public class LevelGenerationBase : MonoBehaviour
         }
 
         portal.transform.position = new Vector3(context.EndPoint.x - context.Size.x/2, context.EndPoint.y - context.Size.y/2);
+        
+        foreach (Transform tr in transform)
+            Destroy(tr.gameObject);
+
+        foreach (var pos in context.Enemies)
+            Instantiate(enemies[Random.Range(0, enemies.Length - 1)], new Vector3(pos.x, pos.y), Quaternion.identity).transform.parent = transform;
     }
 
     private void RunLayer(Layer layer)
@@ -163,11 +170,13 @@ public class GenerationContext
 {
     public float[,] Map;
     public Vector2Int Size;
+    public List<Vector2Int> Enemies;
     public Vector2Int EndPoint;
 
     public GenerationContext(Vector2Int size)
     {
         Size = size;
         Map = new float[size.x, size.y];
+        Enemies = new();
     }
 }
