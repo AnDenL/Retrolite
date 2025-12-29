@@ -9,7 +9,7 @@ namespace CalculatingSystem
     [Serializable]
     public abstract class ConditionNode
     {
-        public abstract bool Evaluate(FormulaContext context);
+        public abstract bool Evaluate(Context context);
         public abstract string ToReadableString();
     }
 
@@ -33,7 +33,7 @@ namespace CalculatingSystem
             Operator = op;
         }
 
-        public override bool Evaluate(FormulaContext context)
+        public override bool Evaluate(Context context)
         {
             float a = Left.Evaluate(context);
             float b = Right.Evaluate(context);
@@ -84,7 +84,7 @@ namespace CalculatingSystem
             Right = right;
         }
 
-        public override bool Evaluate(FormulaContext context)
+        public override bool Evaluate(Context context)
         {
             return Operator switch
             {
@@ -112,13 +112,13 @@ namespace CalculatingSystem
 
         public ConditionVariableNode() { }
         public ConditionVariableNode(ConditionVariable var) => Variable = var;
-        public override bool Evaluate(FormulaContext context) => ConditionResolver.Resolve(Variable, context);
+        public override bool Evaluate(Context context) => ConditionResolver.Resolve(Variable, context);
         public override string ToReadableString() => Variable.ToString();
     }
 
     public static class ConditionResolver
     {
-        public static bool Resolve(ConditionVariable variable, FormulaContext context)
+        public static bool Resolve(ConditionVariable variable, Context context)
         {
             return variable switch
             {

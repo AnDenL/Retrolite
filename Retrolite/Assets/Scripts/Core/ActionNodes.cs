@@ -8,7 +8,7 @@ namespace CalculatingSystem
     [Serializable]
     public abstract class ActionNode
     {
-        public abstract void Execute(FormulaContext context);
+        public abstract void Execute(Context context);
         public abstract string ToReadableString();
     }
 
@@ -19,7 +19,7 @@ namespace CalculatingSystem
 
         public bool TargetSelf;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             if (context.TargetHealth != null)
             {
@@ -37,7 +37,7 @@ namespace CalculatingSystem
     {
         [SerializeReference] public FormulaNode Amount;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             context.Target.HealthComponent.Heal(Amount.Evaluate(context));
         }
@@ -51,7 +51,7 @@ namespace CalculatingSystem
         [SerializeReference] public FormulaNode Money;
         public ResourceType resource;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             PlayerController.Player.Resources.Get(resource).Add((int)Money.Evaluate(context));
         }
@@ -65,7 +65,7 @@ namespace CalculatingSystem
         public GameObject Prefab;
         public bool onEnemy = false;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             if (Prefab != null && context.TargetHealth != null)
                 UnityEngine.Object.Instantiate(Prefab, onEnemy ? context.TargetHealth.transform.position : context.Owner.transform.position, Quaternion.identity);
@@ -79,7 +79,7 @@ namespace CalculatingSystem
     {
         public GameObject Object;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             UnityEngine.Object.Destroy(Object);
         }
@@ -92,7 +92,7 @@ namespace CalculatingSystem
     {
         public string Trigger;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             if (context.Owner.Animator != null)
                 context.Owner.Animator.SetTrigger(Trigger);
@@ -106,7 +106,7 @@ namespace CalculatingSystem
     {
         public string Particles;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             if (context.Target.HealthComponent != null)
                 ParticleManager.PlayParticle(Particles, context.Owner.transform.position);
@@ -121,12 +121,12 @@ namespace CalculatingSystem
         [SerializeReference] public FormulaNode Delay;
         [SerializeReference] public ActionNode Action;
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
             context.Owner.StartCoroutine(DelayedExecute(context));
         }
 
-        private IEnumerator DelayedExecute(FormulaContext context)
+        private IEnumerator DelayedExecute(Context context)
         {
             yield return new WaitForSeconds(Delay.Evaluate(context));
             Action.Execute(context);
@@ -144,9 +144,9 @@ namespace CalculatingSystem
         public LayerMask Layers;
         public string Particle = "SmallExplosion";
 
-        public override void Execute(FormulaContext context)
+        public override void Execute(Context context)
         {
-            Vector2 position = context.Point.position;
+            Vector2 position = context.Target.transform.position;
             ParticleManager.PlayParticle(Particle, position);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 

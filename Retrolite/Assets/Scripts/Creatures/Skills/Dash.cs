@@ -17,6 +17,7 @@ namespace Creatures
 
         public override void Activate(Vector2 direction)
         {
+            owner.Cast();
             owner.Rb.AddForce(Speed * direction, ForceMode2D.Impulse);
         }
 

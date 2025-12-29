@@ -24,6 +24,7 @@ namespace Creatures
 
         public override void Activate(Vector2 position)
         {
+            owner.Cast();
             anim.DropTo(owner.transform.position + owner.Speed * Speed * (Vector3)position);
         }
     }

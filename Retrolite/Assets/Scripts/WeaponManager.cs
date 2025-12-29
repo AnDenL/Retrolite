@@ -23,10 +23,9 @@ public class WeaponManager : MonoBehaviour
     public void Init(Creature owner)
     {
         this.owner = owner;
-        var arms = owner.transform.Find("Arms");
-        if (arms != null)
+        handController = owner.GetComponentInChildren<LinePoints>();
+        if (handController != null)
         {
-            handController = arms.GetComponent<LinePoints>();
             handsWithoutGun = handController.GetEndPointPositions();
         }
         guns = new List<GunData> { new() };

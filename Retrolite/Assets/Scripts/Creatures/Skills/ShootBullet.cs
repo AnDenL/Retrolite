@@ -11,7 +11,7 @@ namespace Creatures
         public BulletPool Pool;
         public GameObject BulletPrefab;
         public BulletData BulletData;
-        public FormulaContext Context;
+        public Context Context;
 
         public float Knockback;
 
@@ -23,7 +23,7 @@ namespace Creatures
         {
             base.Init(owner);
 
-            var Context = new FormulaContext
+            var Context = new Context
             {
                 Owner = owner
             };
@@ -48,7 +48,7 @@ namespace Creatures
         public override void Activate(Creature target)
         {
             if (target == null) return;
-
+            owner.Cast();
             owner.Cast(Shoot(target));
         }
 

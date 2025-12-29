@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5551533848587349853}
   - component: {fileID: 7381389891534151738}
   - component: {fileID: 1479315304281842020}
-  - component: {fileID: -516007509657569168}
   m_Layer: 6
   m_Name: RobotBullet
   m_TagString: Bullet
@@ -162,21 +161,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47047117f875bc91ebfdbcdac36e5314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-516007509657569168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4500548146545427392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a18acf939612bb4a9fb0b1b9ea5d1d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStability: 1
-  stability: 0
-  editables: []
-  references:
-    version: 2
-    RefIds: []

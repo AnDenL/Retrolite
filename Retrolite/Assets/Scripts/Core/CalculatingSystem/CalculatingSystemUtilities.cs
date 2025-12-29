@@ -3,7 +3,7 @@ namespace CalculatingSystem
     using UnityEngine;
     public static class Utilities
     {
-        public static float CalculateHomingAngle(FormulaContext context)
+        public static float CalculateHomingAngle(Context context)
         {
             if (context.Bullet == null || context.Owner == null || context.Owner.Target == null)
                 return 0f;

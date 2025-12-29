@@ -1,23 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class ArcAnim : MonoBehaviour
 {
     [SerializeField] float maxHeight = 1f;
     public float duration = 0.6f;
-    [SerializeField] Transform shadow;
-
-    private Vector3 shadowOffset = new Vector3(0, -0.25f, 0);
 
     private SpriteRenderer sr;
 
     private void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
-        if (shadow == null && transform.childCount > 0)
-            shadow = transform.Find("Shadow");
-
-        shadowOffset = shadow.localPosition;
+        sr = GetComponentInChildren<SpriteRenderer>();
     }
 
     public void DropTo(Vector3 targetPosition, System.Action onFinish = null)
@@ -30,24 +24,19 @@ public class ArcAnim : MonoBehaviour
         Vector3 startPos = transform.position;
 
         Collider2D col = GetComponent<Collider2D>();
-        if (col) col.enabled = false;
+        if (col) col.excludeLayers = LayerMask.GetMask("Obstacles");
 
         for (float t = 0; t < 1f; t += Time.deltaTime / duration)
         {
             float h = (1f - Mathf.Pow(2f * t - 1f, 2f)) * maxHeight;
-
-            transform.position = Vector3.Lerp(startPos, targetPos, t) + Vector3.up * h;
-
-            if (shadow)
-                shadow.localPosition = shadowOffset - Vector3.up * h;
+            
+            transform.position = Vector3.Lerp(startPos, targetPos, t);
+            sr.transform.localPosition = new Vector2(0, h);
 
             yield return null;
         }
 
-        transform.position = targetPos;
-        if (shadow) shadow.localPosition = shadowOffset;
-
-        if (col) col.enabled = true;
+        if (col) col.includeLayers = LayerMask.GetMask("Obstacles");
 
         onFinish?.Invoke();
     }

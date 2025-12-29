@@ -4,10 +4,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using static Creatures.Alignment;
 using System.Collections;
+using CalculatingSystem;
 
 [RequireComponent(typeof(HealthBase))]
-[RequireComponent(typeof(Corruptible))]
-public class Creature : MonoBehaviour
+[RequireComponent(typeof(CorruptibleBase))]
+public class Creature : MonoBehaviour, IDamagable, ICorruptible
 {
     #region Fields and Properties
 
@@ -44,7 +45,7 @@ public class Creature : MonoBehaviour
 
     [HideInInspector] public Animator Animator;
     [HideInInspector] public HealthBase HealthComponent;
-    [HideInInspector] public Corruptible Corruption;
+    [HideInInspector] public CorruptibleBase Corruption;
     [HideInInspector] public Rigidbody2D Rb;
 
     protected Transform ui;
@@ -66,6 +67,7 @@ public class Creature : MonoBehaviour
     public event Action<Collision2D> CollisionStay2D;
     public event Action<Skill> OnNewSkill;
     public event Action<PassiveSkill> OnNewPassive;
+    public event Action<IEnumerator> OnCast;
 
     #endregion
 
@@ -74,7 +76,7 @@ public class Creature : MonoBehaviour
     protected virtual void Awake()
     {
         HealthComponent = GetComponent<HealthBase>();
-        Corruption = GetComponent<Corruptible>();
+        Corruption = GetComponent<CorruptibleBase>();
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
 
@@ -238,8 +240,15 @@ public class Creature : MonoBehaviour
         return bestTarget;
     }
 
+    public virtual bool Cast()
+    {
+        OnCast?.Invoke(null);
+        return true;
+    }
+
     public virtual bool Cast(IEnumerator enumerator)
     {
+        OnCast?.Invoke(enumerator);
         bool notCasting = ChannelingSkill == null;
         if (notCasting) ChannelingSkill = StartCoroutine(CastWrapper(enumerator));
         
@@ -260,6 +269,14 @@ public class Creature : MonoBehaviour
         yield return routine;
         ChannelingSkill = null;
     }
+
+    public void ApplyCorruption(int amount, Creature source) => Corruption.ApplyCorruption(amount, source);
+    public void Redact() => Corruption.Redact();
+
+    public virtual void Heal(float value) => HealthComponent.Heal(value);
+    public virtual void TakeDamage(float value) => HealthComponent.TakeDamage(value);
+    public virtual void TakeDamage(float value, Context context) => HealthComponent.TakeDamage(value, context);
+    public virtual void Knockback(Vector2 dir, float strength) => Rb.AddForce(dir * -strength, ForceMode2D.Impulse);
 
     #endregion
     #region Private Methods

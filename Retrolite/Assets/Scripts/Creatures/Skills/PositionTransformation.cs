@@ -25,6 +25,7 @@ namespace Creatures
 
         public override void Activate(Vector2 direction)
         {
+            owner.Cast();
             owner.StartCoroutine(Anim(direction));
         }
         

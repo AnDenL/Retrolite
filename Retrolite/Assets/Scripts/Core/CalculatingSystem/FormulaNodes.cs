@@ -9,7 +9,7 @@ namespace CalculatingSystem
     [Serializable]
     public abstract class FormulaNode
     {
-        public abstract float Evaluate(FormulaContext context);
+        public abstract float Evaluate(Context context);
         public abstract string ToReadableString();
         public abstract bool IsConstant();
     }
@@ -23,7 +23,7 @@ namespace CalculatingSystem
         public ConstantNode() => Value = 0;
 
         public ConstantNode(float value) => Value = value;
-        public override float Evaluate(FormulaContext context) => Value;
+        public override float Evaluate(Context context) => Value;
         public override string ToReadableString() => Value.ToString();
     }
 
@@ -37,7 +37,7 @@ namespace CalculatingSystem
         public AbsoluteNode() => Node = new ConstantNode(0);
 
         public AbsoluteNode(FormulaNode node) => Node = node;
-        public override float Evaluate(FormulaContext context) => Math.Abs(Node.Evaluate(context));
+        public override float Evaluate(Context context) => Math.Abs(Node.Evaluate(context));
         public override string ToReadableString() => "|" + Node.ToReadableString() + "|";
     }
 
@@ -51,7 +51,7 @@ namespace CalculatingSystem
         public SinNode() { }
 
         public SinNode(FormulaNode value) => Node = value;
-        public override float Evaluate(FormulaContext context) => Mathf.Sin(Node.Evaluate(context));
+        public override float Evaluate(Context context) => Mathf.Sin(Node.Evaluate(context));
         public override string ToReadableString() => "Sin(" + Node.ToReadableString() + ")";
     }
 
@@ -65,7 +65,7 @@ namespace CalculatingSystem
         public CosNode() { }
 
         public CosNode(FormulaNode value) => Node = value;
-        public override float Evaluate(FormulaContext context) => Mathf.Cos(Node.Evaluate(context));
+        public override float Evaluate(Context context) => Mathf.Cos(Node.Evaluate(context));
         public override string ToReadableString() => "Cos(" + Node.ToReadableString() + ")";
     }
 
@@ -77,7 +77,7 @@ namespace CalculatingSystem
 
         public VariableNode() { }
         public VariableNode(StatVariable var) => Variable = var;
-        public override float Evaluate(FormulaContext context) => VariableResolver.Resolve(Variable, context);
+        public override float Evaluate(Context context) => VariableResolver.Resolve(Variable, context);
         public override string ToReadableString() => Variable.ToString();
     }
 
@@ -100,7 +100,7 @@ namespace CalculatingSystem
             Operation = op;
         }
 
-        public override float Evaluate(FormulaContext context)
+        public override float Evaluate(Context context)
         {
             float a = Left.Evaluate(context);
             float b = Right.Evaluate(context);
@@ -132,7 +132,7 @@ namespace CalculatingSystem
 
     public static class VariableResolver
     {
-        public static float Resolve(StatVariable variable, FormulaContext context)
+        public static float Resolve(StatVariable variable, Context context)
         {
             return variable switch
             {
@@ -154,7 +154,7 @@ namespace CalculatingSystem
                 _ => 0f
             };
         }
-        public static float Break(StatVariable variable, FormulaContext context)
+        public static float Break(StatVariable variable, Context context)
         {
             return 0;
         }

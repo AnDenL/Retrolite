@@ -18,12 +18,12 @@ namespace Creatures
 
         public override void Activate(Creature target)
         {
-            action.Execute(new FormulaContext
+            owner.Cast();
+            action.Execute(new Context
             {
                 Owner = owner,
                 Target = target,
                 TargetHealth = target.HealthComponent,
-                Point = target.transform
             });
         }
     }

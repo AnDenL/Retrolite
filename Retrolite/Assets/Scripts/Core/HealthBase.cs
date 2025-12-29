@@ -2,7 +2,7 @@ using UnityEngine;
 using CalculatingSystem;
 using System;
 
-public class HealthBase : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamagable
 {
     [Header("Health")]
     [SerializeField] protected float maxHealth = 100f;
@@ -21,7 +21,7 @@ public class HealthBase : MonoBehaviour
     public event Action<float, float> OnHealthChanged;
     public event Action<float> OnHeal;
     public event Action<float> OnDamaged;
-    public event Action<float, FormulaContext> ContextDamaged;
+    public event Action<float, Context> ContextDamaged;
     public event Action OnDeath;
 
     protected virtual void Start()
@@ -42,7 +42,7 @@ public class HealthBase : MonoBehaviour
         OnHealthChanged?.Invoke(health, maxHealth);
     }
 
-    public void TakeDamage(float damage, FormulaContext context)
+    public virtual void TakeDamage(float damage, Context context)
     {
         if (!IsWeak)
             foreach (Rule rule in weaknesses)
@@ -67,6 +67,8 @@ public class HealthBase : MonoBehaviour
         OnDamaged?.Invoke(damage);
         OnHealthChanged?.Invoke(health, maxHealth);
     }
+
+    public virtual void Knockback(Vector2 dir, float strength) {}
 
     public virtual void AddMaximumHealth(float amount)
     {

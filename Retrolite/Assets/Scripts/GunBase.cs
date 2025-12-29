@@ -8,7 +8,7 @@ public class GunBase : MonoBehaviour
 {
     [SerializeField] private ObjectList bulletPrefabs;
     private BulletPool bulletPool;
-    private FormulaContext context;
+    private Context context;
     private Coroutine reloadRoutine;
 
     [SerializeField] private GunData data;
@@ -23,7 +23,7 @@ public class GunBase : MonoBehaviour
     public void Initialize(GunData data, Creature owner)
     {
         this.data = data;
-        context = new FormulaContext { Gun = this, Owner = owner };
+        context = new Context { Gun = this, Owner = owner };
 
         GetComponent<SpriteRenderer>().sprite = data.GunSprite;
 

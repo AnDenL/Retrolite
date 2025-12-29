@@ -8,5 +8,5 @@ public class Item : ScriptableObject
     public Sprite Icon = null;
     [SerializeReference] public ActionNode Action;
 
-    public void Activate(FormulaContext context) => Action.Execute(context);
+    public void Activate(Context context) => Action.Execute(context);
 }

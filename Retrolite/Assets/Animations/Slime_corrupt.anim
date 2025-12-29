@@ -25,7 +25,7 @@ AnimationClip:
     - time: 0.5
       value: {fileID: 1109556709, guid: ac0e85215e490cfd09e6c0219d9c36ad, type: 3}
     attribute: m_Sprite
-    path: Slime_0
+    path: Sprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -37,7 +37,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 4176453995
+      path: 850496168
       attribute: 0
       script: {fileID: 0}
       typeID: 212

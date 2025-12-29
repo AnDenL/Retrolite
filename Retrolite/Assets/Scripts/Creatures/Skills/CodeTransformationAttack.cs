@@ -24,6 +24,7 @@ namespace Creatures
 
         public override void Activate(Vector2 direction)
         {
+            owner.Cast();
             owner.StartCoroutine(Attack(direction));
             owner.UpdateAnimationState();
         }
@@ -66,14 +67,14 @@ namespace Creatures
                         owner.Resources.Add(ResourceType.Bits, Random.Range(2,6));
                     creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
                 }
-                if (coll.gameObject.TryGetComponent(out Corruptible corruptible))
+                if (coll.gameObject.TryGetComponent(out CorruptibleBase corruptible))
                 {
                     if (corruptible.IsCorrupted)
                     {
                         corruptible.Redact();
                         break;
                     }
-                    corruptible.ApplyCorruption(1);
+                    corruptible.ApplyCorruption(1, owner);
                 }
             }
         }

@@ -607,6 +607,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72a1fb4e2709036469d2f8b4f1fc9b6a
+    m_Address: ScriptableObjects/CreaturesAI/Skills/Spores
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74f694aeb43cbfe45b00ede9028c1b61
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_11
     m_ReadOnly: 0
@@ -1209,6 +1214,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f01e2491462c86749b9ca1460f309759
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f2985d8d622a6c54ca9d3102b3731a3b
+    m_Address: Textures/buble
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
