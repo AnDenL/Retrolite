@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6276315321488050909}
   - component: {fileID: 8620996929532720784}
   - component: {fileID: 5458897580908407405}
+  - component: {fileID: 5686033811732888920}
   - component: {fileID: 5485227419975647226}
   - component: {fileID: 5916615937921370306}
   - component: {fileID: 5597344001813636132}
-  - component: {fileID: 5686033811732888920}
   m_Layer: 3
   m_Name: RobotEnemy1
   m_TagString: Enemy
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: d1991754f7401704c98db3d3eeff6fc5, type: 2}
-  visionRange: 16
+  VisionRange: 10
   skillTemplates:
   - {fileID: 11400000, guid: 8edbf97dec639ed4db3760974cf7c4a7, type: 2}
   - {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
@@ -162,6 +162,67 @@ MonoBehaviour:
       type: {class: DestroyObjectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Object: {fileID: 456781641387130848}
+--- !u!114 &5686033811732888920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 456781641387130848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da2ca1348dc261fa6bb575e9c46bb7c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxStability: 2
+  stability: 2
+  editables:
+  - rid: 9018860271611674631
+  - rid: 9018860271611674632
+  - rid: 9018860271611674630
+  - rid: 9018860128952909824
+  RecoveryTime: 5
+  IsBedingEdited: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 9018860128952909824
+      type: {class: ActionParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Explode
+        fieldName: SelfDestraction
+        component: {fileID: 8620996929532720784}
+        cost: 0
+        totalCost: 0
+        singleuse: 1
+    - rid: 9018860271611674630
+      type: {class: EnumParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Relation
+        fieldName: AlignmentEditable
+        component: {fileID: 8620996929532720784}
+        cost: 0
+        totalCost: 0
+    - rid: 9018860271611674631
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Health
+        fieldName: HealthEditable
+        component: {fileID: 5458897580908407405}
+        cost: 0
+        totalCost: 0
+        min: -0.1
+        max: 80
+    - rid: 9018860271611674632
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Speed
+        fieldName: SpeedEditable
+        component: {fileID: 8620996929532720784}
+        cost: 0
+        totalCost: 0
+        min: 0
+        max: 15
 --- !u!58 &5485227419975647226
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -245,33 +306,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5686033811732888920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456781641387130848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da2ca1348dc261fa6bb575e9c46bb7c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxStability: 2
-  stability: 2
-  editables:
-  - rid: 9018860128952909824
-  references:
-    version: 2
-    RefIds:
-    - rid: 9018860128952909824
-      type: {class: ActionParam, ns: , asm: Assembly-CSharp}
-      data:
-        displableName: 
-        fieldName: 
-        component: {fileID: 8620996929532720784}
-        cost: 0
-        singleuse: 0
 --- !u!1 &1053139358009348349
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3286292865697182408}
+  - component: {fileID: 4432876112933969683}
   m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
@@ -307,6 +342,18 @@ Transform:
   - {fileID: 1232982373478945318}
   m_Father: {fileID: 6276315321488050909}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4432876112933969683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1053139358009348349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1527559790730764259
 GameObject:
   m_ObjectHideFlags: 0

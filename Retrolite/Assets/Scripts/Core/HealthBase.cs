@@ -9,6 +9,18 @@ public class HealthBase : MonoBehaviour, IDamagable
     public float MaxHealth => maxHealth;
     [SerializeField] protected float health;
     public float Health => health;
+
+    public float HealthEditable
+    {
+        get => health;
+        set
+        {
+            health = value;
+            OnHealthChanged?.Invoke(health, maxHealth);
+            if (value <= 0) Die();
+        }
+    }
+
     [SerializeField] protected bool isDead;
     public bool IsDead => isDead;
 

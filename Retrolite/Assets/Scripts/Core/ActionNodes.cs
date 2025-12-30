@@ -136,6 +136,21 @@ namespace CalculatingSystem
     }
 
     [Serializable]
+    public class ApplyEffectAction : ActionNode
+    {
+        [SerializeReference] public FormulaNode strength;
+        [SerializeReference] public FormulaNode duration;
+        public Effect effect;
+
+        public override void Execute(Context context)
+        {
+            context.Target.AddEffect(effect, strength.Evaluate(context), duration.Evaluate(context));
+        }
+
+        public override string ToReadableString() => $"";
+    }
+
+    [Serializable]
     public class ExplosionAction : ActionNode
     {
         [SerializeReference] public FormulaNode Damage;

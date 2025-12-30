@@ -128,6 +128,8 @@ MonoBehaviour:
   maxStability: 1
   stability: 0
   editables: []
+  RecoveryTime: 5
+  IsBedingEdited: 0
   references:
     version: 2
     RefIds: []

@@ -1,5 +1,3 @@
-using System.Collections;
-using CalculatingSystem;
 using UnityEngine;
 
 public class Robot : Creature

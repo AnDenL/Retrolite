@@ -14,10 +14,11 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     [Header("Creature")]
     [SerializeField] protected AIController controller;
-    [SerializeField] protected float visionRange = 8f;
+    public float VisionRange = 8f;
 
     public AIController Controller => controller;
-    public float VisionRange => visionRange;
+    public Alignment AlignmentEditable { get => Alignment; set => controller.Alignment = value; }
+    public float VisionEditable{ get => VisionRange; set => VisionRange = value; }
 
     [SerializeField] protected List<Skill> skillTemplates = new();
     [SerializeField] protected List<PassiveSkill> passiveTemplates = new();
@@ -35,6 +36,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     [Header("Movement")]
     public float Speed = 5f;
+    protected float SpeedEditable{ get => Speed; set => Speed = value; }
     [SerializeField] protected DirectionSkill baseMovementSkill;
     public DirectionSkill BaseMovement => baseMovementSkill;
 
@@ -103,7 +105,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         ui = transform.Find("UI");
 
         Corruption.OnCorrupting += DestabilizationAnim;
-        Corruption.OnBecameVulnerable += Corrupt;
+        Corruption.OnVulnerabilityChange += Corrupt;
         HealthComponent.OnDeath += DeathEffect;
 
         resources = new(this);
@@ -145,6 +147,15 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     public void AddEffect(Effect effect)
     {
         Effect newEffect = Instantiate(effect);
+        newEffect.Init(this);
+        effects.Add(newEffect);
+    }
+
+    public void AddEffect(Effect effect, float strength, float duration)
+    {
+        Effect newEffect = Instantiate(effect);
+        newEffect.Strenght = strength;
+        newEffect.Duration = duration;
         newEffect.Init(this);
         effects.Add(newEffect);
     }
@@ -210,7 +221,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     {
         LayerMask obstacleMask = LayerMask.GetMask("Walls");
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, visionRange);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, VisionRange);
 
         Creature bestTarget = null;
         float bestDist = Mathf.Infinity;
@@ -281,10 +292,10 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     #endregion
     #region Private Methods
 
-    protected void Corrupt()
+    protected void Corrupt(bool b)
     {
-        HealthComponent.IsWeak = true;
-        Animator.SetBool(_isCorruptedHash, true);
+        HealthComponent.IsWeak = b;
+        Animator.SetBool(_isCorruptedHash, b);
     }
 
     protected void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);

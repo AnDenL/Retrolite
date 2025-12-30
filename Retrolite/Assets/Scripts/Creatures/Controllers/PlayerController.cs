@@ -9,7 +9,7 @@ namespace Creatures
     {
         public Dictionary<KeyCode, ISkillSlot> SkillSlots = new();
 
-        public static Player Player => (Player)Instance.Owner;
+        public static Creature Player => Instance.Owner;
 
         public static PlayerController Instance;
         public static bool CanInteract = true;
@@ -22,8 +22,11 @@ namespace Creatures
         {
             base.Init(owner);
 
+            if (Instance != null)
+            {
+                Debug.LogError("Multiple player instances!");
+            }
             Instance = this;
-
             foreach (var skill in owner.ActiveSkills)
                 NewSlot(skill);
 

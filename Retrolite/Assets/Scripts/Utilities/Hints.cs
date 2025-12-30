@@ -47,7 +47,7 @@ public class Hints : MonoBehaviour
 
         while (t < 1)
         {
-            t += Time.deltaTime / time;
+            t += Time.unscaledDeltaTime / time;
 
             label.color = new Color(1, 1, 1, curve.Evaluate(t));
 

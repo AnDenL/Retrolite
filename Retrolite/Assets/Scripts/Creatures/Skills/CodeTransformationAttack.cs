@@ -18,7 +18,7 @@ namespace Creatures
         {
             base.Init(owner);
 
-            creaturesLayer = LayerMask.GetMask("Creature", "OnlyHits");    
+            creaturesLayer = LayerMask.GetMask("Creature", "OnlyHits", "Bullet");    
             attackHash = Animator.StringToHash("Attack");
         }
 
@@ -35,19 +35,18 @@ namespace Creatures
             owner.Rb.velocity -= 20f * direction;
 
             ParticleManager.PlayParticle("FastSparcles", owner.transform.position);
-            float s = owner.Speed;
             float t = 0;
-            owner.Speed /= 10;
+            owner.CanAct = false;
 
             while(t < 1)
             {
                 t += Time.deltaTime / AttackTime;
 
-                owner.Rb.velocity += Speed * t * Time.deltaTime * direction;
+                owner.Rb.velocity += Speed * t * Time.deltaTime * (direction + (Vector2)owner.Controller.GetDirectionToTarget());
 
                 yield return null;
             }
-            owner.Speed = s;
+            owner.CanAct = true;
             
             Vector2 pos = (Vector2)owner.transform.position + direction * 2;
 

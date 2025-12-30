@@ -51,7 +51,7 @@ public class Menu : MonoBehaviour
     public void ResumeGame(GameObject panel)
     {
         Time.timeScale = Game.TimeSpeed;
-        if (!CodeEditManager.IsEditing) PlayerController.CanInteract = true;
+        if (!CodeRedactSystem.IsEditing) PlayerController.CanInteract = true;
         panel.SetActive(false);
         mixer.SetFloat("AudioLowPass", 22000);
     }

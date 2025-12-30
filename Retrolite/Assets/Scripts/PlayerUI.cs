@@ -27,7 +27,7 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        Player player = PlayerController.Player;
+        Creature player = PlayerController.Player;
 
         player.HealthComponent.OnHealthChanged += UpdateHealthUI;
         player.Resources.Get(ResourceType.Money).OnChanged += UpdateMoneyText;

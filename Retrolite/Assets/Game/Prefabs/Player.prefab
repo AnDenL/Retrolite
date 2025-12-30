@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 3811287405736332542}
   - component: {fileID: 4647600661972657186}
   - component: {fileID: 6411304929489194089}
-  - component: {fileID: 3563075710799962988}
   - component: {fileID: 5454770971503771234}
   m_Layer: 3
   m_Name: Player
@@ -37,8 +36,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7420402839723682466}
   - {fileID: 4090062580435849662}
+  - {fileID: 7420402839723682466}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6631921096664524877
@@ -54,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
-  visionRange: 24
+  visionRange: 8
   skillTemplates:
   - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
@@ -129,8 +128,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: 0.25}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0.03, y: 0.15}
+  m_Size: {x: 0.5, y: 0.8}
   m_Direction: 0
 --- !u!95 &3811287405736332542
 Animator:
@@ -194,31 +193,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 100
   stability: 100
-  editables:
-  - rid: 9018859856919527426
+  editables: []
+  RecoveryTime: 5
+  IsBedingEdited: 0
   references:
     version: 2
-    RefIds:
-    - rid: 9018859856919527426
-      type: {class: ActionParam, ns: , asm: Assembly-CSharp}
-      data:
-        displableName: 
-        fieldName: 
-        component: {fileID: 0}
-        cost: 0
-        singleuse: 0
---- !u!114 &3563075710799962988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135032362516127119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+    RefIds: []
 --- !u!82 &5454770971503771234
 AudioSource:
   m_ObjectHideFlags: 0
@@ -706,6 +686,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090062580435849662}
   - component: {fileID: 5562844838272994668}
+  - component: {fileID: 3147906922366834280}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -782,6 +763,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3147906922366834280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7637472066147666200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8515516440305265430
 GameObject:
   m_ObjectHideFlags: 0
@@ -1127,51 +1120,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8298224078874341783}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
---- !u!1 &100433661509791002 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2200982161066255146, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}
-  m_PrefabInstance: {fileID: 2301262990149357104}
-  m_PrefabAsset: {fileID: 0}
---- !u!58 &8298224078874341783
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100433661509791002}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!4 &7420402839723682466 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8724927606402360466, guid: e2a1769ba780ac74c91cf36c3cbc1bb3, type: 3}

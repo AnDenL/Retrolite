@@ -1,17 +1,19 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class ArcAnim : MonoBehaviour
 {
     [SerializeField] float maxHeight = 1f;
     public float duration = 0.6f;
 
-    private SpriteRenderer sr;
+    private Transform sr;
+    private Rigidbody2D rb;
 
     private void Awake()
     {
-        sr = GetComponentInChildren<SpriteRenderer>();
+        sr = transform.Find("Sprite");
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void DropTo(Vector3 targetPosition, System.Action onFinish = null)
@@ -30,8 +32,8 @@ public class ArcAnim : MonoBehaviour
         {
             float h = (1f - Mathf.Pow(2f * t - 1f, 2f)) * maxHeight;
             
-            transform.position = Vector3.Lerp(startPos, targetPos, t);
-            sr.transform.localPosition = new Vector2(0, h);
+            rb.velocity = (targetPos - startPos) / duration;
+            sr.localPosition = new Vector2(0, h);
 
             yield return null;
         }

@@ -392,10 +392,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 1
   stability: 1
-  editables: []
+  editables:
+  - rid: 9018860106614571015
+  - rid: 9018860271611674629
+  - rid: 9018860266258432000
+  RecoveryTime: 5
+  IsBedingEdited: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 9018860106614571015
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Health
+        fieldName: HealthEditable
+        component: {fileID: 7193675055930309643}
+        cost: 0
+        totalCost: 0
+        min: -0.1
+        max: 100
+    - rid: 9018860266258432000
+      type: {class: EnumParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Relation
+        fieldName: AlignmentEditable
+        component: {fileID: 4432523269013438450}
+        cost: 0
+        totalCost: 0
+    - rid: 9018860271611674629
+      type: {class: FloatParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: VisionRange
+        fieldName: VisionEditable
+        component: {fileID: 4432523269013438450}
+        cost: 0
+        totalCost: 0
+        min: 0
+        max: 12
 --- !u!114 &4432523269013438450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,8 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: 682a92d59c9ddfe4ba1fe765b94cab28, type: 2}
-  visionRange: 8
+  controller: {fileID: 11400000, guid: 0569be8ffb61f1f48a8223f55230f6a4, type: 2}
+  VisionRange: 12
   skillTemplates:
   - {fileID: 11400000, guid: 429fcbc8d0dd38e418d08594415779ef, type: 2}
   passiveTemplates: []
@@ -430,7 +463,7 @@ Animator:
   m_GameObject: {fileID: 5729622315320237081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5595d8d4f1327ae4d939f50eb725a982, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -564,7 +597,7 @@ Transform:
   m_GameObject: {fileID: 7302743867782543557}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.8992214, y: 12.741059, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

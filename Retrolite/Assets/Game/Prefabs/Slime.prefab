@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4704283252637609224}
   - component: {fileID: 5620918786397770163}
+  - component: {fileID: 7173275606769772937}
   m_Layer: 0
-  m_Name: Slime_0
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +86,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7173275606769772937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499206601305918724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3225720492149615540
 GameObject:
   m_ObjectHideFlags: 0
@@ -9831,10 +9844,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1784670741396113501}
   - {fileID: 4704283252637609224}
   - {fileID: 5572823601709949424}
   - {fileID: 2860169070962625441}
+  - {fileID: 1784670741396113501}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1490486529606143663
@@ -9937,7 +9950,6 @@ MonoBehaviour:
   skillTemplates: []
   passiveTemplates:
   - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
-  - {fileID: 11400000, guid: 72a1fb4e2709036469d2f8b4f1fc9b6a, type: 2}
   Speed: 35
   baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
   CanAct: 1
@@ -9983,31 +9995,40 @@ MonoBehaviour:
   editables:
   - rid: 9018860106614571015
   - rid: 9018860106614571016
+  - rid: 9018860266258432000
+  RecoveryTime: 5
+  IsBedingEdited: 0
   references:
     version: 2
     RefIds:
     - rid: 9018860106614571015
       type: {class: FloatParam, ns: , asm: Assembly-CSharp}
       data:
-        displableName: 
-        fieldName: health
-        component: {fileID: 0}
-        cost: 1
-        originalValue: 0
-        pendingValue: 0
-        min: 0
+        displableName: Health
+        fieldName: HealthEditable
+        component: {fileID: 5182044036734216103}
+        cost: 0
+        totalCost: 0
+        min: -0.1
         max: 30
     - rid: 9018860106614571016
       type: {class: FloatParam, ns: , asm: Assembly-CSharp}
       data:
-        displableName: 
-        fieldName: speed
-        component: {fileID: 0}
-        cost: 1
-        originalValue: 0
-        pendingValue: 0
+        displableName: Speed
+        fieldName: SpeedEditable
+        component: {fileID: 9179757483088107891}
+        cost: 0
+        totalCost: 0
         min: 0
         max: 70
+    - rid: 9018860266258432000
+      type: {class: EnumParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: Relation
+        fieldName: AlignmentEditable
+        component: {fileID: 9179757483088107891}
+        cost: 0
+        totalCost: 0
 --- !u!1 &7627077399544658873
 GameObject:
   m_ObjectHideFlags: 0

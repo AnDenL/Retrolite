@@ -1,6 +1,5 @@
 using System.Collections;
 using CalculatingSystem;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Creatures
@@ -8,10 +7,12 @@ namespace Creatures
     [CreateAssetMenu(fileName = "Spores", menuName = "CreatureAI/Skills/Spores")]
     public class Spores : PassiveSkill
     {
-        public float cooldown;
-        public int minCount, maxCount;
-        public GameObject prefab;
-        public BulletData data;        
+        public float Cooldown;
+        public int MinCount, MaxCount;
+        public GameObject Prefab;
+        public BulletData Data;
+        public Sprite[] Sprites; 
+        public GameObject MushroomPrefab;
 
         private BulletPool pool;
         private Transform clip;
@@ -35,15 +36,30 @@ namespace Creatures
                 clip = obj.transform;
                 clip.transform.position = owner.transform.position;
             }
-            pool = new BulletPool(prefab, clip, data, context);
+
+            pool = new BulletPool(Prefab, clip, Data, context);
+
+            var sr = owner.transform.Find("Sprite").GetComponent<SpriteRenderer>();
+
+            if (sr)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    var obj = Instantiate(MushroomPrefab, owner.transform.Find("Sprite"));
+                    obj.GetComponent<SpriteRenderer>().sprite = Sprites[Random.Range(0,Sprites.Length-1)];
+                    Vector2 size = sr.sprite.bounds.size;
+                    obj.transform.position = owner.transform.position + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 3, size.y / 3) + 0.1f);
+                }
+            }
+            
             owner.OnCast += Spawn;
         }
 
         public void Spawn(IEnumerator enumerator)
         {
-            if (Time.time < lastTime + cooldown) return;
+            if (Time.time < lastTime + Cooldown) return;
 
-            int r = Random.Range(minCount, maxCount);
+            int r = Random.Range(MinCount, MaxCount);
 
             for (int i = 0; i < r; i++)
             {

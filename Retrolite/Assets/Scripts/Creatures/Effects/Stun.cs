@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effects/Stun")]
+[CreateAssetMenu(menuName = "Game/Effects/Stun")]
 public class StunEffect : Effect
 {
     public override void OnApply()

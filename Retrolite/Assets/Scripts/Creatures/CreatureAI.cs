@@ -12,9 +12,7 @@ namespace Creatures
         protected Creature target;
         public Creature Target => target;
 
-        [SerializeField] protected Alignment alignment;
-        public Alignment Alignment => alignment;
-
+        public Alignment Alignment;
         protected DirectionSkill movement => owner.BaseMovement;
 
         public virtual bool IsPlayer => false;

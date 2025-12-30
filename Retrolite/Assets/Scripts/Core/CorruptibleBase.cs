@@ -10,9 +10,13 @@ public class CorruptibleBase : MonoBehaviour, ICorruptible
 
     [SerializeReference] public EditableParam[] editables;
 
-    public bool IsCorrupted { get; protected set; }
+    [Range(1f,15f)]
+    public float RecoveryTime = 5f;
 
-    public event Action OnBecameVulnerable;
+    public bool IsCorrupted { get; protected set; }
+    [HideInInspector] public bool IsBedingEdited;
+
+    public event Action<bool> OnVulnerabilityChange;
     public event Action<int> OnCorrupting;
 
     protected void Start()
@@ -32,19 +36,27 @@ public class CorruptibleBase : MonoBehaviour, ICorruptible
         }
     }
 
-    public void Redact() => CodeEditManager.Redact(gameObject.name.Replace("(Clone)", ""), transform.position, editables);
+    public void Redact()
+    {
+        IsBedingEdited = true;
+        CodeRedactSystem.Redact(gameObject.name.Replace("(Clone)", ""), transform.position, editables, this);
+    }
+
     public bool Break() { return false; }
 
     public void BecomeCorrupted()
     {
         IsCorrupted = true;
-        OnBecameVulnerable?.Invoke();
+        OnVulnerabilityChange?.Invoke(true);
+        Invoke(nameof(ResetStability), RecoveryTime);
     }
 
     public void ResetStability()
     {
+        if (IsBedingEdited) return;
         stability = maxStability;
         IsCorrupted = false;
+        OnVulnerabilityChange?.Invoke(false);
     }
 
     public virtual void Knockback(Vector2 dir, float strength) {}

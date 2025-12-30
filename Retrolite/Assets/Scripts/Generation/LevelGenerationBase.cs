@@ -14,7 +14,7 @@ public class LevelGenerationBase : MonoBehaviour
 
     private void Start()
     {
-        //Regenerate();
+        Regenerate();
     }
 
     [ContextMenu("Regenerate")]
@@ -31,11 +31,17 @@ public class LevelGenerationBase : MonoBehaviour
 
         portal.transform.position = new Vector3(context.EndPoint.x - context.Size.x/2, context.EndPoint.y - context.Size.y/2);
         
-        foreach (Transform tr in transform)
-            Destroy(tr.gameObject);
+        if (Application.isPlaying)
+        {
+            foreach (Transform tr in transform)
+                Destroy(tr.gameObject);
 
-        foreach (var pos in context.Enemies)
-            Instantiate(enemies[Random.Range(0, enemies.Length - 1)], new Vector3(pos.x, pos.y), Quaternion.identity).transform.parent = transform;
+            foreach (var pos in context.Enemies)
+            {
+                if (Physics2D.OverlapCircleAll(pos, 1f).Length != 0) continue;
+                Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
+            }
+        }
     }
 
     private void RunLayer(Layer layer)
@@ -109,21 +115,6 @@ public class LevelGenerationBase : MonoBehaviour
         tilemap.gameObject.SetActive(false);
         tilemap.SetTiles(positions.ToArray(), tiles.ToArray());
         tilemap.gameObject.SetActive(true);
-    }
-
-    private void SetTile(MapTile[] mapTiles, Vector3Int pos, float value)
-    {
-        foreach (var tile in mapTiles)
-        {
-            if (value >= tile.MinValue)
-            {
-                tile.Layer?.SetTile(
-                    pos,
-                    tile.Tiles[Random.Range(0, tile.Tiles.Length)]
-                );
-                break;
-            }
-        }
     }
 
     private void ClearMap()

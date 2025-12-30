@@ -42,6 +42,11 @@ public class BulletPool
 
     public void Return(BulletBase bullet)
     {
+        if (parent == null) 
+        {
+            Clear();
+            return;
+        }
         bullet.gameObject.SetActive(false);
         freeBullets.Enqueue(bullet);
 

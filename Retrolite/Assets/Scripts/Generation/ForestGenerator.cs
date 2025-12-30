@@ -62,6 +62,8 @@ public class ForestGenerator : MapGenerator
                     Angle = finalAngle
                 };
 
+                if (p > 4 && Random.Range(0,3) == 0) context.Enemies.Add(posInt);
+
                 keyPoints.Add(point);
             }
         }
