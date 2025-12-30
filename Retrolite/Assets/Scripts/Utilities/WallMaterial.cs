@@ -7,6 +7,7 @@ public class WallMaterial : MonoBehaviour
 
     public void Update()
     {
-        material.SetVector("_Position", PlayerController.Player.transform.position + Vector3.up);
+        if (PlayerController.Player)
+            material.SetVector("_Position", PlayerController.Player.transform.position + Vector3.up);
     }
 }

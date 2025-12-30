@@ -1,10 +1,10 @@
+using Creatures;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
-    [SerializeField] Transform target;
     [SerializeField] short targetWeight = 6;
     [SerializeField] float zOffset = -10f;
 
@@ -24,12 +24,12 @@ public class CameraController : MonoBehaviour
         Game.mainCamera = Camera.main;
         pixelCam = Game.mainCamera.GetComponent<PixelPerfectCamera>();
 
-
         targetPPU = pixelCam.assetsPPU;
     }
 
     private void Update()
     {
+        Transform target = PlayerController.Player.transform;
         if (!Game.IsPaused && target != null)
         {
             Vector3 mousePosition =

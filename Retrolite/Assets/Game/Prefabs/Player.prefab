@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
-  visionRange: 8
+  VisionRange: 8
   skillTemplates:
   - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}

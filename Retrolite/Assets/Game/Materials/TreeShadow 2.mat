@@ -56,8 +56,8 @@ Material:
     m_Floats:
     - _NoiseMultiplayer: 0.79
     - _NoiseScale: 0.1
-    - _SmalNoiseScale: 1.75
-    - _SmallNoiseMultiplayer: 0.14
+    - _SmalNoiseScale: 2.05
+    - _SmallNoiseMultiplayer: 0.19
     - _Step: 0.67
     m_Colors: []
   m_BuildTextureStacks: []
