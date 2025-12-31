@@ -412,6 +412,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 475d8b47281e1c94c920e61ef348cf4d
+    m_Address: Prefabs/Candle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 486a54ee7b3d90a4bb2d40d08ccb35c4
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_24
     m_ReadOnly: 0
@@ -469,6 +474,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e61795ae0d1ea14f9c92a88afadb07f
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_32
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ed1d36e76277eb49be6675af82ec4bb
+    m_Address: Prefabs/Candle2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -579,6 +589,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6acb29c9c331e5a42b97f61321970baa
     m_Address: Volumes/UnderWater
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6cdcf884447fede49ac69d1abbbe053d
+    m_Address: Prefabs/Candle1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -739,6 +754,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Scenes/Water
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d4eaf077cf2f3f40a4361d64cd406a6
+    m_Address: Prefabs/Lamp 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -987,6 +1007,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b34e745ad22e36f469108c06320caeae
+    m_Address: Prefabs/Candle4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3bfe0b266b142e4d86ed12e816adc9b
     m_Address: Materials/Outline
     m_ReadOnly: 0
@@ -1082,6 +1107,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c92de2c2d5795d842901b7712fba40a7
+    m_Address: Prefabs/Lamp 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca0e42709476c264aa669c1409d30817
     m_Address: ScriptableObjects/CreaturesAI/Controllers/PlayerController
     m_ReadOnly: 0
@@ -1104,6 +1134,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cb53161742880e14187e05c30d1c4e04
     m_Address: Audio/step
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ccb74d6f54b9f984dada0e4e98cad45d
+    m_Address: Prefabs/Candle3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1142,8 +1177,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d5d924ad79abf7b41a74fe4d1ae45012
+    m_Address: Prefabs/Candle5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d755b8e414115b7489bcb740f7d86f4a
     m_Address: Prefabs/Shop
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d81409c17d0a19243bcc8304b8a3b64f
+    m_Address: Tiles/Shop/Shop
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

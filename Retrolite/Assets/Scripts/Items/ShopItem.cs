@@ -6,12 +6,14 @@ public class ShopItem : Interactable
 
     [SerializeField] private Sprite soldSprite;
     [SerializeField] private TextMesh priceText;
+    [SerializeField] private Transform item;
 
     private bool isBought;
 
     private void Start()
     {
-        transform.GetChild(1).GetComponent<Collider2D>().enabled = false;
+        if (item == null) item = transform.GetChild(1);
+        item.GetComponent<Collider2D>().enabled = false;
         priceText.text = price.ToString();
         PlayerController.Player.Resources.Get(ResourceType.Money).OnChanged += ChangeTextColor;
 
@@ -36,8 +38,8 @@ public class ShopItem : Interactable
         if (creature.Resources.TrySpend(ResourceType.Money, price))
         {
             isBought = true;
-            GetComponent<SpriteRenderer>().sprite = soldSprite;
-            transform.GetChild(1).GetComponent<ArcAnim>().DropTo(creature.transform.position);
+            sr.sprite = soldSprite;
+            item.GetComponent<ArcAnim>().DropTo(creature.transform.position);
             priceText.gameObject.SetActive(false);
         }
     }
