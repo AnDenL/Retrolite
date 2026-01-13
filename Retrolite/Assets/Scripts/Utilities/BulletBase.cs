@@ -116,6 +116,7 @@ public class BulletBase : MonoBehaviour
     protected virtual void Deactivate()
     {
         if (handleDestroy) Destroy(gameObject);
+        context.Position     = transform.position;
         data.OnReturn?.Execute(context);
         Inactive = true;
 

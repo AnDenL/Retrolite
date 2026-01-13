@@ -117,6 +117,8 @@ namespace Creatures
 
             return result;
         }
+
+        public override Vector3 GetTargetPosition() => Game.mainCamera.ScreenToWorldPoint(Input.mousePosition);
     }
     
     public class EventSkillSlot  : ISkillSlot

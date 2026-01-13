@@ -16,7 +16,7 @@ public class WeaponUI : MonoBehaviour
         weaponManager = PlayerController.Instance.WeaponManager;
         weaponManager.OnSelected += UpdateUI;
         weaponManager.Gun.OnFire += UpdateUI;
-        weaponManager.Gun.OnReloadEnd += UpdateUI;
+        weaponManager.OnReloadEnd += UpdateUI;
     }
 
     private void UpdateUI(int selected)

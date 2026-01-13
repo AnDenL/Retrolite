@@ -1217,6 +1217,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6794862a008eff4a86690131973d0ec
+    m_Address: Textures/Cursor
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6f8600a58130d54bb0ccecf7aba660a
     m_Address: ScriptableObjects/Items/MaxHealthPotion
     m_ReadOnly: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Collections;
 
 public class WeaponManager : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class WeaponManager : MonoBehaviour
 
     public Action<int> OnSelected;
 
+    private Coroutine reloadRoutine;
+
+    public event Action OnReloadStart;
+    public event Action<float> OnReload;
+    public event Action OnReloadEnd;
+
+    public bool IsReloading;
     public void Init(Creature owner)
     {
         this.owner = owner;
@@ -70,8 +78,9 @@ public class WeaponManager : MonoBehaviour
 
     private void SelectGun(int index)
     {
+        StopReloading();
         GunData selectedGun = guns[index];
-        gun.Initialize(selectedGun, owner);
+        gun.Initialize(selectedGun, owner, this);
         ToggleHands(selectedGun.GunType == GunType.Empty);
         OnSelected?.Invoke(index);
     }
@@ -81,7 +90,30 @@ public class WeaponManager : MonoBehaviour
     public void Shoot() => gun.Fire();
     public void Reload()
     {
-        if (gun.isActiveAndEnabled) gun.Reload();
+        if (!IsReloading) StartCoroutine(ReloadCoroutine());
+    }
+
+    public void StopReloading() 
+    {
+        if(reloadRoutine != null) StopCoroutine(reloadRoutine);
+    }
+
+    private IEnumerator ReloadCoroutine()
+    {
+        OnReloadStart?.Invoke();
+        IsReloading = true;
+        float t = 0;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime / gun.Data.ReloadTime;
+            OnReload?.Invoke(t);
+            yield return null;
+        }
+
+        gun.Reload();
+        IsReloading = false;
+        OnReloadEnd?.Invoke();
     }
     public bool CanShoot() => gun.CanShoot();
     

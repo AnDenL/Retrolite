@@ -167,7 +167,7 @@ namespace CalculatingSystem
 
         public override void Execute(Context context)
         {
-            Vector2 position = context.Target.transform.position;
+            Vector2 position = context.Position;
             ParticleManager.PlayParticle(Particle, position);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 

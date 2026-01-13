@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using CalculatingSystem;
@@ -9,18 +8,16 @@ public class GunBase : MonoBehaviour
     [SerializeField] private ObjectList bulletPrefabs;
     private BulletPool bulletPool;
     private Context context;
-    private Coroutine reloadRoutine;
+    private WeaponManager manager;
 
     [SerializeField] private GunData data;
     public GunData Data => data;
 
-    public bool IsReloading { get; private set; }
+    public bool IsReloading => manager.IsReloading;
     public event Action OnFire;
-    public event Action OnReloadStart;
-    public event Action<float> OnReload;
-    public event Action OnReloadEnd;
 
-    public void Initialize(GunData data, Creature owner)
+
+    public void Initialize(GunData data, Creature owner, WeaponManager wm)
     {
         this.data = data;
         context = new Context { Gun = this, Owner = owner };
@@ -29,18 +26,20 @@ public class GunBase : MonoBehaviour
 
         Transform spawn = transform.childCount > 0 ? transform.GetChild(0) : transform;
         bulletPool = new BulletPool(bulletPrefabs.Entries[(int)data.BulletType], spawn, data.BulletData, context);
+        manager = wm;
     }
 
     public bool CanShoot() => data.CurrentAmmo != 0 && (data.fireTime <= Time.time || float.IsNaN(data.fireTime)) && data.GunType != GunType.Empty;
-    public void Reload() => reloadRoutine = StartCoroutine(ReloadCoroutine());
+    public void Reload()
+    {
+        data.CurrentAmmo = data.MagazineSize;
+        data.fireTime = Time.time;
+    }
 
     public void Fire()
     {
         if (!CanShoot()) return;
-        if (IsReloading || reloadRoutine != null)
-        {
-            StopCoroutine(reloadRoutine);
-        }
+        if (IsReloading) manager.StopReloading();
 
         float shootSpeed = data.FireRate.Evaluate(context);
         data.fireTime = shootSpeed != 0 ? Time.time + 1f / Mathf.Abs(shootSpeed) : float.NaN;
@@ -51,32 +50,8 @@ public class GunBase : MonoBehaviour
         bulletPool.Get().Fire(Random.Range(-spread, spread));
 
         if (data.MagazineSize != 0) data.CurrentAmmo--;
-        if (data.CurrentAmmo == 0) reloadRoutine = StartCoroutine(ReloadCoroutine());
+        if (data.CurrentAmmo == 0) manager.Reload();
         OnFire?.Invoke();
-    }
-
-    private void OnDisable()
-    {
-        if (reloadRoutine != null) StopCoroutine(reloadRoutine);
-    }
-
-    private IEnumerator ReloadCoroutine()
-    {
-        OnReloadStart?.Invoke();
-        IsReloading = true;
-        float t = 0;
-
-        while (t < 1)
-        {
-            t += Time.deltaTime / data.ReloadTime;
-            OnReload?.Invoke(t);
-            yield return null;
-        }
-
-        data.CurrentAmmo = data.MagazineSize;
-        data.fireTime = 0;
-        IsReloading = false;
-        OnReloadEnd?.Invoke();
     }
 }
 
