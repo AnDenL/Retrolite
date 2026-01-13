@@ -8,6 +8,8 @@ using CalculatingSystem;
 
 [RequireComponent(typeof(HealthBase))]
 [RequireComponent(typeof(CorruptibleBase))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Creature : MonoBehaviour, IDamagable, ICorruptible
 {
     #region Fields and Properties
@@ -49,6 +51,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     [HideInInspector] public HealthBase HealthComponent;
     [HideInInspector] public CorruptibleBase Corruption;
     [HideInInspector] public Rigidbody2D Rb;
+    [HideInInspector] public AudioSource Source;
 
     protected Transform ui;
     protected int _isBackwardsHash;
@@ -81,6 +84,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         Corruption = GetComponent<CorruptibleBase>();
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
+        Source = GetComponent<AudioSource>();
 
         foreach (var template in skillTemplates)
         {
@@ -283,6 +287,13 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     public void ApplyCorruption(int amount, Creature source) => Corruption.ApplyCorruption(amount, source);
     public void Redact() => Corruption.Redact();
+
+    public void PlaySound(AudioClip clip)
+    {
+        if(Vector2.Distance(transform.position, PlayerController.Player.transform.position) > 25) return;
+        Source.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
+        Source.PlayOneShot(clip);
+    }
 
     public virtual void Heal(float value) => HealthComponent.Heal(value);
     public virtual void TakeDamage(float value) => HealthComponent.TakeDamage(value);

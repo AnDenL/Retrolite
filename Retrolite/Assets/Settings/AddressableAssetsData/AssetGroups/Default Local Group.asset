@@ -182,6 +182,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 23ab41f7f1ff7fb4f8445c7baa995b43
+    m_Address: Prefabs/label
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 24c56781a3fa27d45a52161b098b88a0
     m_Address: Prefabs/Particles/Sparcles
     m_ReadOnly: 0
@@ -199,6 +204,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2568582af7e4cb24887b9daf6a05bae8
     m_Address: Prefabs/Dombas flower
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 258b08c738d2fb64ab28be25a25a8f20
+    m_Address: Audio/Swift
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -222,6 +232,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2ad01ffd991849c49a7bc3d936a218f6
+    m_Address: Prefabs/Shop_6
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ba283794b493d94baaf08c6be6efab7
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_20
     m_ReadOnly: 0
@@ -232,8 +247,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2d3d841e582ee964792be29c1cf72d0d
+    m_Address: Audio/Energy_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dab99eecd8460614b2dbe61127e1923
     m_Address: Textures/weapons
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2db47dd38920b414fb3228a1e10a2e54
+    m_Address: Audio/Portal_idle
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -299,6 +324,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 37f10ef80e325bb47bcaa510b9a28939
     m_Address: Textures/Textcloud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 383025133c8f7e44c99f3072741b6492
+    m_Address: Audio/Step_metal
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -427,6 +457,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e0b12e94b18d794db3f7def1eae8a64
+    m_Address: ScriptableObjects/Items/MoneyBag
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f70a22805a42a54c9f03f7fbab8e14a
     m_Address: ScriptableObjects/CreaturesAI/Skills/StrongBulletEvasion
     m_ReadOnly: 0
@@ -442,6 +477,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5294e640b9706e54290bd899154d91dd
+    m_Address: Audio/Squish
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5480edae4aab25946abe8204d9a6f8f8
     m_Address: ScriptableObjects/CreaturesAI/Skills/ExplosionAction
     m_ReadOnly: 0
@@ -449,6 +489,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5599f1aba3413d647ad5c47fc27e218e
     m_Address: Materials/Nature
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 569846705621ce24f954fb34fe0a68ab
+    m_Address: Audio/Coins
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -469,6 +514,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a400cd90d264d645ae819d7457e17dc
     m_Address: Materials/Shaders/WallTransparency 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d7dade1d97c4254ca9a1db4c5d35f40
+    m_Address: Audio/Scream
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -502,13 +552,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6101573796fdbe74d8e14b0d7af16de9
+    m_Address: ScriptableObjects/CreaturesAI/Skills/JumpAttack
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61caa0e84ab5c5b43aa7965f4e5865e4
     m_Address: Scenes/GenerationTest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61ec16c4aca3a7f4c8224588d5ec4794
-    m_Address: ScriptableObjects/Items/New Item
+    m_Address: ScriptableObjects/Items/HealPotion
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -529,6 +584,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 62de1db7edcb54e4db05271ed6f8342d
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_4
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6326f6fc9ff13a04e9ad13b80a43cf4f
+    m_Address: Audio/Squish 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -617,6 +677,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6e9ee5bcf980a1e4e9185a3f994d5ccf
+    m_Address: Audio/Fountain_idle
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ea792d50ebaf4a4b8471e59ccfeb60d
     m_Address: Prefabs/UI/Label
     m_ReadOnly: 0
@@ -624,6 +689,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6ee9725e45b1fa640b425807ffd02de8
     m_Address: Prefabs/WeaponManager
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6f3a1b0f4fb98ea47a6186ed0938ab56
+    m_Address: Audio/Laser_1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7124fc28f5878534cbb3dfcd038c1f03
+    m_Address: Audio/Poof
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -682,6 +757,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b9f57e1839bee14aa80361d6d4eaeb6
+    m_Address: Audio/Coins 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7c71da8370fd47145a67b609d1b3b6c6
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_1
     m_ReadOnly: 0
@@ -709,6 +789,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 807440d86b880ab4c8f73796adf20e2b
     m_Address: Materials/Binary 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80d630afb5edd1e48bd3960497ef2097
+    m_Address: Audio/Poof 3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -752,6 +837,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 895e923e228322343964aa0fa52f5309
+    m_Address: Audio/Laser_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Scenes/Water
     m_ReadOnly: 0
@@ -779,6 +869,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8ef8faf18b9a68e45b01a5bb31a61b34
     m_Address: Prefabs/Particles/Glitch2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 90273d9b6618a6b4d97a25489246d3a8
+    m_Address: Audio/Slime_jump
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -812,13 +907,13 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 974ed0da08116758a84f9864f32ec40e
-    m_Address: Materials/Shaders/MenuButton
+  - m_GUID: 943b78b7395e80a4a8194d406d15841a
+    m_Address: Audio/Hit
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 97652f3d2e9150d4189de8a00eacc37f
-    m_Address: Audio/fountain
+  - m_GUID: 974ed0da08116758a84f9864f32ec40e
+    m_Address: Materials/Shaders/MenuButton
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -847,13 +942,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9cf822445258000499cb428142051495
-    m_Address: Materials/TreeShadow 1
+  - m_GUID: 9de17055ca8644a49821e25fc51db2be
+    m_Address: Textures/Light
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9de17055ca8644a49821e25fc51db2be
-    m_Address: Textures/Light
+  - m_GUID: 9e40303d0e70da1428f6111437cb3a17
+    m_Address: Audio/Heal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e9e706182af2404ebc477149fdc1786
+    m_Address: Materials/TreeShadow 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -902,6 +1002,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a233c1a711112dd429faf8e5252fdd65
+    m_Address: ScriptableObjects/Items/BigHealPotion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4342ac3bab236650b340e606ba4dad3
     m_Address: Prefabs/Particles/Particle System
     m_ReadOnly: 0
@@ -924,6 +1029,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a79d18239c180e74c8297a30488a5ca9
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7dd939ca8666444fa1dca1f21b94612
+    m_Address: Audio/Portal_close
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1018,7 +1128,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6606abf07135b34aaf636ee31d33a25
-    m_Address: ScriptableObjects/CreaturesAI/Skills/JumpAttack
+    m_Address: ScriptableObjects/CreaturesAI/Skills/SlimeJump
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1034,11 +1144,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7fb8db3756bf4a4c9894a87fd189d99
     m_Address: Materials/Fountain
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b8c5f8c2e7c381778af1ab09dbbdd9e7
-    m_Address: Materials/TreeShadow 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1067,6 +1172,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1e28723d37584e40aa1cb4e412a77b1
+    m_Address: Audio/Step_grass
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c28d914150daf9f45b933a8f10fcb02b
     m_Address: Materials/Hand2
     m_ReadOnly: 0
@@ -1079,6 +1189,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c346d43623be67042b72a5fee8fb9f4c
     m_Address: Tiles/Forest/ZForestTileRule
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c451e00cd2c44754990df4e024cfff12
+    m_Address: Audio/Portal_open
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1099,6 +1214,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5d3b4acfd4abca468d2bcc759b2246e
     m_Address: Prefabs/WeaponPickUp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c6f8600a58130d54bb0ccecf7aba660a
+    m_Address: ScriptableObjects/Items/MaxHealthPotion
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1132,11 +1252,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: cb53161742880e14187e05c30d1c4e04
-    m_Address: Audio/step
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccb74d6f54b9f984dada0e4e98cad45d
     m_Address: Prefabs/Candle3
     m_ReadOnly: 0
@@ -1144,6 +1259,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cd763048a8d9bb54a977d8cb2cc9ed7b
     m_Address: ScriptableObjects/CreaturesAI/Controllers/SlimeDefault
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce153a73c7399784b9ff284541719ae2
+    m_Address: Materials/TreeShadow 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1257,6 +1377,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7b9887c297c3084aafb444f9c6b98e6
+    m_Address: Audio/Bite
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e858c96e4b24497408470fe7027a8725
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_21
     m_ReadOnly: 0
@@ -1292,6 +1417,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f02d562b1c359054ebb43fda62516e87
+    m_Address: Audio/Poof 2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2985d8d622a6c54ca9d3102b3731a3b
     m_Address: Textures/buble
     m_ReadOnly: 0
@@ -1317,8 +1447,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4e8f9f8cc9db124ea0f4cc66951d5d2
+    m_Address: Prefabs/Shop_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f78a175d4156eb847af3b2a94232756f
     m_Address: Textures/Fountain
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f79abe1d56befe44e860cecbfb09be0a
+    m_Address: Audio/Laser_2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

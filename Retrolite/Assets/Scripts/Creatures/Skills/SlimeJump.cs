@@ -10,6 +10,9 @@ namespace Creatures
         public float Speed = 3f;
         public float JumpTime = 0.5f;
 
+        public AudioClip jumpSound;
+        public AudioClip groundSound;
+
         private ArcAnim anim;
 
         public override SkillType Type => SkillType.Movement;
@@ -25,8 +28,9 @@ namespace Creatures
         public override void Activate(Vector2 position)
         {
             owner.Cast();
+            owner.PlaySound(jumpSound);
             owner.Animator.SetTrigger("Jump");
-            anim.DropTo(owner.transform.position + owner.Speed * Speed * (Vector3)position);
+            anim.DropTo(owner.transform.position + owner.Speed * Speed * (Vector3)position, () => owner.PlaySound(groundSound));
         }
     }
 }

@@ -36,13 +36,17 @@ namespace CalculatingSystem
     public class HealAction : ActionNode
     {
         [SerializeReference] public FormulaNode Amount;
+        [SerializeReference] public FormulaNode AdditionalHealth;
 
         public override void Execute(Context context)
         {
+            context.Target.HealthComponent.AddMaximumHealth(AdditionalHealth.Evaluate(context));
             context.Target.HealthComponent.Heal(Amount.Evaluate(context));
+            ParticleManager.PlayParticle("Heal", context.Target.transform.position);
         }
 
-        public override string ToReadableString() => $"Heal player for {Amount.ToReadableString()}";
+        public override string ToReadableString() => $"Heal player for {Amount.ToReadableString()}" + 
+        (AdditionalHealth.ToReadableString() == "0" ? "" : $", increases maximum health by {AdditionalHealth.ToReadableString()}");
     }
 
     [Serializable]
@@ -53,7 +57,9 @@ namespace CalculatingSystem
 
         public override void Execute(Context context)
         {
-            PlayerController.Player.Resources.Get(resource).Add((int)Money.Evaluate(context));
+            int money = (int)Money.Evaluate(context);
+            context.Target.Resources.Get(resource).Add(money);
+            ParticleManager.PlayParticle(resource, context.Owner.transform.position, context.Target.transform, money);
         }
 
         public override string ToReadableString() => $"Give {Money.ToReadableString()} money";

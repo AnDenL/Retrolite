@@ -128,6 +128,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8200251472941024076, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+      propertyPath: MinDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200251472941024076, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+      propertyPath: rolloffMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8200251472941024076, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+      propertyPath: DopplerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9179757483088107891, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
       propertyPath: controllerTemplate
       value: 

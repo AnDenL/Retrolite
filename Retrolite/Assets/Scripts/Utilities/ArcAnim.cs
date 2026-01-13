@@ -7,12 +7,12 @@ public class ArcAnim : MonoBehaviour
     [SerializeField] float maxHeight = 1f;
     public float duration = 0.6f;
 
-    private Transform sr;
+    public Transform sr;
     private Rigidbody2D rb;
 
     private void Awake()
     {
-        sr = transform.Find("Sprite");
+        if (!sr) sr = transform.Find("Sprite");
         rb = GetComponent<Rigidbody2D>();
     }
 

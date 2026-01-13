@@ -150,27 +150,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shop_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 48
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1d760f3148b676200800000000000000
-      internalID: 173225325691430865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Shop_2
       rect:
         serializedVersion: 2
@@ -510,7 +489,7 @@ TextureImporter:
       name: Shop_18
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 48
         width: 16
         height: 16

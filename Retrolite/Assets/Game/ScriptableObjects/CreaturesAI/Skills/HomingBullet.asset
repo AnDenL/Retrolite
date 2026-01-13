@@ -36,6 +36,7 @@ MonoBehaviour:
     OnDamage:
       rid: -2
     BulletSprite: {fileID: -386389626, guid: 2dab99eecd8460614b2dbe61127e1923, type: 3}
+    FireSound: {fileID: 8300000, guid: 80d630afb5edd1e48bd3960497ef2097, type: 3}
     IsDynamic: 1
   Knockback: 2
   references:
@@ -79,6 +80,7 @@ MonoBehaviour:
         Layers:
           serializedVersion: 2
           m_Bits: 8
+        Particle: SmallExplosion
     - rid: 9018860093364240395
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:

@@ -17,3 +17,5 @@ MonoBehaviour:
   cooldownTime: 1
   Speed: 0.1
   JumpTime: 0.5
+  jumpSound: {fileID: 8300000, guid: f02d562b1c359054ebb43fda62516e87, type: 3}
+  groundSound: {fileID: 8300000, guid: 7124fc28f5878534cbb3dfcd038c1f03, type: 3}

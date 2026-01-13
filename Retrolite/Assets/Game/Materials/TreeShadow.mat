@@ -54,10 +54,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseMultiplayer: 0.79
-    - _NoiseScale: 0.1
-    - _SmalNoiseScale: 2
-    - _SmallNoiseMultiplayer: 0.5
+    - _NoiseMultiplayer: 0.62
+    - _NoiseScale: 0.2
+    - _SmalNoiseScale: 2.76
+    - _SmallNoiseMultiplayer: 0.11
     - _Step: 0.48
     m_Colors: []
   m_BuildTextureStacks: []

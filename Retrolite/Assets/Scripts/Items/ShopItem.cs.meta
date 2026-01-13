@@ -3,7 +3,13 @@ guid: ddf8616cc38de31a38a6a6c976b44562
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
+  - sr: {instanceID: 0}
+  - soldSprite: {fileID: -1226543079, guid: 176a929e1a9917a22ba9610e5fb31a52, type: 3}
+  - priceText: {instanceID: 0}
+  - Item: {instanceID: 0}
+  - ByingSound: {fileID: 8300000, guid: 569846705621ce24f954fb34fe0a68ab, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

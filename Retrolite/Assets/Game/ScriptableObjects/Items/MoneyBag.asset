@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49368de9ed1165446889676823e83606, type: 3}
+  m_Name: MoneyBag
+  m_EditorClassIdentifier: 
+  ItemName: Money bag
+  Icon: {fileID: -1962761769, guid: 218eb0a65e174d74c925cc53e8a10fff, type: 3}
+  SingleUse: 1
+  Sound: {fileID: 8300000, guid: 7b9f57e1839bee14aa80361d6d4eaeb6, type: 3}
+  Action:
+    rid: 353241344678559747
+  references:
+    version: 2
+    RefIds:
+    - rid: 353241344678559747
+      type: {class: GiveResource, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Money:
+          rid: 353241344678559750
+        resource: 1
+    - rid: 353241344678559750
+      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Left:
+          rid: 353241344678559751
+        Operation: 0
+        Right:
+          rid: 353241344678559752
+    - rid: 353241344678559751
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 25
+    - rid: 353241344678559752
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 7

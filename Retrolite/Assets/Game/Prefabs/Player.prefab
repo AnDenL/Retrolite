@@ -68,7 +68,7 @@ MonoBehaviour:
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
   Rb: {fileID: 0}
-  step: {fileID: 8300000, guid: cb53161742880e14187e05c30d1c4e04, type: 3}
+  step: {fileID: 8300000, guid: 383025133c8f7e44c99f3072741b6492, type: 3}
   arm1: {fileID: 6386035971000908232}
   arm2: {fileID: 1127240027396745071}
   hand1: {fileID: 3417523190237438834}

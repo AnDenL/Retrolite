@@ -22,15 +22,10 @@ namespace Creatures
         {
             base.Init(owner);
 
-            if (Instance != null)
-            {
-                Debug.LogError("Multiple player instances!");
-            }
             Instance = this;
             foreach (var skill in owner.ActiveSkills)
                 NewSlot(skill);
 
-            target = MouseTarget.instance;
             owner.OnNewSkill += NewSlot;
 
             WeaponManager = owner.GetComponentInChildren<WeaponManager>();

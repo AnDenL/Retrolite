@@ -9,12 +9,13 @@ public class LevelGenerationBase : MonoBehaviour
 
     [SerializeField] private GameObject portal;
     [SerializeField] private GameObject[] enemies;
+    [SerializeField] private GameObject[] shopPref;
 
     private GenerationContext context;
 
     private void Start()
     {
-        Regenerate();
+        //Regenerate();
     }
 
     [ContextMenu("Regenerate")]
@@ -31,16 +32,13 @@ public class LevelGenerationBase : MonoBehaviour
 
         portal.transform.position = new Vector3(context.EndPoint.x - context.Size.x/2, context.EndPoint.y - context.Size.y/2);
         
-        if (Application.isPlaying)
-        {
-            foreach (Transform tr in transform)
-                Destroy(tr.gameObject);
+        while (transform.childCount != 0)
+            DestroyImmediate(transform.GetChild(0).gameObject);
 
-            foreach (var pos in context.Enemies)
-            {
-                if (Physics2D.OverlapCircleAll(pos, 1f).Length != 0) continue;
-                Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
-            }
+        foreach (var pos in context.Enemies)
+        {
+            if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
+            Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
         }
     }
 

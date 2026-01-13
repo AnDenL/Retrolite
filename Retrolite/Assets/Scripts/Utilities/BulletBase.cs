@@ -3,6 +3,8 @@ using CalculatingSystem;
 using System.Collections;
 using Creatures;
 
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(AudioSource))]
 public class BulletBase : MonoBehaviour
 {
     protected BulletData data;
@@ -16,6 +18,7 @@ public class BulletBase : MonoBehaviour
     protected Coroutine lifeCoroutine;
     protected Vector2 start;
     protected SpriteRenderer projectileRenderer;
+    protected AudioSource source;
 
     protected Color color;
     protected float life;
@@ -41,6 +44,8 @@ public class BulletBase : MonoBehaviour
 
         projectileRenderer = GetComponent<SpriteRenderer>();
         projectileRenderer.sprite = Data.BulletSprite;
+
+        source = GetComponent<AudioSource>();
     }
 
     public virtual void Fire(float spread)
@@ -48,6 +53,9 @@ public class BulletBase : MonoBehaviour
         gameObject.SetActive(true);
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
+
+        source.pitch = Random.Range(0.8f, 1.2f);
+        source.PlayOneShot(data.FireSound);
 
         Spread = spread;
         lifeCoroutine = StartCoroutine(LifeTimer());
@@ -200,6 +208,7 @@ public class BulletData
     public ActionNode OnDamage;
 
     public Sprite BulletSprite;
+    public AudioClip FireSound;
 
     public bool IsDynamic;
 

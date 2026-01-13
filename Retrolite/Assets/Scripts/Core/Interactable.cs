@@ -3,13 +3,13 @@ using UnityEngine;
 public class Interactable : MonoBehaviour
 {
     [SerializeField] protected Material outlineMaterial;
+    [SerializeField] protected SpriteRenderer sr;
 
-    protected SpriteRenderer sr;
     protected Material defaultMaterial;
 
     protected void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        if (!sr) sr = GetComponent<SpriteRenderer>();
         defaultMaterial = sr.material;
         var newMaterial = new Material(outlineMaterial);
         newMaterial.SetTexture("_MainTex", sr.sprite.texture);
