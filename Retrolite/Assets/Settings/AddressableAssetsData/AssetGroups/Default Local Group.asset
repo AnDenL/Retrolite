@@ -362,6 +362,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3bb04424b5d170b469eedb3e9028a2cb
+    m_Address: Textures/SlendMan
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3cbce0f112bc9bb5a9b25efee6506ebc
     m_Address: Textures/Potions
     m_ReadOnly: 0
@@ -1159,6 +1164,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7fb8db3756bf4a4c9894a87fd189d99
     m_Address: Materials/Fountain
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b815245eec23a6546b5c059b136b124c
+    m_Address: Textures/Ikon for Denisik
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
