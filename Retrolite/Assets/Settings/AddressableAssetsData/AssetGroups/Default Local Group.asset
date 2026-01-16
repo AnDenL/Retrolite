@@ -842,6 +842,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bb431f0967f80f46a6ad02f22ef34e5
+    m_Address: Textures/Editor/ControllerIcon
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
     m_Address: Scenes/Water
     m_ReadOnly: 0
@@ -924,6 +929,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99e2b0dbfb7923e45be167b8c0b39ebe
     m_Address: Materials/Shaders/Water
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9a69318a45ea4f84fa38285a345684aa
+    m_Address: Textures/Editor/ControllerIcon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1079,6 +1089,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ae18182823161354c8fcaba0206383b2
     m_Address: Prefabs/Algae
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aed700d7babe5954f927aa372aa18049
+    m_Address: Textures/Editor/ItemIcon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

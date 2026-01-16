@@ -59,7 +59,7 @@ public class BulletPool
     {
         foreach (var b in allBullets)
         {
-            if (b != null)
+            if (b != null )
                 b.HandleProjectileDestroy();
         }
         allBullets.Clear();
