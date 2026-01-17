@@ -12,6 +12,7 @@ public class LevelGenerationBase : MonoBehaviour
     [SerializeField] private GameObject[] shopPref;
 
     private GenerationContext context;
+    public Minimap map;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class LevelGenerationBase : MonoBehaviour
             if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
             Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
         }
+        if(map) map.Set(context);
     }
 
     private void RunLayer(Layer layer)
@@ -159,12 +161,14 @@ public class GenerationContext
 {
     public float[,] Map;
     public Vector2Int Size;
+    public Vector2Int Center;
     public List<Vector2Int> Enemies;
     public Vector2Int EndPoint;
 
     public GenerationContext(Vector2Int size)
     {
         Size = size;
+        Center = size / 2;
         Map = new float[size.x, size.y];
         Enemies = new();
     }

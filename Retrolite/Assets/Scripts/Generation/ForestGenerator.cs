@@ -1,7 +1,9 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
+using CalculatingSystem;
 
-[CreateAssetMenu(fileName = "ForestGenerator", menuName = "Game/Generators/Forest", order = -250)]
+[CreateAssetMenu(fileName = "ImprovedForestGenerator", menuName = "Game/Generators/ForestImproved", order = -250)]
 public class ForestGenerator : MapGenerator
 {
     [Header("Generation Options")]
@@ -10,99 +12,113 @@ public class ForestGenerator : MapGenerator
     public float RandomAngle;
     public float JitterAmount = 1.5f;
     public float NoiseStrength, scale;
-    public float distanceScale = 0;
 
     [Header("Branching")]
     public int BranchCount = 4;
     public int MinPointsPerBranch, MaxPointsPerBranch;
 
-    private List<KeyPoint> keyPoints;
+    private HashSet<Vector2Int> enemyPositions; 
 
     public override void Generate(GenerationContext context)
     {
-        keyPoints = new List<KeyPoint>();
+        for (int x = 0; x < context.Size.x; x++)
+            for (int y = 0; y < context.Size.y; y++)
+                context.Map[x, y] = 0f;
 
-        Vector2 center = new(context.Size.x / 2f, context.Size.y / 2f);
-        KeyPoint startPoint = new()
+        var keyPoints = new List<KeyPoint>();
+        enemyPositions = new HashSet<Vector2Int>();
+        
+        GenerateBranches(context.Center, keyPoints, context);
+
+        foreach (var point in keyPoints)
         {
-            Position = Vector2Int.RoundToInt(center),
-            AreaSize = MaxAreaSize,
-            Angle = 0f
-        };
-        keyPoints.Add(startPoint);
-
-        for (int b = 0; b < BranchCount; b++)
-        {
-            float baseAngle = 360f / BranchCount * b + Random.Range(-RandomAngle, RandomAngle);
-            Vector2 direction;
-
-            Vector2 currentPos = center;
-            int PointsPerBranch = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
-
-            for (int p = 0; p < PointsPerBranch; p++)
-            {
-                float angleJitter = Random.Range(-RandomAngle, RandomAngle);
-                float finalAngle = baseAngle + angleJitter;
-                direction = new Vector2(Mathf.Cos(finalAngle * Mathf.Deg2Rad), Mathf.Sin(finalAngle * Mathf.Deg2Rad));
-
-                float value = Random.value;
-                float distance = Mathf.Lerp(MinDistance, MaxDistance, value);
-                Vector2 jitter = Random.insideUnitCircle * JitterAmount;
-
-                currentPos += direction * distance + jitter;
-                Vector2Int posInt = Vector2Int.RoundToInt(currentPos);
-
-                if (posInt.x < 0 || posInt.y < 0 || posInt.x >= context.Size.x || posInt.y >= context.Size.y)
-                    continue;
-
-                KeyPoint point = new KeyPoint
-                {
-                    Position = posInt,
-                    AreaSize = Mathf.Lerp(MinAreaSize, MaxAreaSize, value) + Vector2.Distance(Vector2.zero, jitter) + Vector2.Distance(Vector2.zero, posInt) * distanceScale,
-                    Angle = finalAngle
-                };
-
-                if (p > 4 && Random.Range(0,3) == 0) context.Enemies.Add(posInt);
-
-                keyPoints.Add(point);
-            }
+            DrawBrush(context, point);
         }
-
-
-        for (int y = 0; y < context.Size.y; y++)
-        {
-            for (int x = 0; x < context.Size.x; x++)
-            {
-                float value = 10;
-                
-                foreach (KeyPoint point in keyPoints)
-                {
-                    float dist = Vector2Int.Distance(new Vector2Int(x, y), point.Position);
-                    value -= Mathf.Clamp((point.AreaSize - dist) / point.AreaSize, 0, 10);
-                }
-
-                context.Map[x, y] = value;
-            }
-        } 
 
         AddNoise(context);
 
-        context.EndPoint = keyPoints[^2].Position;
+        var furthestPoint = keyPoints
+            .OrderByDescending(p => Vector2.Distance(p.Position, context.Center))
+            .First();
+            
+        context.EndPoint = furthestPoint.Position;
+        context.Enemies = enemyPositions.ToList();
+    }
+
+    private void GenerateBranches(Vector2 startPos, List<KeyPoint> points, GenerationContext context)
+    {
+        points.Add(new KeyPoint { Position = Vector2Int.RoundToInt(startPos), AreaSize = MaxAreaSize });
+
+        for (int b = 0; b < BranchCount; b++)
+        {
+            Vector2 currentPos = startPos;
+            float currentAngle = (360f / BranchCount) * b;
+
+            int steps = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
+
+            for (int i = 0; i < steps; i++)
+            {
+                currentAngle += Random.Range(-RandomAngle, RandomAngle);
+                
+                Vector2 direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
+                float dist = Mathf.Lerp(MinDistance, MaxDistance, Random.value);
+                
+                currentPos += direction * dist + (Random.insideUnitCircle * JitterAmount);
+                Vector2Int posInt = Vector2Int.RoundToInt(currentPos);
+
+                if (posInt.x < 5 || posInt.y < 5 || posInt.x >= context.Size.x - 5 || posInt.y >= context.Size.y - 5)
+                    break;
+
+                float size = Mathf.Lerp(MaxAreaSize, MinAreaSize, (float)i / steps); 
+
+                points.Add(new KeyPoint { Position = posInt, AreaSize = size });
+
+                if (Random.value * context.Size.x < -5 + Vector2.Distance(currentPos, context.Center) / 1.5f) 
+                    enemyPositions.Add(posInt);
+            }
+        }
+    }
+
+    private void DrawBrush(GenerationContext context, KeyPoint point)
+    {
+        int radius = Mathf.CeilToInt(point.AreaSize);
+        
+        for (int x = -radius; x <= radius; x++)
+        {
+            for (int y = -radius; y <= radius; y++)
+            {
+                int drawX = point.Position.x + x;
+                int drawY = point.Position.y + y;
+
+                if (drawX < 0 || drawX >= context.Size.x || drawY < 0 || drawY >= context.Size.y) continue;
+
+                float dist = Mathf.Sqrt(x * x + y * y);
+                if (dist > point.AreaSize) continue;
+
+                float influence = 1f - (dist / point.AreaSize);
+                
+                float currentValue = context.Map[drawX, drawY];
+                context.Map[drawX, drawY] = Mathf.Max(currentValue, influence * 10f);
+            }
+        }
     }
 
     private void AddNoise(GenerationContext context)
     {
-        float offset = Random.Range(-10,10);
-        for (int y = 0; y < context.Size.y; y++)
+        float offset = Random.Range(-100f, 100f);
+        for (int x = 0; x < context.Size.x; x++)
         {
-            for (int x = 0; x < context.Size.x; x++)
+            for (int y = 0; y < context.Size.y; y++)
             {
-                context.Map[x, y] += Mathf.PerlinNoise((x / scale) + offset, (y / scale) + offset) * NoiseStrength;
+                if (context.Map[x, y] < 0.1f) continue;
+
+                float noise = Mathf.PerlinNoise((x / scale) + offset, (y / scale) + offset);
+
+                context.Map[x, y] += (noise * 2 - 1) * NoiseStrength;
             }
         }
     }
 }
-
 public struct KeyPoint
 {
     public float AreaSize;

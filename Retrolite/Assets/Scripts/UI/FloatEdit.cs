@@ -26,7 +26,8 @@ public class FloatEdit : MonoBehaviour, IEdibleParameterUI
     public void ChangeValue(string i)
     {
         float t = pendingValue;
-        pendingValue = float.Parse(inputField.text);
+        pendingValue = float.Parse(i);
+        pendingValue = Mathf.Clamp(pendingValue, param.min, param.max);
         param.totalCost = GetEditCost();
         CodeRedactSystem.CountTotalCost();
 
@@ -43,6 +44,7 @@ public class FloatEdit : MonoBehaviour, IEdibleParameterUI
         float t = pendingValue;
         float i = (Input.mousePosition.x - data.pressPosition.x) / Screen.width * 2;
         pendingValue += i;
+        pendingValue = Mathf.Clamp(pendingValue, param.min, param.max);
         param.totalCost = GetEditCost();
         CodeRedactSystem.CountTotalCost();
 

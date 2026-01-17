@@ -18,6 +18,7 @@ public class IntEdit : MonoBehaviour, IEdibleParameterUI
     {
         int t = pendingValue;
         pendingValue += i;
+        pendingValue = Mathf.Clamp(pendingValue, param.min, param.max);
         param.totalCost = GetEditCost();
         CodeRedactSystem.CountTotalCost();
 
@@ -39,6 +40,7 @@ public class IntEdit : MonoBehaviour, IEdibleParameterUI
         int t = pendingValue;
         int i = (int)(Input.mousePosition.x - data.pressPosition.x) / Screen.width * 2;
         pendingValue += i;
+        pendingValue = Mathf.Clamp(pendingValue, param.min, param.max);
         param.totalCost = GetEditCost();
         CodeRedactSystem.CountTotalCost();
 
@@ -66,7 +68,8 @@ public class IntEdit : MonoBehaviour, IEdibleParameterUI
     public void ChangeValue(string i)
     {
         int t = pendingValue;
-        pendingValue = int.Parse(inputField.text);
+        pendingValue = int.Parse(i);
+        pendingValue = Mathf.Clamp(pendingValue, param.min, param.max);
         param.totalCost = GetEditCost();
         CodeRedactSystem.CountTotalCost();
 

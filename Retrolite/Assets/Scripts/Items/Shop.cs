@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-public class Shop : MonoBehaviour
+public class Shop : MonoBehaviour, IGenerationStruct
 {
     [Header("Items")]
     [SerializeField] private GameObject shopSlot;

@@ -27,11 +27,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 032bf98862fdff84c89f5dcb8357b81c
-    m_Address: Materials/Shaders/Water2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0348c5b2bcb450c43af88fa66306c335
     m_Address: Prefabs/Particles/Impact
     m_ReadOnly: 0
@@ -307,11 +302,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 35fc31132f6c9274080da1be55cab3e2
-    m_Address: Materials/Water
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36773cb55073d8744b60bd056d09f604
     m_Address: Materials/Shaders/Fountain
     m_ReadOnly: 0
@@ -384,6 +374,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3db8bb26149ad30459f74996f5e324fd
     m_Address: Prefabs/UI/UI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e136345eec4cf64fac333c3e0cdd871
+    m_Address: Prefabs/Particles/Rain
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -474,11 +469,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f70a22805a42a54c9f03f7fbab8e14a
     m_Address: ScriptableObjects/CreaturesAI/Skills/StrongBulletEvasion
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 506bf3188be256848bf059045c135a3b
-    m_Address: ScriptableObjects/Generators/ForestBase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -633,7 +623,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6747d9d6b9e25e049a92b469b0052697
-    m_Address: Materials/Shaders/Water 1
+    m_Address: Materials/Shaders/Water
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -852,6 +842,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ab8a0af9552d8944ad1499da6fc4c71
+    m_Address: Materials/RenderTextures/Map
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bb431f0967f80f46a6ad02f22ef34e5
     m_Address: Textures/Editor/ControllerIcon
     m_ReadOnly: 0
@@ -937,11 +932,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99e2b0dbfb7923e45be167b8c0b39ebe
-    m_Address: Materials/Shaders/Water
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a69318a45ea4f84fa38285a345684aa
     m_Address: Textures/Editor/ControllerIcon
     m_ReadOnly: 0
@@ -999,11 +989,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f7e0c50b7ca58144919a141e96532be
     m_Address: Prefabs/Minirobot
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 9f88bf154af7b684797946d0ac2b0a8a
-    m_Address: Materials/wate
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1088,7 +1073,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad03dfb8b3fbf114db89bddcff12605c
-    m_Address: ScriptableObjects/Generators/ForestBase 1
+    m_Address: ScriptableObjects/Generators/ForestBase
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

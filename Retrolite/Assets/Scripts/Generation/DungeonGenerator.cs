@@ -20,7 +20,6 @@ public class DungeonGenerator : MapGenerator
                 context.Map[x, y] = wallValue;
 
         List<RectInt> rooms = new List<RectInt>();
-
         {
             int w = Random.Range(roomMinSize.x, roomMaxSize.x + 1);
             int h = Random.Range(roomMinSize.y, roomMaxSize.y + 1);

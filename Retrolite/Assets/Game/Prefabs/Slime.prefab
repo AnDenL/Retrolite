@@ -10011,7 +10011,7 @@ MonoBehaviour:
         component: {fileID: 5182044036734216103}
         cost: 0
         totalCost: 0
-        min: -0.1
+        min: 0
         max: 30
     - rid: 9018860106614571016
       type: {class: FloatParam, ns: , asm: Assembly-CSharp}
