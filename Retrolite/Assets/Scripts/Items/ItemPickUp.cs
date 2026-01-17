@@ -1,19 +1,18 @@
 using CalculatingSystem;
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class ItemPickUp : Interactable
 {
     public Item Item;
-    public TextMesh Description;
-
-    private AudioSource source;
+    public TextMeshPro Description;
 
     private void Start()
     {
         sr.sprite = Item.Icon;
-        Description.text = Item.ItemName + "\n" + Item.Action.ToReadableString();
-        source = GetComponent<AudioSource>();
+        Description.text = Item.ItemName + "\n" + (string.IsNullOrWhiteSpace(Item.CustomDescription) ? 
+                            Item.Action.ToReadableString() : Item.CustomDescription);
     }
     
     public override void Interact(Creature creature)

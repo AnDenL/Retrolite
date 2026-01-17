@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MoneyBag
   m_EditorClassIdentifier: 
   ItemName: Money bag
+  CustomDescription: Gives 20-30$
   Icon: {fileID: -1962761769, guid: 218eb0a65e174d74c925cc53e8a10fff, type: 3}
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 7b9f57e1839bee14aa80361d6d4eaeb6, type: 3}
@@ -24,22 +25,22 @@ MonoBehaviour:
     - rid: 353241344678559747
       type: {class: GiveResource, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Money:
-          rid: 353241344678559750
+        Count:
+          rid: 353241599059427328
         resource: 1
-    - rid: 353241344678559750
+    - rid: 353241599059427328
       type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Left:
-          rid: 353241344678559751
+          rid: 353241599059427329
         Operation: 0
         Right:
-          rid: 353241344678559752
-    - rid: 353241344678559751
+          rid: 353241599059427330
+    - rid: 353241599059427329
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 25
-    - rid: 353241344678559752
+    - rid: 353241599059427330
       type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Variable: 7

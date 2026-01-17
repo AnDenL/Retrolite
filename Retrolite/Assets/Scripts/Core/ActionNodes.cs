@@ -29,7 +29,7 @@ namespace CalculatingSystem
             }
         }
 
-        public override string ToReadableString() => $"Deal {Damage.ToReadableString()} damage to enemy";
+        public override string ToReadableString() => $"Deal {Damage.ToReadableString()} damage to target";
     }
 
     [Serializable]
@@ -45,24 +45,24 @@ namespace CalculatingSystem
             ParticleManager.PlayParticle("Heal", context.Target.transform.position);
         }
 
-        public override string ToReadableString() => $"Heal player for {Amount.ToReadableString()}" + 
-        (AdditionalHealth.ToReadableString() == "0" ? "" : $", increases maximum health by {AdditionalHealth.ToReadableString()}");
+        public override string ToReadableString() => $"Heals {Amount.ToReadableString()} hp" + 
+        (AdditionalHealth.ToReadableString() == "0" ? "" : $", increases max hp by {AdditionalHealth.ToReadableString()}");
     }
 
     [Serializable]
     public class GiveResource : ActionNode
     {
-        [SerializeReference] public FormulaNode Money;
+        [SerializeReference] public FormulaNode Count;
         public ResourceType resource;
 
         public override void Execute(Context context)
         {
-            int money = (int)Money.Evaluate(context);
+            int money = (int)Count.Evaluate(context);
             context.Target.Resources.Get(resource).Add(money);
             ParticleManager.PlayParticle(resource, context.Owner.transform.position, context.Target.transform, money);
         }
 
-        public override string ToReadableString() => $"Give {Money.ToReadableString()} money";
+        public override string ToReadableString() => $"Give {Count.ToReadableString()} {resource}";
     }
 
     [Serializable]
@@ -153,7 +153,7 @@ namespace CalculatingSystem
             context.Target.AddEffect(effect, strength.Evaluate(context), duration.Evaluate(context));
         }
 
-        public override string ToReadableString() => $"";
+        public override string ToReadableString() => $"Apply {effect.EffectName}, for {duration.ToReadableString()} seconds";
     }
 
     [Serializable]

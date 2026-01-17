@@ -177,6 +177,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 224e4e4f682eda4458fc22e35f6897ab
+    m_Address: ScriptableObjects/Items/RandomHealPotion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22b67515a645a5f4781b731b781b09d0
     m_Address: Tiles/Forest/Tilemap_Forest_6
     m_ReadOnly: 0
@@ -1362,6 +1367,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df06af60fa69d2f46a574e14e06f50cb
+    m_Address: Prefabs/UI/TMPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df3d8230049f03f66bcffb0b845054bf
     m_Address: Prefabs/UI/BulletUI
     m_ReadOnly: 0
@@ -1419,6 +1429,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e89b2faa9b3f7264090cb08e56d3b8b6
     m_Address: Prefabs/Particles/Light
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e94ea9cb91e342345b244909e02fceca
+    m_Address: Prefabs/UI/TMPSample
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

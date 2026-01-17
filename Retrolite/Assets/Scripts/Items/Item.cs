@@ -5,6 +5,7 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public string ItemName = "New Item";
+    public string CustomDescription;
     public Sprite Icon = null;
     public bool SingleUse;
     public AudioClip Sound;
