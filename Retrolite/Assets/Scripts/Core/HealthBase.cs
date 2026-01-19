@@ -15,7 +15,7 @@ public class HealthBase : MonoBehaviour, IDamagable
         get => health;
         set
         {
-            health = value;
+            health = MathF.Min(value, maxHealth);
             OnHealthChanged?.Invoke(health, maxHealth);
             if (value <= 0) Die();
         }

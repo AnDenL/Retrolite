@@ -1,13 +1,11 @@
 using Creatures;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class Minimap : MonoBehaviour
 {
     public Image Map, Fullmap;
     public Camera RenderCamera;
-    public RenderTexture MapTexture;
 
     private bool isOpened;
     private float currentZoom = 4;
@@ -51,28 +49,42 @@ public class Minimap : MonoBehaviour
         Map.transform.localPosition = -PlayerController.Player.transform.position * currentZoom;
     }
 
-    public void Set(GenerationContext context)
+    public void Set(Vector2Int mapSize)
     {
-        RenderCamera.orthographicSize = context.Size.x / 2;
-
-        MapTexture.texelSize.Set(context.Size.x, context.Size.y);
-        
-        RenderCamera.Render();
-
-        RenderTexture currentActiveRT = RenderTexture.active;
-        RenderTexture.active = MapTexture;
-
-        Texture2D texture2D = new(MapTexture.width, MapTexture.height, TextureFormat.RGBA32, false)
+        RenderTexture rt = new(mapSize.x, mapSize.y, 16)
         {
             filterMode = FilterMode.Point
         };
-        texture2D.ReadPixels(new Rect(0, 0, MapTexture.width, MapTexture.height), 0, 0);
+
+        RenderCamera.targetTexture = rt; 
+
+        RenderCamera.gameObject.SetActive(true);
+        RenderCamera.orthographicSize = mapSize.x / 2f;
+
+        RenderCamera.Render();
+
+        RenderTexture currentActiveRT = RenderTexture.active;
+        RenderTexture.active = rt;
+
+        Texture2D texture2D = new(rt.width, rt.height, TextureFormat.RGBA32, false)
+        {
+            filterMode = FilterMode.Point
+        };
+        texture2D.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
         texture2D.Apply();
 
         RenderTexture.active = currentActiveRT;
+        RenderCamera.gameObject.SetActive(false);
+        
+        RenderCamera.targetTexture = null;
+        rt.Release();
 
-        Map.sprite = Sprite.Create(texture2D, new Rect(0, 0, context.Size.x, context.Size.y), new Vector2(0.5f, 0.5f), 16);
-        Fullmap.sprite = Map.sprite;
+        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, mapSize.x, mapSize.y), new Vector2(0.5f, 0.5f), 16);
+        Map.sprite = sprite;
+        Fullmap.sprite = sprite;
+
+        Map.transform.localScale = Vector2.one * currentZoom;
+        Fullmap.transform.localScale = Map.transform.localScale * 4;
     }
 
     public void Zoom()
@@ -92,39 +104,4 @@ public class Minimap : MonoBehaviour
         fullMapPos += halfScreen;
         Fullmap.transform.position = fullMapPos;
     }
-
-    /*
-    public void Set(GenerationContext context)
-    {
-        Texture2D tex = new(context.Size.x, context.Size.y)
-        {
-            filterMode = FilterMode.Point
-        };
-
-        Color32[] pixels = new Color32[context.Size.x * context.Size.y];
-
-        for (int y = 0; y < context.Size.y; y++)
-        {
-            for (int x = 0; x < context.Size.y; x++)
-            {
-                float val = context.Map[x, y];
-                
-                if (val > 1.0f) 
-                    pixels[y * context.Size.x + x] = Color.white;
-                else 
-                    pixels[y * context.Size.x + x] = Color.clear;
-            }
-        }
-
-        tex.SetPixels32(pixels);
-        tex.Apply();
-        Map.sprite = Sprite.Create(tex, new Rect(0, 0, context.Size.x, context.Size.y), new Vector2(0.45f, 0.6f), 16);
-        Map.SetNativeSize();
-    }
-
-    public void GetColor()
-    {
-        
-    }
-    */
 }

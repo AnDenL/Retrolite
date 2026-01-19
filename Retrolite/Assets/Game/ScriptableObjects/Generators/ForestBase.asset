@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MinDistance: 2
   MaxDistance: 4
-  MinAreaSize: 10
-  MaxAreaSize: 17
+  MinAreaSize: 9
+  MaxAreaSize: 16
   RandomAngle: 90
   JitterAmount: 5
-  NoiseStrength: -0.3
-  scale: 10
+  NoiseStrength: 1
+  scale: 4
   BranchCount: 2
   MinPointsPerBranch: 188
   MaxPointsPerBranch: 292
+  MinDistBetweenKeyStructs: 30
+  SafetyRadius: 5

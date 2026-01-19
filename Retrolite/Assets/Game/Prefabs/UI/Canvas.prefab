@@ -3599,7 +3599,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5560343433066696080}
   - component: {fileID: 7584122577826269451}
-  - component: {fileID: 5123110154848617908}
   - component: {fileID: 3774151969174515246}
   m_Layer: 0
   m_Name: Camera
@@ -3662,7 +3661,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 11647
+    m_Bits: 11607
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 8ab8a0af9552d8944ad1499da6fc4c71, type: 2}
   m_TargetDisplay: 0
@@ -3674,14 +3673,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &5123110154848617908
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7147192590908942518}
-  m_Enabled: 1
 --- !u!114 &3774151969174515246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3704,7 +3695,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 1
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2

@@ -23,10 +23,9 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && menu)
         {
-            Game.IsPaused = !Game.IsPaused;
             console.SetActive(false);
 
-            if (Game.IsPaused) PauseGame(menu);
+            if (!Game.IsPaused) PauseGame(menu);
             else ResumeGame(menu);
         }
         else if ((Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.BackQuote)) && LuaApi.UseLua)
@@ -42,6 +41,7 @@ public class Menu : MonoBehaviour
     public void PauseGame(GameObject panel)
     {
         Time.timeScale = 0;
+        Game.IsPaused = true;
         PlayerController.CanInteract = false;
         panel.SetActive(true);
         EventSystem.current.SetSelectedGameObject(selected);
@@ -51,6 +51,7 @@ public class Menu : MonoBehaviour
     public void ResumeGame(GameObject panel)
     {
         Time.timeScale = Game.TimeSpeed;
+        Game.IsPaused = false;
         if (!CodeRedactSystem.IsEditing) PlayerController.CanInteract = true;
         panel.SetActive(false);
         mixer.SetFloat("AudioLowPass", 22000);

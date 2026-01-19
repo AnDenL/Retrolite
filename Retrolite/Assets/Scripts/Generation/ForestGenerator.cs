@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using CalculatingSystem;
 
 [CreateAssetMenu(fileName = "ImprovedForestGenerator", menuName = "Game/Generators/ForestImproved", order = -250)]
 public class ForestGenerator : MapGenerator
@@ -17,7 +16,9 @@ public class ForestGenerator : MapGenerator
     public int BranchCount = 4;
     public int MinPointsPerBranch, MaxPointsPerBranch;
 
-    private HashSet<Vector2Int> enemyPositions; 
+    [Header("Placement Logic")]
+    public float MinDistBetweenKeyStructs = 30f;
+    public int SafetyRadius = 5;
 
     public override void Generate(GenerationContext context)
     {
@@ -26,8 +27,6 @@ public class ForestGenerator : MapGenerator
                 context.Map[x, y] = 0f;
 
         var keyPoints = new List<KeyPoint>();
-        enemyPositions = new HashSet<Vector2Int>();
-        
         GenerateBranches(context.Center, keyPoints, context);
 
         foreach (var point in keyPoints)
@@ -36,13 +35,61 @@ public class ForestGenerator : MapGenerator
         }
 
         AddNoise(context);
+        PlaceObjects(context, keyPoints);
+    }
 
-        var furthestPoint = keyPoints
-            .OrderByDescending(p => Vector2.Distance(p.Position, context.Center))
-            .First();
+    private void PlaceObjects(GenerationContext context, List<KeyPoint> allPoints)
+    {
+        var enemyPositions = new HashSet<Vector2Int>();
+        var structPositions = new HashSet<Vector2Int>();
+        var keyStructPositions = new List<Vector2Int>();
+
+        var candidates = allPoints
+            .OrderByDescending(p => Vector2.Distance(p.Position, context.Center) * p.AreaSize)
+            .ToList();
+
+        int keyStructsNeeded = context.KeyStructs != null ? context.KeyStructs.Length : 3; 
+
+        foreach (var candidate in candidates)
+        {
+            if (keyStructPositions.Count >= keyStructsNeeded) break;
+
+            bool tooClose = keyStructPositions.Any(existing => Vector2.Distance(existing, candidate.Position) < MinDistBetweenKeyStructs);
+
+            if (!tooClose)
+            {
+                keyStructPositions.Add(candidate.Position);
+            }
+        }
+
+        foreach (var point in allPoints)
+        {
+            Vector2Int pos = point.Position;
+
+            if (keyStructPositions.Contains(pos)) continue;
+
+            bool nearKeyStruct = keyStructPositions.Any(k => Vector2.Distance(k, pos) < SafetyRadius);
+
+            if (nearKeyStruct) continue;
+            float distFromCenter = Vector2.Distance(pos, context.Center);
             
-        context.EndPoint = furthestPoint.Position;
+            bool isEnemy = distFromCenter < 25 ? false
+                : Random.value < 0.13f;
+
+            if (isEnemy)
+            {
+                enemyPositions.Add(pos);
+            }
+            else 
+            {
+                if (Random.value > 0.8f) 
+                    structPositions.Add(pos);
+            }
+        }
+
         context.Enemies = enemyPositions.ToList();
+        context.Structs = structPositions.ToList();
+        context.KeyStructs = keyStructPositions.ToArray()[0..context.KeyStructs.Length];
     }
 
     private void GenerateBranches(Vector2 startPos, List<KeyPoint> points, GenerationContext context)
@@ -52,15 +99,13 @@ public class ForestGenerator : MapGenerator
         for (int b = 0; b < BranchCount; b++)
         {
             Vector2 currentPos = startPos;
-            float currentAngle = (360f / BranchCount) * b;
-
+            float currentAngle = 360f / BranchCount * b;
             int steps = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
 
             for (int i = 0; i < steps; i++)
             {
                 currentAngle += Random.Range(-RandomAngle, RandomAngle);
-                
-                Vector2 direction = new Vector2(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
+                Vector2 direction = new(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
                 float dist = Mathf.Lerp(MinDistance, MaxDistance, Random.value);
                 
                 currentPos += direction * dist + (Random.insideUnitCircle * JitterAmount);
@@ -72,9 +117,6 @@ public class ForestGenerator : MapGenerator
                 float size = Mathf.Lerp(MaxAreaSize, MinAreaSize, (float)i / steps); 
 
                 points.Add(new KeyPoint { Position = posInt, AreaSize = size });
-
-                if (Random.value * context.Size.x < -5 + Vector2.Distance(currentPos, context.Center) / 1.5f) 
-                    enemyPositions.Add(posInt);
             }
         }
     }
@@ -122,6 +164,5 @@ public class ForestGenerator : MapGenerator
 public struct KeyPoint
 {
     public float AreaSize;
-    public float Angle;
     public Vector2Int Position;
 }

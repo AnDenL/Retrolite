@@ -517,6 +517,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b88cb2f0e57f3d4abc48881490efc92
+    m_Address: ScriptableObjects/Effects/Regeneration
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d7dade1d97c4254ca9a1db4c5d35f40
     m_Address: Audio/Scream
     m_ReadOnly: 0
@@ -842,11 +847,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8ab8a0af9552d8944ad1499da6fc4c71
-    m_Address: Materials/RenderTextures/Map
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bb431f0967f80f46a6ad02f22ef34e5
     m_Address: Textures/Editor/ControllerIcon
     m_ReadOnly: 0
@@ -1159,6 +1159,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b815245eec23a6546b5c059b136b124c
     m_Address: Textures/Ikon for Denisik
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9459e6ed42170d41a253ea174506b92
+    m_Address: ScriptableObjects/Items/RegenerationPotion
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

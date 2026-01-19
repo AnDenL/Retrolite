@@ -6,10 +6,7 @@ public class LevelGenerationBase : MonoBehaviour
 {
     [SerializeField] private Vector2Int mapSize = new(64, 64);
     [SerializeField] private Layer[] layers;
-
-    [SerializeField] private GameObject portal;
-    [SerializeField] private GameObject[] enemies;
-    [SerializeField] private GameObject[] shopPref;
+    [SerializeField] private GameObject[] keyStructs;
 
     private GenerationContext context;
     public Minimap map;
@@ -17,6 +14,8 @@ public class LevelGenerationBase : MonoBehaviour
     private void Start()
     {
         //Regenerate();
+
+        if(map) map.Set(mapSize);
     }
 
     [ContextMenu("Regenerate")]
@@ -24,24 +23,22 @@ public class LevelGenerationBase : MonoBehaviour
     {
         ClearMap();
 
-        context = new GenerationContext(mapSize);
+        context = new GenerationContext(mapSize, keyStructs.Length);
 
         foreach (var layer in layers)
         {
             RunLayer(layer);
         }
 
-        portal.transform.position = new Vector3(context.EndPoint.x - context.Size.x/2, context.EndPoint.y - context.Size.y/2);
-        
-        while (transform.childCount != 0)
-            DestroyImmediate(transform.GetChild(0).gameObject);
-
-        foreach (var pos in context.Enemies)
+        for (int i = 0; i < keyStructs.Length; i++)
         {
-            if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
-            Instantiate(enemies[Random.Range(0, enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
+            Vector2 pos = context.KeyStructs[i] - mapSize / 2;
+            GameObject obj = Instantiate(keyStructs[i], new Vector3(pos.x, pos.y), Quaternion.identity);
+
+            obj.transform.parent = transform;
+            obj.transform.position = new Vector2(pos.x, pos.y);
+            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(); 
         }
-        if(map) map.Set(context);
     }
 
     private void RunLayer(Layer layer)
@@ -50,6 +47,20 @@ public class LevelGenerationBase : MonoBehaviour
         {
             if (generator == null) continue;
             generator.Generate(context);
+        }
+
+        foreach (var pos in context.Enemies)
+        {
+            if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
+            Instantiate(layer.Enemies[Random.Range(0, layer.Enemies.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity).transform.parent = transform;
+        }
+        foreach (var pos in context.Structs)
+        {
+            if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
+
+            GameObject obj = Instantiate(layer.Structs[Random.Range(0, layer.Structs.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity);
+            obj.transform.parent = transform;
+            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(); 
         }
 
         RenderLayerOptimized(layer.MapTiles);
@@ -130,6 +141,9 @@ public class LevelGenerationBase : MonoBehaviour
                 tile.Layer.gameObject.SetActive(true);
             }
         }
+
+        while (transform.childCount != 0)
+            DestroyImmediate(transform.GetChild(0).gameObject);
     }
 }
 
@@ -150,6 +164,8 @@ public class Layer
 
     [Header("Tile Settings")]
     public MapTile[] MapTiles;
+    public GameObject[] Enemies;
+    public GameObject[] Structs;
 }
 
 public abstract class MapGenerator : ScriptableObject
@@ -163,13 +179,16 @@ public class GenerationContext
     public Vector2Int Size;
     public Vector2Int Center;
     public List<Vector2Int> Enemies;
-    public Vector2Int EndPoint;
+    public List<Vector2Int> Structs;
+    public Vector2Int[] KeyStructs;
 
-    public GenerationContext(Vector2Int size)
+    public GenerationContext(Vector2Int size, int keyStructs)
     {
         Size = size;
         Center = size / 2;
         Map = new float[size.x, size.y];
         Enemies = new();
+        Structs = new();
+        KeyStructs = new Vector2Int[keyStructs];
     }
 }
