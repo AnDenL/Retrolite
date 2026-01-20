@@ -42,7 +42,7 @@ public class CodeRedactSystem : MonoBehaviour
 
         instance.label.text = name;
 
-        for (int i = 1; i < win.childCount - 2; i++)
+        for (int i = 2; i < win.childCount - 2; i++)
             Destroy(win.GetChild(i).gameObject);
         
         win.gameObject.SetActive(true);
@@ -55,22 +55,22 @@ public class CodeRedactSystem : MonoBehaviour
             {
                 case IntParam param:
                     var intp = Instantiate(instance.prefabs[1], win.transform);
-                    intp.transform.SetSiblingIndex(1);
+                    intp.transform.SetSiblingIndex(2);
                     instance.uiEditable.Add(intp.GetComponent<IntEdit>().Set(param));
                     break;
                 case FloatParam param:
                     var fp = Instantiate(instance.prefabs[2], win.transform);
-                    fp.transform.SetSiblingIndex(1);
+                    fp.transform.SetSiblingIndex(2);
                     instance.uiEditable.Add(fp.GetComponent<FloatEdit>().Set(param));
                     break;
                 case EnumParam param:
                     var enump = Instantiate(instance.prefabs[3], win.transform);
-                    enump.transform.SetSiblingIndex(1);
+                    enump.transform.SetSiblingIndex(2);
                     instance.uiEditable.Add(enump.GetComponent<EnumEdit>().Set(param));
                     break;
                 case ActionParam param:
                     var button = Instantiate(instance.prefabs[4], win.transform).GetComponent<Button>();
-                    button.transform.SetSiblingIndex(1);
+                    button.transform.SetSiblingIndex(2);
                     button.GetComponentInChildren<TextMeshProUGUI>().text = param.displableName;
 
                     var target = param.component;
