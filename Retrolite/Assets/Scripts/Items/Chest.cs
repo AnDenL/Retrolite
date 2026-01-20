@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Creatures;
 
@@ -52,6 +51,11 @@ public class Chest : Interactable
             else Instantiate(item, transform.position, Quaternion.identity).GetComponent<ArcAnim>()?.DropTo(pos);
             yield return _waitForSeconds0_5;
         }
+    }
+
+    private void SetReward(Reward newReward)
+    {
+        reward = newReward;
     }
 }
 

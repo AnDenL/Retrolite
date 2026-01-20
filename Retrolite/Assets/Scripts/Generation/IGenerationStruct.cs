@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IGenerationStruct
 {
-    public void Generate();
+    public void Generate(GameRandom random);
 }

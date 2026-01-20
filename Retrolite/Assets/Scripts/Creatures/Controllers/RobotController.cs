@@ -13,6 +13,8 @@ namespace Creatures
         {
             base.Init(owner);
 
+            checkTime = Random.Range(0f, 1f);
+
             if (owner.HealthComponent != null)
                 owner.HealthComponent.OnDamaged += (_) => WakeUp();
         }

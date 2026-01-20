@@ -6,12 +6,13 @@ namespace Creatures
     [CreateAssetMenu(fileName = "SlimeController", menuName = "CreatureAI/Controllers/SlimeController")]
     public class SlimeController : AIController
     {
-        private float checkInterval = 2f;
+        private float checkInterval;
         private Vector2 targetPosition;
 
         public override void Init(Creature owner)
         {
             base.Init(owner);
+            checkInterval = Random.Range(0, 0.5f);
         }
 
         public override Vector3 GetDirectionToTarget()

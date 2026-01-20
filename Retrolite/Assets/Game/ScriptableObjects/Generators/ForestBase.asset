@@ -15,7 +15,7 @@ MonoBehaviour:
   MinDistance: 2
   MaxDistance: 4
   MinAreaSize: 9
-  MaxAreaSize: 16
+  MaxAreaSize: 18
   RandomAngle: 90
   JitterAmount: 5
   NoiseStrength: 1
@@ -25,3 +25,5 @@ MonoBehaviour:
   MaxPointsPerBranch: 292
   MinDistBetweenKeyStructs: 30
   SafetyRadius: 5
+  EnemyDensity: 0.133
+  StructDensity: 0.2

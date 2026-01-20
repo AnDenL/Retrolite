@@ -143,7 +143,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1c459f0d3c96d644e92deab089a2c96a
-    m_Address: Materials/Shaders/Tree
+    m_Address: Materials/ShaderGraph/Tree
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a795217005adfd43b3fabbf5cc72f3b
-    m_Address: Materials/Shaders/Shadow
+    m_Address: Materials/ShaderGraph/Shadow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30a0784a21e0c6c4b89360da818463fb
-    m_Address: Materials/Shaders/TutorialBackground
+    m_Address: Materials/ShaderGraph/TutorialBackground
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -288,7 +288,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33b61874a7ab98043ad1ba6b0d623d4c
-    m_Address: Materials/Shaders/RadialFill
+    m_Address: Materials/ShaderGraph/RadialFill
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -303,7 +303,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36773cb55073d8744b60bd056d09f604
-    m_Address: Materials/Shaders/Fountain
+    m_Address: Materials/ShaderGraph/Fountain
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -418,7 +418,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 430a81eb20a6c144985dc61e94d59b26
-    m_Address: Materials/Shaders/LightReflection
+    m_Address: Materials/ShaderGraph/LightReflection
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -513,7 +513,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5a400cd90d264d645ae819d7457e17dc
-    m_Address: Materials/Shaders/WallTransparency 2
+    m_Address: Materials/ShaderGraph/WallTransparency 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -617,6 +617,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 66746364785300b40963c39d3a9e5e24
+    m_Address: Materials/Shaders/Minimap
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67111596fda7f1609b45f13384bd01ea
     m_Address: Textures/player
     m_ReadOnly: 0
@@ -628,7 +633,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6747d9d6b9e25e049a92b469b0052697
-    m_Address: Materials/Shaders/Water
+    m_Address: Materials/ShaderGraph/Water
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -673,7 +678,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6de143a646ff5fc7586d6f5e372efe5f
-    m_Address: Materials/Shaders/Bloom
+    m_Address: Materials/ShaderGraph/Bloom
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -708,7 +713,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 720bad0212d9d8d4e804e3c6aa6162e2
-    m_Address: Materials/Shaders/Nature
+    m_Address: Materials/ShaderGraph/Nature
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -738,7 +743,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 75a17c1ea76ea4b468b177e85cd55ad2
-    m_Address: Materials/Shaders/Energy
+    m_Address: Materials/ShaderGraph/Energy
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -758,7 +763,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7b3053e8ab15c484981043329d156c27
-    m_Address: Materials/Shaders/WallTransparency
+    m_Address: Materials/ShaderGraph/WallTransparency
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -818,7 +823,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 81f7247bc9e3bb3d3ae2cc84f68f0504
-    m_Address: Materials/Shaders/Fade
+    m_Address: Materials/ShaderGraph/Fade
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -868,7 +873,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8e10f884806d32842983da55aea12334
-    m_Address: Materials/Shaders/UnderWater
+    m_Address: Materials/ShaderGraph/UnderWater
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -923,7 +928,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 974ed0da08116758a84f9864f32ec40e
-    m_Address: Materials/Shaders/MenuButton
+    m_Address: Materials/ShaderGraph/MenuButton
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98e74c9d272ee5e4f874119e3eb6f464
+    m_Address: Materials/Shaders/UI_Minimap
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -973,7 +983,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9f3e837be7e377363a86281aed7ad935
-    m_Address: Materials/Shaders/Binary
+    m_Address: Materials/ShaderGraph/Binary
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1003,7 +1013,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a068db52f815a529caa69eb10f312c52
-    m_Address: Materials/Shaders/Teleport
+    m_Address: Materials/ShaderGraph/Teleport
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1028,7 +1038,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a766f9f8fa83da32ab80fe472ca7b95a
-    m_Address: Materials/Shaders/MainMenu
+    m_Address: Materials/ShaderGraph/MainMenu
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1148,7 +1158,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7f1fb37c9ce23c4d8fdf41ce9f8b310
-    m_Address: Materials/Shaders/Light
+    m_Address: Materials/ShaderGraph/Light
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1268,7 +1278,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ca472949731e0b0479f2e20112308423
-    m_Address: Materials/Shaders/Outline
+    m_Address: Materials/ShaderGraph/Outline
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1338,7 +1348,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d990e50a32ee131209ed70ef6e928db4
-    m_Address: Materials/Shaders/TreeShadow
+    m_Address: Materials/ShaderGraph/TreeShadow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1349,6 +1359,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dbbd80bb9b1968356b51ca0485d7f164
     m_Address: Tiles/Shop/Shop_0
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dd339f9bdf8a9074eb843142b66053cd
+    m_Address: Textures/RenderTextures/FogOfWar
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

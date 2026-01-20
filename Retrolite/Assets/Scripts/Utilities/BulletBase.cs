@@ -54,9 +54,12 @@ public class BulletBase : MonoBehaviour
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);
 
-        source.pitch = Random.Range(0.8f, 1.2f);
-        source.PlayOneShot(data.FireSound);
-
+        if (data.FireSound)
+        {
+            source.pitch = Random.Range(0.8f, 1.2f);
+            source.PlayOneShot(data.FireSound);
+        }
+        
         Spread = spread;
         lifeCoroutine = StartCoroutine(LifeTimer());
 

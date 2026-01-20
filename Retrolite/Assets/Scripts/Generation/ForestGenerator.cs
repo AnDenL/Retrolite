@@ -19,6 +19,8 @@ public class ForestGenerator : MapGenerator
     [Header("Placement Logic")]
     public float MinDistBetweenKeyStructs = 30f;
     public int SafetyRadius = 5;
+    [Range(0f,1f)] public float EnemyDensity;
+    [Range(0f,1f)] public float StructDensity;
 
     public override void Generate(GenerationContext context)
     {
@@ -45,7 +47,7 @@ public class ForestGenerator : MapGenerator
         var keyStructPositions = new List<Vector2Int>();
 
         var candidates = allPoints
-            .OrderByDescending(p => Vector2.Distance(p.Position, context.Center) * p.AreaSize)
+            .OrderByDescending(p => (40 + Vector2.Distance(p.Position, context.Center) / 2) * p.AreaSize)
             .ToList();
 
         int keyStructsNeeded = context.KeyStructs != null ? context.KeyStructs.Length : 3; 
@@ -73,8 +75,7 @@ public class ForestGenerator : MapGenerator
             if (nearKeyStruct) continue;
             float distFromCenter = Vector2.Distance(pos, context.Center);
             
-            bool isEnemy = distFromCenter < 25 ? false
-                : Random.value < 0.13f;
+            bool isEnemy = distFromCenter >= 25 && context.Random.Value < EnemyDensity;
 
             if (isEnemy)
             {
@@ -82,7 +83,7 @@ public class ForestGenerator : MapGenerator
             }
             else 
             {
-                if (Random.value > 0.8f) 
+                if (context.Random.Value < StructDensity) 
                     structPositions.Add(pos);
             }
         }
@@ -100,15 +101,15 @@ public class ForestGenerator : MapGenerator
         {
             Vector2 currentPos = startPos;
             float currentAngle = 360f / BranchCount * b;
-            int steps = Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
+            int steps = context.Random.Range(MinPointsPerBranch, MaxPointsPerBranch);
 
             for (int i = 0; i < steps; i++)
             {
-                currentAngle += Random.Range(-RandomAngle, RandomAngle);
+                currentAngle += context.Random.Range(-RandomAngle, RandomAngle);
                 Vector2 direction = new(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad));
-                float dist = Mathf.Lerp(MinDistance, MaxDistance, Random.value);
+                float dist = Mathf.Lerp(MinDistance, MaxDistance, context.Random.Value);
                 
-                currentPos += direction * dist + (Random.insideUnitCircle * JitterAmount);
+                currentPos += direction * dist + context.Random.PointInCircle(JitterAmount);
                 Vector2Int posInt = Vector2Int.RoundToInt(currentPos);
 
                 if (posInt.x < 5 || posInt.y < 5 || posInt.x >= context.Size.x - 5 || posInt.y >= context.Size.y - 5)
@@ -147,7 +148,7 @@ public class ForestGenerator : MapGenerator
 
     private void AddNoise(GenerationContext context)
     {
-        float offset = Random.Range(-100f, 100f);
+        float offset = context.Random.Range(-100f, 100f);
         for (int x = 0; x < context.Size.x; x++)
         {
             for (int y = 0; y < context.Size.y; y++)

@@ -2,18 +2,26 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
+using Random = Unity.Mathematics.Random;
+using System;
+
 public class LevelGenerationBase : MonoBehaviour
 {
     [SerializeField] private Vector2Int mapSize = new(64, 64);
     [SerializeField] private Layer[] layers;
     [SerializeField] private GameObject[] keyStructs;
+    [SerializeField] private Minimap map;
+    [SerializeField] private uint seed;
 
     private GenerationContext context;
-    public Minimap map;
+
+    private GameRandom Random => context.Random;
 
     private void Start()
     {
-        //Regenerate();
+        seed = (uint)UnityEngine.Random.Range(1, int.MaxValue);
+
+        Regenerate();
 
         if(map) map.Set(mapSize);
     }
@@ -23,7 +31,7 @@ public class LevelGenerationBase : MonoBehaviour
     {
         ClearMap();
 
-        context = new GenerationContext(mapSize, keyStructs.Length);
+        context = new GenerationContext(mapSize, keyStructs.Length, seed);
 
         foreach (var layer in layers)
         {
@@ -37,7 +45,7 @@ public class LevelGenerationBase : MonoBehaviour
 
             obj.transform.parent = transform;
             obj.transform.position = new Vector2(pos.x, pos.y);
-            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(); 
+            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(Random); 
         }
     }
 
@@ -60,7 +68,7 @@ public class LevelGenerationBase : MonoBehaviour
 
             GameObject obj = Instantiate(layer.Structs[Random.Range(0, layer.Structs.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity);
             obj.transform.parent = transform;
-            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(); 
+            if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(Random); 
         }
 
         RenderLayerOptimized(layer.MapTiles);
@@ -176,13 +184,14 @@ public abstract class MapGenerator : ScriptableObject
 public class GenerationContext
 {
     public float[,] Map;
+    public GameRandom Random;
     public Vector2Int Size;
     public Vector2Int Center;
     public List<Vector2Int> Enemies;
     public List<Vector2Int> Structs;
     public Vector2Int[] KeyStructs;
 
-    public GenerationContext(Vector2Int size, int keyStructs)
+    public GenerationContext(Vector2Int size, int keyStructs, uint seed)
     {
         Size = size;
         Center = size / 2;
@@ -190,5 +199,6 @@ public class GenerationContext
         Enemies = new();
         Structs = new();
         KeyStructs = new Vector2Int[keyStructs];
+        Random = new(seed);
     }
 }

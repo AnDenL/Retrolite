@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Random = UnityEngine.Random;
 
 public class Shop : MonoBehaviour, IGenerationStruct
 {
@@ -22,31 +21,31 @@ public class Shop : MonoBehaviour, IGenerationStruct
     [SerializeField] private int minDecorationsCount, maxDecorationsCount;
 
     [ContextMenu("Generate")]
-    public void Generate()
+    public void Generate(GameRandom random)
     {
         Clear();
-        HashSet<Vector3Int> positions = GenerateFloor();
+        HashSet<Vector3Int> positions = GenerateFloor(random);
         TileBase[] tiles = new TileBase[positions.Count];
         Array.Fill(tiles, tile);
         tilemap.SetTiles(positions.ToArray(), tiles);
 
-        int count = Random.Range(minCount, maxCount + 1);
+        int count = random.Range(minCount, maxCount + 1);
 
         for (int i = 0; i < count; i++)
         {
-            ForSaleItem item = items[Random.Range(0, items.Length)];
+            ForSaleItem item = items[random.Range(0, items.Length)];
             ShopItem shopItem = Instantiate(shopSlot, table.transform).GetComponent<ShopItem>();
             shopItem.Item = Instantiate(item.Prefab, shopItem.transform).transform;
-            shopItem.price = Random.Range(item.minCost, item.maxCost);
+            shopItem.price = random.Range(item.minCost, item.maxCost);
             shopItem.transform.localPosition = new Vector3(i * 1.25f - count * 0.625f + 0.625f, 0.5f, -0.1f);
         }
 
-        int deco = Random.Range(minDecorationsCount, maxDecorationsCount);
+        int deco = random.Range(minDecorationsCount, maxDecorationsCount);
         for (int i = 0; i < deco; i++)
         {
-            Vector2 pos = Random.insideUnitCircle * new Vector2(5, 3);
+            Vector2 pos = random.PointInCircle(1) * new Vector2(5, 3);
 
-            GameObject pref = decorations[Random.Range(0, decorations.Length)];
+            GameObject pref = decorations[random.Range(0, decorations.Length)];
 
             if (pref.TryGetComponent(out Collider2D collider))
             {
@@ -58,21 +57,21 @@ public class Shop : MonoBehaviour, IGenerationStruct
             spawned.transform.localPosition = pos;
         }
 
-        table.size = new Vector2(1f + count * 1.25f, table.size.y);
+        table.size = new Vector2(0.5f + count * 1.25f, table.size.y);
     }
 
-    public HashSet<Vector3Int> GenerateFloor()
+    public HashSet<Vector3Int> GenerateFloor(GameRandom random)
     {
         HashSet<Vector3Int> positions = new();
 
-        int size = Random.Range(minSize, maxSize+1);
+        int size = random.Range(minSize, maxSize+1);
 
         Vector3Int position = new();
         positions.Add(position);
 
         for (int i = 0; i < size; i++)
         {
-            position += GetRandomDirection();
+            position += (Vector3Int)random.GetRandomDirection();
 
             if (positions.Contains(position))
             {
@@ -87,17 +86,6 @@ public class Shop : MonoBehaviour, IGenerationStruct
 
         return positions;
     }
-
-    public Vector3Int GetRandomDirection() => Random.Range(0, 6) switch
-    {
-        0 => Vector3Int.left,
-        1 => Vector3Int.right,
-        2 => Vector3Int.up,
-        3 => Vector3Int.down,
-        4 => Vector3Int.left,
-        5 => Vector3Int.right,
-        _ => Vector3Int.zero,
-    };
 
     public void Clear()
     {

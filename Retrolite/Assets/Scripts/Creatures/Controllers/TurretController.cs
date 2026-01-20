@@ -14,7 +14,7 @@ namespace Creatures
         public override void Init(Creature owner)
         {
             base.Init(owner);
-
+            lastTime = Random.Range(0, 0.5f);
             skills = owner.ActiveSkills.Where(s => s.Type == SkillType.Attack).ToList();
         }
 

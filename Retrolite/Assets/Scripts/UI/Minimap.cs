@@ -30,7 +30,7 @@ public class Minimap : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) Switch();
+        if (Input.GetKeyDown(KeyCode.M)) Switch();
         if (isOpened)
         {
             if (Input.GetMouseButtonDown(0))
