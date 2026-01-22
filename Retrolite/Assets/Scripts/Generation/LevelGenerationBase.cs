@@ -3,7 +3,6 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
 using Random = Unity.Mathematics.Random;
-using System;
 
 public class LevelGenerationBase : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class LevelGenerationBase : MonoBehaviour
     [SerializeField] private Layer[] layers;
     [SerializeField] private GameObject[] keyStructs;
     [SerializeField] private Minimap map;
-    [SerializeField] private uint seed;
+    public uint seed;
 
     private GenerationContext context;
 

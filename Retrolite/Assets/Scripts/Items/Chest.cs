@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using Creatures;
+using System.Collections.Generic;
 
 public class Chest : Interactable
 {
@@ -61,24 +62,24 @@ public class Chest : Interactable
 
 [Serializable]
 public struct Reward
-{
-    [Serializable]
-    public struct ResourceReward
-    {
-        public ResourceType Type;
-        public int Amount;
-    }
-    
+{   
     public float Heal;
     public float Health;
     public GameObject[] Items;
-    public ResourceReward[] Resources;
+    public List<ResourceReward> Resources;
 
-    public Reward(float heal = 0, float health = 0, GameObject[] items = null, ResourceReward[] resources = null)
+    public Reward(float heal = 0, float health = 0, GameObject[] items = null, List<ResourceReward> resources = null)
     {
         Heal = heal;
         Health = health;
         Items = items;
         Resources = resources;
     }
+}
+
+[Serializable]
+public struct ResourceReward
+{
+    public ResourceType Type;
+    public int Amount;
 }
