@@ -48,7 +48,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 082b8586109b2f84497f22021208611c
-    m_Address: Textures/snow
+    m_Address: Textures/Snow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -267,6 +267,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2e7663fe5728cc64b9f1fc542ef84fc2
+    m_Address: Textures/Blaze--Spider WEB
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30a0784a21e0c6c4b89360da818463fb
     m_Address: Materials/ShaderGraph/TutorialBackground
     m_ReadOnly: 0
@@ -294,6 +299,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 34029b6cd0fd135468b7d1d7d40aa258
     m_Address: Tiles/Forest/Forest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3412a70e433ee5b4098efa6bce8e3bcf
+    m_Address: Textures/Blaze--Spider event bad
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -404,6 +414,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f9215ea0144899419cfbc0957140d3f
     m_Address: Volumes/DefaultVolumeProfile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3fc6feb4f2568154da244cf1035ccded
+    m_Address: Textures/Blaze-Crystal event
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
