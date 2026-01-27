@@ -152,7 +152,8 @@ PrefabInstance:
       propertyPath: passiveTemplates.Array.data[1]
       value: 
       objectReference: {fileID: 11400000, guid: 72a1fb4e2709036469d2f8b4f1fc9b6a, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7173275606769772937, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

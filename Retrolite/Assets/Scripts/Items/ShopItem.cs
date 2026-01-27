@@ -18,8 +18,10 @@ public class ShopItem : Interactable
 
     private bool isBought;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         if (Item == null) Item = transform.GetChild(1);
         coll = Item.GetComponent<Collider2D>();
         source = GetComponent<AudioSource>();

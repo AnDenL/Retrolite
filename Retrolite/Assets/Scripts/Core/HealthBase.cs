@@ -105,6 +105,7 @@ public class HealthBase : MonoBehaviour, IDamagable
         if (isDead) return;
         isDead = true;
         OnDeath?.Invoke();
-        Destroy(gameObject, destroyDelay);
+
+        if (destroyDelay >= 0) Destroy(gameObject, destroyDelay);
     }
 }

@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2838384067363297853
 Transform:
   m_ObjectHideFlags: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: b3bfe0b266b142e4d86ed12e816adc9b, type: 2}
+  sr: {fileID: 0}
   gunData:
     Name: Test gun
     FireRate:
@@ -196,6 +197,7 @@ MonoBehaviour:
       OnDamage:
         rid: -2
       BulletSprite: {fileID: 716858545, guid: fc0967170faad231792a953e56e64c5d, type: 3}
+      FireSound: {fileID: 0}
       IsDynamic: 1
   part1: {fileID: 7463917477325957117, guid: 879f7133a453a9c4b8ed9461e73a493b, type: 3}
   part2: {fileID: 9097894827093708096, guid: 879f7133a453a9c4b8ed9461e73a493b, type: 3}
@@ -251,7 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHeight: 0.75
   duration: 0.6
-  shadow: {fileID: 1775889336947494533}
+  sr: {fileID: 0}
 --- !u!1001 &7039146691952667159
 PrefabInstance:
   m_ObjectHideFlags: 0

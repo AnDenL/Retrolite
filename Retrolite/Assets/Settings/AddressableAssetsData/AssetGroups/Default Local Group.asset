@@ -977,6 +977,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b3d979b6bf44164da2465beaf7b995d
+    m_Address: Textures/RenderTextures/Reflections
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b7438c075e3deb44a589e778626c423
     m_Address: Prefabs/RobotEnemy1
     m_ReadOnly: 0
@@ -1327,6 +1332,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cdbc7bdf12e31944bb3c0fb416066d25
+    m_Address: ScriptableObjects/Utils/AllNames
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ce153a73c7399784b9ff284541719ae2
     m_Address: Materials/TreeShadow 1
     m_ReadOnly: 0
@@ -1529,6 +1539,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f490c6b6d9706074588d81e796dcc8fd
     m_Address: Textures/Interact
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f4db4875d868b7d4cb1a80bb137a3476
+    m_Address: Tiles/Forest/ForestTilerule
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

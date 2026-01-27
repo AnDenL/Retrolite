@@ -1,19 +1,16 @@
 using UnityEngine;
 
-public class GunPickUp : Interactable
+[RequireComponent(typeof(SpriteRenderer))]
+public class GunPickUp : Interactable, IGenerationStruct
 {
     [SerializeField] private GunData gunData;
 
-    [SerializeField] private Sprite part1, part2;
     [SerializeField][Range(0.0f, 1.0f)] private float hueShift;
 
-    private void Start() => SetSprite();
-
-    [ContextMenu("SetSprite")]
-    private void SetSprite()
+    public void Generate(GameRandom random)
     {
-        gunData.GunSprite = WeaponSpriteGenerator.CombineSprites(part1, part2, hueShift);
-        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite; // Using GetComponent instead cached variable in order to invoke method in inspector 
+        gunData.Generate(random);
+        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
     }
 
     public override void Interact(Creature creature)

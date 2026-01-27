@@ -142,7 +142,7 @@ namespace CalculatingSystem
                 Echo => context.Gun.Data.Echo,
                 Distance => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
                 PlayerDistance => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
-                Ammo => context.Gun != null ? context.Gun.Data.CurrentAmmo : Break(variable, context),
+                Ammo => context.Bullet != null ? context.Bullet.Number : Break(variable, context),
                 RandomNum => UnityEngine.Random.Range(-5f, 5f),
                 Money => PlayerController.Player.Resources.Get(ResourceType.Money).Count / 100,
                 Speed => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),

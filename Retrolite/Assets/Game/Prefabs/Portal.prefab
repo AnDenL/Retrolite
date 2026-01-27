@@ -92,7 +92,6 @@ GameObject:
   m_Component:
   - component: {fileID: 248744451312934156}
   - component: {fileID: 4421958398873472466}
-  - component: {fileID: 2755042689906276940}
   - component: {fileID: 1942371950287300718}
   - component: {fileID: 2290549033930229658}
   - component: {fileID: 6614275668846100066}
@@ -173,18 +172,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2755042689906276940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3690514132537977228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8772876e2e2d351855c55d01552e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1942371950287300718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +366,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_LocalScale: {x: 16, y: 16, z: 16}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 248744451312934156}
@@ -424,7 +411,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1526760340, guid: fc0967170faad231792a953e56e64c5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

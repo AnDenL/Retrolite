@@ -94,7 +94,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3765374316514581425}
   - component: {fileID: 5803053506375085859}
-  - component: {fileID: 3653215343615848587}
   - component: {fileID: 8993293185811293001}
   m_Layer: 0
   m_Name: Capsule
@@ -172,18 +171,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3653215343615848587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6370295852432967164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8772876e2e2d351855c55d01552e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!70 &8993293185811293001
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

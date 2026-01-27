@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour
 
     protected Material defaultMaterial;
 
-    protected void Awake()
+    protected virtual void Start()
     {
         if (!sr) sr = GetComponent<SpriteRenderer>();
         defaultMaterial = sr.material;

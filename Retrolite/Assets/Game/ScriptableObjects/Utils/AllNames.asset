@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41c3b844b0bb63348bc1143a61c55525, type: 3}
+  m_Name: AllNames
+  m_EditorClassIdentifier: 
+  Adjectives:
+  - Holy
+  - Sinful
+  - Cursed
+  - Heretic
+  - Bloody
+  - Possessed
+  - Unholy
+  - Crucified
+  - Prayer
+  - Ancient
+  - Apostolic
+  - Hellish
+  - Penitent
+  - Eternal
+  - Forbidden
+  - Mournful
+  - Dead
+  Nouns:
+  - Idol
+  - Prophet
+  - Executioner
+  - Psalm
+  - Cross
+  - Altar
+  - Exorcist
+  - Verdict
+  - Nail
+  - Wrath
+  - Testament
+  - Preacher
+  - Reaper
+  - Sin
+  - Messiah
+  - Heretic
+  Suffixes:
+  - Lament
+  - of Redemption
+  - of Sinners
+  - of Apocalypse
+  - of Martyr
+  - of Satan
+  - of Abyss
+  - of Betrayal
+  - of Hell
+  - of Heaven
+  - of Blood
+  - of Darkness
+  - of Soul
+  - of Suffering
+  - of Purgatory
+  - of Faith
+  - of Oblivion
+  - of Death

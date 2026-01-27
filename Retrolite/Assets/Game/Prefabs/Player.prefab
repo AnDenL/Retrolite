@@ -68,7 +68,8 @@ MonoBehaviour:
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
   Rb: {fileID: 0}
-  step: {fileID: 8300000, guid: 383025133c8f7e44c99f3072741b6492, type: 3}
+  Source: {fileID: 0}
+  step: {fileID: 8300000, guid: c1e28723d37584e40aa1cb4e412a77b1, type: 3}
   arm1: {fileID: 6386035971000908232}
   arm2: {fileID: 1127240027396745071}
   hand1: {fileID: 3417523190237438834}
@@ -209,7 +210,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5494337411079909332, guid: 38fda2613ac5e9b6a9734226da4ff891, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7124fc28f5878534cbb3dfcd038c1f03, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -305,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 259502998954065255}
   - component: {fileID: 3417523190237438834}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -390,7 +391,7 @@ GameObject:
   - component: {fileID: 2005852501118021681}
   - component: {fileID: 1127240027396745071}
   - component: {fileID: 840005569250673569}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3990201699941085026}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -686,8 +687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4090062580435849662}
   - component: {fileID: 5562844838272994668}
-  - component: {fileID: 3147906922366834280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,18 +763,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3147906922366834280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7637472066147666200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5e5553a846f59f1687b9d324be36ee3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8515516440305265430
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,7 +773,7 @@ GameObject:
   m_Component:
   - component: {fileID: 861152893549071017}
   - component: {fileID: 2160825754144635081}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -842,7 +830,7 @@ GameObject:
   - component: {fileID: 2368763126422438049}
   - component: {fileID: 6386035971000908232}
   - component: {fileID: 6498460163385416186}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: arm1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -991,7 +979,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8362474879578523012}
   - component: {fileID: 5004654193037301585}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Hand 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

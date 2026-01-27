@@ -64,7 +64,7 @@ namespace Creatures
             for (int i = 0; i < r; i++)
             {
                 clip.rotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-                pool.Get().Fire(Random.Range(0, 1));
+                pool.Get().Fire(Random.Range(0, 1), i);
             }
             lastTime = Time.time;
         }

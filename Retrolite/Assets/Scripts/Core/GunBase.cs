@@ -46,8 +46,8 @@ public class GunBase : MonoBehaviour
 
         float accuracy = data.Accuracy.Evaluate(context);
         float spread = accuracy == 0 ? 0 : 5 / accuracy;
-
-        bulletPool.Get().Fire(Random.Range(-spread, spread));
+        
+        bulletPool.Get().Fire(Random.Range(-spread, spread), data.CurrentAmmo);
 
         if (data.MagazineSize != 0) data.CurrentAmmo--;
         if (data.CurrentAmmo == 0) manager.Reload();
@@ -95,7 +95,7 @@ public class GunData
         GunType = gunType;
         BulletType = bulletType;
         BulletData = bulletData;
-        GunSprite = WeaponSpriteGenerator.instance.RandomSprite();
+        GunSprite = WeaponGenerator.Instance.RandomSprite();
         Echo = 0;
     }
 
@@ -112,6 +112,23 @@ public class GunData
         BulletData = null;
         GunSprite = null;
         Echo = 0;
+    }
+
+    public void Generate(GameRandom rnd)
+    {
+        FireRate = FormulaGenerator.GenerateRandomFormula(rnd);
+        Accuracy = FormulaGenerator.GenerateRandomFormula(rnd);
+
+        Debug.Log($"Fire rate: {FireRate.ToReadableString()}");
+        Debug.Log($"Accuracy: {Accuracy.ToReadableString()}");
+
+        GunSprite = WeaponGenerator.Instance.RandomSprite(rnd);
+        Name = WeaponGenerator.Instance.Names.GetRandomName(rnd);
+        ReloadTime = rnd.Range(0.5f,4f);
+        MagazineSize = rnd.Range(1,32);
+        CurrentAmmo = MagazineSize;
+
+        BulletData?.GenerateRandomFormulas(rnd);
     }
 }
 

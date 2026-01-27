@@ -1,6 +1,5 @@
 namespace CalculatingSystem
 {
-    using System;
     using UnityEngine;
     public static class Utilities
     {

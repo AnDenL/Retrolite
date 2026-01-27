@@ -7,6 +7,6 @@ public class LevelChange : Interactable
     public override void Interact(Creature creature)
     {
         base.Interact(creature);
-        SceneManager.LoadScene(sceneIndex >= 0 ? SceneManager.GetActiveScene().buildIndex : sceneIndex);
+        SceneManager.LoadScene(sceneIndex >= 0 ? sceneIndex : SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -68,7 +68,7 @@ namespace Creatures
                 owner.Rb.AddForce(Knockback * dir, ForceMode2D.Impulse);
                 Clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (owner.transform.localScale.x == 1 ? 0 : 180));
                 ParticleManager.PlayParticle("Impact", Clip.position);
-                Pool.Get().Fire(0);
+                Pool.Get().Fire(0, 1);
             }
         }
     }

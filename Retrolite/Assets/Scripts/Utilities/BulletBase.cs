@@ -31,6 +31,8 @@ public class BulletBase : MonoBehaviour
     public float Angle { get; protected set; }
     public float Scale { get; protected set; }
 
+    public int Number { get; protected set; }
+
     public bool Inactive { get; protected set; }
 
     public virtual void Initialize(BulletData Data, Context Context, BulletPool Pool)
@@ -48,7 +50,7 @@ public class BulletBase : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
-    public virtual void Fire(float spread)
+    public virtual void Fire(float spread, int number)
     {
         gameObject.SetActive(true);
         if (lifeCoroutine != null)
@@ -62,6 +64,8 @@ public class BulletBase : MonoBehaviour
         
         Spread = spread;
         lifeCoroutine = StartCoroutine(LifeTimer());
+
+        Number = number;
 
         Angle = transform.rotation.eulerAngles.z;
         start = (Vector2)transform.position;
@@ -224,21 +228,21 @@ public class BulletData
         Scale = new ConstantNode(scale);
         Angle = new ConstantNode(angle);
         Knockback = new ConstantNode(knockback);
-        BulletSprite = WeaponSpriteGenerator.instance.BulletList.RandomSprite();
+        BulletSprite = WeaponGenerator.Instance.BulletList.RandomSprite();
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;
     }
 
-    public void GenerateRandomFormulas()
+    public void GenerateRandomFormulas(GameRandom rnd)
     {
-        Speed = FormulaGenerator.GenerateRandomFormula();
-        Damage = FormulaGenerator.GenerateRandomFormula();
-        LifeTime = FormulaGenerator.GenerateRandomFormula();
-        Scale = FormulaGenerator.GenerateRandomFormula();
-        FormulaNode tempAngle = FormulaGenerator.GenerateRandomFormula();
+        Speed = FormulaGenerator.GenerateRandomFormula(rnd);
+        Damage = FormulaGenerator.GenerateRandomFormula(rnd);
+        LifeTime = FormulaGenerator.GenerateRandomFormula(rnd);
+        Scale = FormulaGenerator.GenerateRandomFormula(rnd);
+        FormulaNode tempAngle = FormulaGenerator.GenerateRandomFormula(rnd);
         Angle = tempAngle.IsConstant() ? new ConstantNode(0) : tempAngle;
-        Knockback = FormulaGenerator.GenerateRandomFormula();
+        Knockback = FormulaGenerator.GenerateRandomFormula(rnd);
 
         Debug.Log($"Speed: {Speed.ToReadableString()}");
         Debug.Log($"Damage: {Damage.ToReadableString()}");

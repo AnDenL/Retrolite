@@ -4,6 +4,7 @@ using UnityEngine;
 using Creatures;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Animator))]
 public class Chest : Interactable
 {
     private static WaitForSeconds _waitForSeconds0_5 = new(0.5f);
@@ -12,7 +13,11 @@ public class Chest : Interactable
     private bool isOpen = false;
     private Animator animator;
 
-    private void Start() => animator = GetComponent<Animator>();
+    protected override void Start()
+    {
+        base.Start();
+        animator = GetComponent<Animator>();
+    } 
 
     public override void Interact(Creature creature)
     {

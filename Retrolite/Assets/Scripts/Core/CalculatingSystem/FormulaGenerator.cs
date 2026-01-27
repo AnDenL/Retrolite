@@ -3,51 +3,49 @@ namespace CalculatingSystem
     using System;
     public static class FormulaGenerator
     {
-        private static System.Random rnd = new();
-
-        public static FormulaNode GenerateRandomFormula(int depth = 0, int maxDepth = 3)
+        public static FormulaNode GenerateRandomFormula(GameRandom rnd, int depth = 0, int maxDepth = 3)
         {
             if (depth >= maxDepth)
-                return RandomLeaf();
+                return RandomLeaf(rnd);
 
-            int choice = rnd.Next(0, 6);
+            int choice = rnd.Range(0, 6);
             return choice switch
             {
-                0 => RandomConstant(),
-                1 => RandomVariable(),
+                0 => RandomConstant(rnd),
+                1 => RandomVariable(rnd),
                 2 => new Expression(
-                        GenerateRandomFormula(depth + 1, maxDepth),
-                        RandomOperator(),
-                        GenerateRandomFormula(depth + 1, maxDepth)),
-                3 => new AbsoluteNode(GenerateRandomFormula(depth + 1, maxDepth)),
-                4 => new SinNode(GenerateRandomFormula(depth + 1, maxDepth)),
-                5 => new CosNode(GenerateRandomFormula(depth + 1, maxDepth)),
-                _ => RandomConstant()
+                        GenerateRandomFormula(rnd, depth + 1, maxDepth),
+                        RandomOperator(rnd),
+                        GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                3 => new AbsoluteNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                4 => new SinNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                5 => new CosNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                _ => RandomConstant(rnd)
             };
         }
 
-        private static FormulaNode RandomLeaf()
+        private static FormulaNode RandomLeaf(GameRandom rnd)
         {
-            return rnd.Next(0, 2) == 0 ? RandomConstant() : RandomVariable();
+            return rnd.Range(0, 2) == 0 ? RandomConstant(rnd) : RandomVariable(rnd);
         }
 
-        private static ConstantNode RandomConstant()
+        private static ConstantNode RandomConstant(GameRandom rnd)
         {
-            float value = (float)Math.Round(rnd.NextDouble() * 10 - 5, 2);
+            float value = (float)Math.Round(rnd.Value * 10 - 5, 2);
             return new ConstantNode(value);
         }
 
-        private static VariableNode RandomVariable()
+        private static VariableNode RandomVariable(GameRandom rnd)
         {
             Array values = Enum.GetValues(typeof(StatVariable));
-            StatVariable randomVar = (StatVariable)values.GetValue(rnd.Next(values.Length));
+            StatVariable randomVar = (StatVariable)values.GetValue(rnd.Range(0, values.Length));
             return new VariableNode(randomVar);
         }
 
-        private static Operator RandomOperator()
+        private static Operator RandomOperator(GameRandom rnd)
         {
             Array values = Enum.GetValues(typeof(Operator));
-            return (Operator)values.GetValue(rnd.Next(values.Length));
+            return (Operator)values.GetValue(rnd.Range(0, values.Length));
         }
     }
 }

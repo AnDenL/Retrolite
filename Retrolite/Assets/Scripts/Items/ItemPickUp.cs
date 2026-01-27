@@ -8,8 +8,10 @@ public class ItemPickUp : Interactable
     public Item Item;
     public TextMeshPro Description;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         sr.sprite = Item.Icon;
         Description.text = Item.ItemName + "\n" + (string.IsNullOrWhiteSpace(Item.CustomDescription) ? 
                             Item.Action.ToReadableString() : Item.CustomDescription);

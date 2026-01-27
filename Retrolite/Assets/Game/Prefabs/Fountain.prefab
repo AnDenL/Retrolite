@@ -5014,6 +5014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: 2100000, guid: 0a3fb4d75d4b1d444bd67fdbd8f09e4a, type: 2}
+  sr: {fileID: 0}
 --- !u!58 &1072400321531639840
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5060,7 +5061,6 @@ GameObject:
   - component: {fileID: 197741672009489380}
   - component: {fileID: 4214469306506470173}
   - component: {fileID: 4430128040682233931}
-  - component: {fileID: 8219193311069370256}
   - component: {fileID: 827351474663461605}
   m_Layer: 0
   m_Name: Fountain
@@ -5175,18 +5175,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 5, y: 2.25}
   m_Direction: 1
---- !u!114 &8219193311069370256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6887164570186827389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de8772876e2e2d351855c55d01552e35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &827351474663461605
 AudioSource:
   m_ObjectHideFlags: 0

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e58832ff0146f4fa764dd37827a9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  List1: {fileID: 11400000, guid: f8696bfe12da6a0439f7519b46d599a4, type: 2}
-  List2: {fileID: 11400000, guid: cee8ecd7c2a0db1c8bdeef4a3f90190f, type: 2}
+  FisrtPart: {fileID: 11400000, guid: f8696bfe12da6a0439f7519b46d599a4, type: 2}
+  SecondPart: {fileID: 11400000, guid: cee8ecd7c2a0db1c8bdeef4a3f90190f, type: 2}
+  Names: {fileID: 11400000, guid: cdbc7bdf12e31944bb3c0fb416066d25, type: 2}
   BulletList: {fileID: 11400000, guid: c52e22d6b6679de4687184f3cfd388d2, type: 2}
