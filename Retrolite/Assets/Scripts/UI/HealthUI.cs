@@ -11,7 +11,7 @@ public class HealthUI : MonoBehaviour
     [SerializeField] private Creature target;
 
     [Header("Scaling")]
-    [SerializeField] private Vector2 uiScale = new Vector2(1f, 1f);
+    [SerializeField] private Vector2 uiScale = new(1f, 1f);
 
     private const float healthWidth = 1.1f;
     private const float healthHeight = 0.25f;
@@ -52,6 +52,15 @@ public class HealthUI : MonoBehaviour
         if (health > 0) healthSlider.localScale = new Vector3(healthWidth * uiScale.x * (health / maxHealth), healthHeight * uiScale.y, 1);
         else healthSlider.localScale = Vector3.zero;
         text.text = health.ToString("0");
+    }
+
+    private void OnEnable()
+    {
+        if (!target.HealthComponent) return;
+        target.HealthComponent.OnHealthChanged += OnHealthChange;
+        target.Corruption.OnCorrupting += OnStabilityChange;
+        OnHealthChange(target.HealthComponent.Health, target.HealthComponent.MaxHealth);
+        OnStabilityChange(target.Corruption.Stability);
     }
 
     private void OnDisable()

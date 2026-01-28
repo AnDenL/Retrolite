@@ -16,8 +16,15 @@ public class Player : Creature
 
     private AudioSource source;
 
-    private void Start()
+    public override bool IsActive 
     {
+        get => true;
+        set { return; }
+    }
+
+    protected override void Start()
+    {
+        OnActiveStateChanged(true);
         source = GetComponent<AudioSource>();
         normal = arm1.material;
         binary = arm2.material;

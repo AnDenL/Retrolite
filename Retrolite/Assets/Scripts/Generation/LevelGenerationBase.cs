@@ -18,7 +18,7 @@ public class LevelGenerationBase : MonoBehaviour
 
     private void Start()
     {
-        seed = (uint)UnityEngine.Random.Range(1, int.MaxValue);
+        seed = (uint)System.Guid.NewGuid().GetHashCode();
 
         Regenerate();
 

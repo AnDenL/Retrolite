@@ -30,6 +30,31 @@ MonoBehaviour:
   - Forbidden
   - Mournful
   - Dead
+  - Binary
+  - Glitchy
+  - Syntactic
+  - Compiled
+  - Null
+  - Pixel
+  - Vector
+  - Blue
+  - Wireless
+  - Encrypted
+  - Hashed
+  - Formatted
+  - Logical
+  - Recursive
+  - Procedural
+  - Deleted
+  - Fucking
+  - Broken
+  - Useless
+  - Weak
+  - Mini
+  - Dessert
+  - Lost
+  - Unique
+  - Void
   Nouns:
   - Idol
   - Prophet
@@ -47,6 +72,22 @@ MonoBehaviour:
   - Sin
   - Messiah
   - Heretic
+  - System
+  - Protocol
+  - Glitch
+  - Bug
+  - Debugger
+  - Index
+  - Router
+  - Code
+  - Operator
+  - Generator
+  - Driver
+  - Gun
+  - Pistol
+  - Eagle
+  - Rifle
+  - Shotgun
   Suffixes:
   - Lament
   - of Redemption
@@ -66,3 +107,21 @@ MonoBehaviour:
   - of Faith
   - of Oblivion
   - of Death
+  - of Server
+  - of Memory
+  - of System
+  - of Matrix
+  - of Admin
+  - of Unity
+  - of Texture
+  - of Death
+  - of Provider
+  - of Access
+  - of User
+  - of GPU
+  - of CPU
+  - of Overflow
+  - of Random
+  - of Network
+  - of Kernel
+  - II

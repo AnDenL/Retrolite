@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1841817529
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: -1408751658, guid: ac0e85215e490cfd09e6c0219d9c36ad, type: 3}
@@ -9941,6 +9941,7 @@ MonoBehaviour:
   Speed: 35
   baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
   CanAct: 1
+  ui: {fileID: 408960131683230884}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}

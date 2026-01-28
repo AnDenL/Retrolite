@@ -10,6 +10,8 @@ public class GameRandom
         rng = new Unity.Mathematics.Random(seed == 0 ? 1 : seed);
     }
 
+    public uint NextUInt() => rng.NextUInt();
+
     public int Range(int min, int max) => rng.NextInt(min, max);
     public float Range(float min, float max) => rng.NextFloat(min, max);
     public float Value => rng.NextFloat();

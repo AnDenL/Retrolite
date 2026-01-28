@@ -11,7 +11,7 @@ public class WeaponNameList : ScriptableObject
     {
         string adj = rnd.Chance(0.5f) ? Adjectives[rnd.Range(0, Adjectives.Length)] + " " : "";
         string noun = Nouns[rnd.Range(0, Nouns.Length)];
-        string suf = rnd.Chance(0.5f) ? " " + Adjectives[rnd.Range(0, Adjectives.Length)] : "";
+        string suf = rnd.Chance(0.5f) ? " " + Suffixes[rnd.Range(0, Suffixes.Length)] : "";
         
         return $"{adj}{noun}{suf}";
     }

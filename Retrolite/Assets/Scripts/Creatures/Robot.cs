@@ -12,8 +12,9 @@ public class Robot : Creature
     private Vector2 leftTurbinePosition;
     private Vector2 rightTurbinePosition;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         HealthComponent.OnDamaged += Damage;
         headPosition = head.localPosition;
         leftTurbinePosition = leftTurbine.localPosition;

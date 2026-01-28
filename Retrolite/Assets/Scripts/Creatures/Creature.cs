@@ -47,13 +47,27 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     public Creature Target => controller.Target;
     public Alignment Alignment => controller.Alignment;
 
+    protected bool isActive = true;
+
+    public virtual bool IsActive 
+    {
+        get => isActive;
+        set
+        {
+            if (isActive == value) return;
+            isActive = value;
+            OnActiveStateChanged(value);
+        }
+    }
+
+    [SerializeField] protected Transform ui;
+
     [HideInInspector] public Animator Animator;
     [HideInInspector] public HealthBase HealthComponent;
     [HideInInspector] public CorruptibleBase Corruption;
     [HideInInspector] public Rigidbody2D Rb;
     [HideInInspector] public AudioSource Source;
 
-    protected Transform ui;
     protected int _isBackwardsHash;
     protected int _isCorruptedHash;
     protected int _corruptHash;
@@ -106,7 +120,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
             baseMovementSkill.Init(this);
         }
 
-        ui = transform.Find("UI");
+        ui = ui ? ui : transform.Find("UI");
 
         Corruption.OnCorrupting += DestabilizationAnim;
         Corruption.OnVulnerabilityChange += Corrupt;
@@ -122,6 +136,14 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         _isDeadHash = Animator.StringToHash("Death");
         _corruptHash = Animator.StringToHash("Corrupt");
         _lookUpHash = Animator.StringToHash("LookUp");
+    }
+
+    protected virtual void Start()
+    {
+        if (CreaturesManager.Instance != null)
+        {
+            CreaturesManager.RegisterCreature(this);
+        }
     }
 
     protected virtual void Update()
@@ -180,6 +202,8 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     public virtual void LookAt(Vector3 position)
     {
+        if (!isActive) return;
+
         if (position.x < transform.position.x)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -198,6 +222,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     public void UpdateAnimationState()
     {
+        if (!isActive) return;
         if (Rb.velocity.sqrMagnitude <= 0.001f) return;
 
         bool movingLeft = Rb.velocity.x < 0f;
@@ -290,7 +315,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     public void PlaySound(AudioClip clip)
     {
-        if(Vector2.Distance(transform.position, PlayerController.Player.transform.position) > 25) return;
+        if(!isActive) return;
         Source.pitch = UnityEngine.Random.Range(0.8f, 1.2f);
         Source.PlayOneShot(clip);
     }
@@ -311,7 +336,18 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     protected void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
     protected void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
-    protected void DeathEffect() => Animator.SetBool(_isDeadHash, true);
+    protected void DeathEffect()
+    {
+        Break();
+        Animator.SetBool(_isDeadHash, true);
+    }
+
+    protected void OnActiveStateChanged(bool active)
+    {
+        if (Animator != null) Animator.enabled = active;
+
+        if (ui != null) ui.gameObject.SetActive(active);
+    }
 
     #endregion
 }

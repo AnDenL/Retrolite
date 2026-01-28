@@ -57,7 +57,7 @@ namespace Creatures
 
         public void Spawn(IEnumerator enumerator)
         {
-            if (Time.time < lastTime + Cooldown) return;
+            if (Time.time < lastTime + Cooldown || !owner.IsActive) return;
 
             int r = Random.Range(MinCount, MaxCount);
 

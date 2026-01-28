@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3971048331634022354}
   - component: {fileID: 2172032126196558913}
   - component: {fileID: 1308001951333755849}
+  - component: {fileID: -2141847731480132789}
   m_Layer: 0
   m_Name: Rain
   m_TagString: Untagged
@@ -4903,3 +4904,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-2141847731480132789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5520106591224404730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36aa389a687e6024b9bdb40e48a8f760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

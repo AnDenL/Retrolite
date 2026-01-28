@@ -4,15 +4,21 @@ using UnityEngine.UI;
 
 public class Minimap : MonoBehaviour
 {
+    public static Minimap Instance;
     public Image Map, Fullmap;
     public Camera RenderCamera;
-
-    private bool isOpened;
+    public bool IsOpened;
+    
     private float currentZoom = 4;
     private Vector2 fullMapPos;
     private Vector2 startDragMouse, startDragPos;
 
     private Animator animator;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -23,15 +29,15 @@ public class Minimap : MonoBehaviour
 
     private void Switch()
     {
-        isOpened = !isOpened;
+        IsOpened = !IsOpened;
 
-        animator.SetBool("Opened", isOpened);
+        animator.SetBool("Opened", IsOpened);
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.M)) Switch();
-        if (isOpened)
+        if (IsOpened)
         {
             if (Input.GetMouseButtonDown(0))
             {

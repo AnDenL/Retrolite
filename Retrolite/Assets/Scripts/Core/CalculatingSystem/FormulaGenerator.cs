@@ -3,12 +3,12 @@ namespace CalculatingSystem
     using System;
     public static class FormulaGenerator
     {
-        public static FormulaNode GenerateRandomFormula(GameRandom rnd, int depth = 0, int maxDepth = 3)
+        public static FormulaNode GenerateRandomFormula(GameRandom rnd, int depth = 0, int maxDepth = 8)
         {
             if (depth >= maxDepth)
                 return RandomLeaf(rnd);
 
-            int choice = rnd.Range(0, 6);
+            int choice = rnd.Range(0, 7);
             return choice switch
             {
                 0 => RandomConstant(rnd),

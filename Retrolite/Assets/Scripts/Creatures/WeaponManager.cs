@@ -67,7 +67,7 @@ public class WeaponManager : MonoBehaviour
 
     public void Scroll(int direction)  
     {
-        if (guns.Count <= 1 || !owner.Controller.IsPlayer) return;
+        if (guns.Count <= 1 || !owner.Controller.IsPlayer || Minimap.Instance.IsOpened) return;
         int previousSelected = selected;
         selected += direction;
 

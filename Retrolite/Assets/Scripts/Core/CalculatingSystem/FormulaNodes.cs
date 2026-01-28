@@ -136,21 +136,21 @@ namespace CalculatingSystem
         {
             return variable switch
             {
-                OwnerHP => context.Owner.HealthComponent.GetHealthPercent(),
-                EnemyHP => context.TargetHealth?.GetHealthPercent() ?? Break(variable, context),
-                BulletTime => context.Bullet?.GetLifetime() ?? Break(variable, context),
-                Echo => context.Gun.Data.Echo,
-                Distance => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
-                PlayerDistance => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
+                HP => context.Owner.HealthComponent.GetHealthPercent(),
+                EnemyHP => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : Break(variable, context),
+                StatVariable.Time => context.Bullet != null ? context.Bullet.GetLifetime() : Break(variable, context),
+                Echo => context.Gun != null ? context.Gun.Data.Echo : Break(variable, context),
+                Dist => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
+                PDist => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
                 Ammo => context.Bullet != null ? context.Bullet.Number : Break(variable, context),
-                RandomNum => UnityEngine.Random.Range(-5f, 5f),
+                Rand => UnityEngine.Random.Range(-5f, 5f),
                 Money => PlayerController.Player.Resources.Get(ResourceType.Money).Count / 100,
                 Speed => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),
                 Size => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
-                BulletSpread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
-                BulletDestroyTime => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
-                Velocity => context.Target.Rb.velocity.magnitude,
-                HomingAngle => Utilities.CalculateHomingAngle(context),
+                Spread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
+                DT => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
+                Velocity => context.Target != null ? context.Target.Rb.velocity.magnitude : Break(variable, context),
+                Homing => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };
         }
@@ -162,20 +162,20 @@ namespace CalculatingSystem
 
     public enum StatVariable
     {
-        OwnerHP,
+        HP,
         EnemyHP,
-        BulletTime,
+        Time,
         Echo,
-        Distance,
-        PlayerDistance,
+        Dist,
+        PDist,
         Ammo,
-        RandomNum,
+        Rand,
         Money,
         Speed,
         Size,
-        BulletSpread,
-        BulletDestroyTime,
+        Spread,
+        DT,
         Velocity,
-        HomingAngle
+        Homing
     }
 }
