@@ -31,8 +31,8 @@ public class GunPickUp : Interactable, IGenerationStruct
         sb.AppendLine($"Accuracy : {gunData.Accuracy.ToReadableString()}");
         sb.AppendLine($"Ammo : {gunData.CurrentAmmo}/{gunData.MagazineSize}");
         sb.AppendLine("— Bullet —");
-        sb.AppendLine($"Dmg : {gunData.BulletData.Damage.ToReadableString()}");
-        sb.AppendLine($"Spd : {gunData.BulletData.Speed.ToReadableString()}");
+        sb.AppendLine($"Damage : {gunData.BulletData.Damage.ToReadableString()}");
+        sb.AppendLine($"Speed : {gunData.BulletData.Speed.ToReadableString()}");
         sb.AppendLine($"Size : {gunData.BulletData.Scale.ToReadableString()}");
         sb.AppendLine($"Life : {gunData.BulletData.LifeTime.ToReadableString()}");
 

@@ -8,7 +8,7 @@ public class CreaturesManager : MonoBehaviour
     public static CreaturesManager Instance;
 
 
-    public int CreaturePerFrame = 1;
+    public int CreaturePerFrame = 2;
 
     private readonly float activationDistSqr = 1225;
     private Queue<Creature> creatureQueue= new();

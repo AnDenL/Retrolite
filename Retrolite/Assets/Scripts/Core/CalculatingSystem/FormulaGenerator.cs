@@ -3,7 +3,7 @@ namespace CalculatingSystem
     using System;
     public static class FormulaGenerator
     {
-        public static FormulaNode GenerateRandomFormula(GameRandom rnd, int depth = 0, int maxDepth = 8)
+        public static FormulaNode GenerateRandomFormula(GameRandom rnd, int depth = 0, int maxDepth = 4)
         {
             if (depth >= maxDepth)
                 return RandomLeaf(rnd);

@@ -44,11 +44,14 @@ namespace Creatures
 
             owner.LookAt(Game.mainCamera.ScreenToWorldPoint(Input.mousePosition));
 
-            foreach (var slot in SkillSlots)
-                if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
-
+            if (!Minimap.Instance.IsOpened)
+            {
+                foreach (var slot in SkillSlots)
+                    if (slot.Value.OnKeyDown ? Input.GetKeyDown(slot.Key) : Input.GetKey(slot.Key)) slot.Value.Use();
+                
+                if (WeaponManager != null) HandleWeaponManager();
+            }
             movement.Use(moveDir);
-            if (WeaponManager != null) HandleWeaponManager();
         }
 
         private void HandleWeaponManager()

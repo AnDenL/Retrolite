@@ -272,11 +272,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2e7663fe5728cc64b9f1fc542ef84fc2
-    m_Address: Textures/Blaze--Spider WEB
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30a0784a21e0c6c4b89360da818463fb
     m_Address: Materials/ShaderGraph/TutorialBackground
     m_ReadOnly: 0
@@ -304,11 +299,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 34029b6cd0fd135468b7d1d7d40aa258
     m_Address: Tiles/Forest/Forest
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3412a70e433ee5b4098efa6bce8e3bcf
-    m_Address: Textures/Blaze--Spider event bad
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -362,11 +352,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3a897c7045dffa24e8ada425890fbd7b
-    m_Address: Textures/water-pool
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3aae7acf1ea78a2b3b174f975d2b5046
     m_Address: Textures/Particles
     m_ReadOnly: 0
@@ -374,11 +359,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3b8344d4b580d834a893416d5fec5cef
     m_Address: Materials/Wattter
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3bb04424b5d170b469eedb3e9028a2cb
-    m_Address: Textures/SlendMan
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -419,11 +399,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f9215ea0144899419cfbc0957140d3f
     m_Address: Volumes/DefaultVolumeProfile
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 3fc6feb4f2568154da244cf1035ccded
-    m_Address: Textures/Blaze-Crystal event
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -519,11 +494,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 569846705621ce24f954fb34fe0a68ab
     m_Address: Audio/Coins
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 56d5dad51365074489e1d7b0d04dd735
-    m_Address: Textures/Raindrop
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -679,11 +649,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a0b18454f41dd14faed730a1eb88792
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_10
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6a49750ed456d614fb64004ffce6cc2e
-    m_Address: Textures/ATTACK (hand)
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1102,11 +1067,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a98d1d3cfc4d9df4284046b7db9b3887
-    m_Address: Textures/SPRINTT
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a9c2bd04a7d3732e4adcb0858af98ef1
     m_Address: Prefabs/AdditionalPotion
     m_ReadOnly: 0
@@ -1209,11 +1169,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7fb8db3756bf4a4c9894a87fd189d99
     m_Address: Materials/Fountain
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b815245eec23a6546b5c059b136b124c
-    m_Address: Textures/Ikon for Denisik
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1469,11 +1424,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5b9024e3f1aa1d439f6327ef28e8d26
     m_Address: Tiles/Tutorial/New Z Depth Rule Tile
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e667091d27b6c6a41baff9be8b33a85d
-    m_Address: Textures/UPGG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
