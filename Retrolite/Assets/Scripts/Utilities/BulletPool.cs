@@ -6,8 +6,8 @@ using Object = UnityEngine.Object;
 
 public class BulletPool
 {
-    private Queue<BulletBase> freeBullets = new Queue<BulletBase>();
-    private List<BulletBase> allBullets = new List<BulletBase>();
+    private Queue<BulletBase> freeBullets = new();
+    private List<BulletBase> allBullets = new();
 
     private GameObject prefab;
     private Transform parent;

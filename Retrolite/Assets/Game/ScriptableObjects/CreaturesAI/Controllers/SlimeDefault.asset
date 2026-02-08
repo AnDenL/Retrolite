@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b5dea9bdc385b3448398031ab3755d7, type: 3}
   m_Name: SlimeDefault
   m_EditorClassIdentifier: 
-  Alignment: 4
+  Alignment: 20

@@ -51,7 +51,7 @@ namespace Creatures
                 
                 if (WeaponManager != null) HandleWeaponManager();
             }
-            movement.Use(moveDir);
+            Movement.Use(moveDir);
         }
 
         private void HandleWeaponManager()

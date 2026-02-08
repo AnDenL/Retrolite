@@ -77,6 +77,10 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     public bool FacingRight { get; private set;}
     public Coroutine ChannelingSkill { get; private set;}
 
+    private static readonly Collider2D[] targetSearchBuffer = new Collider2D[16];
+    private LayerMask creatureLayerMask;
+    private LayerMask wallsLayerMask;
+
     #endregion
 
     #region Events
@@ -99,6 +103,9 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         Animator = GetComponent<Animator>();
         Rb = GetComponent<Rigidbody2D>();
         Source = GetComponent<AudioSource>();
+
+        creatureLayerMask = LayerMask.GetMask("Creature");
+        wallsLayerMask = LayerMask.GetMask("Walls");
 
         foreach (var template in skillTemplates)
         {
@@ -232,50 +239,41 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     public bool IsEnemyTo(Creature other)
     {
         if (other == null || other == this) return false;
-
-        return Alignment switch
-        {
-            Ally => other.Alignment is Enemy or EvilEnemy,
-            EvilAlly => !(other.Alignment is Ally or EvilAlly),
-            Neutral => other.Alignment is EvilEnemy or EvilAlly or Evil,
-            Evil => true,
-            Enemy => other.Alignment is Ally or EvilAlly,
-            EvilEnemy => !(other.Alignment is Enemy or EvilEnemy),
-            FullyFriendly => false,
-            _ => false
-        };
+        return AlignmentSystem.IsEnemy(Alignment, other.Alignment);
     }
 
     public virtual Creature FindTarget()
     {
-        LayerMask obstacleMask = LayerMask.GetMask("Walls");
-
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, VisionRange);
+        int count = Physics2D.OverlapCircleNonAlloc(transform.position, VisionRange, targetSearchBuffer, creatureLayerMask);
 
         Creature bestTarget = null;
         float bestDist = Mathf.Infinity;
+        Vector3 myPos = transform.position;
 
-        foreach (var hit in hits)
+        for (int i = 0; i < count; i++)
         {
+            Collider2D hit = targetSearchBuffer[i];
+            
             if (hit.TryGetComponent(out Creature creature))
             {
                 if (creature == this) continue;
                 if (!creature.IsEnemyTo(this)) continue;
                 if (creature.HealthComponent.IsDead) continue;
 
-                Vector2 dir = (creature.transform.position - transform.position).normalized;
-                float dist = Vector2.Distance(transform.position, creature.transform.position);
+                float dist = Vector2.Distance(myPos, creature.transform.position);
+                if (dist >= bestDist) continue;
 
-                RaycastHit2D block = Physics2D.Raycast(transform.position, dir, dist, obstacleMask);
-                if (block.collider != null) continue;
-
-                if (dist < bestDist)
+                Vector2 dir = (creature.transform.position - myPos).normalized;
+                RaycastHit2D block = Physics2D.Raycast(myPos, dir, dist, wallsLayerMask);
+                
+                if (block.collider == null)
                 {
                     bestDist = dist;
                     bestTarget = creature;
                 }
             }
         }
+        Array.Clear(targetSearchBuffer, 0, count); 
 
         return bestTarget;
     }

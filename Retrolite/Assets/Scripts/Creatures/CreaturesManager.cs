@@ -11,7 +11,7 @@ public class CreaturesManager : MonoBehaviour
     public int CreaturePerFrame = 2;
 
     private readonly float activationDistSqr = 1225;
-    private Queue<Creature> creatureQueue= new();
+    private readonly Queue<Creature> creatureQueue= new();
 
     private void Awake()
     {

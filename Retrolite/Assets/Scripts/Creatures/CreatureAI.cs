@@ -13,7 +13,7 @@ namespace Creatures
         public Creature Target => target;
 
         public Alignment Alignment;
-        protected DirectionSkill movement => owner.BaseMovement;
+        protected DirectionSkill Movement => owner.BaseMovement;
 
         public virtual bool IsPlayer => false;
 
@@ -32,6 +32,4 @@ namespace Creatures
             return target.transform.position.normalized;
         }
     }
-
-    public enum Alignment { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
 }

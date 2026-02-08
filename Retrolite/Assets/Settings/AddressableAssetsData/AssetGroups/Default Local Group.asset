@@ -227,6 +227,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 27b31afa44b7fe74f92f0b68db6e32b4
+    m_Address: Textures/He did his job
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a795217005adfd43b3fabbf5cc72f3b
     m_Address: Materials/ShaderGraph/Shadow
     m_ReadOnly: 0
@@ -439,6 +444,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45e0fe7a6a0ab92458aaf49d1e9fe686
     m_Address: Prefabs/WeaponGenerator
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 463a0870cc0525c4ea353f283bff8f11
+    m_Address: Prefabs/He did his job
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

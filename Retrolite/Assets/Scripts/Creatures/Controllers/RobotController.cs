@@ -72,11 +72,11 @@ namespace Creatures
                         escape.Use(owner.transform.position + (Vector3)dir);
                     }
 
-                    movement.Use(-GetDirectionToTarget());
+                    Movement.Use(-GetDirectionToTarget());
                 }
                 else if (dist > 7f)
                 {
-                    movement.Use(GetDirectionToTarget());
+                    Movement.Use(GetDirectionToTarget());
                 }
             }
             else

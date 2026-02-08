@@ -12,10 +12,11 @@ namespace CalculatingSystem
         public abstract float Evaluate(Context context);
         public abstract string ToReadableString();
         public abstract bool IsConstant();
+        public abstract Func<Context, float> Bake();
     }
 
     [Serializable]
-    public class ConstantNode : FormulaNode
+    public sealed class ConstantNode : FormulaNode
     {
         public float Value;
         public override bool IsConstant() => true;
@@ -25,10 +26,11 @@ namespace CalculatingSystem
         public ConstantNode(float value) => Value = value;
         public override float Evaluate(Context context) => Value;
         public override string ToReadableString() => Value.ToString();
+        public override Func<Context, float> Bake() => context => Value;
     }
 
     [Serializable]
-    public class AbsoluteNode : FormulaNode
+    public sealed class AbsoluteNode : FormulaNode
     {
         [SerializeReference]
         public FormulaNode Node;
@@ -37,12 +39,17 @@ namespace CalculatingSystem
         public AbsoluteNode() => Node = new ConstantNode(0);
 
         public AbsoluteNode(FormulaNode node) => Node = node;
-        public override float Evaluate(Context context) => Math.Abs(Node.Evaluate(context));
+        public override float Evaluate(Context context) => Mathf.Abs(Node.Evaluate(context));
         public override string ToReadableString() => "|" + Node.ToReadableString() + "|";
+        public override Func<Context, float> Bake()
+        {
+            var f = Node.Bake();
+            return context => Mathf.Abs(f(context)); 
+        }
     }
 
     [Serializable]
-    public class SinNode : FormulaNode
+    public sealed class SinNode : FormulaNode
     {
         [SerializeReference]
         public FormulaNode Node;
@@ -53,10 +60,15 @@ namespace CalculatingSystem
         public SinNode(FormulaNode value) => Node = value;
         public override float Evaluate(Context context) => Mathf.Sin(Node.Evaluate(context));
         public override string ToReadableString() => "Sin(" + Node.ToReadableString() + ")";
+        public override Func<Context, float> Bake()
+        {
+            var f = Node.Bake();
+            return context => Mathf.Sin(f(context)); 
+        }
     }
 
     [Serializable]
-    public class CosNode : FormulaNode
+    public sealed class CosNode : FormulaNode
     {
         [SerializeReference]
         public FormulaNode Node;
@@ -67,10 +79,15 @@ namespace CalculatingSystem
         public CosNode(FormulaNode value) => Node = value;
         public override float Evaluate(Context context) => Mathf.Cos(Node.Evaluate(context));
         public override string ToReadableString() => "Cos(" + Node.ToReadableString() + ")";
+        public override Func<Context, float> Bake()
+        {
+            var f = Node.Bake();
+            return context => Mathf.Cos(f(context)); 
+        } 
     }
 
     [Serializable]
-    public class VariableNode : FormulaNode
+    public sealed class VariableNode : FormulaNode
     {
         public StatVariable Variable;
         public override bool IsConstant() => false;
@@ -79,10 +96,28 @@ namespace CalculatingSystem
         public VariableNode(StatVariable var) => Variable = var;
         public override float Evaluate(Context context) => VariableResolver.Resolve(Variable, context);
         public override string ToReadableString() => Variable.ToString();
+        public override Func<Context, float> Bake() => context => Variable switch
+        {
+            PH => context.Owner.HealthComponent.GetHealthPercent(),
+            H => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : 0,
+            T => context.Bullet != null ? context.Bullet.GetLifetime() : 0,
+            E => context.Gun != null ? context.Gun.Data.Echo : 0,
+            D => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : 0,
+            P => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet ? context.Bullet.transform.position : Vector3.zero),
+            A => context.Bullet != null ? context.Bullet.Number : 0,
+            M => PlayerController.Player.Resources.Get(ResourceType.Money).Count / 100,
+            SP => context.Bullet != null ? context.Bullet.Speed : 0,
+            S => context.Bullet != null ? context.Bullet.Scale : 0,
+            R => context.Bullet != null ? context.Bullet.Spread : 0,
+            DT => context.Bullet != null ? context.Bullet.GetDestroyTime() : 0,
+            V => context.Target != null ? context.Target.Rb.velocity.magnitude : 0,
+            DIR => Utilities.CalculateHomingAngle(context),
+            _ => 0f
+        };
     }
 
     [Serializable]
-    public class Expression : FormulaNode
+    public sealed class Expression : FormulaNode
     {
         [SerializeReference]
         public FormulaNode Left;
@@ -114,6 +149,20 @@ namespace CalculatingSystem
             };
         }
 
+        public override Func<Context, float> Bake() 
+        {
+            var a = Left.Bake();
+            var b = Right.Bake();
+            return Operation switch
+            {
+                Add => context => a(context) + b(context),
+                Subtract => context => a(context) - b(context),
+                Multiply => context => a(context) * b(context),
+                Divide => context => a(context) / b(context),
+                _ => context => 0
+            };
+        }
+
         public override string ToReadableString() =>
             $"({Left.ToReadableString()} {OpToString(Operation)} {Right.ToReadableString()})";
 
@@ -136,46 +185,66 @@ namespace CalculatingSystem
         {
             return variable switch
             {
-                HP => context.Owner.HealthComponent.GetHealthPercent(),
-                EnemyHP => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : Break(variable, context),
-                StatVariable.Time => context.Bullet != null ? context.Bullet.GetLifetime() : Break(variable, context),
-                Echo => context.Gun != null ? context.Gun.Data.Echo : Break(variable, context),
-                Dist => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
-                PDist => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
-                Ammo => context.Bullet != null ? context.Bullet.Number : Break(variable, context),
-                Rand => UnityEngine.Random.Range(-5f, 5f),
-                Money => PlayerController.Player.Resources.Get(ResourceType.Money).Count / 100,
-                Speed => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),
-                Size => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
-                Spread => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
+                PH => context.Owner.HealthComponent.GetHealthPercent(),
+                H => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : Break(variable, context),
+                T => context.Bullet != null ? context.Bullet.GetLifetime() : Break(variable, context),
+                E => context.Gun != null ? context.Gun.Data.Echo : Break(variable, context),
+                D => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
+                P => Vector2.Distance(PlayerController.Player.transform.position, context.Bullet?.transform.position ?? Vector3.zero),
+                A => context.Bullet != null ? context.Bullet.Number : Break(variable, context),
+                M => PlayerController.Player.Resources.Get(ResourceType.Money).Count / 100,
+                SP => context.Bullet != null ? context.Bullet.Speed : Break(variable, context),
+                S => context.Bullet != null ? context.Bullet.Scale : Break(variable, context),
+                R => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
                 DT => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
-                Velocity => context.Target != null ? context.Target.Rb.velocity.magnitude : Break(variable, context),
-                Homing => Utilities.CalculateHomingAngle(context),
+                V => context.Target != null ? context.Target.Rb.velocity.magnitude : Break(variable, context),
+                DIR => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };
         }
         public static float Break(StatVariable variable, Context context)
         {
-            return 0;
+            return 0; //Add weapon breaking in future
         }
     }
 
     public enum StatVariable
     {
-        HP,
-        EnemyHP,
-        Time,
-        Echo,
-        Dist,
-        PDist,
-        Ammo,
-        Rand,
-        Money,
-        Speed,
-        Size,
-        Spread,
+        PH,
+        H,
+        T,
+        E,
+        D,
+        P,
+        A,
+        M,
+        SP,
+        S,
+        R,
         DT,
-        Velocity,
-        Homing
+        V,
+        DIR
+    }
+
+    [Serializable]
+    public struct Formula
+    {
+        [SerializeReference] private FormulaNode rootNode;
+        private Func<Context, float> _cachedFunc;
+
+        public Formula(FormulaNode node)
+        {
+            rootNode = node;
+            _cachedFunc = rootNode.Bake();
+        }
+
+        public float Evaluate(Context context)
+        {
+            _cachedFunc ??= rootNode.Bake();
+            return _cachedFunc(context);
+        } 
+
+        public readonly string ToReadableString() => rootNode.ToReadableString();
+        public readonly bool IsConstant() => rootNode.IsConstant();
     }
 }

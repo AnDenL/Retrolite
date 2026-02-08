@@ -21,7 +21,6 @@ public class ItemPickUp : Interactable
     {
         Item.Activate(new Context()
         {
-            TargetHealth = creature.HealthComponent, 
             Target = creature, 
             Owner = creature
         });

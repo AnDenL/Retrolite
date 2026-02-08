@@ -16,10 +16,6 @@ namespace Creatures
             base.Init(owner);
             weaponManager = Instantiate(weaponManagerPrefab, owner.transform).GetComponent<WeaponManager>();
             weaponManager.Init(owner);
-            if (owner is Player player)
-            {
-                //player.WeaponManager = weaponManager;
-            }
         }
 
         public override bool CanUse()

@@ -156,7 +156,6 @@ public class BulletBase : MonoBehaviour
             if (!creature.IsEnemyTo(context.Owner)) return;
 
             context.Target = creature;
-            context.TargetHealth = creature.HealthComponent;
             creature.Rb.AddForce(data.Knockback.Evaluate(context) / 10 * transform.up, ForceMode2D.Impulse);
             data.OnDamage?.Execute(context);
         }
@@ -194,20 +193,14 @@ public class BulletBase : MonoBehaviour
 public class BulletData
 {
     // Static stats
-    [SerializeReference]
-    public FormulaNode Damage;
-    [SerializeReference]
-    public FormulaNode LifeTime;
-    [SerializeReference]
-    public FormulaNode Knockback;
+    public Formula Damage;
+    public Formula LifeTime;
+    public Formula Knockback;
 
     // Dynamic stats
-    [SerializeReference]
-    public FormulaNode Scale;
-    [SerializeReference]
-    public FormulaNode Speed;
-    [SerializeReference]
-    public FormulaNode Angle;
+    public Formula Scale;
+    public Formula Speed;
+    public Formula Angle;
 
     [Header("Actions")]
     [SerializeReference]
@@ -222,12 +215,12 @@ public class BulletData
 
     public BulletData(float speed = 8, float damage = 10, float lifeTime = 3, float scale = 1, float angle = 0, float knockback = 1)
     {
-        Speed = new ConstantNode(speed);
-        Damage = new ConstantNode(damage);
-        LifeTime = new ConstantNode(lifeTime);
-        Scale = new ConstantNode(scale);
-        Angle = new ConstantNode(angle);
-        Knockback = new ConstantNode(knockback);
+        Speed = new Formula(new ConstantNode(speed));
+        Damage = new Formula(new ConstantNode(damage));
+        LifeTime = new Formula(new ConstantNode(lifeTime));
+        Scale = new Formula(new ConstantNode(scale));
+        Angle = new Formula(new ConstantNode(angle));
+        Knockback = new Formula(new ConstantNode(knockback));
         BulletSprite = WeaponGenerator.Instance.BulletList.RandomSprite();
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
@@ -236,20 +229,13 @@ public class BulletData
 
     public void GenerateRandomFormulas(GameRandom rnd)
     {
-        Speed = FormulaGenerator.GenerateRandomFormula(rnd);
-        Damage = FormulaGenerator.GenerateRandomFormula(rnd);
-        LifeTime = FormulaGenerator.GenerateRandomFormula(rnd);
-        Scale = FormulaGenerator.GenerateRandomFormula(rnd);
+        Speed = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
+        Damage = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
+        LifeTime = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
+        Scale = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
         FormulaNode tempAngle = FormulaGenerator.GenerateRandomFormula(rnd);
-        Angle = tempAngle.IsConstant() ? new ConstantNode(0) : tempAngle;
-        Knockback = FormulaGenerator.GenerateRandomFormula(rnd);
-
-        Debug.Log($"Speed: {Speed.ToReadableString()}");
-        Debug.Log($"Damage: {Damage.ToReadableString()}");
-        Debug.Log($"LifeTime: {LifeTime.ToReadableString()}");
-        Debug.Log($"Scale: {Scale.ToReadableString()}");
-        Debug.Log($"Angle: {Angle.ToReadableString()}");
-        Debug.Log($"Knockback: {Knockback.ToReadableString()}");
+        Angle = new Formula(tempAngle.IsConstant() ? new ConstantNode(0) : tempAngle);
+        Knockback = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
 
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;

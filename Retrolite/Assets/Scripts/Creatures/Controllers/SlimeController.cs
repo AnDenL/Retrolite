@@ -54,9 +54,9 @@ namespace Creatures
             }
             else
             {
-                if (movement != null && targetPosition.magnitude != 0)
+                if (Movement != null && targetPosition.magnitude != 0)
                 {
-                    if (movement.Use(targetPosition))
+                    if (Movement.Use(targetPosition))
                     {
                         target = owner.FindTarget();
                     }

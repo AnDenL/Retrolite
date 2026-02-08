@@ -11,12 +11,13 @@ namespace CalculatingSystem
     {
         public abstract bool Evaluate(Context context);
         public abstract string ToReadableString();
+        public abstract Func<Context, bool> Bake();
     }
 
     public enum ComparisonOperator { Greater, Less, Equal, NotEqual, GreaterOrEqual, LessOrEqual }
 
     [Serializable]
-    public class ComparisonNode : ConditionNode
+    public sealed class ComparisonNode : ConditionNode
     {
         [SerializeReference]
         public FormulaNode Left;
@@ -53,6 +54,23 @@ namespace CalculatingSystem
         public override string ToReadableString() =>
             $"({Left.ToReadableString()} {OperatorToString()} {Right.ToReadableString()})";
 
+        public override Func<Context, bool> Bake()
+        {
+            var a = Left.Bake();
+            var b = Right.Bake();
+
+            return Operator switch
+            {
+                Greater => context => a(context) > b(context),
+                Less => context => a(context) < b(context),
+                Equal => context => Mathf.Approximately(a(context), b(context)),
+                NotEqual => context => !Mathf.Approximately(a(context), b(context)),
+                GreaterOrEqual => context => a(context) >= b(context),
+                LessOrEqual => context => a(context) <= b(context),
+                _ => context => false
+            };
+        }
+
         private string OperatorToString() => Operator switch
         {
             Greater => ">",
@@ -67,7 +85,7 @@ namespace CalculatingSystem
     public enum LogicOperator { And, Or, Not }
 
     [Serializable]
-    public class LogicNode : ConditionNode
+    public sealed class LogicNode : ConditionNode
     {
         [SerializeReference]
         public ConditionNode Left;
@@ -84,29 +102,38 @@ namespace CalculatingSystem
             Right = right;
         }
 
-        public override bool Evaluate(Context context)
+        public override bool Evaluate(Context context) => Operator switch
         {
+            And => Left.Evaluate(context) && Right.Evaluate(context),
+            Or => Left.Evaluate(context) || Right.Evaluate(context),
+            Not => !Left.Evaluate(context),
+            _ => false
+        };
+
+        public override string ToReadableString() => Operator switch
+        {
+            And => $"({Left.ToReadableString()} and {Right.ToReadableString()})",
+            Or => $"({Left.ToReadableString()} or {Right.ToReadableString()})",
+            Not => $"(not {Left.ToReadableString()})",
+            _ => "?"
+        };
+
+        public override Func<Context, bool> Bake()
+        {
+            var a = Left.Bake();
+            var b = Right.Bake();
             return Operator switch
             {
-                And => Left.Evaluate(context) && Right.Evaluate(context),
-                Or => Left.Evaluate(context) || Right.Evaluate(context),
-                Not => !Left.Evaluate(context),
-                _ => false
+                And => context => a(context) && b(context),
+                Or => context => a(context) || b(context),
+                Not => context => !a(context),
+                _ => context => false
             };
         }
-
-        public override string ToReadableString() =>
-            Operator switch
-            {
-                And => $"({Left.ToReadableString()} and {Right.ToReadableString()})",
-                Or => $"({Left.ToReadableString()} or {Right.ToReadableString()})",
-                Not => $"(not {Left.ToReadableString()})",
-                _ => "?"
-            };
     }
 
     [Serializable]
-    public class ConditionVariableNode : ConditionNode
+    public sealed class ConditionVariableNode : ConditionNode
     {
         public ConditionVariable Variable;
 
@@ -114,6 +141,7 @@ namespace CalculatingSystem
         public ConditionVariableNode(ConditionVariable var) => Variable = var;
         public override bool Evaluate(Context context) => ConditionResolver.Resolve(Variable, context);
         public override string ToReadableString() => Variable.ToString();
+        public override Func<Context, bool> Bake() => context => ConditionResolver.Resolve(Variable, context);
     }
 
     public static class ConditionResolver
@@ -129,6 +157,27 @@ namespace CalculatingSystem
                 _ => false
             };
         }
+    }
+
+    [Serializable]
+    public struct Condition
+    {
+        [SerializeReference] private ConditionNode rootNode;
+        private Func<Context, bool> _cachedFunc;
+
+        public Condition(ConditionNode node)
+        {
+            rootNode = node;
+            _cachedFunc = rootNode.Bake();
+        }
+
+        public bool Evaluate(Context context)
+        {
+            _cachedFunc ??= rootNode.Bake();
+            return _cachedFunc(context);
+        } 
+        
+        public readonly string ToReadableString() => rootNode.ToReadableString();
     }
 
     public enum ConditionVariable

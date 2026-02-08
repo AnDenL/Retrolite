@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections;
 using CalculatingSystem;
 
 namespace Creatures
@@ -7,7 +6,7 @@ namespace Creatures
     [CreateAssetMenu(fileName = "Action", menuName = "CreatureAI/Skills/Action")]
     public class ActionSkill : TargetedSkill
     {
-        [SerializeReference] public ActionNode action;
+        [SerializeReference] public GameAction action;
 
         public override SkillType Type => SkillType.Attack;
 
@@ -23,7 +22,6 @@ namespace Creatures
             {
                 Owner = owner,
                 Target = target,
-                TargetHealth = target.HealthComponent,
             });
         }
     }

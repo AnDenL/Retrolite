@@ -61,8 +61,8 @@ public class GunData
 {
     public string Name;
 
-    [SerializeReference] public FormulaNode FireRate;
-    [SerializeReference] public FormulaNode Accuracy;
+    public Formula FireRate;
+    public Formula Accuracy;
 
     public int MagazineSize;
     public int CurrentAmmo;
@@ -87,8 +87,8 @@ public class GunData
     )
     {
         Name = name;
-        FireRate = new ConstantNode(fireRate);
-        Accuracy = new ConstantNode(accuracy);
+        FireRate = new Formula(new ConstantNode(fireRate));
+        Accuracy = new Formula(new ConstantNode(accuracy));
         ReloadTime = reload;
         MagazineSize = magazineSize;
         CurrentAmmo = MagazineSize == 0 ? 1 : MagazineSize;
@@ -102,8 +102,8 @@ public class GunData
     public GunData()
     {
         Name = "Empty";
-        FireRate = new ConstantNode(0);
-        Accuracy = new ConstantNode(1);
+        FireRate = new Formula(new ConstantNode(0));
+        Accuracy = new Formula(new ConstantNode(1));
         ReloadTime = 0;
         MagazineSize = 0;
         CurrentAmmo = 1;
@@ -116,11 +116,8 @@ public class GunData
 
     public void Generate(GameRandom rnd)
     {
-        FireRate = FormulaGenerator.GenerateRandomFormula(rnd);
-        Accuracy = FormulaGenerator.GenerateRandomFormula(rnd);
-
-        Debug.Log($"Fire rate: {FireRate.ToReadableString()}");
-        Debug.Log($"Accuracy: {Accuracy.ToReadableString()}");
+        FireRate = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
+        Accuracy = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
 
         GunSprite = WeaponGenerator.Instance.RandomSprite(rnd);
         Name = WeaponGenerator.Instance.Names.GetRandomName(rnd);

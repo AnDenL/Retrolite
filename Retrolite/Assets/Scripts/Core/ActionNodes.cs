@@ -10,12 +10,13 @@ namespace CalculatingSystem
     {
         public abstract void Execute(Context context);
         public abstract string ToReadableString();
+        public abstract Action<Context> Bake();
     }
 
     [Serializable]
     public class DamageAction : ActionNode
     {
-        [SerializeReference] public FormulaNode Damage;
+        public Formula Damage;
 
         public bool TargetSelf;
 
@@ -30,13 +31,20 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Deal {Damage.ToReadableString()} damage to target";
+
+        public override Action<Context> Bake() => context =>
+        {
+            Creature creature = TargetSelf ? context.Owner : context.Target;
+            creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
+            ParticleManager.PlayParticle("Crit", context.TargetHealth.transform.position);
+        };
     }
 
     [Serializable]
     public class HealAction : ActionNode
     {
-        [SerializeReference] public FormulaNode Amount;
-        [SerializeReference] public FormulaNode AdditionalHealth;
+        public Formula Amount;
+        public Formula AdditionalHealth;
 
         public override void Execute(Context context)
         {
@@ -47,12 +55,19 @@ namespace CalculatingSystem
 
         public override string ToReadableString() => $"Heals {Amount.ToReadableString()} hp" + 
         (AdditionalHealth.ToReadableString() == "0" ? "" : $", increases max hp by {AdditionalHealth.ToReadableString()}");
+
+        public override Action<Context> Bake() => context =>
+        {
+            context.Target.HealthComponent.AddMaximumHealth(AdditionalHealth.Evaluate(context));
+            context.Target.HealthComponent.Heal(Amount.Evaluate(context));
+            ParticleManager.PlayParticle("Heal", context.Target.transform.position);
+        };
     }
 
     [Serializable]
     public class GiveResource : ActionNode
     {
-        [SerializeReference] public FormulaNode Count;
+        public Formula Count;
         public ResourceType resource;
 
         public override void Execute(Context context)
@@ -63,21 +78,29 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Give {Count.ToReadableString()} {resource}";
+        public override Action<Context> Bake() => context =>
+        {
+            int money = (int)Count.Evaluate(context);
+            context.Target.Resources.Get(resource).Add(money);
+            ParticleManager.PlayParticle(resource, context.Owner.transform.position, context.Target.transform, money);
+        };
     }
 
     [Serializable]
     public class SpawnObjectAction : ActionNode
     {
         public GameObject Prefab;
-        public bool onEnemy = false;
 
         public override void Execute(Context context)
         {
-            if (Prefab != null && context.TargetHealth != null)
-                UnityEngine.Object.Instantiate(Prefab, onEnemy ? context.TargetHealth.transform.position : context.Owner.transform.position, Quaternion.identity);
+            if (Prefab != null && context.Position != null)
+                UnityEngine.Object.Instantiate(Prefab, context.Position, Quaternion.identity);
         }
 
         public override string ToReadableString() => $"Spawn {Prefab.name}";
+
+        public override Action<Context> Bake() => context =>
+            UnityEngine.Object.Instantiate(Prefab, context.Position, Quaternion.identity);
     }
 
     [Serializable]
@@ -91,6 +114,7 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Destroy {Object.name}";
+        public override Action<Context> Bake() => context => UnityEngine.Object.Destroy(Object);
     }
 
     [Serializable]
@@ -105,6 +129,8 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Play animation {Trigger}";
+
+        public override Action<Context> Bake() => context => context.Owner.Animator.SetTrigger(Trigger);
     }
 
     [Serializable]
@@ -114,18 +140,18 @@ namespace CalculatingSystem
 
         public override void Execute(Context context)
         {
-            if (context.Target.HealthComponent != null)
-                ParticleManager.PlayParticle(Particles, context.Owner.transform.position);
+            ParticleManager.PlayParticle(Particles, context.Position);
         }
 
         public override string ToReadableString() => $"Play particle {Particles}";
+        public override Action<Context> Bake() => context => ParticleManager.PlayParticle(Particles, context.Position);
     }
 
     [Serializable]
     public class DelayedAction : ActionNode
     {
-        [SerializeReference] public FormulaNode Delay;
-        [SerializeReference] public ActionNode Action;
+        public Formula Delay;
+        public ActionNode Action;
 
         public override void Execute(Context context)
         {
@@ -139,13 +165,15 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Wait for {Delay.ToReadableString()} seconds, then {Action.ToReadableString()}";
+
+        public override Action<Context> Bake() => context => context.Owner.StartCoroutine(DelayedExecute(context));
     }
 
     [Serializable]
     public class ApplyEffectAction : ActionNode
     {
-        [SerializeReference] public FormulaNode strength;
-        [SerializeReference] public FormulaNode duration;
+        public Formula strength;
+        public Formula duration;
         public Effect effect;
 
         public override void Execute(Context context)
@@ -154,14 +182,16 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Apply {effect.EffectName}, for {duration.ToReadableString()} seconds";
+
+        public override Action<Context> Bake() => context => context.Target.AddEffect(effect, strength.Evaluate(context), duration.Evaluate(context));
     }
 
     [Serializable]
     public class ExplosionAction : ActionNode
     {
-        [SerializeReference] public FormulaNode Damage;
-        [SerializeReference] public FormulaNode Knockback;
-        [SerializeReference] public FormulaNode Radius;
+        public Formula Damage;
+        public Formula Knockback;
+        public Formula Radius;
         public LayerMask Layers;
         public string Particle = "SmallExplosion";
 
@@ -184,5 +214,46 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Creates explosion(damage:{Damage.ToReadableString()}, knockback:{Knockback.ToReadableString()}, radius:{Radius.ToReadableString()})";
+
+        public override Action<Context> Bake() => context =>
+        {
+            Vector2 position = context.Position;
+            ParticleManager.PlayParticle(Particle, position);
+            var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
+
+            float damage = Damage.Evaluate(context); 
+
+            foreach (var hit in hits)
+            {
+                if (hit.TryGetComponent(out Creature creature))
+                {
+                    if (!creature.IsEnemyTo(context.Owner)) continue;
+                    creature.HealthComponent.TakeDamage(damage);
+                    Vector2 dir = hit.transform.position - (Vector3)position;
+                    creature.Rb.AddForce(Knockback.Evaluate(context) * dir, ForceMode2D.Impulse);
+                }
+            }  
+        };
+    }
+
+    [Serializable]
+    public struct GameAction
+    {
+        [SerializeReference] private ActionNode rootNode;
+        private Action<Context> _cachedFunc;
+
+        public GameAction(ActionNode node)
+        {
+            rootNode = node;
+            _cachedFunc = rootNode.Bake();
+        }
+
+        public void Execute(Context context)
+        {
+            _cachedFunc ??= rootNode.Bake();
+            _cachedFunc(context);
+        } 
+
+        public readonly string ToReadableString() => rootNode.ToReadableString();
     }
 }

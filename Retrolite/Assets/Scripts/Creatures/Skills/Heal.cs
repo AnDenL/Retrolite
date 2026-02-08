@@ -6,7 +6,7 @@ namespace Creatures
     [CreateAssetMenu(menuName = "CreatureAI/Skills/HealAlly")]
     public class HealAllySkill : AllyTargetedSkill
     {
-        public FormulaNode healAmount;
+        public Formula healAmount;
 
         public override SkillType Type => SkillType.Utility;
 
@@ -14,7 +14,7 @@ namespace Creatures
         {
             if (target == null) return;
 
-            float amount = healAmount.Evaluate(new Context { Owner = owner, Target = target, TargetHealth = target.HealthComponent });
+            float amount = healAmount.Evaluate(new Context { Owner = owner, Target = target });
             target.HealthComponent.Heal(amount);
 
             ParticleManager.PlayParticle("Heal", target.transform.position);

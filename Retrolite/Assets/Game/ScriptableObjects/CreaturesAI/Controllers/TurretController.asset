@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afe2cb7f690c68948a304b1db3fbeb3d, type: 3}
   m_Name: TurretController
   m_EditorClassIdentifier: 
-  Alignment: 4
+  Alignment: 20
