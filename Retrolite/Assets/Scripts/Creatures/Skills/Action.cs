@@ -6,7 +6,7 @@ namespace Creatures
     [CreateAssetMenu(fileName = "Action", menuName = "CreatureAI/Skills/Action")]
     public class ActionSkill : TargetedSkill
     {
-        [SerializeReference] public GameAction action;
+        public GameAction action;
 
         public override SkillType Type => SkillType.Attack;
 

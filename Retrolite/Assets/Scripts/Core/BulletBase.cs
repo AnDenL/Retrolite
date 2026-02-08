@@ -2,6 +2,8 @@ using UnityEngine;
 using CalculatingSystem;
 using System.Collections;
 using Creatures;
+using System;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
@@ -124,7 +126,7 @@ public class BulletBase : MonoBehaviour
     {
         if (handleDestroy) Destroy(gameObject);
         context.Position = transform.position;
-        data.OnReturn?.Execute(context);
+        if (data.OnReturn.rootNode != null) data.OnReturn.Execute(context);
         Inactive = true;
 
         pool.Return(this);
@@ -157,7 +159,7 @@ public class BulletBase : MonoBehaviour
 
             context.Target = creature;
             creature.Rb.AddForce(data.Knockback.Evaluate(context) / 10 * transform.up, ForceMode2D.Impulse);
-            data.OnDamage?.Execute(context);
+            if (data.OnDamage.rootNode != null) data.OnDamage.Execute(context);
         }
         else
         {
@@ -179,7 +181,6 @@ public class BulletBase : MonoBehaviour
         Deactivate();
     }
 
-    // Helpers
     public float GetLifetime() => Time.time - time;
     public float GetDestroyTime() => life - (Time.time - time);
     public float GetDistanceTravelled() => Vector2.Distance(start, transform.position);
@@ -189,24 +190,20 @@ public class BulletBase : MonoBehaviour
 }
 
 
-[System.Serializable]
+[Serializable]
 public class BulletData
 {
-    // Static stats
     public Formula Damage;
     public Formula LifeTime;
     public Formula Knockback;
 
-    // Dynamic stats
     public Formula Scale;
     public Formula Speed;
     public Formula Angle;
 
     [Header("Actions")]
-    [SerializeReference]
-    public ActionNode OnReturn;
-    [SerializeReference]
-    public ActionNode OnDamage;
+    public GameAction OnReturn;
+    public GameAction OnDamage;
 
     public Sprite BulletSprite;
     public AudioClip FireSound;

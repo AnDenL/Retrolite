@@ -13,26 +13,30 @@ MonoBehaviour:
   m_Name: MaxHealthPotion
   m_EditorClassIdentifier: 
   ItemName: More health potion
+  CustomDescription: 
   Icon: {fileID: -3065595510956808684, guid: 3cbce0f112bc9bb5a9b25efee6506ebc, type: 3}
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 9e40303d0e70da1428f6111437cb3a17, type: 3}
   Action:
-    rid: 353241344678559744
+    rootNode:
+      rid: 7299798626323660830
   references:
     version: 2
     RefIds:
-    - rid: 353241344678559744
+    - rid: 7299798626323660830
       type: {class: HealAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Amount:
-          rid: 353241344678559745
+          rootNode:
+            rid: 7299798626323660831
         AdditionalHealth:
-          rid: 353241344678559746
-    - rid: 353241344678559745
+          rootNode:
+            rid: 7299798626323660832
+    - rid: 7299798626323660831
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 25
-    - rid: 353241344678559746
+    - rid: 7299798626323660832
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 25

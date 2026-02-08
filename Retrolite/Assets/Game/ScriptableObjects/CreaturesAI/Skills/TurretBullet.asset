@@ -20,21 +20,29 @@ MonoBehaviour:
   BulletPrefab: {fileID: 4500548146545427392, guid: c72079c2013a8dd4d8abc12e5b40265b, type: 3}
   BulletData:
     Damage:
-      rid: 9018860093364240384
+      rootNode:
+        rid: 7299798626323660857
     LifeTime:
-      rid: 9018860093364240385
+      rootNode:
+        rid: 7299798626323660860
     Knockback:
-      rid: 9018860093364240386
+      rootNode:
+        rid: 7299798626323660861
     Scale:
-      rid: 9018860093364240387
+      rootNode:
+        rid: 7299798626323660862
     Speed:
-      rid: 9018860093364240388
+      rootNode:
+        rid: 7299798626323660863
     Angle:
-      rid: 9018860093364240389
+      rootNode:
+        rid: 7299798626323660864
     OnReturn:
-      rid: -2
+      rootNode:
+        rid: -2
     OnDamage:
-      rid: 9018860271611674624
+      rootNode:
+        rid: -2
     BulletSprite: {fileID: 416926172, guid: 3aae7acf1ea78a2b3b174f975d2b5046, type: 3}
     FireSound: {fileID: 8300000, guid: 80d630afb5edd1e48bd3960497ef2097, type: 3}
     IsDynamic: 0
@@ -44,43 +52,27 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 9018860093364240384
+    - rid: 7299798626323660857
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 10
-    - rid: 9018860093364240385
+    - rid: 7299798626323660860
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 2
-    - rid: 9018860093364240386
+    - rid: 7299798626323660861
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 4
-    - rid: 9018860093364240387
+    - rid: 7299798626323660862
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 1
-    - rid: 9018860093364240388
+    - rid: 7299798626323660863
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 14
-    - rid: 9018860093364240389
+        Value: 7
+    - rid: 7299798626323660864
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
-    - rid: 9018860271611674624
-      type: {class: ApplyEffectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        strength:
-          rid: 9018860271611674625
-        duration:
-          rid: 9018860271611674626
-        effect: {fileID: 11400000, guid: 0bd938e8e91222147ba413728a7e510c, type: 2}
-    - rid: 9018860271611674625
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0.5
-    - rid: 9018860271611674626
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 2

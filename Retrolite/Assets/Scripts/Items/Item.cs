@@ -9,7 +9,7 @@ public class Item : ScriptableObject
     public Sprite Icon = null;
     public bool SingleUse;
     public AudioClip Sound;
-    [SerializeReference] public ActionNode Action;
+    public GameAction Action;
 
     public void Activate(Context context) => Action.Execute(context);
 }

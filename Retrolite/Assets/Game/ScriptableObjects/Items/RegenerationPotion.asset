@@ -18,23 +18,26 @@ MonoBehaviour:
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 9e40303d0e70da1428f6111437cb3a17, type: 3}
   Action:
-    rid: 353241648565583872
+    rootNode:
+      rid: 7299798626323660845
   references:
     version: 2
     RefIds:
-    - rid: 353241648565583872
+    - rid: 7299798626323660845
       type: {class: ApplyEffectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         strength:
-          rid: 353241648565583873
+          rootNode:
+            rid: 7299798626323660846
         duration:
-          rid: 353241648565583874
+          rootNode:
+            rid: 7299798626323660847
         effect: {fileID: 11400000, guid: 5b88cb2f0e57f3d4abc48881490efc92, type: 2}
-    - rid: 353241648565583873
+    - rid: 7299798626323660846
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 1
-    - rid: 353241648565583874
+        Value: 0.25
+    - rid: 7299798626323660847
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 50
+        Value: 300

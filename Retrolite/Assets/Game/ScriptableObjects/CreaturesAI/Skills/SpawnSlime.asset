@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 403cc967568ce8e44bbdaefc8e87cfb0, type: 3}
   m_Name: SpawnSlime
   m_EditorClassIdentifier: 
+  Name: 
   Priority: 0
+  cooldownTime: 3
   MinRange: 0
   MaxRange: 9999
-  cooldownTime: 3
   action:
-    rid: 7873061277871112192
+    rootNode:
+      rid: 7299798626323660865
   references:
     version: 2
     RefIds:
-    - rid: 7873061277871112192
+    - rid: 7299798626323660865
       type: {class: SpawnObjectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Prefab: {fileID: 4658632795700602020, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}

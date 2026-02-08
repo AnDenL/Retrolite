@@ -239,7 +239,7 @@ namespace CalculatingSystem
     [Serializable]
     public struct GameAction
     {
-        [SerializeReference] private ActionNode rootNode;
+        [SerializeReference] public ActionNode rootNode;
         private Action<Context> _cachedFunc;
 
         public GameAction(ActionNode node)

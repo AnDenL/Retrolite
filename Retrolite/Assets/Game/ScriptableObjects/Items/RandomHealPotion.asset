@@ -13,38 +13,42 @@ MonoBehaviour:
   m_Name: RandomHealPotion
   m_EditorClassIdentifier: 
   ItemName: Strange potion
+  CustomDescription: 
   Icon: {fileID: 6997616985800771554, guid: 3cbce0f112bc9bb5a9b25efee6506ebc, type: 3}
   SingleUse: 1
   Sound: {fileID: 8300000, guid: e7b9887c297c3084aafb444f9c6b98e6, type: 3}
   Action:
-    rid: 353241598357405696
+    rootNode:
+      rid: 7299798626323660838
   references:
     version: 2
     RefIds:
-    - rid: 353241598357405696
+    - rid: 7299798626323660838
       type: {class: HealAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Amount:
-          rid: 353241598357405697
+          rootNode:
+            rid: 7299798626323660840
         AdditionalHealth:
-          rid: 353241598357405698
-    - rid: 353241598357405697
+          rootNode:
+            rid: 7299798626323660844
+    - rid: 7299798626323660840
       type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Left:
-          rid: 353241598357405699
+          rid: 7299798626323660843
         Operation: 2
         Right:
-          rid: 353241598357405700
-    - rid: 353241598357405698
+          rid: 7299798626323660842
+    - rid: 7299798626323660842
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Variable: 10
+    - rid: 7299798626323660843
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 5
+    - rid: 7299798626323660844
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
-    - rid: 353241598357405699
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 10
-    - rid: 353241598357405700
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 7

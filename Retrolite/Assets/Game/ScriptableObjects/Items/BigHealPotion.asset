@@ -13,26 +13,30 @@ MonoBehaviour:
   m_Name: BigHealPotion
   m_EditorClassIdentifier: 
   ItemName: Healing potion
+  CustomDescription: 
   Icon: {fileID: 1185527514606905908, guid: 3cbce0f112bc9bb5a9b25efee6506ebc, type: 3}
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 9e40303d0e70da1428f6111437cb3a17, type: 3}
   Action:
-    rid: 353241344678559744
+    rootNode:
+      rid: 7299798626323660824
   references:
     version: 2
     RefIds:
-    - rid: 353241344678559744
+    - rid: 7299798626323660824
       type: {class: HealAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Amount:
-          rid: 353241344678559745
+          rootNode:
+            rid: 7299798626323660825
         AdditionalHealth:
-          rid: 353241344678559746
-    - rid: 353241344678559745
+          rootNode:
+            rid: 7299798626323660826
+    - rid: 7299798626323660825
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 100
-    - rid: 353241344678559746
+    - rid: 7299798626323660826
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
