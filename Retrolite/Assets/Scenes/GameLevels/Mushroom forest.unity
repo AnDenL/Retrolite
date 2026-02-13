@@ -7986,14 +7986,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 0.003407155
     width: 1
-    height: 1
+    height: 0.9914821
   near clip plane: -100
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 4.85
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -18404,6 +18404,10 @@ PrefabInstance:
       propertyPath: pixelPerfectCamera
       value: 
       objectReference: {fileID: 1813428745}
+    - target: {fileID: 361962354520672484, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 448513802802025327, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: blur
       value: 
@@ -18412,6 +18416,10 @@ PrefabInstance:
       propertyPath: _console
       value: 
       objectReference: {fileID: 1500986835}
+    - target: {fileID: 448513803086196157, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 448513803214563609, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -18500,13 +18508,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 467008057823193927, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 607571113040005282, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 831653284516266150, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1054330162813496033, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_Text
       value: Type "Help" for commands
+      objectReference: {fileID: 0}
+    - target: {fileID: 1614744348731776201, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2738435695609805152, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -18536,6 +18556,10 @@ PrefabInstance:
       propertyPath: m_Direction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4969535229193558061, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5343929727178548162, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_Value
       value: 1
@@ -18556,6 +18580,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 226683255, guid: 64b87495926282547ac81e0223e5e5c0, type: 3}
+    - target: {fileID: 6795129252206969391, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7011202917668983069, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -18578,6 +18606,10 @@ PrefabInstance:
       objectReference: {fileID: 1742302215}
     - target: {fileID: 7101733828540974116, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7467330010277069216, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7742366827804270395, guid: 0c967998549dccc45a01274dcea8b7e5, type: 3}
