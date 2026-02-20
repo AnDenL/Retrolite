@@ -7,7 +7,7 @@ public class StunEffect : Effect
     {
         owner.CanAct = false;
         owner.Break();
-        ParticleManager.PlayParticle("Stars", owner.transform.position);
+        ParticleManager.PlayParticle("Stars", owner.transform.position, 10);
     }
     public override void OnRemove() => owner.CanAct = true;
 }

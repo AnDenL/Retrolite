@@ -18,9 +18,11 @@ public class ParticleManager : MonoBehaviour
         Instance = this;
 
         var particles = new List<ParticleSystem>();
-
         foreach (Transform ch in transform)
-            particles.Add(ch.GetComponent<ParticleSystem>());
+        {
+            var ps = ch.GetComponent<ParticleSystem>();
+            if (ps != null) particles.Add(ps);
+        }
 
         ParticleSystems = particles.ToArray();
 
@@ -31,22 +33,24 @@ public class ParticleManager : MonoBehaviour
         resourceParticlePools = ResourceParticles.Select(ps => new ParticlePool(ps, 5, transform)).ToArray();
     }
 
-    public static void PlayParticle(string index, Vector2 position) => PlayParticle(ParticleIndices[index], position);
+    public static void PlayParticle(string name, Vector2 position, int amount) 
+    {
+        if (ParticleIndices.TryGetValue(name, out int index))
+            PlayParticle(index, position, amount);
+    }
 
-    private static void PlayParticle(int index, Vector2 position)
+    private static void PlayParticle(int index, Vector2 position, int amount)
     {
         ParticleSystem ps = Instance.ParticleSystems[index];
-        if (ps == null)
+        if (ps == null) return;
+
+        var emitParams = new ParticleSystem.EmitParams
         {
-            Debug.LogError($"Particle pool at index {index} not found.");
-            return;
-        }
+            position = position,
+            applyShapeToPosition = true
+        };
 
-        ps.transform.position = position;
-        ps.gameObject.SetActive(true);
-        ps.Play();
-
-        ps.Play();
+        ps.Emit(emitParams, amount);
     }
 
     public static void PlayParticle(ResourceType index, Vector2 from, Transform to, int amount)
@@ -60,7 +64,7 @@ public class ParticleManager : MonoBehaviour
 
         pool.PlayParticle(from, to, amount);
     }
-}
+} 
 
 public class ParticlePool
 {
@@ -96,7 +100,9 @@ public class ParticlePool
         {
             Debug.LogWarning("No available particle systems in the pool.");
         }
+
     }
+
 
     public void PlayParticle(Vector2 from, Transform to, int amount)
     {
@@ -134,4 +140,4 @@ public class ParticlePool
 
         return ps;
     }
-}
+} 

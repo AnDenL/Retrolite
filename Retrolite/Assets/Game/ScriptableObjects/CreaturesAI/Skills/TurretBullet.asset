@@ -42,7 +42,7 @@ MonoBehaviour:
         rid: -2
     OnDamage:
       rootNode:
-        rid: -2
+        rid: 7299798626323660874
     BulletSprite: {fileID: 416926172, guid: 3aae7acf1ea78a2b3b174f975d2b5046, type: 3}
     FireSound: {fileID: 8300000, guid: 80d630afb5edd1e48bd3960497ef2097, type: 3}
     IsDynamic: 0
@@ -76,3 +76,21 @@ MonoBehaviour:
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Value: 0
+    - rid: 7299798626323660874
+      type: {class: ApplyEffectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        strength:
+          rootNode:
+            rid: 7299798626323660875
+        duration:
+          rootNode:
+            rid: 7299798626323660876
+        effect: {fileID: 11400000, guid: 0bd938e8e91222147ba413728a7e510c, type: 2}
+    - rid: 7299798626323660875
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 0.5
+    - rid: 7299798626323660876
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 2

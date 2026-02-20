@@ -54,7 +54,7 @@ namespace Creatures
 
         private IEnumerator Shoot(Creature target)
         {
-            if (!Owner.Controller.IsPlayer) ParticleManager.PlayParticle("Agr", Clip.position);
+            if (!Owner.Controller.IsPlayer) ParticleManager.PlayParticle("Agr", Clip.position, 1);
 
             yield return _waitForSeconds0_5;
 
@@ -67,7 +67,7 @@ namespace Creatures
                 Vector2 dir = owner.transform.position - target.transform.position;
                 owner.Rb.AddForce(Knockback * dir, ForceMode2D.Impulse);
                 Clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (owner.transform.localScale.x == 1 ? 0 : 180));
-                ParticleManager.PlayParticle("Impact", Clip.position);
+                ParticleManager.PlayParticle("Impact", Clip.position, 10);
                 Pool.Get().Fire(0, 1);
             }
         }

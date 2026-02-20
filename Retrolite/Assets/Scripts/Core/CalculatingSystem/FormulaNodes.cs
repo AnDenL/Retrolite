@@ -5,6 +5,7 @@ namespace CalculatingSystem
     using static CalculatingSystem.Operator;
     using static CalculatingSystem.StatVariable;
     using Creatures;
+    using Random = UnityEngine.Random;
 
     [Serializable]
     public abstract class FormulaNode
@@ -27,6 +28,31 @@ namespace CalculatingSystem
         public override float Evaluate(Context context) => Value;
         public override string ToReadableString() => Value.ToString();
         public override Func<Context, float> Bake() => context => Value;
+    }
+
+    [Serializable]
+    public sealed class RandomNode : FormulaNode
+    {
+        [SerializeReference]
+        public FormulaNode A, B;
+        public override bool IsConstant() => false;
+
+        public RandomNode() {}
+
+        public RandomNode(FormulaNode a, FormulaNode b)
+        {
+            A = a;
+            B = b;
+        }
+
+        public override float Evaluate(Context context) => Random.Range(A.Evaluate(context), B.Evaluate(context));
+        public override string ToReadableString() => $"Rand({A.ToReadableString()},{B.ToReadableString()})";
+        public override Func<Context, float> Bake()
+        {
+            var a = A.Bake(); 
+            var b = B.Bake();
+            return context => Random.Range(a(context), b(context));
+        }
     }
 
     [Serializable]
@@ -55,7 +81,7 @@ namespace CalculatingSystem
         public FormulaNode Node;
         public override bool IsConstant() => Node.IsConstant();
 
-        public SinNode() { }
+        public SinNode() => Node = new ConstantNode(0);
 
         public SinNode(FormulaNode value) => Node = value;
         public override float Evaluate(Context context) => Mathf.Sin(Node.Evaluate(context));
@@ -74,7 +100,7 @@ namespace CalculatingSystem
         public FormulaNode Node;
         public override bool IsConstant() => Node.IsConstant();
 
-        public CosNode() { }
+        public CosNode() => Node = new ConstantNode(0);
 
         public CosNode(FormulaNode value) => Node = value;
         public override float Evaluate(Context context) => Mathf.Cos(Node.Evaluate(context));
@@ -98,8 +124,8 @@ namespace CalculatingSystem
         public override string ToReadableString() => Variable.ToString();
         public override Func<Context, float> Bake() => context => Variable switch
         {
-            PH => context.Owner.HealthComponent.GetHealthPercent(),
-            H => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : 0,
+            PH => context.Owner != null ? context.Owner.HealthComponent.GetHealthPercent() : 0,
+            H => context.Target != null ? context.Target.HealthComponent.GetHealthPercent() : 0,
             T => context.Bullet != null ? context.Bullet.GetLifetime() : 0,
             E => context.Gun != null ? context.Gun.Data.Echo : 0,
             D => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : 0,
@@ -111,7 +137,7 @@ namespace CalculatingSystem
             R => context.Bullet != null ? context.Bullet.Spread : 0,
             DT => context.Bullet != null ? context.Bullet.GetDestroyTime() : 0,
             V => context.Target != null ? context.Target.Rb.velocity.magnitude : 0,
-            DIR => Utilities.CalculateHomingAngle(context),
+            DR => Utilities.CalculateHomingAngle(context),
             _ => 0f
         };
     }
@@ -186,7 +212,7 @@ namespace CalculatingSystem
             return variable switch
             {
                 PH => context.Owner.HealthComponent.GetHealthPercent(),
-                H => context.TargetHealth != null ? context.TargetHealth.GetHealthPercent() : Break(variable, context),
+                H => context.Target != null ? context.Target.HealthComponent.GetHealthPercent() : Break(variable, context),
                 T => context.Bullet != null ? context.Bullet.GetLifetime() : Break(variable, context),
                 E => context.Gun != null ? context.Gun.Data.Echo : Break(variable, context),
                 D => context.Bullet != null ? context.Bullet.GetDistanceTravelled() : Break(variable, context),
@@ -198,7 +224,7 @@ namespace CalculatingSystem
                 R => context.Bullet != null ? context.Bullet.Spread : Break(variable, context) * Mathf.Deg2Rad,
                 DT => context.Bullet != null ? context.Bullet.GetDestroyTime() : Break(variable, context),
                 V => context.Target != null ? context.Target.Rb.velocity.magnitude : Break(variable, context),
-                DIR => Utilities.CalculateHomingAngle(context),
+                DR => Utilities.CalculateHomingAngle(context),
                 _ => 0f
             };
         }
@@ -223,7 +249,7 @@ namespace CalculatingSystem
         R,
         DT,
         V,
-        DIR
+        DR
     }
 
     [Serializable]
@@ -244,7 +270,7 @@ namespace CalculatingSystem
             return _cachedFunc(context);
         } 
 
-        public readonly string ToReadableString() => rootNode.ToReadableString();
-        public readonly bool IsConstant() => rootNode.IsConstant();
+        public readonly string ToReadableString() => rootNode != null ? rootNode.ToReadableString() : "None";
+        public readonly bool IsConstant() => rootNode == null || rootNode.IsConstant();
     }
 }

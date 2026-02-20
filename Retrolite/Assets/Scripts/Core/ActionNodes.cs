@@ -22,11 +22,12 @@ namespace CalculatingSystem
 
         public override void Execute(Context context)
         {
-            if (context.TargetHealth != null)
+            if (context.Target != null)
             {
                 Creature creature = TargetSelf ? context.Owner : context.Target;
-                creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
-                ParticleManager.PlayParticle("Crit", context.TargetHealth.transform.position);
+                float damage = Damage.Evaluate(context);
+                creature.HealthComponent.TakeDamage(damage);
+                ParticleManager.PlayParticle("Crit", context.Target.HealthComponent.transform.position, (int)damage);
             }
         }
 
@@ -35,8 +36,9 @@ namespace CalculatingSystem
         public override Action<Context> Bake() => context =>
         {
             Creature creature = TargetSelf ? context.Owner : context.Target;
-            creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
-            ParticleManager.PlayParticle("Crit", context.TargetHealth.transform.position);
+            float damage = Damage.Evaluate(context);
+            creature.HealthComponent.TakeDamage(damage);
+            ParticleManager.PlayParticle("Crit", context.Target.HealthComponent.transform.position, (int)damage);
         };
     }
 
@@ -48,9 +50,10 @@ namespace CalculatingSystem
 
         public override void Execute(Context context)
         {
+            float heal = Amount.Evaluate(context);
             context.Target.HealthComponent.AddMaximumHealth(AdditionalHealth.Evaluate(context));
-            context.Target.HealthComponent.Heal(Amount.Evaluate(context));
-            ParticleManager.PlayParticle("Heal", context.Target.transform.position);
+            context.Target.HealthComponent.Heal(heal);
+            ParticleManager.PlayParticle("Heal", context.Target.transform.position, (int)heal);
         }
 
         public override string ToReadableString() => $"Heals {Amount.ToReadableString()} hp" + 
@@ -58,9 +61,10 @@ namespace CalculatingSystem
 
         public override Action<Context> Bake() => context =>
         {
+            float heal = Amount.Evaluate(context);
             context.Target.HealthComponent.AddMaximumHealth(AdditionalHealth.Evaluate(context));
             context.Target.HealthComponent.Heal(Amount.Evaluate(context));
-            ParticleManager.PlayParticle("Heal", context.Target.transform.position);
+            ParticleManager.PlayParticle("Heal", context.Target.transform.position, (int)heal);
         };
     }
 
@@ -137,14 +141,15 @@ namespace CalculatingSystem
     public class PlayParticleAction : ActionNode
     {
         public string Particles;
+        public int Count = 5;
 
         public override void Execute(Context context)
         {
-            ParticleManager.PlayParticle(Particles, context.Position);
+            ParticleManager.PlayParticle(Particles, context.Position, Count);
         }
 
         public override string ToReadableString() => $"Play particle {Particles}";
-        public override Action<Context> Bake() => context => ParticleManager.PlayParticle(Particles, context.Position);
+        public override Action<Context> Bake() => context => ParticleManager.PlayParticle(Particles, context.Position, Count);
     }
 
     [Serializable]
@@ -194,11 +199,12 @@ namespace CalculatingSystem
         public Formula Radius;
         public LayerMask Layers;
         public string Particle = "SmallExplosion";
+        public int ParticleCount = 15;
 
         public override void Execute(Context context)
         {
             Vector2 position = context.Position;
-            ParticleManager.PlayParticle(Particle, position);
+            ParticleManager.PlayParticle(Particle, position, ParticleCount);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 
             foreach (var hit in hits)
@@ -218,7 +224,7 @@ namespace CalculatingSystem
         public override Action<Context> Bake() => context =>
         {
             Vector2 position = context.Position;
-            ParticleManager.PlayParticle(Particle, position);
+            ParticleManager.PlayParticle(Particle, position, ParticleCount);
             var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
 
             float damage = Damage.Evaluate(context); 

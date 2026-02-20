@@ -47,5 +47,5 @@ namespace Creatures
         }
     }
 
-    public enum Alignment : byte { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
+    public enum Alignment : int { Ally, EvilAlly, Neutral, Evil, Enemy, EvilEnemy, FullyFriendly }
 }

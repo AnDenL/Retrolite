@@ -34,7 +34,7 @@ namespace Creatures
             owner.Animator.SetTrigger(attackHash);
             owner.Rb.velocity -= 20f * direction;
 
-            ParticleManager.PlayParticle("FastSparcles", owner.transform.position);
+            ParticleManager.PlayParticle("FastSparcles", owner.transform.position, 3);
             float t = 0;
             owner.CanAct = false;
 
@@ -50,7 +50,7 @@ namespace Creatures
             
             Vector2 pos = (Vector2)owner.transform.position + direction * 2;
 
-            ParticleManager.PlayParticle("Glitch", pos);
+            ParticleManager.PlayParticle("Glitch", pos, 3);
             var colls = Physics2D.OverlapCircleAll(pos, 0.75f, creaturesLayer);
 
             foreach(var coll in colls)
@@ -63,7 +63,11 @@ namespace Creatures
                         yield break;
                     }
                     if (creature.Break()) 
-                        owner.Resources.Add(ResourceType.Bits, Random.Range(2,6));
+                    {
+                        int res = Random.Range(2,6);
+                        owner.Resources.Add(ResourceType.Bits, res);
+                        ParticleManager.PlayParticle(ResourceType.Bits ,creature.transform.position ,owner.transform, res);
+                    }
                     creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
                 }
                 if (coll.gameObject.TryGetComponent(out CorruptibleBase corruptible))

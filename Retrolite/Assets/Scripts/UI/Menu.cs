@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 
 public class Menu : MonoBehaviour
 {
-    public static Menu instance;
+    public static Menu Instance;
 
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject selected;
@@ -15,8 +15,8 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        if (instance != null) Destroy(gameObject);
-        instance = this;
+        if (Instance != null) Destroy(gameObject);
+        Instance = this;
     }
 
     private void Update()

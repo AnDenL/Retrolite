@@ -130,7 +130,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMaterial: {fileID: -876546973899608171, guid: ca472949731e0b0479f2e20112308423, type: 3}
   sr: {fileID: 6721700289006551040}
-  Item: {fileID: 11400000, guid: 61ec16c4aca3a7f4c8224588d5ec4794, type: 2}
+  Stack:
+    Item: {fileID: 11400000, guid: 61ec16c4aca3a7f4c8224588d5ec4794, type: 2}
+    Count: 1
   Description: {fileID: 4711896614162365750}
 --- !u!82 &4728974816433687481
 AudioSource:

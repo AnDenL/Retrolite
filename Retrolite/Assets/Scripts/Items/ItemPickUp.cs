@@ -5,29 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class ItemPickUp : Interactable
 {
-    public Item Item;
+    public ItemStack Stack;
     public TextMeshPro Description;
 
     protected override void Start()
     {
         base.Start();
 
-        sr.sprite = Item.Icon;
-        Description.text = Item.ItemName + "\n" + (string.IsNullOrWhiteSpace(Item.CustomDescription) ? 
-                            Item.Action.ToReadableString() : Item.CustomDescription);
+        sr.sprite = Stack.Item.Icon;
+        Description.text = Stack.Item.ItemName + "\n" + (string.IsNullOrWhiteSpace(Stack.Item.CustomDescription) ? 
+                            Stack.Item.Action.ToReadableString() : Stack.Item.CustomDescription);
     }
     
     public override void Interact(Creature creature)
     {
-        Item.Activate(new Context()
-        {
-            Target = creature, 
-            Owner = creature
-        });
-
-        if (Item.Sound) creature.PlaySound(Item.Sound);
+        Stack.Count -= creature.AddItem(Stack);
         
-        if (Item.SingleUse) Destroy(gameObject);
+        if (Stack.Count <= 0) Destroy(gameObject);
     }
 
     public override void Outline()

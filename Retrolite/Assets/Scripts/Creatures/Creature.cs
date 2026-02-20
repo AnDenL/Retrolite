@@ -2,7 +2,6 @@ using System;
 using Creatures;
 using UnityEngine;
 using System.Collections.Generic;
-using static Creatures.Alignment;
 using System.Collections;
 using CalculatingSystem;
 
@@ -18,8 +17,10 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     [SerializeField] protected AIController controller;
     public float VisionRange = 8f;
 
+    protected Inventory inventory;
+
     public AIController Controller => controller;
-    public Alignment AlignmentEditable { get => Alignment; set => controller.Alignment = value; }
+    public Alignment AlignmentEditable { get => controller.Alignment; set => controller.Alignment = value; }
     public float VisionEditable{ get => VisionRange; set => VisionRange = value; }
 
     [SerializeField] protected List<Skill> skillTemplates = new();
@@ -104,6 +105,8 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         Rb = GetComponent<Rigidbody2D>();
         Source = GetComponent<AudioSource>();
 
+        inventory = new();
+
         creatureLayerMask = LayerMask.GetMask("Creature");
         wallsLayerMask = LayerMask.GetMask("Walls");
 
@@ -176,6 +179,11 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     #endregion
     #region Public Methods
+
+    public int AddItem(Item item, int count = 1) => inventory.AddItem(item, count);
+    public int AddItem(ItemStack stack) => inventory.AddItem(stack.Item, stack.Count);
+    public bool RemoveItem(Item item, int count = 1) => inventory.RemoveItem(item, count);
+    public int GetItemCount(Item item) => inventory.GetItemCount(item);
 
     public void AddEffect(Effect effect)
     {

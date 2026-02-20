@@ -39,7 +39,7 @@ MonoBehaviour:
         rid: 7299798626323660853
     OnReturn:
       rootNode:
-        rid: -2
+        rid: 7299798626323660870
     OnDamage:
       rootNode:
         rid: -2
@@ -76,3 +76,31 @@ MonoBehaviour:
       type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Variable: 1
+    - rid: 7299798626323660870
+      type: {class: ExplosionAction, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Damage:
+          rootNode:
+            rid: 7299798626323660871
+        Knockback:
+          rootNode:
+            rid: 7299798626323660872
+        Radius:
+          rootNode:
+            rid: 7299798626323660873
+        Layers:
+          serializedVersion: 2
+          m_Bits: 8
+        Particle: SmallExplosion
+    - rid: 7299798626323660871
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 10
+    - rid: 7299798626323660872
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 5
+    - rid: 7299798626323660873
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Value: 2

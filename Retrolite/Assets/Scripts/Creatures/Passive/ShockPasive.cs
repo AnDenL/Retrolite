@@ -46,7 +46,7 @@ namespace Creatures
                 }
             }
 
-            ParticleManager.PlayParticle("Electric", owner.transform.position);
+            ParticleManager.PlayParticle("Electric", owner.transform.position, 3);
         }
     }
 }

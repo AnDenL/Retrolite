@@ -35,8 +35,8 @@ namespace Creatures
             float duration = 0.1f;
             Vector3 startPos = owner.transform.position;
 
-            ParticleManager.PlayParticle("Transform", startPos);
-            ParticleManager.PlayParticle("GlitchTrail", owner.transform.position);
+            ParticleManager.PlayParticle("Transform", startPos, 4);
+            ParticleManager.PlayParticle("GlitchTrail", owner.transform.position, 5);
             ownerCollider.enabled = false;
 
             while (t < duration)
@@ -64,8 +64,8 @@ namespace Creatures
                 yield return null;
             }
 
-            ParticleManager.PlayParticle("GlitchTrail", owner.transform.position);
-            ParticleManager.PlayParticle("XYZ", startPos);
+            ParticleManager.PlayParticle("GlitchTrail", owner.transform.position, 5);
+            ParticleManager.PlayParticle("XYZ", startPos, 4);
             ownerCollider.enabled = true;
         }
     }

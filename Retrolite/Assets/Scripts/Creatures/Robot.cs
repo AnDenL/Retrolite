@@ -23,7 +23,7 @@ public class Robot : Creature
 
     private void Damage(float t)
     {
-        ParticleManager.PlayParticle("RobotDetails", transform.position);
+        ParticleManager.PlayParticle("RobotDetails", transform.position, 3);
 
         headPosition += 0.005f * t * Random.insideUnitCircle;
         leftTurbinePosition += 0.005f * t * Random.insideUnitCircle;
@@ -49,7 +49,7 @@ public class Robot : Creature
     public void SelfDestraction(Creature other)
     {
         Vector2 position = transform.position;
-        ParticleManager.PlayParticle("Explosion", position);
+        ParticleManager.PlayParticle("Explosion", position, 30);
         var hits = Physics2D.OverlapCircleAll(position, 5, LayerMask.GetMask("Creature"));
 
         foreach (var hit in hits)
@@ -64,6 +64,6 @@ public class Robot : Creature
         }
         Destroy(gameObject);
 
-        ParticleManager.PlayParticle("RobotDetails", transform.position);
+        ParticleManager.PlayParticle("RobotDetails", transform.position, 5);
     }
 }

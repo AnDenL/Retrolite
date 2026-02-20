@@ -4,7 +4,6 @@ namespace CalculatingSystem
 {
     public struct Context
     {
-        public readonly HealthBase TargetHealth => Target.HealthComponent;
         public Vector2 Position;
         public Creature Target;
         public Creature Owner;

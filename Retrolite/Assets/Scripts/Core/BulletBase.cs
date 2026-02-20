@@ -173,7 +173,7 @@ public class BulletBase : MonoBehaviour
         }
 
         float damage = data.Damage.Evaluate(context);
-        context.TargetHealth.TakeDamage(damage, context);
+        context.Target.HealthComponent.TakeDamage(damage, context);
 
         if (lifeCoroutine != null)
             StopCoroutine(lifeCoroutine);

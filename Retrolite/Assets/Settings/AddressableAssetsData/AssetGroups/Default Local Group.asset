@@ -122,6 +122,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 18df021061512d9479cecf9d003b28f0
+    m_Address: Textures/Particles
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1911ce9e996a43049a805f21bbaa313f
     m_Address: Textures/Capsule
     m_ReadOnly: 0
@@ -228,7 +233,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27b31afa44b7fe74f92f0b68db6e32b4
-    m_Address: Textures/He did his job
+    m_Address: Textures/gg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

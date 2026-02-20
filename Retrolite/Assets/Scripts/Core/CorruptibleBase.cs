@@ -26,7 +26,7 @@ public class CorruptibleBase : MonoBehaviour, ICorruptible
 
     public void ApplyCorruption(int amount, Creature source)
     {
-        ParticleManager.PlayParticle("Glitch", transform.position);
+        ParticleManager.PlayParticle("Glitch", transform.position, 5);
         stability -= amount;
         OnCorrupting?.Invoke(stability);
 

@@ -150,10 +150,10 @@ namespace CalculatingSystem
         {
             return variable switch
             {
-                IsDead => context.TargetHealth.IsDead,
+                IsDead => context.Target.HealthComponent.IsDead,
                 IsCorrupted => context.Target.Corruption.Stability == 0,
-                IsBoss => false, //Change later
-                IsFullHealth => context.TargetHealth.Health == context.TargetHealth.MaxHealth,
+                IsBoss => false,
+                IsFullHealth => context.Target.HealthComponent.Health == context.Target.HealthComponent.MaxHealth,
                 _ => false
             };
         }

@@ -24,14 +24,14 @@ public class FormulaNodeDrawer : PropertyDrawer
 
         var node = property.managedReferenceValue;
 
-        Rect buttonRect = new Rect(
+        Rect buttonRect = new(
             position.xMax - ButtonWidth,
             position.y,
             ButtonWidth,
             EditorGUIUtility.singleLineHeight
         );
 
-        Rect mainRect = new Rect(
+        Rect mainRect = new(
             position.x,
             position.y,
             position.width - ButtonWidth - Spacing,
@@ -76,12 +76,25 @@ public class FormulaNodeDrawer : PropertyDrawer
             var opProp = property.FindPropertyRelative("Operation");
             var rightProp = property.FindPropertyRelative("Right");
 
-            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
+            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
 
             EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
+            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
+        }
+        else if (node is RandomNode)
+        {
+            float nodeWidth = (contentRect.width - OperationWidth - Spacing) / 2f;
+
+            var leftProp = property.FindPropertyRelative("A");
+            var rightProp = property.FindPropertyRelative("B");
+
+            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect rightRect = new(Spacing, contentRect.y, nodeWidth, contentRect.height);
+
+            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
         }
         else
@@ -97,13 +110,14 @@ public class FormulaNodeDrawer : PropertyDrawer
 
     private void ShowTypeMenu(SerializedProperty property)
     {
-        GenericMenu menu = new GenericMenu();
+        GenericMenu menu = new();
         menu.AddItem(new GUIContent("Constant"), false, () => SetNodeType(property, new ConstantNode(0)));
         menu.AddItem(new GUIContent("Absolute"), false, () => SetNodeType(property, new AbsoluteNode()));
         menu.AddItem(new GUIContent("Sin"), false, () => SetNodeType(property, new SinNode()));
         menu.AddItem(new GUIContent("Cos"), false, () => SetNodeType(property, new CosNode()));
         menu.AddItem(new GUIContent("Variable"), false, () => SetNodeType(property, new VariableNode()));
         menu.AddItem(new GUIContent("Expression"), false, () => SetNodeType(property, new Expression()));
+        menu.AddItem(new GUIContent("Random"), false, () => SetNodeType(property, new RandomNode()));
         menu.ShowAsContext();
     }
 
@@ -133,14 +147,14 @@ public class ConditionNodeDrawer : PropertyDrawer
 
         var node = property.managedReferenceValue;
 
-        Rect buttonRect = new Rect(
+        Rect buttonRect = new(
             position.xMax - ButtonWidth,
             position.y,
             ButtonWidth,
             EditorGUIUtility.singleLineHeight
         );
 
-        Rect mainRect = new Rect(
+        Rect mainRect = new(
             position.x,
             position.y,
             position.width - ButtonWidth - Spacing,
@@ -175,9 +189,9 @@ public class ConditionNodeDrawer : PropertyDrawer
             var opProp = property.FindPropertyRelative("Operator");
             var rightProp = property.FindPropertyRelative("Right");
 
-            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
+            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
 
             EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
@@ -191,9 +205,9 @@ public class ConditionNodeDrawer : PropertyDrawer
             var opProp = property.FindPropertyRelative("Operator");
             var rightProp = property.FindPropertyRelative("Right");
 
-            Rect leftRect = new Rect(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new Rect(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new Rect(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
+            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
+            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
+            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
 
             EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
             EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
@@ -212,7 +226,7 @@ public class ConditionNodeDrawer : PropertyDrawer
 
     private void ShowTypeMenu(SerializedProperty property)
     {
-        GenericMenu menu = new GenericMenu();
+        GenericMenu menu = new();
         menu.AddItem(new GUIContent("Variable Condition"), false, () => SetNodeType(property, new ConditionVariableNode()));
         menu.AddItem(new GUIContent("Comparison"), false, () => SetNodeType(property, new ComparisonNode(new ConstantNode(0), ComparisonOperator.Equal, new ConstantNode(0))));
         menu.AddItem(new GUIContent("Logic"), false, () => SetNodeType(property, new LogicNode()));
@@ -237,7 +251,7 @@ public class ActionNodeDrawer : PropertyDrawer
         EditorGUI.BeginProperty(position, label, property);
 
         // HEADER
-        Rect headerRect = new Rect(
+        Rect headerRect = new(
             position.x,
             position.y,
             position.width,
@@ -249,7 +263,7 @@ public class ActionNodeDrawer : PropertyDrawer
         // BODY
         if (property.managedReferenceValue != null)
         {
-            Rect bodyRect = new Rect(
+            Rect bodyRect = new(
                 position.x,
                 position.y + EditorGUIUtility.singleLineHeight + Spacing,
                 position.width,
