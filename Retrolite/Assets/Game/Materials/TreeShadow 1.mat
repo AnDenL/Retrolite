@@ -27,7 +27,7 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 1
+  m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -56,10 +56,11 @@ Material:
     m_Floats:
     - _NoiseMultiplayer: 0.79
     - _NoiseScale: 0.7
-    - _Seed: 0.4701904
+    - _Seed: 0.7111583
     - _SmalNoiseScale: 2.66
     - _SmallNoiseMultiplayer: 0.57
     - _Step: 0.48
+    - _unity_SpriteFlip: 0
     m_Colors:
     - _Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

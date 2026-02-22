@@ -78,7 +78,7 @@ public class BulletBase : MonoBehaviour
         Speed = data.Speed.Evaluate(context);
         Scale = Mathf.Max(0.1f, Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context))));
 
-        transform.localScale = Vector3.one * Scale;
+        if (Scale != float.NaN) transform.localScale = Vector3.one * Scale;
         float formulaAngle = data.Angle.Evaluate(context);
         float angle = spread + (Angle + (formulaAngle * Mathf.Rad2Deg));
         Angle -= formulaAngle + Speed < 0 ? 180 : 0;

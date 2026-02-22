@@ -572,11 +572,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 61caa0e84ab5c5b43aa7965f4e5865e4
-    m_Address: Scenes/GenerationTest
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61ec16c4aca3a7f4c8224588d5ec4794
     m_Address: ScriptableObjects/Items/HealPotion
     m_ReadOnly: 0
@@ -867,11 +862,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 8c9cfa26abfee488c85f1582747f6a02
-    m_Address: Scenes/Water
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d4eaf077cf2f3f40a4361d64cd406a6
     m_Address: Prefabs/Lamp 1
     m_ReadOnly: 0
@@ -1132,11 +1122,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b082ceec24cb41447b1ae212ef6f5b6c
-    m_Address: Scenes/FountainTest
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0dea252b88839240b489b7144018cca
     m_Address: Materials/PlayerVisibility
     m_ReadOnly: 0
@@ -1144,11 +1129,6 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0ee17ce075f330448bea9c186ad46df
     m_Address: ScriptableObjects/CreaturesAI/Skills/SpawnSlime
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: b26f685e778dba344aa0bd6e5a94bde1
-    m_Address: Scenes/Template
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
