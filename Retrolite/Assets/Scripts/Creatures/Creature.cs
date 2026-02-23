@@ -18,6 +18,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     public float VisionRange = 8f;
 
     protected Inventory inventory;
+    public Inventory Inventory => inventory;
 
     public AIController Controller => controller;
     public Alignment AlignmentEditable { get => controller.Alignment; set => controller.Alignment = value; }

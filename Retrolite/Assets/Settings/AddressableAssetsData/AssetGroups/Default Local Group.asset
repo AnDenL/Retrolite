@@ -252,6 +252,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2cace2a51dcdfa84da712bde51ba3bb8
+    m_Address: Prefabs/UI/ItemSlot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2d1f2e24d403dc945a467a9122e730bb
     m_Address: Textures/Nature
     m_ReadOnly: 0

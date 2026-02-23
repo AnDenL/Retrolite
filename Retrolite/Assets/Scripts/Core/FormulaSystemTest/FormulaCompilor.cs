@@ -73,7 +73,7 @@ namespace FormulaSystem
             }
             else if (token.Type == TokenType.Function)
             {
-                builder.Call(token.Id);
+                builder.Call((Function)token.Id);
             }
         }
         

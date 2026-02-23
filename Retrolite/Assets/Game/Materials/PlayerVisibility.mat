@@ -44,7 +44,7 @@ Material:
     - _Scale: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Position: {r: 0.27764344, g: 1, b: 0, a: 0}
+    - _Position: {r: -4.646787, g: -3.3704538, b: 0, a: 0}
     - _Vector2: {r: 0.75, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3106966203556438884

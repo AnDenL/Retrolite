@@ -42,7 +42,6 @@ public class GunBase : MonoBehaviour
         if (IsReloading) manager.StopReloading();
 
         float shootSpeed = data.FireRate.Evaluate(context);
-        print(shootSpeed);
         data.fireTime = shootSpeed != 0 ? Time.time + 1f / Mathf.Abs(shootSpeed) : float.NaN;
 
         float accuracy = data.Accuracy.Evaluate(context);

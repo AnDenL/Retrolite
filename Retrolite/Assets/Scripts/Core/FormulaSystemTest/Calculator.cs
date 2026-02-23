@@ -3,6 +3,7 @@ namespace FormulaSystem
     using static OpCode;
     
     using System;
+    using Random = UnityEngine.Random;
 
     public static class Calculator
     {
@@ -28,10 +29,10 @@ namespace FormulaSystem
                         break;
                     case PushVar:
                         fixed (byte* p = &bytecode[ip]) {
-                            int varIndex = *(int*)p;
+                            byte varIndex = *p;
                             stack[sp++] = variables[varIndex];
                         }
-                        ip += 4;
+                        ip += 1;
                         break;
                     case Add:
                         stack[sp - 2] = stack[sp - 2] + stack[sp - 1];
@@ -82,6 +83,13 @@ namespace FormulaSystem
                                     stack[sp++] = (float)Math.Cos(a);
                                     break;
                                 }
+                                case 4:
+                                {
+                                    float b = stack[--sp];
+                                    float a = stack[--sp];
+                                    stack[sp++] = Random.Range(a, b);
+                                    break;
+                                }
                             }
                         }
                         break;
@@ -90,37 +98,4 @@ namespace FormulaSystem
             return stack[0];
         }
     }
-
-public enum TokenType 
-{ 
-    Number, Variable, Operator, Function, LeftParen, RightParen 
-}
-
-public struct PuzzleToken 
-{
-    public TokenType Type;
-    public float Value;
-    public byte Id;   
-    public char Op;
-}
-
-public enum OpCode : byte
-{
-    PushConst = 0, 
-    PushVar = 1,
-    Add = 2,
-    Sub = 3,
-    Mul = 4,
-    Div = 5,
-    Call = 6 
-}
-
-public enum Function : byte
-{
-    Max,
-    Min,
-    Sin,
-    Cos,
-    Abs
-}
 }

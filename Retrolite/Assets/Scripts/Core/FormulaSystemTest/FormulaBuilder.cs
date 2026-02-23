@@ -13,10 +13,10 @@ namespace FormulaSystem
             return this;
         }
 
-        public BytecodeBuilder PushVar(int varId)
+        public BytecodeBuilder PushVar(byte varId)
         {
             _buffer.Add((byte)OpCode.PushVar); 
-            _buffer.AddRange(BitConverter.GetBytes(varId));
+            _buffer.Add(varId);
             return this;
         }
         
@@ -44,10 +44,10 @@ namespace FormulaSystem
             return this;
         }
 
-        public BytecodeBuilder Call(byte funcId)
+        public BytecodeBuilder Call(Function funcId)
         {
             _buffer.Add((byte)OpCode.Call);
-            _buffer.Add(funcId);
+            _buffer.Add((byte)funcId);
             return this;
         }
 

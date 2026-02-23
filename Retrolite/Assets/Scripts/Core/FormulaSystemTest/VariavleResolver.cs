@@ -69,6 +69,7 @@ namespace FormulaSystem
         R,
         DT,
         V,
-        DR
+        DR,
+        Count
     }
 }

@@ -5,15 +5,11 @@ using System.Linq;
 [Serializable]
 public class Inventory
 {
-    static public Inventory Instance;
-
     public int maxSlots = 20;
     public List<ItemStack> items = new();
     public event Action<int> OnSlotChange;
     public event Action<ItemStack, int> OnNewSlot;
     public event Action OnInventoryChange;
-
-    public Inventory() => Instance = this;
 
     public int AddItem(Item item, int count)
     {
