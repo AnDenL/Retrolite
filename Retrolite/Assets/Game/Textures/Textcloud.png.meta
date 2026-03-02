@@ -133,12 +133,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 8
+        y: 4
         width: 32
-        height: 32
+        height: 36
       alignment: 9
-      pivot: {x: 0.5, y: 0}
-      border: {x: 4, y: 4, z: 4, w: 4}
+      pivot: {x: 0.5, y: 0.5555556}
+      border: {x: 4, y: 8, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -150,37 +150,16 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Textcloud_1
-      rect:
-        serializedVersion: 2
-        x: 6
-        y: 2
-        width: 9
-        height: 6
-      alignment: 9
-      pivot: {x: 0.5, y: 0.6666667}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cd752b351748d6390800000000000000
-      internalID: -7823451355402315812
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Textcloud_2
       rect:
         serializedVersion: 2
         x: 32
-        y: 4
+        y: 0
         width: 32
         height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 13, y: 8, z: 4, w: 4}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5555556}
+      border: {x: 5, y: 5, z: 14, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
