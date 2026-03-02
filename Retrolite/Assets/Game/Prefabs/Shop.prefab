@@ -977,6 +977,7 @@ Transform:
   - {fileID: 7505225874572539909}
   - {fileID: 6516932675026603554}
   - {fileID: 6886596989696531837}
+  - {fileID: 5152695458385222374}
   - {fileID: 482148096473503614}
   - {fileID: 4815686266004702346}
   m_Father: {fileID: 0}
@@ -1280,6 +1281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 482148096473503614}
+  - component: {fileID: 5404373448239423878}
   m_Layer: 0
   m_Name: Decorations
   m_TagString: Untagged
@@ -1307,6 +1309,21 @@ Transform:
   - {fileID: 8690282642221230664}
   m_Father: {fileID: 9149334225549237452}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5404373448239423878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998575281875451958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f034c6b809d24754ca5176515e4d5d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6863546063134629483, guid: 566175d2b6d94ae479cdb1b6fe3178d4, type: 3}
+  Targets:
+  - {fileID: 5152695458385222374}
 --- !u!1 &5000291234387848118
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,7 +1813,7 @@ Transform:
   m_GameObject: {fileID: 9071371744340501915}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1899,6 +1916,68 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.75, y: 0.72}
   m_EdgeRadius: 0
+--- !u!1001 &870795541765742674
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 9149334225549237452}
+    m_Modifications:
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.387
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461501150597662834, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+      propertyPath: m_Name
+      value: 'Gramophone '
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+--- !u!4 &5152695458385222374 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5447001315846732468, guid: 5d13c43014251ab4f94018280b0d17d6, type: 3}
+  m_PrefabInstance: {fileID: 870795541765742674}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3960042954728620389
 PrefabInstance:
   m_ObjectHideFlags: 0

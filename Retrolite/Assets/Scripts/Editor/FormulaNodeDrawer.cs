@@ -1,312 +1,123 @@
 #if UNITY_EDITOR
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using CalculatingSystem;
 
-[CustomPropertyDrawer(typeof(FormulaNode), true)]
-public class FormulaNodeDrawer : PropertyDrawer
-{
-    private const float ButtonWidth = 20f;
-    private const float Spacing = 2f;
-    private const float OperationWidth = 50f;
-    private const float FixedLabelWidth = 120f;
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return EditorGUIUtility.singleLineHeight;
-    }
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        EditorGUI.BeginProperty(position, label, property);
-
-        var node = property.managedReferenceValue;
-
-        Rect buttonRect = new(
-            position.xMax - ButtonWidth,
-            position.y,
-            ButtonWidth,
-            EditorGUIUtility.singleLineHeight
-        );
-
-        Rect mainRect = new(
-            position.x,
-            position.y,
-            position.width - ButtonWidth - Spacing,
-            EditorGUIUtility.singleLineHeight
-        );
-
-        if (node == null)
-        {
-            if (GUI.Button(mainRect, "Set Formula"))
-                ShowTypeMenu(property);
-
-            EditorGUI.EndProperty();
-            return;
-        }
-
-        float originalLabelWidth = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth = FixedLabelWidth;
-        Rect contentRect = EditorGUI.PrefixLabel(mainRect, label);
-        EditorGUIUtility.labelWidth = originalLabelWidth;
-
-        if (node is ConstantNode)
-        {
-            var valueProp = property.FindPropertyRelative("Value");
-
-            EditorGUI.PropertyField(contentRect, valueProp, GUIContent.none);
-        }
-        else if (node is SinNode || node is CosNode || node is AbsoluteNode)
-        {
-            var nodeProp = property.FindPropertyRelative("Node");
-            EditorGUI.PropertyField(contentRect, nodeProp, GUIContent.none, true);
-        }
-        else if (node is VariableNode)
-        {
-            var varProp = property.FindPropertyRelative("Variable");
-            EditorGUI.PropertyField(contentRect, varProp, GUIContent.none);
-        }
-        else if (node is Expression)
-        {
-            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
-
-            var leftProp = property.FindPropertyRelative("Left");
-            var opProp = property.FindPropertyRelative("Operation");
-            var rightProp = property.FindPropertyRelative("Right");
-
-            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
-
-            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
-            EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
-            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
-        }
-        else if (node is RandomNode)
-        {
-            float nodeWidth = (contentRect.width - OperationWidth - Spacing) / 2f;
-
-            var leftProp = property.FindPropertyRelative("A");
-            var rightProp = property.FindPropertyRelative("B");
-
-            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect rightRect = new(Spacing, contentRect.y, nodeWidth, contentRect.height);
-
-            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
-            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
-        }
-        else
-        {
-            EditorGUI.LabelField(contentRect, $"Unsupported node: {node.GetType().Name}");
-        }
-
-        if (GUI.Button(buttonRect, "☰"))
-            ShowTypeMenu(property);
-
-        EditorGUI.EndProperty();
-    }
-
-    private void ShowTypeMenu(SerializedProperty property)
-    {
-        GenericMenu menu = new();
-        menu.AddItem(new GUIContent("Constant"), false, () => SetNodeType(property, new ConstantNode(0)));
-        menu.AddItem(new GUIContent("Absolute"), false, () => SetNodeType(property, new AbsoluteNode()));
-        menu.AddItem(new GUIContent("Sin"), false, () => SetNodeType(property, new SinNode()));
-        menu.AddItem(new GUIContent("Cos"), false, () => SetNodeType(property, new CosNode()));
-        menu.AddItem(new GUIContent("Variable"), false, () => SetNodeType(property, new VariableNode()));
-        menu.AddItem(new GUIContent("Expression"), false, () => SetNodeType(property, new Expression()));
-        menu.AddItem(new GUIContent("Random"), false, () => SetNodeType(property, new RandomNode()));
-        menu.ShowAsContext();
-    }
-
-    private void SetNodeType(SerializedProperty property, FormulaNode node)
-    {
-        property.managedReferenceValue = node;
-        property.serializedObject.ApplyModifiedProperties();
-    }
-}
-
-[CustomPropertyDrawer(typeof(ConditionNode), true)]
-public class ConditionNodeDrawer : PropertyDrawer
-{
-    private const float ButtonWidth = 20f;
-    private const float Spacing = 2f;
-    private const float OperationWidth = 80f;
-    private const float FixedLabelWidth = 120f;
-
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
-    {
-        return EditorGUIUtility.singleLineHeight;
-    }
-
-    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-    {
-        EditorGUI.BeginProperty(position, label, property);
-
-        var node = property.managedReferenceValue;
-
-        Rect buttonRect = new(
-            position.xMax - ButtonWidth,
-            position.y,
-            ButtonWidth,
-            EditorGUIUtility.singleLineHeight
-        );
-
-        Rect mainRect = new(
-            position.x,
-            position.y,
-            position.width - ButtonWidth - Spacing,
-            EditorGUIUtility.singleLineHeight
-        );
-
-        if (node == null)
-        {
-            if (GUI.Button(mainRect, "Set Condition"))
-                ShowTypeMenu(property);
-
-            EditorGUI.EndProperty();
-            return;
-        }
-
-        float originalLabelWidth = EditorGUIUtility.labelWidth;
-        EditorGUIUtility.labelWidth = FixedLabelWidth;
-        Rect contentRect = EditorGUI.PrefixLabel(mainRect, label);
-        EditorGUIUtility.labelWidth = originalLabelWidth;
-
-        // --- Specific node types ---
-        if (node is ConditionVariableNode)
-        {
-            var varProp = property.FindPropertyRelative("Variable");
-            EditorGUI.PropertyField(contentRect, varProp, GUIContent.none);
-        }
-        else if (node is ComparisonNode)
-        {
-            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
-
-            var leftProp = property.FindPropertyRelative("Left");
-            var opProp = property.FindPropertyRelative("Operator");
-            var rightProp = property.FindPropertyRelative("Right");
-
-            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
-
-            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
-            EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
-            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
-        }
-        else if (node is LogicNode)
-        {
-            float nodeWidth = (contentRect.width - OperationWidth - Spacing * 2) / 2f;
-
-            var leftProp = property.FindPropertyRelative("Left");
-            var opProp = property.FindPropertyRelative("Operator");
-            var rightProp = property.FindPropertyRelative("Right");
-
-            Rect leftRect = new(contentRect.x, contentRect.y, nodeWidth, contentRect.height);
-            Rect opRect = new(leftRect.xMax + Spacing, contentRect.y, OperationWidth, contentRect.height);
-            Rect rightRect = new(opRect.xMax + Spacing, contentRect.y, nodeWidth, contentRect.height);
-
-            EditorGUI.PropertyField(leftRect, leftProp, GUIContent.none, true);
-            EditorGUI.PropertyField(opRect, opProp, GUIContent.none);
-            EditorGUI.PropertyField(rightRect, rightProp, GUIContent.none, true);
-        }
-        else
-        {
-            EditorGUI.LabelField(contentRect, $"Unsupported condition: {node.GetType().Name}");
-        }
-
-        if (GUI.Button(buttonRect, "☰"))
-            ShowTypeMenu(property);
-
-        EditorGUI.EndProperty();
-    }
-
-    private void ShowTypeMenu(SerializedProperty property)
-    {
-        GenericMenu menu = new();
-        menu.AddItem(new GUIContent("Variable Condition"), false, () => SetNodeType(property, new ConditionVariableNode()));
-        menu.AddItem(new GUIContent("Comparison"), false, () => SetNodeType(property, new ComparisonNode(new ConstantNode(0), ComparisonOperator.Equal, new ConstantNode(0))));
-        menu.AddItem(new GUIContent("Logic"), false, () => SetNodeType(property, new LogicNode()));
-        menu.ShowAsContext();
-    }
-
-    private void SetNodeType(SerializedProperty property, ConditionNode node)
-    {
-        property.managedReferenceValue = node;
-        property.serializedObject.ApplyModifiedProperties();
-    }
-}
-
 [CustomPropertyDrawer(typeof(ActionNode), true)]
-public class ActionNodeDrawer : PropertyDrawer
+[CustomPropertyDrawer(typeof(FormulaNode), true)]
+[CustomPropertyDrawer(typeof(ConditionNode), true)]
+public class UniversalNodeDrawer : PropertyDrawer
 {
-    private const float ButtonWidth = 60f;
+    private const float TypeButtonWidth = 90f;
     private const float Spacing = 2f;
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        if (property.managedReferenceValue == null) 
+            return EditorGUIUtility.singleLineHeight;
+
+        var children = GetChildren(property);
+        
+        if (children.Count <= 1) 
+            return EditorGUIUtility.singleLineHeight;
+
+        float height = EditorGUIUtility.singleLineHeight;
+        if (property.isExpanded)
+        {
+            foreach (var child in children)
+            {
+                height += EditorGUI.GetPropertyHeight(child, true) + Spacing;
+            }
+        }
+        return height;
+    }
 
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
         EditorGUI.BeginProperty(position, label, property);
 
-        // HEADER
-        Rect headerRect = new(
-            position.x,
-            position.y,
-            position.width,
-            EditorGUIUtility.singleLineHeight
-        );
-
-        DrawHeader(headerRect, property, label);
-
-        // BODY
-        if (property.managedReferenceValue != null)
+        Rect headerRect = new(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+        Rect buttonRect = new(headerRect.xMax - TypeButtonWidth, headerRect.y, TypeButtonWidth, headerRect.height);
+        
+        string typeName = property.managedReferenceValue != null 
+            ? property.managedReferenceValue.GetType().Name.Replace("Node", "") 
+            : "None";
+            
+        if (GUI.Button(buttonRect, typeName, EditorStyles.miniButton))
         {
-            Rect bodyRect = new(
-                position.x,
-                position.y + EditorGUIUtility.singleLineHeight + Spacing,
-                position.width,
-                EditorGUI.GetPropertyHeight(property, label, true)
-            );
+            ShowTypeMenu(property);
+        }
 
-            EditorGUI.PropertyField(bodyRect, property, GUIContent.none, true);
+        if (property.managedReferenceValue == null)
+        {
+            Rect labelRect = headerRect;
+            labelRect.width -= TypeButtonWidth + Spacing;
+            EditorGUI.PrefixLabel(labelRect, label);
+            EditorGUI.EndProperty();
+            return;
+        }
+
+        var children = GetChildren(property);
+        Rect contentRect = headerRect;
+        contentRect.width -= TypeButtonWidth + Spacing;
+
+        if (children.Count == 0)
+        {
+            EditorGUI.LabelField(contentRect, label);
+        }
+        else if (children.Count == 1)
+        {
+            var child = children[0];
+            Rect prefixRect = EditorGUI.PrefixLabel(contentRect, label);
+            EditorGUI.PropertyField(prefixRect, child, GUIContent.none, true);
+        }
+        else
+        {
+            property.isExpanded = EditorGUI.Foldout(contentRect, property.isExpanded, label, true);
+            
+            if (property.isExpanded)
+            {
+                EditorGUI.indentLevel++;
+                float y = position.y + EditorGUIUtility.singleLineHeight + Spacing;
+                foreach (var child in children)
+                {
+                    float h = EditorGUI.GetPropertyHeight(child, true);
+                    Rect childRect = new Rect(position.x, y, position.width, h);
+                    EditorGUI.PropertyField(childRect, child, true);
+                    y += h + Spacing;
+                }
+                EditorGUI.indentLevel--;
+            }
         }
 
         EditorGUI.EndProperty();
     }
 
-    private void DrawHeader(Rect rect, SerializedProperty property, GUIContent label)
+    private List<SerializedProperty> GetChildren(SerializedProperty property)
     {
-        // Label
-        Rect labelRect = rect;
-        labelRect.width -= ButtonWidth + Spacing;
-
-        string title = property.managedReferenceValue == null
-            ? $"{label.text} (None)"
-            : $"{label.text} ({property.managedReferenceValue.GetType().Name})";
-
-        EditorGUI.LabelField(labelRect, title, EditorStyles.boldLabel);
-
-        // Button
-        Rect buttonRect = rect;
-        buttonRect.x = rect.xMax - ButtonWidth;
-        buttonRect.width = ButtonWidth;
-
-        if (GUI.Button(buttonRect, "Change"))
+        List<SerializedProperty> children = new List<SerializedProperty>();
+        var iterator = property.Copy();
+        var end = iterator.GetEndProperty();
+        bool enterChildren = true;
+        
+        while (iterator.NextVisible(enterChildren) && !SerializedProperty.EqualContents(iterator, end))
         {
-            ShowTypeMenu(property);
+            children.Add(iterator.Copy());
+            enterChildren = false; 
         }
+        return children;
     }
 
     private void ShowTypeMenu(SerializedProperty property)
     {
-        var menu = new GenericMenu();
-        var types = TypeCache
-            .GetTypesDerivedFrom<ActionNode>()
-            .Where(t => !t.IsAbstract);
+        GenericMenu menu = new GenericMenu();
+        Type baseType = GetTargetType();
+        
+        var types = TypeCache.GetTypesDerivedFrom(baseType).Where(t => !t.IsAbstract && !t.IsGenericType);
 
-        // None option
         menu.AddItem(new GUIContent("None"), property.managedReferenceValue == null, () =>
         {
             property.managedReferenceValue = null;
@@ -315,13 +126,12 @@ public class ActionNodeDrawer : PropertyDrawer
 
         menu.AddSeparator("");
 
-        foreach (var type in types)
+        foreach (var type in types.OrderBy(t => t.Name))
         {
-            bool isCurrent =
-                property.managedReferenceValue != null &&
-                property.managedReferenceValue.GetType() == type;
+            string menuPath = type.Name.Replace("Node", ""); 
+            bool isCurrent = property.managedReferenceValue != null && property.managedReferenceValue.GetType() == type;
 
-            menu.AddItem(new GUIContent(type.Name), isCurrent, () =>
+            menu.AddItem(new GUIContent(menuPath), isCurrent, () =>
             {
                 property.managedReferenceValue = Activator.CreateInstance(type);
                 property.serializedObject.ApplyModifiedProperties();
@@ -331,19 +141,33 @@ public class ActionNodeDrawer : PropertyDrawer
         menu.ShowAsContext();
     }
 
-    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    private Type GetTargetType()
     {
-        float height = EditorGUIUtility.singleLineHeight;
-
-        if (property.managedReferenceValue != null)
-        {
-            height += Spacing;
-            height += EditorGUI.GetPropertyHeight(property, label, true);
-        }
-
-        return height;
+        Type type = fieldInfo.FieldType;
+        if (type.IsArray) return type.GetElementType();
+        if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(List<>)) return type.GetGenericArguments()[0];
+        return type;
     }
 }
 
+[CustomPropertyDrawer(typeof(Formula))]
+[CustomPropertyDrawer(typeof(Condition))]
+[CustomPropertyDrawer(typeof(GameAction))]
+public class WrapperDrawer : PropertyDrawer
+{
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        var rootProp = property.FindPropertyRelative("rootNode");
+        return rootProp != null ? EditorGUI.GetPropertyHeight(rootProp, label, true) : EditorGUIUtility.singleLineHeight;
+    }
 
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        var rootProp = property.FindPropertyRelative("rootNode");
+        if (rootProp != null)
+        {
+            EditorGUI.PropertyField(position, rootProp, label, true);
+        }
+    }
+}
 #endif

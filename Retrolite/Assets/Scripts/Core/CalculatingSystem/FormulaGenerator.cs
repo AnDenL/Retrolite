@@ -8,18 +8,26 @@ namespace CalculatingSystem
             if (depth >= maxDepth)
                 return RandomLeaf(rnd);
 
-            int choice = rnd.Range(0, 7);
+            int choice = rnd.Range(0, 15);
             return choice switch
             {
                 0 => RandomConstant(rnd),
                 1 => RandomVariable(rnd),
-                2 => new Expression(
+                2 => new AddNode(
                         GenerateRandomFormula(rnd, depth + 1, maxDepth),
-                        RandomOperator(rnd),
                         GenerateRandomFormula(rnd, depth + 1, maxDepth)),
-                3 => new AbsoluteNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
-                4 => new SinNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
-                5 => new CosNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                3 => new SubtractNode(
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth),
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                4 => new MultiplyNode(
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth),
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                5 => new DivideNode(
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth),
+                    GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                6 => new AbsoluteNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                7 => new SinNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
+                8 => new CosNode(GenerateRandomFormula(rnd, depth + 1, maxDepth)),
                 _ => RandomConstant(rnd)
             };
         }
@@ -31,7 +39,7 @@ namespace CalculatingSystem
 
         private static ConstantNode RandomConstant(GameRandom rnd)
         {
-            float value = (float)Math.Round(rnd.Value * 10 - 5, 2);
+            float value = (float)Math.Round(rnd.Value * 20 - 10, 2);
             return new ConstantNode(value);
         }
 
@@ -40,12 +48,6 @@ namespace CalculatingSystem
             Array values = Enum.GetValues(typeof(StatVariable));
             StatVariable randomVar = (StatVariable)values.GetValue(rnd.Range(0, values.Length));
             return new VariableNode(randomVar);
-        }
-
-        private static Operator RandomOperator(GameRandom rnd)
-        {
-            Array values = Enum.GetValues(typeof(Operator));
-            return (Operator)values.GetValue(rnd.Range(0, values.Length));
         }
     }
 }

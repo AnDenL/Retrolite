@@ -32,10 +32,15 @@ public class BulletBase : MonoBehaviour
     public float Speed { get; protected set; }
     public float Angle { get; protected set; }
     public float Scale { get; protected set; }
-
     public int Number { get; protected set; }
 
     public bool Inactive { get; protected set; }
+
+    protected bool isSpeedDynamic;
+    protected bool isScaleDynamic;
+    protected bool isAngleDynamic;
+    protected bool isColorDynamic;
+    
 
     public virtual void Initialize(BulletData Data, Context Context, BulletPool Pool)
     {
@@ -45,6 +50,11 @@ public class BulletBase : MonoBehaviour
 
         context.Bullet = this;
         OwnerAlignment = context.Owner.Alignment;
+
+        isSpeedDynamic = data.IsDynamic && !data.Speed.IsConstant();
+        isScaleDynamic = data.IsDynamic && !data.Scale.IsConstant();
+        isAngleDynamic = data.IsDynamic && !data.Angle.IsConstant();
+        isColorDynamic = data.IsDynamic && (!data.Damage.IsConstant() || isSpeedDynamic);
 
         projectileRenderer = GetComponent<SpriteRenderer>();
         projectileRenderer.sprite = Data.BulletSprite;
@@ -91,19 +101,28 @@ public class BulletBase : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (Inactive) return;
+
         if (data.IsDynamic)
         {
-            if (!data.Scale.IsConstant())
+            if (isScaleDynamic)
             {
-                Scale = Mathf.Max(0.1f, Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context))));
+                Scale = Mathf.Clamp(Mathf.Sqrt(Mathf.Abs(data.Scale.Evaluate(context))),0.1f, 100);
                 transform.localScale = Vector3.one * Scale;
             }
-            if (!data.Speed.IsConstant())
-                Speed = data.Speed.Evaluate(context);
-            if (!data.Angle.IsConstant())
-                transform.rotation = Quaternion.Euler(0, 0, Angle + (data.Angle.Evaluate(context) * Mathf.Rad2Deg));
-
-            SetRendererColor();
+            if (isSpeedDynamic)
+            {
+                float s = data.Speed.Evaluate(context);
+                if (!float.IsNaN(s) && !float.IsInfinity(s)) Speed = s;
+            }
+            if (isAngleDynamic)
+            {
+                float a = data.Angle.Evaluate(context) * Mathf.Rad2Deg;
+                if (!float.IsNaN(a) && !float.IsInfinity(a))
+                    transform.rotation = Quaternion.Euler(0, 0, Angle + a);
+            }
+            if (isColorDynamic)
+                SetRendererColor();
         }
 
         transform.position += Speed * Time.deltaTime * 2 * transform.up;

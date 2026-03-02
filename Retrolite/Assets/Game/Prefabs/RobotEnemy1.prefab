@@ -66,6 +66,7 @@ MonoBehaviour:
   Speed: 15
   baseMovementSkill: {fileID: 11400000, guid: 650f9d3e95b076b4da7daaa00087f380, type: 2}
   CanAct: 1
+  ui: {fileID: 0}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
@@ -94,76 +95,24 @@ MonoBehaviour:
   destroyDelay: 6
   weaknesses:
   - conditions:
-    - rid: 7873061014183346377
+    - rootNode:
+        rid: -2
     actions:
-    - rid: 7873061014183346381
+    - rootNode:
+        rid: -2
   - conditions:
-    - rid: 7873061014183346383
+    - rootNode:
+        rid: -2
     actions:
-    - rid: 7873061014183346384
-    - rid: 7873061014183346388
+    - rootNode:
+        rid: -2
+    - rootNode:
+        rid: -2
   references:
     version: 2
     RefIds:
-    - rid: 7873061014183346377
-      type: {class: ComparisonNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Left:
-          rid: 7873061014183346380
-        Right:
-          rid: 7873061014183346379
-        Operator: 0
-    - rid: 7873061014183346379
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 10
-    - rid: 7873061014183346380
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 9
-    - rid: 7873061014183346381
-      type: {class: DamageAction, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Damage:
-          rid: 7873061014183346382
-        TargetSelf: 0
-    - rid: 7873061014183346382
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 9
-    - rid: 7873061014183346383
-      type: {class: ConditionVariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 0
-    - rid: 7873061014183346384
-      type: {class: ExplosionAction, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Damage:
-          rid: 7873061014183346385
-        Knockback:
-          rid: 7873061014183346386
-        Radius:
-          rid: 7873061014183346387
-        Layers:
-          serializedVersion: 2
-          m_Bits: 8
-        Particle: SmallExplosion
-    - rid: 7873061014183346385
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 5
-    - rid: 7873061014183346386
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 3
-    - rid: 7873061014183346387
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 4
-    - rid: 7873061014183346388
-      type: {class: DestroyObjectAction, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Object: {fileID: 456781641387130848}
+    - rid: -2
+      type: {class: , ns: , asm: }
 --- !u!114 &5686033811732888920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +280,7 @@ AudioSource:
   MinDistance: 5
   MaxDistance: 25
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -339,23 +288,41 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: 0.2
       value: 1
-      inSlope: 0
-      outSlope: 0
+      inSlope: -5.0019917
+      outSlope: -5.0019917
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 0.5
+      inSlope: -1.2504979
+      outSlope: -1.2504979
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.8
+      value: 0.25
+      inSlope: -0.31262448
+      outSlope: -0.31262448
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: -0.20007975
+      outSlope: -0.20007975
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4

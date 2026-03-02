@@ -7,7 +7,8 @@ public class WeaponUI : MonoBehaviour
     public Image WeaponImage;
     public AmmoUI AmmoUI;
 
-    [SerializeField] private GameObject Panel;
+    [SerializeField] private GameObject panel;
+    [SerializeField] private Image image;
 
     private WeaponManager weaponManager;
 
@@ -16,19 +17,32 @@ public class WeaponUI : MonoBehaviour
         weaponManager = PlayerController.Instance.WeaponManager;
         weaponManager.OnSelected += UpdateUI;
         weaponManager.Gun.OnFire += UpdateUI;
+        weaponManager.OnReloadStart += StartReload;
+        weaponManager.OnReload += SetReload;
         weaponManager.OnReloadEnd += UpdateUI;
+    }
+
+    private void StartReload()
+    {
+        image.gameObject.SetActive(true);
+    }
+
+    private void SetReload(float fill)
+    {
+        image.fillAmount = 1 - fill;
     }
 
     private void UpdateUI(int selected)
     {
+        image.gameObject.SetActive(false);
         GunData gun = weaponManager.Guns[selected];
         if (gun.GunType == GunType.Empty)
         {
-            Panel.SetActive(false);
+            panel.SetActive(false);
             return;
         }
 
-        Panel.SetActive(true);
+        panel.SetActive(true);
 
         WeaponImage.sprite = gun.GunSprite;
         AmmoUI.SetAmmoTexture(gun.BulletData.BulletSprite);

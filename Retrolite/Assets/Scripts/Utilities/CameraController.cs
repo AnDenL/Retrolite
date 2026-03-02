@@ -6,7 +6,6 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
     [SerializeField] short targetWeight = 6;
-    [SerializeField] float zOffset = -10f;
 
     [Header("Zoom")]
     [SerializeField] int minPPU = 16;
@@ -36,7 +35,7 @@ public class CameraController : MonoBehaviour
                 (Game.mainCamera.ScreenToWorldPoint(Input.mousePosition) - target.position)
                 / targetWeight;
 
-            transform.position = target.position + mousePosition + Vector3.forward * zOffset;
+            transform.position = target.position + mousePosition;
         }
 
         UpdateZoom();

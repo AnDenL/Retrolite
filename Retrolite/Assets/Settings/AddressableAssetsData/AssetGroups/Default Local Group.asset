@@ -458,7 +458,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 463a0870cc0525c4ea353f283bff8f11
-    m_Address: Prefabs/He did his job
+    m_Address: Prefabs/gg
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -512,6 +512,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 566175d2b6d94ae479cdb1b6fe3178d4
+    m_Address: "Prefabs/\xBFHands_0"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 569846705621ce24f954fb34fe0a68ab
     m_Address: Audio/Coins
     m_ReadOnly: 0
@@ -534,6 +539,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b88cb2f0e57f3d4abc48881490efc92
     m_Address: ScriptableObjects/Effects/Regeneration
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5d13c43014251ab4f94018280b0d17d6
+    m_Address: 'Prefabs/Gramophone '
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1137,6 +1147,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b26955ff453468e4b8fa262f39eab5a3
+    m_Address: "Textures/\xBFHands"
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b344bf9518b383d49a838fef6b6dca93
     m_Address: ScriptableObjects/CreaturesAI/Skills/Explosion
     m_ReadOnly: 0
@@ -1367,6 +1382,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dbf6367826365aa448cca6943b8e9646
+    m_Address: Volumes/Brigthness Profile
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd339f9bdf8a9074eb843142b66053cd
     m_Address: Textures/RenderTextures/FogOfWar
     m_ReadOnly: 0
@@ -1534,6 +1554,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb0c5f7092695eadf8ba0ed891f57f88
     m_Address: Prefabs/ShopDummy
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb7b6fc4e08576445ad1e90cf17b3267
+    m_Address: Audio/Shop
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

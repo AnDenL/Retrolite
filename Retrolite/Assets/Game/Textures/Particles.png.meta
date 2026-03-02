@@ -1505,7 +1505,7 @@ TextureImporter:
         width: 2
         height: 9
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1513,6 +1513,69 @@ TextureImporter:
       bones: []
       spriteID: c99ec4ac8ba51c54ea345aea3e5ec585
       internalID: 369645057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_59
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 19
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a8eb9d84e22ddc4d84482f31c5e3295
+      internalID: -1701240306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_60
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 32
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31457da0ca5b839489e5b39886f0f1c8
+      internalID: -997314381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Particles_61
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 31
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf115fcd7b237d44aaaa654a7ac13be2
+      internalID: 1406353718
       vertices: []
       indices: 
       edges: []
@@ -1584,7 +1647,10 @@ TextureImporter:
       Particles_56: 614687891
       Particles_57: -1121623053
       Particles_58: 369645057
+      Particles_59: -1701240306
       Particles_6: 26687269
+      Particles_60: -997314381
+      Particles_61: 1406353718
       Particles_7: -765980378
       Particles_8: 702544234
       Particles_9: -1686637916
