@@ -207,11 +207,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 2568582af7e4cb24887b9daf6a05bae8
-    m_Address: Prefabs/Dombas flower
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 258b08c738d2fb64ab28be25a25a8f20
     m_Address: Audio/Swift
     m_ReadOnly: 0
@@ -444,6 +439,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 43801d23597549e4da03e26dd5d9efc7
     m_Address: Materials/Light
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4404bc2759f9e7743a54bf3134db5dd6
+    m_Address: Prefabs/AncientChest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1072,6 +1072,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7b49e20260d58840b0a1a1c97a6c585
+    m_Address: Textures/AncientTorch
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7dd939ca8666444fa1dca1f21b94612
     m_Address: Audio/Portal_close
     m_ReadOnly: 0
@@ -1134,6 +1139,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: afd012a0ac22ef5458cb92cd5cc34c94
     m_Address: Prefabs/Particles/snow
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b02b18768e8389741b1019548acd3044
+    m_Address: Textures/AncientChest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1214,6 +1224,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bc68e050f7ce31e419428a978cd0fd87
     m_Address: Materials/Binary 3
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bccf4e6a1a05fba498ff844af29264a5
+    m_Address: Prefabs/Particles/Butterflys
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: beec64ee8dfb53447a9dd08148dfcb96
+    m_Address: Audio/Fire
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1422,6 +1442,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2ae0052675b5a840971540416a083a5
+    m_Address: Prefabs/Particles/Flowers2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3ea9116b1edc0848946aa3af2c5e92e
     m_Address: Textures/algae
     m_ReadOnly: 0
@@ -1477,6 +1502,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ea7d28528cfd6f440837140bfd9a5d84
+    m_Address: Textures/Butterfly
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eae8dc797abcc3728bc28ab9a555fc0d
     m_Address: Textures/Dummy
     m_ReadOnly: 0
@@ -1509,6 +1539,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2e678106717e25429372271c19e222b
     m_Address: Textures/Decals
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3bdf45a8ed912543a7d0625d98cd9f7
+    m_Address: Prefabs/AncientTorch
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

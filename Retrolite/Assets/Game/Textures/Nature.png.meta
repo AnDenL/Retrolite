@@ -106,6 +106,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -114,9 +127,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 163
-        width: 104
-        height: 93
+        y: 156
+        width: 105
+        height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -136,8 +149,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 79
-        width: 110
-        height: 84
+        width: 102
+        height: 85
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -328,7 +341,7 @@ TextureImporter:
         width: 86
         height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,6 +349,48 @@ TextureImporter:
       bones: []
       spriteID: 588628ebb33fa0b45b0a2caa3a5ff769
       internalID: 1354023672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nature_11
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 0
+        width: 60
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b054a856f63a35645a286428a9089876
+      internalID: -1772166501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nature_12
+      rect:
+        serializedVersion: 2
+        x: 279
+        y: 0
+        width: 61
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452266c9fd3551543a2fe8c6b36b985d
+      internalID: -852048393
       vertices: []
       indices: 
       edges: []
@@ -354,6 +409,8 @@ TextureImporter:
       Nature_0: 300589780
       Nature_1: 169991694
       Nature_10: 1354023672
+      Nature_11: -1772166501
+      Nature_12: -852048393
       Nature_2: -1958532638
       Nature_3: 252811435
       Nature_4: -410633661

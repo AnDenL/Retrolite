@@ -37,7 +37,7 @@ public class Shop : MonoBehaviour, IGenerationStruct
             ShopItem shopItem = Instantiate(shopSlot, table.transform).GetComponent<ShopItem>();
             shopItem.Item = Instantiate(item.Prefab, shopItem.transform).transform;
             shopItem.price = random.Range(item.minCost, item.maxCost);
-            shopItem.transform.localPosition = new Vector3(i * 1.25f - count * 0.625f + 0.625f, 0.5f, -0.1f);
+            shopItem.transform.localPosition = new Vector3(i * 1.25f - count * 0.625f + 0.625f, 0.5f, -0.5f);
         }
 
         int deco = random.Range(minDecorationsCount, maxDecorationsCount);

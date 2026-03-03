@@ -38,7 +38,11 @@ public class ArcAnim : MonoBehaviour
             yield return null;
         }
 
-        if (col) col.includeLayers = LayerMask.GetMask("Obstacles");
+        if (col) 
+        {
+            if (!col.enabled) col.enabled = true;
+            col.includeLayers = LayerMask.GetMask("Obstacles");
+        }
 
         onFinish?.Invoke();
     }

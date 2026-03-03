@@ -1701,10 +1701,10 @@ TextureImporter:
       name: Tilemap_Forest_30
       rect:
         serializedVersion: 2
-        x: 207
-        y: 65
-        width: 22
-        height: 27
+        x: 208
+        y: 80
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

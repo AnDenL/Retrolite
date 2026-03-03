@@ -41,7 +41,7 @@ public class Chest : Interactable
         creature.HealthComponent.Heal(reward.Heal);
         creature.HealthComponent.AddMaximumHealth(reward.Health);
 
-        if (reward.Items != null && reward.Items.Length > 0) StartCoroutine(SpawnObjects(reward.Items, creature.transform.position));
+        if (reward.Items != null && reward.Items.Count > 0) StartCoroutine(SpawnObjects(reward.Items.ToArray(), creature.transform.position));
         reward = new Reward();
     }
 
@@ -53,13 +53,14 @@ public class Chest : Interactable
             {
                 item.SetActive(true);
                 item.GetComponent<ArcAnim>()?.DropTo(pos);
+                if (item.TryGetComponent(out Collider2D coll)) coll.enabled = false;
             }
             else Instantiate(item, transform.position, Quaternion.identity).GetComponent<ArcAnim>()?.DropTo(pos);
             yield return _waitForSeconds0_5;
         }
     }
 
-    private void SetReward(Reward newReward)
+    public void SetReward(Reward newReward)
     {
         reward = newReward;
     }
@@ -70,10 +71,12 @@ public struct Reward
 {   
     public float Heal;
     public float Health;
-    public GameObject[] Items;
+    public List<GameObject> Items;
     public List<ResourceReward> Resources;
 
-    public Reward(float heal = 0, float health = 0, GameObject[] items = null, List<ResourceReward> resources = null)
+    public static Reward Empty() => new(0,0,new(),new());
+
+    public Reward(float heal = 0, float health = 0, List<GameObject> items = null, List<ResourceReward> resources = null)
     {
         Heal = heal;
         Health = health;

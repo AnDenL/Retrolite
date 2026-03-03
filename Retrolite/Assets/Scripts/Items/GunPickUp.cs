@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 
-[RequireComponent(typeof(SpriteRenderer))]
 public class GunPickUp : Interactable, IGenerationStruct
 {
     [SerializeField] private GunData gunData;
@@ -11,15 +10,27 @@ public class GunPickUp : Interactable, IGenerationStruct
     protected override void Start()
     {
         base.Start();
-        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
+        if (!sr) SetSprite();
+        else sr.sprite = gunData.GunSprite;
         SetDescription();
     }
 
     public void Generate(GameRandom random)
     {
         gunData.Generate(random);
-        GetComponent<SpriteRenderer>().sprite = gunData.GunSprite;
+        if (!sr) SetSprite();
+        else sr.sprite = gunData.GunSprite;
         SetDescription();
+    }
+
+    private void SetSprite()
+    {
+        if (TryGetComponent(out sr)) sr.sprite = gunData.GunSprite;
+        else 
+        {
+            sr = transform.GetComponentInParent<SpriteRenderer>();
+            sr.sprite = gunData.GunSprite;
+        }
     }
 
     public void SetDescription()

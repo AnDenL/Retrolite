@@ -15,6 +15,7 @@ public class Hook : MonoBehaviour
     private IEnumerator Return(Transform target, Vector2 position, ObjectReturn objectReturn)
     {
         Vector2 temp = transform.position;
+        var sr = GetComponent<SpriteRenderer>();
         float t = 0;
 
         while (t < 1)
@@ -29,7 +30,7 @@ public class Hook : MonoBehaviour
         temp = transform.position;
         var coll = target.GetComponent<Collider2D>();
         coll.enabled = false;
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        sr.sprite = sprite;
 
         while (t > 0)
         {
@@ -45,6 +46,14 @@ public class Hook : MonoBehaviour
 
         objectReturn.Targets.Add(target);
         coll.enabled = true;
+
+        while (t < 1)
+        {
+            t += Time.deltaTime * 5;
+
+            sr.color = new Color(1,1,1,1 - t);
+            yield return null;
+        }
 
         Destroy(gameObject);
     }
