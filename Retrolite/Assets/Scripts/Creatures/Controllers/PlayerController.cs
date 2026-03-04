@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using CalculatingSystem;
 using UnityEngine;
 
 namespace Creatures
@@ -32,6 +33,10 @@ namespace Creatures
             if (WeaponManager)
             {
                 SkillSlots.Add(KeyCode.R, new EventSkillSlot(WeaponManager.Reload));
+            }
+            if (owner.Inventory.maxSlots != 0)
+            {
+                SkillSlots.Add(KeyCode.Alpha1, new EventSkillSlot(Hotbar.Use));
             }
         }
 
@@ -99,10 +104,8 @@ namespace Creatures
                     keys = new KeyCode[] { KeyCode.Space, KeyCode.LeftShift, KeyCode.LeftControl };
                     break;
                 case SkillType.Defense:
-                    keys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C };
-                    break;
                 case SkillType.PowerUp:
-                    keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3 };
+                    keys = new KeyCode[] { KeyCode.Z, KeyCode.X, KeyCode.C };
                     break;
                 case SkillType.Utility:
                     keys = new KeyCode[] { KeyCode.E, KeyCode.V, KeyCode.B, KeyCode.N };
@@ -126,10 +129,10 @@ namespace Creatures
     
     public class EventSkillSlot  : ISkillSlot
     {
-        public event System.Action OnPressed;
+        public event Action OnPressed;
         public bool OnKeyDown { get; set; }
 
-        public EventSkillSlot (System.Action action)
+        public EventSkillSlot (Action action)
         {
             OnPressed = action;
         }

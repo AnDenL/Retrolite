@@ -20,7 +20,6 @@ namespace CalculatingSystem
     
         public void OnAfterDeserialize()
         {
-            // Як тільки ти щось міняєш в інспекторі, кеш скидається
             _cachedFunc = null; 
         }
 

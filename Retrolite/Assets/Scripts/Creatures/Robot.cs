@@ -50,6 +50,7 @@ public class Robot : Creature
     {
         Vector2 position = transform.position;
         ParticleManager.PlayParticle("Explosion", position, 30);
+        ParticleManager.PlayParticle("FireSparcles", position, 8);
         var hits = Physics2D.OverlapCircleAll(position, 5, LayerMask.GetMask("Creature"));
 
         foreach (var hit in hits)

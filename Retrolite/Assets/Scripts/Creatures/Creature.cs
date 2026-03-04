@@ -17,7 +17,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     [SerializeField] protected AIController controller;
     public float VisionRange = 8f;
 
-    protected Inventory inventory;
+    [SerializeField] protected Inventory inventory;
     public Inventory Inventory => inventory;
 
     public AIController Controller => controller;
@@ -327,6 +327,20 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         Source.PlayOneShot(clip);
     }
 
+    public void DropItems()
+    {
+        GameObject item = Game.GlobalObjects.Entries[0];
+
+        foreach (var stack in inventory.items)
+        {
+            var i = Instantiate(item, transform);
+            i.transform.parent = null;
+            i.GetComponent<ItemPickUp>().Set(stack);
+            i.GetComponent<ArcAnim>().DropTo(transform.position + (Vector3)UnityEngine.Random.insideUnitCircle);
+        }
+        inventory.items = new();
+    }
+
     public virtual void Heal(float value) => HealthComponent.Heal(value);
     public virtual void TakeDamage(float value) => HealthComponent.TakeDamage(value);
     public virtual void TakeDamage(float value, Context context) => HealthComponent.TakeDamage(value, context);
@@ -345,6 +359,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     protected void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
     protected void DeathEffect()
     {
+        DropItems();
         Break();
         Animator.SetBool(_isDeadHash, true);
     }

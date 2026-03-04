@@ -10,7 +10,7 @@ namespace CalculatingSystem
 
             Vector2 bulletDir = context.Bullet.transform.up;
             Vector2 pos = context.Owner.Controller.GetTargetPosition() - context.Bullet.transform.position;
-            if(pos.magnitude == 0) return 0;
+            if (pos.magnitude == 0) return 0;
             Vector2 targetDir = pos.normalized;
 
             float angle = Mathf.Atan2(targetDir.y, targetDir.x) - Mathf.Atan2(bulletDir.y, bulletDir.x);

@@ -10,7 +10,7 @@ namespace Creatures
         public float Cooldown;
         public int MinCount, MaxCount;
         public GameObject Prefab;
-        public BulletData Data;
+        public BulletData SporeData;
         public Sprite[] Sprites; 
         public GameObject MushroomPrefab;
 
@@ -37,7 +37,7 @@ namespace Creatures
                 clip.transform.position = owner.transform.position;
             }
 
-            pool = new BulletPool(Prefab, clip, Data, context);
+            pool = new BulletPool(Prefab, clip, SporeData, context);
 
             var sr = owner.transform.Find("Sprite").GetComponent<SpriteRenderer>();
 

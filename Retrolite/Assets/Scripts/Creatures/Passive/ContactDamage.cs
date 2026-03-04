@@ -19,7 +19,7 @@ namespace Creatures
 
         public void OnCollisionEnterEvent(Collision2D coll)
         {
-            if (Time.time < lastTime && owner.Corruption.IsCorrupted) return;
+            if (Time.time < lastTime || owner.Corruption.IsCorrupted) return;
             if (coll.gameObject.TryGetComponent(out Creature creature))
             {
                 if (creature.IsEnemyTo(owner))

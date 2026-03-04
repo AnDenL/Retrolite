@@ -16,25 +16,25 @@ MonoBehaviour:
   MinCount: 2
   MaxCount: 4
   Prefab: {fileID: 4500548146545427392, guid: c72079c2013a8dd4d8abc12e5b40265b, type: 3}
-  Data:
+  SporeData:
     Damage:
       rootNode:
-        rid: 7299798626323660894
+        rid: 8186325968594927894
     LifeTime:
       rootNode:
-        rid: 7299798626323660881
+        rid: 8186325968594927899
     Knockback:
       rootNode:
-        rid: 7299798626323660897
+        rid: -2
     Scale:
       rootNode:
-        rid: 7299798626323660902
+        rid: 8186325968594927904
     Speed:
       rootNode:
-        rid: 7299798626323660906
+        rid: 8186325968594927909
     Angle:
       rootNode:
-        rid: 7299798626323660909
+        rid: 8186325968594927920
     OnReturn:
       rootNode:
         rid: -2
@@ -57,79 +57,93 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 7299798626323660881
-      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Left:
-          rid: 7299798626323660882
-        Operation: 0
-        Right:
-          rid: 7299798626323660883
-    - rid: 7299798626323660882
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 1
-    - rid: 7299798626323660883
-      type: {class: AbsoluteNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Node:
-          rid: 7299798626323660885
-    - rid: 7299798626323660885
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 10
-    - rid: 7299798626323660894
+    - rid: 8186325968594927894
       type: {class: RandomNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         A:
-          rid: 7299798626323660896
+          rid: 8186325968594927897
         B:
-          rid: 7299798626323660895
-    - rid: 7299798626323660895
+          rid: 8186325968594927898
+    - rid: 8186325968594927897
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 0
-    - rid: 7299798626323660896
+    - rid: 8186325968594927898
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 5
-    - rid: 7299798626323660897
+    - rid: 8186325968594927899
+      type: {class: RandomNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        A:
+          rid: 8186325968594927902
+        B:
+          rid: 8186325968594927903
+    - rid: 8186325968594927902
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 0
-    - rid: 7299798626323660902
-      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Left:
-          rid: 7299798626323660904
-        Operation: 0
-        Right:
-          rid: 7299798626323660903
-    - rid: 7299798626323660903
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 10
-    - rid: 7299798626323660904
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Value: 0.5
-    - rid: 7299798626323660906
-      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Left:
-          rid: 7299798626323660907
-        Operation: 0
-        Right:
-          rid: 7299798626323660908
-    - rid: 7299798626323660907
-      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
+        IsLocked: 0
         Value: 1
-    - rid: 7299798626323660908
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
-      data:
-        Variable: 10
-    - rid: 7299798626323660909
+    - rid: 8186325968594927903
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
+        Value: 3
+    - rid: 8186325968594927904
+      type: {class: MultiplyNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Left:
+          rid: 8186325968594927923
+        Right:
+          rid: 8186325968594927907
+    - rid: 8186325968594927907
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Variable: 11
+    - rid: 8186325968594927909
+      type: {class: AddNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Left:
+          rid: 8186325968594927910
+        Right:
+          rid: 8186325968594927912
+    - rid: 8186325968594927910
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Value: 1
+    - rid: 8186325968594927912
+      type: {class: MultiplyNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Left:
+          rid: 8186325968594927918
+        Right:
+          rid: 8186325968594927919
+    - rid: 8186325968594927918
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Variable: 10
+    - rid: 8186325968594927919
+      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Variable: 11
+    - rid: 8186325968594927920
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
         Value: 0
+    - rid: 8186325968594927923
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Value: 1

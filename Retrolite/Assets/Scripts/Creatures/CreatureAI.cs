@@ -29,7 +29,7 @@ namespace Creatures
         public virtual Vector3 GetTargetPosition()
         {
             if (target == null) return Vector3.zero;
-            return target.transform.position.normalized;
+            return target.transform.position;
         }
     }
 }

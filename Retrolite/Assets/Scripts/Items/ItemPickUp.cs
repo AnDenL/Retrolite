@@ -12,9 +12,20 @@ public class ItemPickUp : Interactable
     {
         base.Start();
 
+        Set();
+    }
+    
+    public void Set()
+    {
         sr.sprite = Stack.Item.Icon;
         Description.text = Stack.Item.ItemName + "\n" + (string.IsNullOrWhiteSpace(Stack.Item.CustomDescription) ? 
                             Stack.Item.Action.ToReadableString() : Stack.Item.CustomDescription);
+    }
+
+    public void Set(ItemStack stack)
+    {
+        Stack = stack;
+        Set();
     }
     
     public override void Interact(Creature creature)

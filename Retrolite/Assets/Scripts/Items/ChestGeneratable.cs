@@ -18,14 +18,15 @@ public class ChestGeneratable : MonoBehaviour, IGenerationStruct
 
         for (int i = 0; i < count; i++)
         {
-            int j = random.Range(0,4);
+            int j = random.Range(0,5);
 
             switch (j)
             {
                 case 0:
+                case 1:
                     reward.Resources.Add(resources[random.Range(0,resources.Length)].Generate(random));
                     break;
-                case 1:
+                case 2:
                     var obj = prefabs[random.Range(0, prefabs.Length)];
                     obj = Instantiate(obj, chest.transform);
 

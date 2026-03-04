@@ -32,7 +32,7 @@ namespace Creatures
         private IEnumerator Attack(Vector2 direction)
         {
             owner.Animator.SetTrigger(attackHash);
-            owner.Rb.velocity -= 20f * direction;
+            owner.Rb.velocity -= 25f * direction;
 
             ParticleManager.PlayParticle("FastSparcles", owner.transform.position, 3);
             float t = 0;

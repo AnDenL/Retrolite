@@ -1020,8 +1020,6 @@ MonoBehaviour:
   - {fileID: 6058737693215557298, guid: f4e8f9f8cc9db124ea0f4cc66951d5d2, type: 3}
   - {fileID: 1370463922160347945, guid: 2ad01ffd991849c49a7bc3d936a218f6, type: 3}
   - {fileID: 8036569718392245566, guid: 475d8b47281e1c94c920e61ef348cf4d, type: 3}
-  - {fileID: 8544886180257398559, guid: 6cdcf884447fede49ac69d1abbbe053d, type: 3}
-  - {fileID: 3105966673407060743, guid: d5d924ad79abf7b41a74fe4d1ae45012, type: 3}
   point: {fileID: 482148096473503614}
   minDecorationsCount: 8
   maxDecorationsCount: 16

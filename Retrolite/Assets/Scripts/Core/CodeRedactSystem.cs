@@ -127,6 +127,7 @@ public class CodeRedactSystem : MonoBehaviour
     public void Apply()
     {
         Time.timeScale = 1;
+        Game.TimeSpeed = 1;
         IsEditing = false;
         CameraController.SetZoom(16);
         PlayerController.CanInteract = true;

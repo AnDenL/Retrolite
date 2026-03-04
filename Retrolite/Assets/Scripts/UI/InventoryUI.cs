@@ -8,7 +8,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private GameObject itemSlotPrefab;
     [SerializeField] private Transform grid;
 
-    private List<ItemSlot> itemSlots = new();
+    private readonly List<ItemSlot> itemSlots = new();
 
     private void Start()
     {
