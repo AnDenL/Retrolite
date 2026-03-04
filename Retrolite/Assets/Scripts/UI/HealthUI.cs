@@ -51,7 +51,7 @@ public class HealthUI : MonoBehaviour
     {
         if (health > 0) healthSlider.localScale = new Vector3(healthWidth * uiScale.x * (health / maxHealth), healthHeight * uiScale.y, 1);
         else healthSlider.localScale = Vector3.zero;
-        text.text = health.ToString(health > 10 ? "0" : "F1");
+        text.text = health.ToString(health >= 10 ? "0" : "F1");
     }
 
     private void OnEnable()

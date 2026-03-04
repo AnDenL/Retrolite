@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90f48e52826ba943aaf33a03eb04aad, type: 3}
   m_Name: CaveGenerator
   m_EditorClassIdentifier: 
-  Size: {x: 80, y: 80}
-  fillPercent: 50
+  fillPercent: 45
   smoothIterations: 5
   wallValue: 10
   floorValue: 0

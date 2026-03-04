@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf35be5e469d48418c1ee256adb2806, type: 3}
+  m_Name: FireflyEvasion
+  m_EditorClassIdentifier: 
+  Speed: 10
+  DetectionRadius: 1.5
+  SpeedThreshold: 40
+  TriggerAreaPrefab: {fileID: 3813381704003548803, guid: 72557fbc5dcf02e489bd8b03f403d507, type: 3}

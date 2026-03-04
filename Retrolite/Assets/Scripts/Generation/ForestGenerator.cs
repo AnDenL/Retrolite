@@ -90,7 +90,8 @@ public class ForestGenerator : MapGenerator
 
         context.Enemies = enemyPositions.ToList();
         context.Structs = structPositions.ToList();
-        context.KeyStructs = keyStructPositions.ToArray()[0..context.KeyStructs.Length];
+        
+        context.KeyStructs = keyStructPositions.ToArray();
     }
 
     private void GenerateBranches(Vector2 startPos, List<KeyPoint> points, GenerationContext context)

@@ -57,6 +57,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: d1991754f7401704c98db3d3eeff6fc5, type: 2}
   VisionRange: 10
+  inventory:
+    maxSlots: 20
+    items: []
   skillTemplates:
   - {fileID: 11400000, guid: 8edbf97dec639ed4db3760974cf7c4a7, type: 2}
   - {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
@@ -128,10 +131,10 @@ MonoBehaviour:
   maxStability: 2
   stability: 2
   editables:
-  - rid: 9018860271611674631
-  - rid: 9018860271611674632
-  - rid: 9018860271611674630
   - rid: 9018860128952909824
+  - rid: 9018860271611674630
+  - rid: 9018860271611674632
+  - rid: 9018860271611674631
   RecoveryTime: 5
   IsBedingEdited: 0
   references:

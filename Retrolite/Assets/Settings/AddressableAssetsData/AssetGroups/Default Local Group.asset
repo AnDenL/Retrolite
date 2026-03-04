@@ -342,6 +342,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38f2e8c323490314d95b78e4f25e9db2
+    m_Address: Prefabs/Firefly
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 38fda2613ac5e9b6a9734226da4ff891
     m_Address: Audio/Default
     m_ReadOnly: 0
@@ -619,6 +624,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6334711a09173b2cbb895697d6072ab4
     m_Address: Materials/TutorialBackground
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 641f0259d25ec7742a097b51ed75819c
+    m_Address: Tiles/Water/New Rule Tile
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -947,6 +957,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94d472f0027a9c747b67c58f406fc70c
+    m_Address: Textures/BigFirefly
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 974ed0da08116758a84f9864f32ec40e
     m_Address: Materials/ShaderGraph/MenuButton
     m_ReadOnly: 0
@@ -1149,6 +1164,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b0dea252b88839240b489b7144018cca
     m_Address: Materials/PlayerVisibility
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b0e99395a5ac7f8438fa0786bcffb57f
+    m_Address: Audio/Bat
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1467,6 +1487,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e596b335164ee7941a85615ae1a9e9b9
+    m_Address: Textures/Tilemap_WaterTemp
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e5b9024e3f1aa1d439f6327ef28e8d26
     m_Address: Tiles/Tutorial/New Z Depth Rule Tile
     m_ReadOnly: 0
@@ -1569,6 +1594,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4e8f9f8cc9db124ea0f4cc66951d5d2
     m_Address: Prefabs/Shop_5
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f5dcb3064e5eab7449c8bf3ae825b9c6
+    m_Address: ScriptableObjects/CreaturesAI/Skills/FireflyEvasion
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
