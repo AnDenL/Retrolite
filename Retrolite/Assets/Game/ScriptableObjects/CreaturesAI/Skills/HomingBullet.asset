@@ -38,11 +38,9 @@ MonoBehaviour:
       rootNode:
         rid: 7299798626323660853
     OnReturn:
-      rootNode:
-        rid: 7299798626323660870
+      rid: 8186325991097106432
     OnDamage:
-      rootNode:
-        rid: -2
+      rid: -2
     BulletSprite: {fileID: -386389626, guid: 2dab99eecd8460614b2dbe61127e1923, type: 3}
     FireSound: {fileID: 8300000, guid: 80d630afb5edd1e48bd3960497ef2097, type: 3}
     IsDynamic: 1
@@ -82,34 +80,34 @@ MonoBehaviour:
       data:
         IsLocked: 0
         Variable: 13
-    - rid: 7299798626323660870
+    - rid: 8186325991097106432
       type: {class: ExplosionAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Damage:
           rootNode:
-            rid: 7299798626323660871
+            rid: 8186325991097106433
         Knockback:
           rootNode:
-            rid: 7299798626323660872
+            rid: 8186325991097106434
         Radius:
           rootNode:
-            rid: 7299798626323660873
+            rid: 8186325991097106435
         Layers:
           serializedVersion: 2
           m_Bits: 8
         Particle: SmallExplosion
         ParticleCount: 15
-    - rid: 7299798626323660871
+    - rid: 8186325991097106433
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         IsLocked: 0
         Value: 10
-    - rid: 7299798626323660872
+    - rid: 8186325991097106434
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         IsLocked: 0
         Value: 5
-    - rid: 7299798626323660873
+    - rid: 8186325991097106435
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         IsLocked: 0

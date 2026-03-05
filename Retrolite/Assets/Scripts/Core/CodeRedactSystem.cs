@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Reflection.Emit;
 using Creatures;
 using TMPro;
 using UnityEngine;
@@ -89,6 +90,11 @@ public class CodeRedactSystem : MonoBehaviour
                         method.Invoke(target, new object[1] {PlayerController.Player});
                     });
                     break;
+                case MessageParam param:
+                    var message = Instantiate(instance.label.gameObject, win.transform);
+                    message.transform.SetSiblingIndex(2);
+                    message.GetComponent<TextMeshProUGUI>().text = param.Text;
+                    break;
             }
         }
         instance.StartCoroutine(instance.Animate());
@@ -158,6 +164,12 @@ public class IntParam : EditableParam
 {
     public int min;
     public int max;
+}
+
+[Serializable]
+public class MessageParam : EditableParam
+{
+    [TextArea] public string Text;
 }
 
 [Serializable]

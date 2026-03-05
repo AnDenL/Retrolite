@@ -152,7 +152,6 @@ public class UniversalNodeDrawer : PropertyDrawer
 
 [CustomPropertyDrawer(typeof(Formula))]
 [CustomPropertyDrawer(typeof(Condition))]
-[CustomPropertyDrawer(typeof(GameAction))]
 public class WrapperDrawer : PropertyDrawer
 {
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)

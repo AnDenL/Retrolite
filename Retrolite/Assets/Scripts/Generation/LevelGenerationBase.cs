@@ -43,7 +43,7 @@ public class LevelGenerationBase : MonoBehaviour
             GameObject obj = Instantiate(keyStructs[i], new Vector3(pos.x, pos.y), Quaternion.identity);
 
             obj.transform.parent = transform;
-            obj.transform.position = new Vector2(pos.x, pos.y);
+            obj.transform.position = new Vector3(pos.x, pos.y, keyStructs[i].transform.position.z);
             if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(Random); 
         }
     }
@@ -65,9 +65,11 @@ public class LevelGenerationBase : MonoBehaviour
         {
             if (Physics2D.OverlapCircleAll(pos, 2f).Length != 0) continue;
 
-            GameObject obj = Instantiate(layer.Structs[Random.Range(0, layer.Structs.Length)], new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity);
+            GameObject prefab = layer.Structs[Random.Range(0, layer.Structs.Length)];
+            GameObject obj = Instantiate(prefab, new Vector3(pos.x - mapSize.x / 2, pos.y - mapSize.y / 2), Quaternion.identity);
             obj.transform.parent = transform;
             if (obj.TryGetComponent<IGenerationStruct>(out var gen)) gen.Generate(Random); 
+            obj.transform.position += prefab.transform.position;
         }
 
         RenderLayerOptimized(layer.MapTiles);

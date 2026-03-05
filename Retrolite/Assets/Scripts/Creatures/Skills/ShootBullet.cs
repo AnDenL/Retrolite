@@ -23,11 +23,6 @@ namespace Creatures
         {
             base.Init(owner);
 
-            var Context = new Context
-            {
-                Owner = owner
-            };
-
             Clip = owner.transform.Find("Clip");
             if (Clip == null)
             {
@@ -36,6 +31,11 @@ namespace Creatures
                 clip.transform.position = owner.transform.position;
                 Clip = clip.transform;
             }
+
+            var Context = new Context
+            {
+                Owner = owner
+            };
 
             Pool = new BulletPool(BulletPrefab, Clip, BulletData, Context);
         }
@@ -68,7 +68,10 @@ namespace Creatures
                 owner.Rb.AddForce(Knockback * dir, ForceMode2D.Impulse);
                 Clip.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + (owner.transform.localScale.x == 1 ? 0 : 180));
                 ParticleManager.PlayParticle("Impact", Clip.position, 10);
-                Pool.Get().Fire(0, 1);
+                Context.Target = target;
+                var b = Pool.Get();
+                b.SetTarget(target); 
+                b.Fire(0, 1);
             }
         }
     }

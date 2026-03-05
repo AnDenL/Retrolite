@@ -13,7 +13,7 @@ public class CorruptibleBase : MonoBehaviour, ICorruptible
     [Range(1f,15f)]
     public float RecoveryTime = 5f;
 
-    public bool IsCorrupted { get; protected set; }
+    public bool IsCorrupted { get; set; }
     [HideInInspector] public bool IsBedingEdited;
 
     public event Action<bool> OnVulnerabilityChange;

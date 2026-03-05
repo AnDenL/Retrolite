@@ -9808,9 +9808,9 @@ GameObject:
   - component: {fileID: 1490486529606143663}
   - component: {fileID: 4097306354824427693}
   - component: {fileID: 4120710415541001590}
-  - component: {fileID: 9179757483088107891}
   - component: {fileID: 5182044036734216103}
   - component: {fileID: 7192889135446808242}
+  - component: {fileID: 9179757483088107891}
   - component: {fileID: 8200251472941024076}
   m_Layer: 3
   m_Name: Slime
@@ -9828,7 +9828,7 @@ Transform:
   m_GameObject: {fileID: 4658632795700602020}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9291031, y: 0.68746924, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9921,32 +9921,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9179757483088107891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4658632795700602020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
-  VisionRange: 8
-  skillTemplates: []
-  passiveTemplates:
-  - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
-  Speed: 35
-  baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
-  CanAct: 1
-  ui: {fileID: 408960131683230884}
-  Animator: {fileID: 0}
-  HealthComponent: {fileID: 0}
-  Corruption: {fileID: 0}
-  Rb: {fileID: 0}
-  Source: {fileID: 0}
 --- !u!114 &5182044036734216103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9997,7 +9971,7 @@ MonoBehaviour:
         displableName: Health
         fieldName: HealthEditable
         component: {fileID: 5182044036734216103}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 30
@@ -10007,7 +9981,7 @@ MonoBehaviour:
         displableName: Speed
         fieldName: SpeedEditable
         component: {fileID: 9179757483088107891}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 70
@@ -10017,8 +9991,37 @@ MonoBehaviour:
         displableName: Relation
         fieldName: AlignmentEditable
         component: {fileID: 9179757483088107891}
-        cost: 0
+        cost: 10
         totalCost: 0
+--- !u!114 &9179757483088107891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4658632795700602020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
+  VisionRange: 8
+  inventory:
+    maxSlots: 20
+    items: []
+  skillTemplates: []
+  passiveTemplates:
+  - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
+  Speed: 35
+  baseMovementSkill: {fileID: 11400000, guid: b6606abf07135b34aaf636ee31d33a25, type: 2}
+  CanAct: 1
+  ui: {fileID: 408960131683230884}
+  Animator: {fileID: 0}
+  HealthComponent: {fileID: 0}
+  Corruption: {fileID: 0}
+  Rb: {fileID: 0}
+  Source: {fileID: 0}
 --- !u!82 &8200251472941024076
 AudioSource:
   m_ObjectHideFlags: 0

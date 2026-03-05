@@ -42,7 +42,7 @@ public class Hotbar : MonoBehaviour
 
     private void CreateSlot(ItemStack stack, int index)
     {
-        if (stack.Item.Action.rootNode != null)
+        if (stack.Item.Action != null)
         {
             var slot = Instantiate(itemSlotPrefab, bar).GetComponent<ItemSlot>();
             hotbarSlots.Add(index, slot);

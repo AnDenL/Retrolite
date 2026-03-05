@@ -62,6 +62,8 @@ public class BulletBase : MonoBehaviour
         source = GetComponent<AudioSource>();
     }
 
+    public void SetTarget(Creature t) => context.Target = t;
+
     public virtual void Fire(float spread, int number)
     {
         gameObject.SetActive(true);
@@ -145,7 +147,7 @@ public class BulletBase : MonoBehaviour
     {
         if (handleDestroy) Destroy(gameObject);
         context.Position = transform.position;
-        if (data.OnReturn.rootNode != null) data.OnReturn.Execute(context);
+        if (data.OnReturn != null) data.OnReturn.Execute(context);
         Inactive = true;
 
         pool.Return(this);
@@ -178,7 +180,7 @@ public class BulletBase : MonoBehaviour
 
             context.Target = creature;
             creature.Rb.AddForce(data.Knockback.Evaluate(context) / 10 * transform.up, ForceMode2D.Impulse);
-            if (data.OnDamage.rootNode != null) data.OnDamage.Execute(context);
+            if (data.OnDamage != null) data.OnDamage.Execute(context);
         }
         else
         {
@@ -221,8 +223,8 @@ public class BulletData
     public Formula Angle;
 
     [Header("Actions")]
-    public GameAction OnReturn;
-    public GameAction OnDamage;
+    [SerializeReference] public ActionNode OnReturn;
+    [SerializeReference] public ActionNode OnDamage;
 
     public Sprite BulletSprite;
     public AudioClip FireSound;

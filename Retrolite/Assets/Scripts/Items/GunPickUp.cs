@@ -47,10 +47,10 @@ public class GunPickUp : Interactable, IGenerationStruct
         sb.AppendLine($"Size : {gunData.BulletData.Scale.ToReadableString()}");
         sb.AppendLine($"Life : {gunData.BulletData.LifeTime.ToReadableString()}");
 
-        if (gunData.BulletData.OnDamage.rootNode != null)
+        if (gunData.BulletData.OnDamage != null)
             sb.AppendLine($"<color=red>On Hit:</color> {gunData.BulletData.OnDamage.ToReadableString()}");
 
-        if (gunData.BulletData.OnReturn.rootNode != null)
+        if (gunData.BulletData.OnReturn != null)
             sb.AppendLine($"<color=yellow>On End:</color> {gunData.BulletData.OnReturn.ToReadableString()}");
 
         Description.text = sb.ToString();

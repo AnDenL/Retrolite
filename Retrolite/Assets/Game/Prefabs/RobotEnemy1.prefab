@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 456781641387130848}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.6742826, y: 3.339274, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -101,16 +101,13 @@ MonoBehaviour:
     - rootNode:
         rid: -2
     actions:
-    - rootNode:
-        rid: -2
+    - rid: -2
   - conditions:
     - rootNode:
         rid: -2
     actions:
-    - rootNode:
-        rid: -2
-    - rootNode:
-        rid: -2
+    - rid: -2
+    - rid: -2
   references:
     version: 2
     RefIds:
@@ -155,7 +152,7 @@ MonoBehaviour:
         displableName: Relation
         fieldName: AlignmentEditable
         component: {fileID: 8620996929532720784}
-        cost: 0
+        cost: 30
         totalCost: 0
     - rid: 9018860271611674631
       type: {class: FloatParam, ns: , asm: Assembly-CSharp}
@@ -163,7 +160,7 @@ MonoBehaviour:
         displableName: Health
         fieldName: HealthEditable
         component: {fileID: 5458897580908407405}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 80
@@ -173,7 +170,7 @@ MonoBehaviour:
         displableName: Speed
         fieldName: SpeedEditable
         component: {fileID: 8620996929532720784}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 15

@@ -19,31 +19,32 @@ MonoBehaviour:
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 7b9f57e1839bee14aa80361d6d4eaeb6, type: 3}
   Action:
-    rootNode:
-      rid: 7299798626323660833
+    rid: 8186325988675420226
   references:
     version: 2
     RefIds:
-    - rid: 7299798626323660833
+    - rid: 8186325988675420226
       type: {class: GiveResource, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Count:
           rootNode:
-            rid: 7299798626323660834
+            rid: 8186325988675420227
         resource: 1
-    - rid: 7299798626323660834
-      type: {class: Expression, ns: CalculatingSystem, asm: Assembly-CSharp}
+    - rid: 8186325988675420227
+      type: {class: RandomNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Left:
-          rid: 7299798626323660835
-        Operation: 0
-        Right:
-          rid: 7299798626323660837
-    - rid: 7299798626323660835
+        IsLocked: 0
+        A:
+          rid: 8186325988675420228
+        B:
+          rid: 8186325988675420229
+    - rid: 8186325988675420228
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Value: 25
-    - rid: 7299798626323660837
-      type: {class: VariableNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+        IsLocked: 0
+        Value: 15
+    - rid: 8186325988675420229
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
-        Variable: 10
+        IsLocked: 0
+        Value: 25

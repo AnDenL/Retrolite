@@ -116,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 4852913510816775707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.463, y: 2.185, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -217,12 +217,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStability: 1
   stability: 0
-  editables: []
+  editables:
+  - rid: 8186325988675420626
   RecoveryTime: 5
   IsBedingEdited: 0
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 8186325988675420626
+      type: {class: MessageParam, ns: , asm: Assembly-CSharp}
+      data:
+        displableName: 
+        fieldName: 
+        component: {fileID: 0}
+        cost: 0
+        totalCost: 0
+        Text: What are you looking at? I'm just a dummy :)
 --- !u!114 &620326685854864058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,11 +247,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: 4b4d05b1a3292ec408384e3c294a830e, type: 2}
   VisionRange: 8
+  inventory:
+    maxSlots: 20
+    items: []
   skillTemplates: []
   passiveTemplates: []
   Speed: 5
   baseMovementSkill: {fileID: 0}
   CanAct: 1
+  ui: {fileID: 0}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}

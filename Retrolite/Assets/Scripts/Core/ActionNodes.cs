@@ -10,7 +10,6 @@ namespace CalculatingSystem
     {
         public abstract void Execute(Context context);
         public abstract string ToReadableString();
-        public abstract Action<Context> Bake();
     }
 
     [Serializable]
@@ -32,14 +31,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Deal {Damage.ToReadableString()} damage to target";
-
-        public override Action<Context> Bake() => context =>
-        {
-            Creature creature = TargetSelf ? context.Owner : context.Target;
-            float damage = Damage.Evaluate(context);
-            creature.HealthComponent.TakeDamage(damage);
-            ParticleManager.PlayParticle("Crit", context.Target.HealthComponent.transform.position, (int)damage);
-        };
     }
 
     [Serializable]
@@ -58,14 +49,6 @@ namespace CalculatingSystem
 
         public override string ToReadableString() => $"Heals {Amount.ToReadableString()} hp" + 
         (AdditionalHealth.ToReadableString() == "0" ? "" : $", increases max hp by {AdditionalHealth.ToReadableString()}");
-
-        public override Action<Context> Bake() => context =>
-        {
-            float heal = Amount.Evaluate(context);
-            context.Target.HealthComponent.AddMaximumHealth(AdditionalHealth.Evaluate(context));
-            context.Target.HealthComponent.Heal(Amount.Evaluate(context));
-            ParticleManager.PlayParticle("Heal", context.Target.transform.position, (int)heal);
-        };
     }
 
     [Serializable]
@@ -82,12 +65,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Give {Count.ToReadableString()} {resource}";
-        public override Action<Context> Bake() => context =>
-        {
-            int money = (int)Count.Evaluate(context);
-            context.Target.Resources.Get(resource).Add(money);
-            ParticleManager.PlayParticle(resource, context.Owner.transform.position, context.Target.transform, money);
-        };
     }
 
     [Serializable]
@@ -102,9 +79,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Spawn {Prefab.name}";
-
-        public override Action<Context> Bake() => context =>
-            UnityEngine.Object.Instantiate(Prefab, context.Position, Quaternion.identity);
     }
 
     [Serializable]
@@ -118,7 +92,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Destroy {Object.name}";
-        public override Action<Context> Bake() => context => UnityEngine.Object.Destroy(Object);
     }
 
     [Serializable]
@@ -133,8 +106,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Play animation {Trigger}";
-
-        public override Action<Context> Bake() => context => context.Owner.Animator.SetTrigger(Trigger);
     }
 
     [Serializable]
@@ -149,14 +120,13 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Play particle {Particles}";
-        public override Action<Context> Bake() => context => ParticleManager.PlayParticle(Particles, context.Position, Count);
     }
 
     [Serializable]
     public class DelayedAction : ActionNode
     {
         public Formula Delay;
-        public ActionNode Action;
+        [SerializeReference] public ActionNode Action;
 
         public override void Execute(Context context)
         {
@@ -170,8 +140,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Wait for {Delay.ToReadableString()} seconds, then {Action.ToReadableString()}";
-
-        public override Action<Context> Bake() => context => context.Owner.StartCoroutine(DelayedExecute(context));
     }
 
     [Serializable]
@@ -187,8 +155,6 @@ namespace CalculatingSystem
         }
 
         public override string ToReadableString() => $"Apply {effect.EffectName}, for {duration.ToReadableString()} seconds";
-
-        public override Action<Context> Bake() => context => context.Target.AddEffect(effect, strength.Evaluate(context), duration.Evaluate(context));
     }
 
     [Serializable]
@@ -201,65 +167,26 @@ namespace CalculatingSystem
         public string Particle = "SmallExplosion";
         public int ParticleCount = 15;
 
+        private readonly Collider2D[] cachedColl = new Collider2D[32];
+
         public override void Execute(Context context)
         {
             Vector2 position = context.Position;
             ParticleManager.PlayParticle(Particle, position, ParticleCount);
-            var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
+            int hits = Physics2D.OverlapCircleNonAlloc(position, Radius.Evaluate(context), cachedColl, Layers);
 
-            foreach (var hit in hits)
+            for (int i = 0; i < hits; i++)
             {
-                if (hit.TryGetComponent(out Creature creature))
+                if (cachedColl[i].TryGetComponent(out Creature creature))
                 {
                     if (!creature.IsEnemyTo(context.Owner)) continue;
                     creature.HealthComponent.TakeDamage(Damage.Evaluate(context));
-                    Vector2 dir = hit.transform.position - (Vector3)position;
+                    Vector2 dir = cachedColl[i].transform.position - (Vector3)position;
                     creature.Rb.AddForce(Knockback.Evaluate(context) * dir, ForceMode2D.Impulse);
                 }
             }
         }
 
         public override string ToReadableString() => $"Creates explosion(damage:{Damage.ToReadableString()}, knockback:{Knockback.ToReadableString()}, radius:{Radius.ToReadableString()})";
-
-        public override Action<Context> Bake() => context =>
-        {
-            Vector2 position = context.Position;
-            ParticleManager.PlayParticle(Particle, position, ParticleCount);
-            var hits = Physics2D.OverlapCircleAll(position, Radius.Evaluate(context), Layers);
-
-            float damage = Damage.Evaluate(context); 
-
-            foreach (var hit in hits)
-            {
-                if (hit.TryGetComponent(out Creature creature))
-                {
-                    if (!creature.IsEnemyTo(context.Owner)) continue;
-                    creature.HealthComponent.TakeDamage(damage);
-                    Vector2 dir = hit.transform.position - (Vector3)position;
-                    creature.Rb.AddForce(Knockback.Evaluate(context) * dir, ForceMode2D.Impulse);
-                }
-            }  
-        };
-    }
-
-    [Serializable]
-    public struct GameAction
-    {
-        [SerializeReference] public ActionNode rootNode;
-        private Action<Context> _cachedFunc;
-
-        public GameAction(ActionNode node)
-        {
-            rootNode = node;
-            _cachedFunc = rootNode.Bake();
-        }
-
-        public void Execute(Context context)
-        {
-            _cachedFunc ??= rootNode.Bake();
-            _cachedFunc(context);
-        } 
-
-        public readonly string ToReadableString() => rootNode.ToReadableString();
     }
 }

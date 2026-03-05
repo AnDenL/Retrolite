@@ -102,9 +102,9 @@ Shader "UI/Minimap"
             {
                 half4 color = (tex2D(_MainTex, IN.texcoord) + _TextureSampleAdd) * IN.color;
 
-                half fogValue = tex2D(_FogTex, IN.texcoord).a;
-                
-                color *= fogValue;
+                half4 fogValue = tex2D(_FogTex, IN.texcoord);
+
+                color *= fogValue.a;
 
                 #ifdef UNITY_UI_CLIP_RECT
                 color.a *= UnityGet2DClipping(IN.worldPosition.xy, _ClipRect);

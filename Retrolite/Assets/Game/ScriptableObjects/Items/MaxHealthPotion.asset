@@ -19,25 +19,26 @@ MonoBehaviour:
   SingleUse: 1
   Sound: {fileID: 8300000, guid: 9e40303d0e70da1428f6111437cb3a17, type: 3}
   Action:
-    rootNode:
-      rid: 7299798626323660830
+    rid: 8186325988675420218
   references:
     version: 2
     RefIds:
-    - rid: 7299798626323660830
+    - rid: 8186325988675420218
       type: {class: HealAction, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
         Amount:
           rootNode:
-            rid: 7299798626323660831
+            rid: 8186325988675420219
         AdditionalHealth:
           rootNode:
-            rid: 7299798626323660832
-    - rid: 7299798626323660831
+            rid: 8186325988675420220
+    - rid: 8186325988675420219
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 25
-    - rid: 7299798626323660832
+    - rid: 8186325988675420220
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 25

@@ -76,6 +76,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     protected int _lookUpHash;
     protected int _isDeadHash;
     
+    public bool IsCorrupted { get; set; }
     public bool FacingRight { get; private set;}
     public Coroutine ChannelingSkill { get; private set;}
 

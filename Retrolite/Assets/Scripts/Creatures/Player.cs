@@ -38,6 +38,32 @@ public class Player : Creature
         source.PlayOneShot(step);
     }
 
+    public void UseClosest()
+    {
+        var temp = Physics2D.OverlapCircleAll(transform.position, 1.5f, LayerMask.GetMask("Interactable"));
+
+        Collider2D nearestCollider = null;
+        float nearestDistance = float.MaxValue;
+
+        foreach (var collider in temp)
+        {
+            if (collider.CompareTag("Interactable"))
+            {
+                float distance = Vector2.Distance(transform.position, collider.transform.position);
+                if (distance < nearestDistance)
+                {
+                    nearestCollider = collider;
+                    nearestDistance = distance;
+                }
+            }
+        }
+
+        if (nearestCollider != null && TryGetComponent(out ItemPickUp item))
+        {
+            item.Use(this);
+        }
+    }
+
     public override void LookAt(Vector3 position)
     {
         base.LookAt(position);

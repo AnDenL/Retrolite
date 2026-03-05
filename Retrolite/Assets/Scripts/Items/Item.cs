@@ -12,7 +12,7 @@ public class Item : ScriptableObject
     public Sprite Icon = null;
     public bool SingleUse;
     public AudioClip Sound;
-    public GameAction Action;
+    [SerializeReference] public ActionNode Action;
 
     public void Activate(Context context) => Action.Execute(context);
 }

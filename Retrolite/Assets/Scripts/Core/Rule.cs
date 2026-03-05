@@ -6,7 +6,7 @@ using CalculatingSystem;
 public class Rule
 {
     public Condition[] conditions;
-    public GameAction[] actions;
+    [SerializeReference] public ActionNode[] actions;
 
     public void Check(Context context)
     {
@@ -20,7 +20,7 @@ public class Rule
 
     public void ExecuteAll(Context context)
     {
-        foreach (GameAction action in actions)
+        foreach (ActionNode action in actions)
             action.Execute(context);
     }
 }

@@ -30,6 +30,33 @@ namespace Creatures
             owner.OnNewSkill += NewSlot;
 
             WeaponManager = owner.GetComponentInChildren<WeaponManager>();
+            SkillSlots.Add(KeyCode.F, new EventSkillSlot(
+                () => {      
+                    var temp = Physics2D.OverlapCircleAll(owner.transform.position, 1.5f, LayerMask.GetMask("Interactable"));
+
+                    Collider2D nearestCollider = null;
+                    float nearestDistance = float.MaxValue;
+
+                    foreach (var collider in temp)
+                    {
+                        if (collider.CompareTag("Interactable"))
+                        {
+                            float distance = Vector2.Distance(owner.transform.position, collider.transform.position);
+                            if (distance < nearestDistance)
+                            {
+                                nearestCollider = collider;
+                                nearestDistance = distance;
+                            }
+                        }
+                    }
+
+                    if (nearestCollider != null && nearestCollider.TryGetComponent(out ItemPickUp item))
+                    {
+                        item.Use(owner);
+                    }
+                }
+            ));
+
             if (WeaponManager)
             {
                 SkillSlots.Add(KeyCode.R, new EventSkillSlot(WeaponManager.Reload));
@@ -98,7 +125,7 @@ namespace Creatures
             switch (type)
             {
                 case SkillType.Attack:
-                    keys = new KeyCode[] { KeyCode.Mouse0, KeyCode.Mouse1, KeyCode.Q, KeyCode.F };
+                    keys = new KeyCode[] { KeyCode.Mouse0, KeyCode.Mouse1, KeyCode.Q, };
                     break;
                 case SkillType.Movement:
                     keys = new KeyCode[] { KeyCode.Space, KeyCode.LeftShift, KeyCode.LeftControl };

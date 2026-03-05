@@ -179,9 +179,9 @@ GameObject:
   - component: {fileID: 2357683120991029022}
   - component: {fileID: 4047926402490682125}
   - component: {fileID: 2331269436288910353}
-  - component: {fileID: 3546846721014133445}
   - component: {fileID: 923048681512994598}
   - component: {fileID: 6144413593481797548}
+  - component: {fileID: 3546846721014133445}
   - component: {fileID: 3365973565401281880}
   - component: {fileID: 4512425887784246831}
   m_Layer: 3
@@ -200,7 +200,7 @@ Transform:
   m_GameObject: {fileID: 4687616792200412915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.85, y: 0.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -257,37 +257,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3546846721014133445
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4687616792200412915}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
-  VisionRange: 8
-  inventory:
-    maxSlots: 1
-    items: []
-  skillTemplates:
-  - {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
-  passiveTemplates:
-  - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
-  - {fileID: 11400000, guid: f5dcb3064e5eab7449c8bf3ae825b9c6, type: 2}
-  Speed: 15
-  baseMovementSkill: {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
-  CanAct: 1
-  ui: {fileID: 2580252032241104470}
-  Animator: {fileID: 0}
-  HealthComponent: {fileID: 0}
-  Corruption: {fileID: 0}
-  Rb: {fileID: 0}
-  Source: {fileID: 0}
 --- !u!114 &923048681512994598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +307,7 @@ MonoBehaviour:
         displableName: Health
         fieldName: HealthEditable
         component: {fileID: 923048681512994598}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 25
@@ -348,7 +317,7 @@ MonoBehaviour:
         displableName: Speed
         fieldName: SpeedEditable
         component: {fileID: 3546846721014133445}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 25
@@ -359,7 +328,38 @@ MonoBehaviour:
         fieldName: AlignmentEditable
         component: {fileID: 3546846721014133445}
         cost: 0
-        totalCost: 0
+        totalCost: 5
+--- !u!114 &3546846721014133445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4687616792200412915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 319991a842890be488347a4ad925c2c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 11400000, guid: cd763048a8d9bb54a977d8cb2cc9ed7b, type: 2}
+  VisionRange: 8
+  inventory:
+    maxSlots: 1
+    items: []
+  skillTemplates:
+  - {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
+  passiveTemplates:
+  - {fileID: 11400000, guid: 320f4a15c31d7fe4c86f6de1f2cd1f88, type: 2}
+  - {fileID: 11400000, guid: f5dcb3064e5eab7449c8bf3ae825b9c6, type: 2}
+  Speed: 15
+  baseMovementSkill: {fileID: 11400000, guid: 3f26b4fa09b24f84abfb41cc40a35025, type: 2}
+  CanAct: 1
+  ui: {fileID: 2580252032241104470}
+  Animator: {fileID: 0}
+  HealthComponent: {fileID: 0}
+  Corruption: {fileID: 0}
+  Rb: {fileID: 0}
+  Source: {fileID: 0}
 --- !u!82 &3365973565401281880
 AudioSource:
   m_ObjectHideFlags: 0

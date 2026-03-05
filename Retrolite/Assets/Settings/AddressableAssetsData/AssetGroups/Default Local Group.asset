@@ -628,7 +628,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 641f0259d25ec7742a097b51ed75819c
-    m_Address: Tiles/Water/New Rule Tile
+    m_Address: Tiles/Water/Water
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -968,7 +968,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98e74c9d272ee5e4f874119e3eb6f464
-    m_Address: Materials/Shaders/UI_Minimap
+    m_Address: Materials/UI_Minimap
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -94,7 +94,9 @@ GameObject:
   - component: {fileID: 3562641632311870679}
   - component: {fileID: 8832121266687159156}
   - component: {fileID: 2287968113628741803}
-  m_Layer: 0
+  - component: {fileID: 6742640677101953918}
+  - component: {fileID: 628847341960005345}
+  m_Layer: 15
   m_Name: AncientTorch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 1080105545018705196}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5868337, y: 0.8823104, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -310,6 +312,71 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6742640677101953918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080105545018705196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d329e756a3f9184f8bfa6c3cd1371b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Action:
+    rid: 8186325988675420212
+  DoBreak: 0
+  SigleTime: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 8186325988675420212
+      type: {class: GiveResource, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        Count:
+          rootNode:
+            rid: 8186325988675420213
+        resource: 0
+    - rid: 8186325988675420213
+      type: {class: RandomNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        A:
+          rid: 8186325988675420216
+        B:
+          rid: 8186325988675420217
+    - rid: 8186325988675420216
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Value: 5
+    - rid: 8186325988675420217
+      type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
+      data:
+        IsLocked: 0
+        Value: 10
+--- !u!95 &628847341960005345
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080105545018705196}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2f349661a34ba274db4af06fe6d37c25, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1265605072553362349
 GameObject:
   m_ObjectHideFlags: 0

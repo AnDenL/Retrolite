@@ -70,7 +70,7 @@ namespace Creatures
                     }
                     creature.Rb.AddForce(direction * 50, ForceMode2D.Impulse);
                 }
-                if (coll.gameObject.TryGetComponent(out CorruptibleBase corruptible))
+                if (coll.gameObject.TryGetComponent(out ICorruptible corruptible))
                 {
                     if (corruptible.IsCorrupted)
                     {

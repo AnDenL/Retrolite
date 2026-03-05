@@ -234,7 +234,7 @@ Transform:
   m_GameObject: {fileID: 5729622315320237081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8513508, y: 2.7568393, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -407,7 +407,7 @@ MonoBehaviour:
         displableName: Health
         fieldName: HealthEditable
         component: {fileID: 7193675055930309643}
-        cost: 0
+        cost: 1
         totalCost: 0
         min: 0
         max: 100
@@ -417,7 +417,7 @@ MonoBehaviour:
         displableName: Relation
         fieldName: AlignmentEditable
         component: {fileID: 4432523269013438450}
-        cost: 0
+        cost: 20
         totalCost: 0
     - rid: 9018860271611674629
       type: {class: FloatParam, ns: , asm: Assembly-CSharp}
@@ -425,7 +425,7 @@ MonoBehaviour:
         displableName: VisionRange
         fieldName: VisionEditable
         component: {fileID: 4432523269013438450}
-        cost: 0
+        cost: 2
         totalCost: 0
         min: 0
         max: 16
@@ -443,6 +443,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: 0569be8ffb61f1f48a8223f55230f6a4, type: 2}
   VisionRange: 12
+  inventory:
+    maxSlots: 20
+    items: []
   skillTemplates:
   - {fileID: 11400000, guid: 429fcbc8d0dd38e418d08594415779ef, type: 2}
   passiveTemplates: []

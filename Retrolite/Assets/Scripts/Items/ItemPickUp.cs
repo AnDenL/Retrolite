@@ -35,6 +35,19 @@ public class ItemPickUp : Interactable
         if (Stack.Count <= 0) Destroy(gameObject);
     }
 
+    public void Use(Creature creature)
+    {
+        Stack.Item.Activate(new Context()
+        {
+            Target = creature, 
+            Owner = creature
+        });
+
+        if (Stack.Item.Sound) creature.PlaySound(Stack.Item.Sound);
+        if (Stack.Item.SingleUse) Stack.Count--;
+        if (Stack.Count <= 0) Destroy(gameObject);
+    }
+
     public override void Outline()
     {
         base.Outline();    
