@@ -54,6 +54,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 11400000, guid: ca0e42709476c264aa669c1409d30817, type: 2}
   VisionRange: 8
+  inventory:
+    maxSlots: 20
+    items: []
   skillTemplates:
   - {fileID: 11400000, guid: d31818ff0fd882642a31a9aa17a23228, type: 2}
   - {fileID: 11400000, guid: 6e43184523c36de49820cd8a25e82dba, type: 2}
@@ -64,6 +67,7 @@ MonoBehaviour:
   Speed: 60
   baseMovementSkill: {fileID: 11400000, guid: 002ee8087c8e30945a69d21c60f78faa, type: 2}
   CanAct: 1
+  ui: {fileID: 0}
   Animator: {fileID: 0}
   HealthComponent: {fileID: 0}
   Corruption: {fileID: 0}
@@ -731,7 +735,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 477f42508f14b924da181386218d2767, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -477,6 +477,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 477f42508f14b924da181386218d2767
+    m_Address: Materials/CreatureUniversal
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 486a54ee7b3d90a4bb2d40d08ccb35c4
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_24
     m_ReadOnly: 0
@@ -1234,6 +1239,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bad3eb06392d311459a48b0173f5830d
     m_Address: ScriptableObjects/CreaturesAI/Skills/BulletEvasion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bb3eed67c5882ad469ed58d06559f1b7
+    m_Address: Materials/ShaderGraph/Creature
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

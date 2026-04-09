@@ -65,6 +65,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     [SerializeField] protected Transform ui;
 
     [HideInInspector] public Animator Animator;
+    [HideInInspector] public SpriteRenderer Renderer;
     [HideInInspector] public HealthBase HealthComponent;
     [HideInInspector] public CorruptibleBase Corruption;
     [HideInInspector] public Rigidbody2D Rb;
@@ -74,6 +75,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     protected int _isCorruptedHash;
     protected int _corruptHash;
     protected int _lookUpHash;
+    protected int _hitHash;
     protected int _isDeadHash;
     
     public bool IsCorrupted { get; set; }
@@ -104,6 +106,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         HealthComponent = GetComponent<HealthBase>();
         Corruption = GetComponent<CorruptibleBase>();
         Animator = GetComponent<Animator>();
+        Renderer = transform.GetComponentInChildren<SpriteRenderer>();
         Rb = GetComponent<Rigidbody2D>();
         Source = GetComponent<AudioSource>();
 
@@ -132,11 +135,14 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
             baseMovementSkill.Init(this);
         }
 
-        ui = ui ? ui : transform.Find("UI");
+        if (ui == null) {
+            ui = transform.Find("UI"); 
+        }
 
         Corruption.OnCorrupting += DestabilizationAnim;
-        Corruption.OnVulnerabilityChange += Corrupt;
-        HealthComponent.OnDeath += DeathEffect;
+        Corruption.OnVulnerabilityChange += OnCorrupt;
+        HealthComponent.OnDeath += OnDeath;
+        HealthComponent.OnDamaged += OnHit;
 
         resources = new(this);
 
@@ -145,6 +151,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
         _isBackwardsHash = Animator.StringToHash("IsBackwards");
         _isCorruptedHash = Animator.StringToHash("IsCorrupted");
+        _hitHash = Animator.StringToHash("Hit");
         _isDeadHash = Animator.StringToHash("Death");
         _corruptHash = Animator.StringToHash("Corrupt");
         _lookUpHash = Animator.StringToHash("LookUp");
@@ -350,7 +357,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     #endregion
     #region Private Methods
 
-    protected void Corrupt(bool b)
+    protected void OnCorrupt(bool b)
     {
         HealthComponent.IsWeak = b;
         Animator.SetBool(_isCorruptedHash, b);
@@ -358,7 +365,13 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     protected void OnCollisionStay2D(Collision2D collision) => CollisionStay2D?.Invoke(collision);
     protected void DestabilizationAnim(int i) => Animator.SetTrigger(_corruptHash);
-    protected void DeathEffect()
+    protected void OnHit(float f)
+    {
+        Source.Play();
+        Animator.SetTrigger(_hitHash);
+        StartCoroutine(HitAnim());
+    }    
+    protected void OnDeath()
     {
         DropItems();
         Break();
@@ -370,6 +383,23 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         if (Animator != null) Animator.enabled = active;
 
         if (ui != null) ui.gameObject.SetActive(active);
+    }
+
+    protected IEnumerator HitAnim()
+    {
+        float t = 2f;
+
+        while (t > 0)
+        {
+            t -= Time.deltaTime * 2;
+            float tt = t*t;
+
+            if (Renderer) Renderer.material.SetFloat("_Hit", Mathf.Sin(t * 20) * t + tt);
+
+            yield return null;
+        }
+
+        Renderer.material.SetFloat("_Hit", 0);
     }
 
     #endregion

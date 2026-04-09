@@ -38,10 +38,7 @@ public static class LuaApi
         lua.Globals["Load"] = (Func<string, DynValue>) Load;
 
         lua.Globals["GetTime"] = (Func<float>)(() => Time.time);
-        lua.Globals["WaitForSeconds"] = (Func<float, DynValue>)((seconds) =>
-        {
-            return DynValue.Nil;
-        });
+        lua.Globals["WaitForSeconds"] = (Func<float, DynValue>)((seconds) => { return DynValue.Nil; });
 
         lua.Globals["RandomRange"] = (Func<float, float, float>)UnityEngine.Random.Range;
         lua.Globals["CreateEmpty"] = (Func<string, GameObject>)((name) => new GameObject(name));
