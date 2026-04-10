@@ -12,7 +12,7 @@ public class PlayerHealth : HealthBase
     {
         Creature = GetComponent<Creature>();
 
-        TakeDamage(0);
+        HealthEditable += 0;
     }
 
     public override void Heal(float amount)

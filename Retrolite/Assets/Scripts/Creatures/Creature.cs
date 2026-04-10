@@ -369,7 +369,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
     {
         Source.Play();
         Animator.SetTrigger(_hitHash);
-        StartCoroutine(HitAnim());
+        if (Renderer) StartCoroutine(HitAnim());
     }    
     protected void OnDeath()
     {
@@ -385,21 +385,27 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
         if (ui != null) ui.gameObject.SetActive(active);
     }
 
+    private float t = 0;
     protected IEnumerator HitAnim()
     {
-        float t = 2f;
+        var is_playing = t > 0; 
+        t = 1.5f;
+        float scale = controller.IsPlayer ? 1.5f : 15f;
+
+        if (is_playing) yield break;
 
         while (t > 0)
         {
-            t -= Time.deltaTime * 2;
+            t -= Time.deltaTime * scale;
             float tt = t*t;
 
-            if (Renderer) Renderer.material.SetFloat("_Hit", Mathf.Sin(t * 20) * t + tt);
+            Renderer.material.SetFloat("_Hit", Mathf.Sin(t * 20) * tt + tt);
 
             yield return null;
         }
 
         Renderer.material.SetFloat("_Hit", 0);
+        t = 0;
     }
 
     #endregion

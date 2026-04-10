@@ -20,6 +20,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5620918786397770163, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 477f42508f14b924da181386218d2767, type: 2}
     - target: {fileID: 7192889135446808242, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
       propertyPath: editables.Array.size
       value: 3
