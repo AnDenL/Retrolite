@@ -16,4 +16,4 @@ MonoBehaviour:
   Priority: 0
   cooldownTime: 1
   Speed: 300
-  AttackTime: 0.2
+  AttackTime: 0.1

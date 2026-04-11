@@ -8,9 +8,6 @@
         },
         {
             "m_Id": "3723cc7cd18447058917b3ddb7a92928"
-        },
-        {
-            "m_Id": "8f934ef9d90540b99fd3b4cf1557a706"
         }
     ],
     "m_Keywords": [],
@@ -264,8 +261,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 200.0
+            "x": 65.00000762939453,
+            "y": 208.0
         },
         "m_Blocks": [
             {
@@ -1030,29 +1027,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
-    "m_ObjectId": "8f934ef9d90540b99fd3b4cf1557a706",
-    "m_Guid": {
-        "m_GuidSerialized": "c812ad6e-72e2-40f0-b655-978732192e68"
-    },
-    "m_Name": "UnityFlipSprite",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "UnityFlipSprite",
-    "m_DefaultReferenceName": "_UnityFlipSprite",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": false
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Texture2DInputMaterialSlot",
     "m_ObjectId": "9477acac446b4b7386b2c606ff159407",
     "m_Id": 1,
@@ -1791,9 +1765,6 @@
         },
         {
             "m_Id": "3723cc7cd18447058917b3ddb7a92928"
-        },
-        {
-            "m_Id": "8f934ef9d90540b99fd3b4cf1557a706"
         }
     ]
 }

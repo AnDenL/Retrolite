@@ -12,4 +12,9 @@ public class ParticleSeedSetter : MonoBehaviour, IGenerationStruct
         particle.randomSeed = random.NextUInt();
         particle.Play();
     }
+
+    public void Clear()
+    {
+        GetComponent<ParticleSystem>().Stop();
+    }
 }

@@ -42,6 +42,11 @@ public class ChestGeneratable : MonoBehaviour, IGenerationStruct
 
         chest.SetReward(reward);
     }
+
+    public void Clear()
+    {
+        chest.SetReward(new Reward());
+    }
 }
 
 [Serializable]

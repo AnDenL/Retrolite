@@ -23,6 +23,11 @@ public class GunPickUp : Interactable, IGenerationStruct
         SetDescription();
     }
 
+    public void Clear()
+    {
+        gunData = new GunData();
+    }
+
     private void SetSprite()
     {
         if (TryGetComponent(out sr)) sr.sprite = gunData.GunSprite;

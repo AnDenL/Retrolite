@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class Shop : MonoBehaviour, IGenerationStruct
 {
@@ -12,22 +9,18 @@ public class Shop : MonoBehaviour, IGenerationStruct
     [SerializeField] private int minCount, maxCount;
 
     [Header("Look")]
-    [SerializeField] private Tilemap tilemap;
-    [SerializeField] private TileBase tile;
-    [SerializeField] private int minSize, maxSize;
+    [SerializeField] private FloorGenerator floor;
     [SerializeField] private SpriteRenderer table;
     [SerializeField] private GameObject[] decorations;
     [SerializeField] private Transform point;
     [SerializeField] private int minDecorationsCount, maxDecorationsCount;
 
     [ContextMenu("Generate")]
+    public void GenerateExample() => Generate(new GameRandom((uint)UnityEngine.Random.Range(1, 12000)));
+
     public void Generate(GameRandom random)
     {
         Clear();
-        HashSet<Vector3Int> positions = GenerateFloor(random);
-        TileBase[] tiles = new TileBase[positions.Count];
-        Array.Fill(tiles, tile);
-        tilemap.SetTiles(positions.ToArray(), tiles);
 
         int count = random.Range(minCount, maxCount + 1);
 
@@ -60,36 +53,8 @@ public class Shop : MonoBehaviour, IGenerationStruct
         table.size = new Vector2(0.5f + count * 1.25f, table.size.y);
     }
 
-    public HashSet<Vector3Int> GenerateFloor(GameRandom random)
-    {
-        HashSet<Vector3Int> positions = new();
-
-        int size = random.Range(minSize, maxSize+1);
-
-        Vector3Int position = new();
-        positions.Add(position);
-
-        for (int i = 0; i < size; i++)
-        {
-            position += (Vector3Int)random.GetRandomDirection();
-
-            if (positions.Contains(position))
-            {
-                i--;
-                continue;
-            }
-            positions.Add(position);
-            positions.Add(position + Vector3Int.left);
-
-            if (i % 8 == 7 || position.magnitude > minSize / 3) position = Vector3Int.zero;
-        }
-
-        return positions;
-    }
-
     public void Clear()
     {
-        tilemap.ClearAllTiles();
         while (table.transform.childCount > 0)
             DestroyImmediate(table.transform.GetChild(0).gameObject);
         while (point.transform.childCount > 0)
