@@ -28,6 +28,7 @@ public class EnumEdit : MonoBehaviour, IEdibleParameterUI
         field = param.component.GetType().GetProperty(param.fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
         var value = field.GetValue(param.component);
         originalValue = (int)value;
+        pendingValue = originalValue;
 
         string[] options = value.GetType().GetEnumNames();
 

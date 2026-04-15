@@ -9,7 +9,6 @@ namespace CalculatingSystem
                 return 0f;
 
             Vector2 bulletDir = context.Bullet.transform.up;
-            Debug.Log(context.Target == null);
             Vector2 pos = (context.Target == null ? context.Owner.Controller.GetTargetPosition() : context.Target.transform.position) - context.Bullet.transform.position;
             if (pos.magnitude == 0) return 0;
             Vector2 targetDir = pos.normalized;

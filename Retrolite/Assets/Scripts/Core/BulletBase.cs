@@ -179,18 +179,27 @@ public class BulletBase : MonoBehaviour
             if (!creature.IsEnemyTo(context.Owner)) return;
 
             context.Target = creature;
+            context.Position = transform.position;
             creature.Rb.AddForce(data.Knockback.Evaluate(context) / 10 * transform.up, ForceMode2D.Impulse);
             if (data.OnDamage != null) data.OnDamage.Execute(context);
         }
         else
         {
-            if (!other.TryGetComponent(out HealthBase health))
+            if (other.TryGetComponent(out HealthBase health))
+            {
+                health.TakeDamage(data.Damage.Evaluate(context));
+
+                if (lifeCoroutine != null)
+                    StopCoroutine(lifeCoroutine);
+
+                Deactivate();
+                return;
+            }
+            else
             {
                 Deactivate();
                 return;
             }
-
-            context.Target = null;
         }
 
         float damage = data.Damage.Evaluate(context);

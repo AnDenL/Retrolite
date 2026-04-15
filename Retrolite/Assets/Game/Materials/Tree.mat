@@ -54,9 +54,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Multiplayer: 1
+    - _Multiplayer: 0.2
     - _NoiseScale: 15
     - _ScrollSpeed: 0.01
-    - _Yoffset: -3
+    - _Yoffset: -1.07
     m_Colors: []
   m_BuildTextureStacks: []

@@ -218,7 +218,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 25fcf984d46cd9e3fb817231f570fdb5
-    m_Address: Prefabs/ShopFloor
+    m_Address: Prefabs/Decorations/ShopFloor
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -232,13 +232,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28cb1ce4f468dcd4c9cccc5ecb4f481e
+    m_Address: Prefabs/Decorations/AncientDebris_8
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a795217005adfd43b3fabbf5cc72f3b
     m_Address: Materials/ShaderGraph/Shadow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2ad01ffd991849c49a7bc3d936a218f6
-    m_Address: Prefabs/Shop_6
+    m_Address: Prefabs/Decorations/Shop_6
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -324,6 +329,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36ddee5f212ab884888f02f356e81c51
     m_Address: Textures/Hole
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 377d79b7758d8624e87a9c908f1a998a
+    m_Address: Prefabs/FogMask
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -418,7 +428,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41e671fb2d0d5aa49962a3734b12c2be
-    m_Address: Prefabs/sprite
+    m_Address: Prefabs/Decorations/sprite
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -473,7 +483,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 475d8b47281e1c94c920e61ef348cf4d
-    m_Address: Prefabs/Candle
+    m_Address: Prefabs/Decorations/Candle
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -553,7 +563,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d13c43014251ab4f94018280b0d17d6
-    m_Address: 'Prefabs/Gramophone '
+    m_Address: 'Prefabs/Decorations/Gramophone '
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -568,7 +578,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5ed1d36e76277eb49be6675af82ec4bb
-    m_Address: Prefabs/Candle2
+    m_Address: Prefabs/Decorations/Candle2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -698,7 +708,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6cdcf884447fede49ac69d1abbbe053d
-    m_Address: Prefabs/Candle1
+    m_Address: Prefabs/Decorations/Candle1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -893,7 +903,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d4eaf077cf2f3f40a4361d64cd406a6
-    m_Address: Prefabs/Lamp 1
+    m_Address: Prefabs/Decorations/Lamp 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1193,7 +1203,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b34e745ad22e36f469108c06320caeae
-    m_Address: Prefabs/Candle4
+    m_Address: Prefabs/Decorations/Candle4
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1228,7 +1238,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b97ac0664e0e9544c868b48e01897408
-    m_Address: Prefabs/Box
+    m_Address: Prefabs/Decorations/Box
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1328,7 +1338,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c92de2c2d5795d842901b7712fba40a7
-    m_Address: Prefabs/Lamp 2
+    m_Address: Prefabs/Decorations/Lamp 2
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1353,7 +1363,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccb74d6f54b9f984dada0e4e98cad45d
-    m_Address: Prefabs/Candle3
+    m_Address: Prefabs/Decorations/Candle3
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1403,7 +1413,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d5d924ad79abf7b41a74fe4d1ae45012
-    m_Address: Prefabs/Candle5
+    m_Address: Prefabs/Decorations/Candle5
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1468,7 +1478,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2a1769ba780ac74c91cf36c3cbc1bb3
-    m_Address: Prefabs/Shadow
+    m_Address: Prefabs/Decorations/Shadow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1508,7 +1518,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e771d1e6b6b781442b3e50a60f3d6923
-    m_Address: Prefabs/Tree
+    m_Address: Prefabs/Decorations/Tree
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7acbe29032703145b65746cd03ac361
+    m_Address: Textures/AncientDebris
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1603,7 +1618,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f4e8f9f8cc9db124ea0f4cc66951d5d2
-    m_Address: Prefabs/Shop_5
+    m_Address: Prefabs/Decorations/Shop_5
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

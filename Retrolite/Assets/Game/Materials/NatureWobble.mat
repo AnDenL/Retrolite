@@ -55,8 +55,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _Multiplayer: 0.8
-    - _NoiseScale: 0.5
-    - _ScrollSpeed: 1
-    - _Yoffset: -2.5
+    - _NoiseScale: 10
+    - _ScrollSpeed: 0.01
+    - _Yoffset: 25.2
     m_Colors: []
   m_BuildTextureStacks: []

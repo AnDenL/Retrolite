@@ -39,7 +39,7 @@ namespace CalculatingSystem
 
         private static ConstantNode RandomConstant(GameRandom rnd)
         {
-            float value = (float)Math.Round(rnd.Value * 20 - 10, 2);
+            float value = (float)Math.Round(rnd.Value * 50 - 25, 2);
             return new ConstantNode(value);
         }
 

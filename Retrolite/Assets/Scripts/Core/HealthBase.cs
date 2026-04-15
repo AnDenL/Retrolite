@@ -1,6 +1,7 @@
 using UnityEngine;
 using CalculatingSystem;
 using System;
+using Unity.VisualScripting;
 
 public class HealthBase : MonoBehaviour, IDamagable
 {
@@ -76,7 +77,8 @@ public class HealthBase : MonoBehaviour, IDamagable
             health = maxHealth;
         else if (health <= 0)
             Die();
-        OnDamaged?.Invoke(damage);
+        
+        if (damage > 0) OnDamaged?.Invoke(damage);
         OnHealthChanged?.Invoke(health, maxHealth);
     }
 

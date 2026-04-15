@@ -26,4 +26,4 @@ MonoBehaviour:
   MinDistBetweenKeyStructs: 30
   SafetyRadius: 5
   EnemyDensity: 0.133
-  StructDensity: 0.2
+  StructDensity: 1
