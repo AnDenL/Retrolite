@@ -126,7 +126,7 @@ public class WeaponManager : MonoBehaviour
         Vector2 direction = rawdirection.x < 0 ? -rawdirection : rawdirection;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        handTransform.localPosition = new Vector3(0.7f - Mathf.Abs(direction.y) / 10, 0f, rawdirection.y + 0.65f);
+        handTransform.localPosition = new Vector3(0.75f - Mathf.Abs(direction.y) / 10, 0f, rawdirection.y + 0.65f);
         transform.rotation = Quaternion.Euler(0f, 0f, angle);
     }
 }

@@ -6,6 +6,7 @@ namespace Creatures
     [CreateAssetMenu(fileName = "PositionTransformation", menuName = "CreatureAI/Skills/PositionTransformation")]
     public class PositionTransformation : DirectionSkill
     {
+        private static readonly WaitForSeconds _waitForSeconds0_2 = new(0.2f);
         public float strength = 0.1f;
         public override SkillType Type => SkillType.Movement;
 
@@ -34,6 +35,7 @@ namespace Creatures
             float t = 0f;
             float duration = 0.1f;
             Vector3 startPos = owner.transform.position;
+            owner.Animator.SetBool("InDash", true);
 
             ParticleManager.PlayParticle("Transform", startPos, 4);
             ParticleManager.PlayParticle("GlitchTrail", owner.transform.position, 5);
@@ -67,6 +69,8 @@ namespace Creatures
             ParticleManager.PlayParticle("GlitchTrail", owner.transform.position, 5);
             ParticleManager.PlayParticle("XYZ", startPos, 4);
             ownerCollider.enabled = true;
+            yield return _waitForSeconds0_2;
+            owner.Animator.SetBool("InDash", false);
         }
     }
 }

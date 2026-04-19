@@ -228,7 +228,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 27b31afa44b7fe74f92f0b68db6e32b4
-    m_Address: Textures/gg
+    m_Address: Textures/GG
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2dab99eecd8460614b2dbe61127e1923
-    m_Address: Textures/weapons
+    m_Address: Textures/Weapons
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -548,7 +548,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59f36a77ee137e97181fe6517217668c
-    m_Address: Textures/minirobot
+    m_Address: Textures/Minirobot
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -668,7 +668,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67111596fda7f1609b45f13384bd01ea
-    m_Address: Textures/player
+    m_Address: Textures/Player
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1488,7 +1488,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e3ea9116b1edc0848946aa3af2c5e92e
-    m_Address: Textures/algae
+    m_Address: Textures/Algae
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -1583,7 +1583,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2985d8d622a6c54ca9d3102b3731a3b
-    m_Address: Textures/buble
+    m_Address: Textures/Buble
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
