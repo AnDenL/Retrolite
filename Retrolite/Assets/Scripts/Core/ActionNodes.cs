@@ -54,17 +54,17 @@ namespace CalculatingSystem
     [Serializable]
     public class GiveResource : ActionNode
     {
-        public Formula Count;
-        public ResourceType resource;
+        public Formula Amount;
+        public ResourceType Resource;
 
         public override void Execute(Context context)
         {
-            int money = (int)Count.Evaluate(context);
-            context.Target.Resources.Get(resource).Add(money);
-            ParticleManager.PlayParticle(resource, context.Owner.transform.position, context.Target.transform, money);
+            int money = (int)Amount.Evaluate(context);
+            context.Target.Resources.Get(Resource).Add(money);
+            ParticleManager.PlayParticle(Resource, context.Owner.transform.position, context.Target.transform, money);
         }
 
-        public override string ToReadableString() => $"Give {Count.ToReadableString()} {resource}";
+        public override string ToReadableString() => $"Give {Amount.ToReadableString()} {Resource}";
     }
 
     [Serializable]

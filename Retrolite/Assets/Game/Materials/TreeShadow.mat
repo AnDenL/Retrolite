@@ -56,7 +56,7 @@ Material:
     m_Floats:
     - _NoiseMultiplayer: 0.62
     - _NoiseScale: 0.2
-    - _Seed: 0.28413835
+    - _Seed: 0.35157746
     - _SmalNoiseScale: 2.76
     - _SmallNoiseMultiplayer: 0.11
     - _Step: 0.48

@@ -4,6 +4,7 @@ using System.Collections;
 using Creatures;
 using System;
 using Random = UnityEngine.Random;
+using UnityEngine.AddressableAssets;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(AudioSource))]
@@ -264,7 +265,46 @@ public class BulletData
         Angle = new Formula(tempAngle.IsConstant() ? new ConstantNode(0) : tempAngle);
         Knockback = new Formula(FormulaGenerator.GenerateRandomFormula(rnd));
 
+        if (rnd.Chance(0.5f)) OnDamage = RandomAction(rnd);
+        if (rnd.Chance(0.5f)) OnReturn = RandomAction(rnd);
+
         if (Scale.IsConstant() && Speed.IsConstant() && Angle.IsConstant()) IsDynamic = false;
         else IsDynamic = true;
     }
+
+    private ActionNode RandomAction(GameRandom rnd) => rnd.Range(0,5) switch
+    {
+        0 => new ExplosionAction
+        {
+            Damage = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)), 
+            Knockback = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)),
+            Radius = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)),
+            Layers = LayerMask.GetMask("Creatures")
+        },
+        1 => new HealAction
+        {
+            Amount = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)), 
+            AdditionalHealth = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)),
+        },
+        2 => new DamageAction
+        {
+            Damage = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)), 
+        },
+        3 => new GiveResource
+        {
+            Amount = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)),
+            Resource = rnd.Range(0, 2) switch 
+            {
+                0 => ResourceType.Bits,
+                1 => ResourceType.Money,
+                2 => ResourceType.Energy,
+                _ => ResourceType.Stamina,
+            }
+        },
+        4 =>  new SpawnObjectAction
+        {
+            Prefab = WeaponGenerator.Instance.RandomObjects.GetRandom()
+        },
+        _ => null,
+    };
 }
