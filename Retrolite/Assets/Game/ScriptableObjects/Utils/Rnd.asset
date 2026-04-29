@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c602a2b54ef074e96ce1c38abe746a, type: 3}
+  m_Name: Rnd
+  m_EditorClassIdentifier: 
+  entries:
+  - {fileID: 4303545390747702513, guid: a9c2bd04a7d3732e4adcb0858af98ef1, type: 3}
+  - {fileID: 4687616792200412915, guid: 38f2e8c323490314d95b78e4f25e9db2, type: 3}
+  - {fileID: 5933580753432114297, guid: 9f7e0c50b7ca58144919a141e96532be, type: 3}
+  - {fileID: 4115728627288184337, guid: eedc4463eb1684992a8d8fec94e5b50d, type: 3}
+  - {fileID: 5729622315320237081, guid: 31971af4c13eea04e9b4c64c0765bffe, type: 3}
+  - {fileID: 4658632795700602020, guid: 7a401ff6472117f4bb8a6e7846470e6b, type: 3}
+  - {fileID: 456781641387130848, guid: 9b7438c075e3deb44a589e778626c423, type: 3}
+  - {fileID: 37932009207781714, guid: 2007ff0f46f6c9b4fbac9492b1b1c612, type: 3}

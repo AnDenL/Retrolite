@@ -8,7 +8,7 @@ public static class Game
     
     public static float TimeSpeed = 1;
     public static bool IsPaused;
-    public static ObjectList GlobalObjects
+    public static PrefabsList GlobalObjects
     {
         get
         {
@@ -16,13 +16,13 @@ public static class Game
                 return objectsCache;
             else
             {
-                objectsCache = Resources.Load<ObjectList>("GlobalObjects");
+                objectsCache = Resources.Load<PrefabsList>("GlobalObjects");
                 return objectsCache;
             }
         }
     }
 
-    private static ObjectList objectsCache;
+    private static PrefabsList objectsCache;
     private static readonly Collider2D[] results = new Collider2D[32];
     
     public static Creature FindNearestToMouse(float radius = 1f)

@@ -272,7 +272,7 @@ public class BulletData
         else IsDynamic = true;
     }
 
-    private ActionNode RandomAction(GameRandom rnd) => rnd.Range(0,5) switch
+    private ActionNode RandomAction(GameRandom rnd) => rnd.Range(0,6) switch
     {
         0 => new ExplosionAction
         {
@@ -303,7 +303,13 @@ public class BulletData
         },
         4 =>  new SpawnObjectAction
         {
-            Prefab = WeaponGenerator.Instance.RandomObjects.GetRandom()
+            Prefab = WeaponGenerator.Instance.RandomObjects.GetRandom(rnd)
+        },
+        5 => new ApplyEffectAction
+        {
+            effect = WeaponGenerator.Instance.RandomEffects.GetRandom(rnd),
+            duration = new Formula(FormulaGenerator.GenerateRandomFormula(rnd)),
+            strength = new Formula(FormulaGenerator.GenerateRandomFormula(rnd))
         },
         _ => null,
     };

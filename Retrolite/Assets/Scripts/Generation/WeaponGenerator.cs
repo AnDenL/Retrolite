@@ -20,7 +20,8 @@ public class WeaponGenerator : MonoBehaviour
     public SpriteList SecondPart;
     public WeaponNameList Names;
     public SpriteList BulletList;
-    public ObjectList RandomObjects;
+    public PrefabsList RandomObjects;
+    public EffectsList RandomEffects;
 
     private void Awake()
     {

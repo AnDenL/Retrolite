@@ -337,7 +337,7 @@ public class Creature : MonoBehaviour, IDamagable, ICorruptible
 
     public void DropItems()
     {
-        GameObject item = Game.GlobalObjects.Entries[0];
+        GameObject item = Game.GlobalObjects[0];
 
         foreach (var stack in inventory.items)
         {

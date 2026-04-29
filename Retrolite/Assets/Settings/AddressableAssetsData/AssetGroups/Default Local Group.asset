@@ -47,9 +47,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0802e3c33713cd9f5824f37459d26005
+    m_Address: Prefabs/Scripts/Core/Interactable
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 082b8586109b2f84497f22021208611c
     m_Address: Textures/Snow
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08836cc668cc2ea4fb4babb13ce39c3e
+    m_Address: Prefabs/Scripts/Utilities/Hook
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0895d642fca6378469acbff019584adf
+    m_Address: Prefabs/Scripts/Generation/MazeGenerator
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 094ae410929e5d04ea7863fb695b3106
@@ -65,6 +80,11 @@ MonoBehaviour:
   - m_GUID: 0a3fb4d75d4b1d444bd67fdbd8f09e4a
     m_Address: Materials/Inline
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0ac6e9e65b752814591b4db7a2069381
+    m_Address: Prefabs/Scripts/UI/WeaponUI
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0af52d235af175042bba9aed21f926e8
@@ -97,6 +117,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0f7ebd9ecc24b6e4f92bacd3e9aa5ed0
+    m_Address: Prefabs/Scripts/Creatures/Skills/SmoothMovement
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1049a26970984aa909887ae872a388ad
     m_Address: Textures/Darkness
     m_ReadOnly: 0
@@ -105,6 +130,11 @@ MonoBehaviour:
   - m_GUID: 13767aec4a80b2541b2ab1b2d5d73f55
     m_Address: Materials/Tree
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1528e41f7566d5991858b91e27c78367
+    m_Address: Prefabs/Scripts/Utilities/DelayedDestroy
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1736bf7af642aa39fa86aa5d5caee495
@@ -120,6 +150,11 @@ MonoBehaviour:
   - m_GUID: 17889a4f975c3cd4ba8d89f6817e9047
     m_Address: Textures/Wood
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 181ba333d2a54924ab72bf9bed5c133e
+    m_Address: Prefabs/Scripts/Core/Game
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 18df021061512d9479cecf9d003b28f0
@@ -147,6 +182,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1b5dea9bdc385b3448398031ab3755d7
+    m_Address: Prefabs/Scripts/Creatures/Controllers/SlimeController
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1c459f0d3c96d644e92deab089a2c96a
     m_Address: Materials/ShaderGraph/Tree
     m_ReadOnly: 0
@@ -154,6 +194,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1cfd5043847c339448c212ae223b034f
     m_Address: Prefabs/UI/Button
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d329e756a3f9184f8bfa6c3cd1371b0
+    m_Address: Prefabs/Scripts/Utilities/ActionOnCorrupt
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ede2a9026bbae14cabb7017c81cc06a
+    m_Address: ScriptableObjects/Utils/BulletsRegister
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -172,14 +222,29 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21756a5bcfa530446b1bbad3fdd51cd7
+    m_Address: Prefabs/Scripts/Creatures/Skills/Movement
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 218eb0a65e174d74c925cc53e8a10fff
     m_Address: Textures/Tilemap_Forest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21d2af39a6e9b8342a94938ea2d34615
+    m_Address: Prefabs/Scripts/Utilities/GridSnapFollow
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 224e4e4f682eda4458fc22e35f6897ab
     m_Address: ScriptableObjects/Items/RandomHealPotion
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2257357adafe715499ff8b245446768f
+    m_Address: Prefabs/Scripts/Creatures/Passive/ShockPasive
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 22b67515a645a5f4781b731b781b09d0
@@ -199,6 +264,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2517d6b6f90b8984c9fbae7268f9ad54
     m_Address: Materials/BinaryText
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 251d30cf203c3ff41892a63209cc9707
+    m_Address: ScriptableObjects/Utils/EffectsList
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -232,6 +302,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 284e289e05462594792904aa4a407b42
+    m_Address: Prefabs/Scripts/Interfaces/IKnockbackable
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 289173887617672dfa9d100596a19fd3
+    m_Address: Prefabs/Scripts/Creatures/Dummy
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 28cb1ce4f468dcd4c9cccc5ecb4f481e
     m_Address: Prefabs/Decorations/AncientDebris_8
     m_ReadOnly: 0
@@ -250,6 +330,11 @@ MonoBehaviour:
   - m_GUID: 2ba283794b493d94baaf08c6be6efab7
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_20
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2bb5fa3fe8abd9f47934e35e85a4ca56
+    m_Address: Prefabs/Scripts/UI/IntEdit
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2cace2a51dcdfa84da712bde51ba3bb8
@@ -302,9 +387,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 319991a842890be488347a4ad925c2c8
+    m_Address: Prefabs/Scripts/Creatures/Creature
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 320f4a15c31d7fe4c86f6de1f2cd1f88
     m_Address: ScriptableObjects/CreaturesAI/Skills/ContactDamage
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 321e11d323d3b2b4198d454aeff1035b
+    m_Address: ScriptableObjects/Effects/Stun
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 33ab09f50fa2b5aa39e0e0066e7a81c1
+    m_Address: Prefabs/Scripts/Obsolete/EnemyBulletBase
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 33b61874a7ab98043ad1ba6b0d623d4c
@@ -325,6 +425,11 @@ MonoBehaviour:
   - m_GUID: 36773cb55073d8744b60bd056d09f604
     m_Address: Materials/ShaderGraph/Fountain
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 36aa389a687e6024b9bdb40e48a8f760
+    m_Address: Prefabs/Scripts/Generation/ParticleSeedSetter
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 36ddee5f212ab884888f02f356e81c51
@@ -357,6 +462,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 38f80d90665041141b6f57a9d9dd6122
+    m_Address: Prefabs/Scripts/Interfaces/IDamagable
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 38fda2613ac5e9b6a9734226da4ff891
     m_Address: Audio/Default
     m_ReadOnly: 0
@@ -375,6 +485,11 @@ MonoBehaviour:
   - m_GUID: 39b31eb16ff36fe62bd661bc29818882
     m_Address: Prefabs/Dummy
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3a1c4e60eafec1a45a0078b662493cdd
+    m_Address: Prefabs/Scripts/Lua/Console
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3aae7acf1ea78a2b3b174f975d2b5046
@@ -417,14 +532,44 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f59709c1c440b440b19e6d9b54c2ca4
+    m_Address: Prefabs/Scripts/Creatures/Skills/CodeTransformationAttack
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f5b5a6dcb3cc7549b01162a58df2603
     m_Address: Textures/Turret
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f7412d4d7711a94c9665c690c456850
+    m_Address: Prefabs/Scripts/UI/Minimap
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f7cf28b972ea8247a7d576183d988e6
+    m_Address: Prefabs/Scripts/UI/Hotbar
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3f9215ea0144899419cfbc0957140d3f
     m_Address: Volumes/DefaultVolumeProfile
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 403cc967568ce8e44bbdaefc8e87cfb0
+    m_Address: Prefabs/Scripts/Creatures/Skills/Action
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 413d9e30111ce904388c0b97e772159c
+    m_Address: Prefabs/Scripts/Creatures/Resources
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41c3b844b0bb63348bc1143a61c55525
+    m_Address: Prefabs/Scripts/Utilities/WeaponNameList
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 41e671fb2d0d5aa49962a3734b12c2be
@@ -462,6 +607,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44473a0524049c44a88943974c3826f9
+    m_Address: Prefabs/Scripts/UI/InventoryUI
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 45568d65adf12eda9bba2fd35258ba2e
     m_Address: Materials/Bloom
     m_ReadOnly: 0
@@ -475,6 +625,16 @@ MonoBehaviour:
   - m_GUID: 463a0870cc0525c4ea353f283bff8f11
     m_Address: Prefabs/gg
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 46e58832ff0146f4fa764dd37827a9e6
+    m_Address: Prefabs/Scripts/Generation/WeaponGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47047117f875bc91ebfdbcdac36e5314
+    m_Address: Prefabs/Scripts/Core/BulletBase
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 472f613a8a0216a4b9237c7af95eab16
@@ -497,14 +657,44 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 487cfcee6ff72bcc1a30eec853868f86
+    m_Address: Prefabs/Scripts/Core/HealthBase
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 49368de9ed1165446889676823e83606
+    m_Address: Prefabs/Scripts/Items/Item
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4b4d05b1a3292ec408384e3c294a830e
     m_Address: ScriptableObjects/CreaturesAI/Controllers/Evil
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4b59a009d623fa049a5019a7c5551ed9
+    m_Address: Prefabs/Scripts/Creatures/WeaponManager
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4da5eeefb1c1d6949bb7e8cde6d29434
+    m_Address: Prefabs/Scripts/Utilities/AddressablesLoader
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4e0b12e94b18d794db3f7def1eae8a64
     m_Address: ScriptableObjects/Items/MoneyBag
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4e70a8e9acc797642b89bd1b764ed819
+    m_Address: Prefabs/Scripts/Lua/LuaValidator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4ee2d3e024ea04544b1659d001cc1e2e
+    m_Address: Prefabs/Scripts/Editor/EditableParamDrawer
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4f70a22805a42a54c9f03f7fbab8e14a
@@ -522,6 +712,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 529dea718053648239c1647946c05b90
+    m_Address: Prefabs/Scripts/Editor/FormulaNodeDrawer
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5480edae4aab25946abe8204d9a6f8f8
     m_Address: ScriptableObjects/CreaturesAI/Skills/ExplosionAction
     m_ReadOnly: 0
@@ -530,6 +725,16 @@ MonoBehaviour:
   - m_GUID: 5599f1aba3413d647ad5c47fc27e218e
     m_Address: Materials/Nature
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 559cec284a4914748919bc701b97ac2f
+    m_Address: Prefabs/Scripts/Utilities/ZDepthRuleTile
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 55bcad129d01cf538af235b62387291f
+    m_Address: Prefabs/Scripts/Utilities/ContactDamage
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 566175d2b6d94ae479cdb1b6fe3178d4
@@ -542,9 +747,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 578b0cba34fe814d6a259bcfda2e5472
+    m_Address: Prefabs/Scripts/Utilities/Hints
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 58ed3452d17e461f69ea1a5fcbbdd737
     m_Address: Tiles/Shop/Shop_4
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 59d9418f1907cc94cbe6bc2e8063db95
+    m_Address: Prefabs/Scripts/Creatures/Effects/SpeedModifier
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 59f36a77ee137e97181fe6517217668c
@@ -557,9 +772,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a5608bef9c5ff8458fa1342d0b47397
+    m_Address: Prefabs/Scripts/Creatures/Passive/ContactDamage
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5a5e68c5ec99bd841ae33f6ff98ecbdf
+    m_Address: Prefabs/Scripts/Generation/ForestGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b88cb2f0e57f3d4abc48881490efc92
     m_Address: ScriptableObjects/Effects/Regeneration
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5b9470911383bcbe4aef6cb46ae890c7
+    m_Address: Prefabs/Scripts/Utilities/LinePoints
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5d13c43014251ab4f94018280b0d17d6
@@ -657,6 +887,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 65f30b13b733538499e2c1f75f51350d
+    m_Address: Prefabs/Scripts/Utilities/PooledParticle
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 665e818aa427fa9459c243e0b7f2f9b8
     m_Address: Tiles/Tutorial/TutorialTileRule
     m_ReadOnly: 0
@@ -665,6 +900,11 @@ MonoBehaviour:
   - m_GUID: 66746364785300b40963c39d3a9e5e24
     m_Address: Materials/Shaders/Minimap
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6688754c15720044ba75a27c07572721
+    m_Address: Prefabs/Scripts/Generation/IGenerationStruct
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 67111596fda7f1609b45f13384bd01ea
@@ -682,6 +922,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 67aa2e6093e17f74ab97491aeb213195
+    m_Address: Prefabs/Scripts/Utilities/BulletPool
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 682a92d59c9ddfe4ba1fe765b94cab28
     m_Address: ScriptableObjects/CreaturesAI/Controllers/Flow
     m_ReadOnly: 0
@@ -697,14 +942,34 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69c5dac8779c7f74d8dcb7b4eeb643b2
+    m_Address: Prefabs/Scripts/Items/ChestGeneratable
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6a0b18454f41dd14faed730a1eb88792
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_10
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a1f32a4d698fa247a5e5ed47db0e93a
+    m_Address: Prefabs/Scripts/Utilities/SpriteList
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a43209b4f2235e4186717b5101afa29
+    m_Address: Prefabs/Scripts/Creatures/Controllers/PlayerController
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6acb29c9c331e5a42b97f61321970baa
     m_Address: Volumes/UnderWater
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c04008aae0ae131197baf5f01af8dc0
+    m_Address: Prefabs/Scripts/UI/Settings
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6cdcf884447fede49ac69d1abbbe053d
@@ -777,6 +1042,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 72c85b6ec44f215e59e0946585ff73d0
+    m_Address: Prefabs/Scripts/UI/LowHealthVolume
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73e07359a4c37d83baa1ed3fe41b7511
+    m_Address: Prefabs/Scripts/Obsolete/SpawnOnDestroy
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7467a89f627bbef4d98db3d3484c408d
+    m_Address: Prefabs/Scripts/Creatures/Skills
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 74f694aeb43cbfe45b00ede9028c1b61
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_11
     m_ReadOnly: 0
@@ -790,6 +1070,11 @@ MonoBehaviour:
   - m_GUID: 75a17c1ea76ea4b468b177e85cd55ad2
     m_Address: Materials/ShaderGraph/Energy
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 75d276ba3789e534d89397ddaae12276
+    m_Address: Prefabs/Scripts/Items/ItemPickUp
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 764222d1be1e6a4428f9bc36c8de2527
@@ -857,9 +1142,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 80fc5561398241942bb98a9833437bb9
+    m_Address: Prefabs/Scripts/Creatures/Skills/UseWeapon
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 815a7d8c0f74e2ca5ba10d07a36f7747
     m_Address: Materials/TreeShadow
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 817b0afe937a7474693335b161834b97
+    m_Address: Prefabs/Scripts/Interfaces/IEdibleParameterUI
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81b34a2c9833f9641bcd08d68ddc3976
+    m_Address: Prefabs/Scripts/Creatures/CreatureAI
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 81f450d0a810fc841bb3b07ea9e62fc1
@@ -872,6 +1172,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 831c8378e12a80243bc9e4db6807f00b
+    m_Address: Prefabs/Scripts/Creatures/AlignmentSystem
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8440ea3c54181954a80e3a487b3c9309
     m_Address: Prefabs/Portal
     m_ReadOnly: 0
@@ -882,9 +1187,29 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8467fb303f82135448f3ba69a24370f8
+    m_Address: Prefabs/Scripts/Utilities/WallMaterial
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 84a573ee2a59b9d468f71efa51986aa2
     m_Address: Prefabs/UI/EnumSlot
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 84b052e69e3d9d34bbc50c86eab753ad
+    m_Address: Prefabs/Scripts/Creatures/CreaturesManager
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 859d2bf81bc2a12a986973f5c70382a1
+    m_Address: Prefabs/Scripts/Items/Chest
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 875c4db5c86649047ab08b3ac9e52768
+    m_Address: Prefabs/Scripts/Lua/LuaApi
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 879f7133a453a9c4b8ed9461e73a493b
@@ -892,14 +1217,39 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87eec4677c1c3474b9fe943ec0bbb5e2
+    m_Address: Prefabs/Scripts/Creatures/Skills/Dash
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 892705b131854634288573fab7d3f5be
+    m_Address: Prefabs/Scripts/Creatures/Skills/SlimeJump
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 895e923e228322343964aa0fa52f5309
     m_Address: Audio/Laser_0
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 896e283fcfd7940f49aed31a6569f178
+    m_Address: Prefabs/Scripts/UI/Menu
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b2559a959d34294eb46b37dd0dc1243
+    m_Address: Prefabs/Scripts/Core/Rule
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8bb431f0967f80f46a6ad02f22ef34e5
     m_Address: Textures/Editor/ControllerIcon
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8bcf3f4a50715ed4f92af59d4a1fdeed
+    m_Address: Prefabs/Scripts/Creatures/Effects/Stun
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d4eaf077cf2f3f40a4361d64cd406a6
@@ -915,6 +1265,11 @@ MonoBehaviour:
   - m_GUID: 8e10f884806d32842983da55aea12334
     m_Address: Materials/ShaderGraph/UnderWater
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8e9fa7c868917b244b28fba4196fbd9f
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/CalculatingSystemUtilities
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8edbf97dec639ed4db3760974cf7c4a7
@@ -972,6 +1327,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94d0dacb6b423534aa0d20376cc9870a
+    m_Address: Prefabs/Scripts/Core/CodeRedactSystem
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 94d472f0027a9c747b67c58f406fc70c
     m_Address: Textures/BigFirefly
     m_ReadOnly: 0
@@ -982,6 +1342,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98e468b16913e654595b2dd957359917
+    m_Address: Prefabs/Scripts/Generation/Tree
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 98e74c9d272ee5e4f874119e3eb6f464
     m_Address: Materials/UI_Minimap
     m_ReadOnly: 0
@@ -990,6 +1355,11 @@ MonoBehaviour:
   - m_GUID: 994ac98ddbf9a824d9ec95df6dfde6fb
     m_Address: ScriptableObjects/CreaturesAI/Skills/ShockPasive
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 99e5a277991100f4a993024db55f863c
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/Formula
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9a69318a45ea4f84fa38285a345684aa
@@ -1015,6 +1385,11 @@ MonoBehaviour:
   - m_GUID: 9bb0eef0b782ba443a620b59ea9de2ad
     m_Address: Tiles/Forest/Tilemap_Forest_4
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c6db918a4828264691871b920f09030
+    m_Address: Prefabs/Scripts/Utilities/GameRandom
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9de17055ca8644a49821e25fc51db2be
@@ -1057,6 +1432,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9fe4d398e53c9484caa10ec80b1da4e7
+    m_Address: Prefabs/Scripts/UI/HealthUI
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9fffe56353bc9b04fb65bae188573a16
     m_Address: Prefabs/UI/Console
     m_ReadOnly: 0
@@ -1077,9 +1457,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a30f4f51ef578039db84bc68b6269dc1
+    m_Address: Prefabs/Scripts/UI/PlayerUI
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a3f2cc44bbd50844dbaf1421fb032696
+    m_Address: Prefabs/Scripts/Creatures/Skills/Interact
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a4342ac3bab236650b340e606ba4dad3
     m_Address: Prefabs/Particles/Particle System
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a5cd241e0f4dd8342b668e117bc4e6f9
+    m_Address: Prefabs/Scripts/Generation/FloorGeneration
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a5e1f83d20f024449ac3be83e6bd9987
@@ -1087,9 +1482,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a67738dcfdb9eac4ebef0180e93fd8d3
+    m_Address: Prefabs/Scripts/Utilities/TriggerEvent
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a6ed57ff981d0ce49805c0dc536521a5
+    m_Address: Prefabs/Scripts/Editor/ItemDrawerEditor
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a71ed8ff5652baa449a44e0d0beaa44c
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_6
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7283a9bf939c6c5a94fd3191d0bb456
+    m_Address: Prefabs/Scripts/Creatures/PlayerHealth
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a766f9f8fa83da32ab80fe472ca7b95a
@@ -1100,6 +1510,11 @@ MonoBehaviour:
   - m_GUID: a79d18239c180e74c8297a30488a5ca9
     m_Address: Tiles/Tutorial/Tilemap_TutorialTest_0
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a7aa15c23eee814f391c94684c891aac
+    m_Address: Prefabs/Scripts/Utilities/TextAnimator
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a7b49e20260d58840b0a1a1c97a6c585
@@ -1172,6 +1587,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: afe2cb7f690c68948a304b1db3fbeb3d
+    m_Address: Prefabs/Scripts/Creatures/Controllers/TurretController
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b02b18768e8389741b1019548acd3044
     m_Address: Textures/AncientChest
     m_ReadOnly: 0
@@ -1207,6 +1627,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b387fa93a0856b9439c768ea69a00a0f
+    m_Address: Prefabs/Scripts/Generation/DungeonGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3909c459a303b9db92d7850b5e55ff5
+    m_Address: Prefabs/Scripts/Obsolete/CreateBullet
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b3bf3ff4b40036404b00126c03895158
+    m_Address: Prefabs/Scripts/Items/GunPickUp
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b3bfe0b266b142e4d86ed12e816adc9b
     m_Address: Materials/Outline
     m_ReadOnly: 0
@@ -1215,6 +1650,11 @@ MonoBehaviour:
   - m_GUID: b6606abf07135b34aaf636ee31d33a25
     m_Address: ScriptableObjects/CreaturesAI/Skills/SlimeJump
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b7a88a012d298db4494346ff6c934a56
+    m_Address: Prefabs/Scripts/Core/SaveSystem
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b7ac29c50336f3e4baa443a86738a550
@@ -1230,6 +1670,11 @@ MonoBehaviour:
   - m_GUID: b7fb8db3756bf4a4c9894a87fd189d99
     m_Address: Materials/Fountain
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b93f95d9d5613fa4dac78950118205c4
+    m_Address: Prefabs/Scripts/UI/SpriteSizer
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9459e6ed42170d41a253ea174506b92
@@ -1262,6 +1707,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc1a55e54d081d94184a79c80e49350b
+    m_Address: ScriptableObjects/Utils/Rnd
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bc68e050f7ce31e419428a978cd0fd87
     m_Address: Materials/Binary 3
     m_ReadOnly: 0
@@ -1272,14 +1722,39 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd1484636af9aad4e949fc9bb8b1d0f0
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/ConditionNode
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bde064b41a6d56c4088d2966cd0f44cb
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/FormulaGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: beec64ee8dfb53447a9dd08148dfcb96
     m_Address: Audio/Fire
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bf6117d6862802d8bbc89ac86503865f
+    m_Address: Prefabs/Scripts/UI/AmmoUI
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c09e459b104ff604cb1c8b9b03f814cc
+    m_Address: Prefabs/Scripts/Generation/IslandGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c1e28723d37584e40aa1cb4e412a77b1
     m_Address: Audio/Step_grass
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1fee1ed0e59c5b4d89b0ab2fa54d17d
+    m_Address: Prefabs/Scripts/Core/ActionNodes
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c28d914150daf9f45b933a8f10fcb02b
@@ -1337,6 +1812,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c90a363cba87e8547b811f7bb20d94e1
+    m_Address: Prefabs/Scripts/Creatures/Passive/Spores
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c92de2c2d5795d842901b7712fba40a7
     m_Address: Prefabs/Decorations/Lamp 2
     m_ReadOnly: 0
@@ -1362,6 +1842,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cbc14c6c1a47cee4b9899764eaff1848
+    m_Address: Prefabs/Scripts/UI/FloatEdit
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ccb74d6f54b9f984dada0e4e98cad45d
     m_Address: Prefabs/Decorations/Candle3
     m_ReadOnly: 0
@@ -1377,14 +1862,29 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce0a48f399f3a0adbbac7f08de7e0fcb
+    m_Address: Prefabs/Scripts/Utilities/ShakingText
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ce153a73c7399784b9ff284541719ae2
     m_Address: Materials/TreeShadow 1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ce8e0a7bee0bb91e2b08a91bdfe18216
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/FormulaContext
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cee8ecd7c2a0db1c8bdeef4a3f90190f
     m_Address: ScriptableObjects/SpriteLists/AllSecondParts
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d05f360dc933236d3a0850b810a2f5ea
+    m_Address: Prefabs/Scripts/Generation/LevelPlacer
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d1991754f7401704c98db3d3eeff6fc5
@@ -1407,6 +1907,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d3ecd86152d43c543adff52deaf99a60
+    m_Address: Prefabs/Scripts/Items/Inventory
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d553b95f3d210db498488182e94b6c06
     m_Address: Prefabs/UI/FloatSlot
     m_ReadOnly: 0
@@ -1415,6 +1920,11 @@ MonoBehaviour:
   - m_GUID: d5d924ad79abf7b41a74fe4d1ae45012
     m_Address: Prefabs/Decorations/Candle5
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d6d9c02f22d5926499ffd8941b2fc9aa
+    m_Address: Prefabs/Scripts/Creatures/Skills/PositionTransformation
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d755b8e414115b7489bcb740f7d86f4a
@@ -1427,9 +1937,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d90f48e52826ba943aaf33a03eb04aad
+    m_Address: Prefabs/Scripts/Generation/CaveGenerator
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d990e50a32ee131209ed70ef6e928db4
     m_Address: Materials/ShaderGraph/TreeShadow
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da2ca1348dc261fa6bb575e9c46bb7c2
+    m_Address: Prefabs/Scripts/Core/CorruptibleBase
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da62ebfbef2de021787fd81a1a734d3e
@@ -1447,9 +1967,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dc5004b595524cd4ab0020011d127281
+    m_Address: Prefabs/Scripts/UI/EnumEdit
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: dd339f9bdf8a9074eb843142b66053cd
     m_Address: Textures/RenderTextures/FogOfWar
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddf35be5e469d48418c1ee256adb2806
+    m_Address: Prefabs/Scripts/Creatures/Passive/BulletEvasion
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ddf8616cc38de31a38a6a6c976b44562
+    m_Address: Prefabs/Scripts/Items/ShopItem
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ded458a89c6ff0c4d9ec73afda7d40ed
@@ -1517,6 +2052,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e5e68dd519d057b459bc23f83d8253c9
+    m_Address: Prefabs/Scripts/Creatures/Controllers/RobotController
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e771d1e6b6b781442b3e50a60f3d6923
     m_Address: Prefabs/Decorations/Tree
     m_ReadOnly: 0
@@ -1542,9 +2082,24 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8cdd6f76de1a2a42914c48869d510b3
+    m_Address: Prefabs/Scripts/Creatures/Skills/Heal
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e92b354baa33d1b458aec2c476005dfd
+    m_Address: Prefabs/Scripts/Creatures/Effects/Regeneration
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e94ea9cb91e342345b244909e02fceca
     m_Address: Prefabs/UI/TMPSample
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e96da9a56b15f9e47b5f35ea00885251
+    m_Address: Prefabs/Scripts/Interfaces/ICorruptible
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ea5333ca044efec47bb86406133beae8
@@ -1567,6 +2122,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: eb95763155c7600bb825b8d9643b9d7b
+    m_Address: Prefabs/Scripts/Utilities/ArcAnim
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed7b2aa82b6488f4aa789219d0bebb3c
+    m_Address: Prefabs/Scripts/Creatures/Skills/ShootBullet
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: eedc4463eb1684992a8d8fec94e5b50d
     m_Address: Prefabs/HealingPotion
     m_ReadOnly: 0
@@ -1577,9 +2142,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f020881f2b594884c988a4f96b1e57eb
+    m_Address: Prefabs/Scripts/Creatures/Effects
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f02d562b1c359054ebb43fda62516e87
     m_Address: Audio/Poof 2
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f034c6b809d24754ca5176515e4d5d52
+    m_Address: Prefabs/Scripts/Utilities/ObjectReturn
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f2985d8d622a6c54ca9d3102b3731a3b
@@ -1622,9 +2197,19 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f520b351c73f54f259b8017b70d491a2
+    m_Address: Prefabs/Scripts/Core/GunBase
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f5dcb3064e5eab7449c8bf3ae825b9c6
     m_Address: ScriptableObjects/CreaturesAI/Skills/FireflyEvasion
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f6ffe891ab6cce84bbc50cc8195c214f
+    m_Address: Prefabs/Scripts/Utilities/LevelChange
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f78a175d4156eb847af3b2a94232756f
@@ -1637,9 +2222,34 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f7ad960439ffde746926d638355c64f7
+    m_Address: Prefabs/Scripts/Creatures/Robot
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f84cd990a2274d042adb8f374f89dd1c
+    m_Address: Prefabs/Scripts/Utilities/ParticleManager
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f8696bfe12da6a0439f7519b46d599a4
     m_Address: ScriptableObjects/SpriteLists/AllFirstParts
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f8b38e32f0075aa418a8a569a000fbfb
+    m_Address: Prefabs/Scripts/UI/ItemSlot
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f956bb98e7058c34fb7aad4294f3fe13
+    m_Address: Prefabs/Scripts/Creatures/Player
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fa32efceeef792e4fb2ca43ab2bda3d4
+    m_Address: Prefabs/Scripts/Generation/MaterialSetSeed
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fb0c5f7092695eadf8ba0ed891f57f88
@@ -1657,14 +2267,34 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fba1356ebcebf4845b60ec422ed06c34
+    m_Address: Prefabs/Scripts/Core/CalculatingSystem/FormulaNodes
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fbd26d10053c8b34db32a8e3b5838dd8
+    m_Address: Prefabs/Scripts/Items/Shop
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc0967170faad231792a953e56e64c5d
     m_Address: Textures/UI
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc75f9dbd3f6f323990e24d46550730d
+    m_Address: Prefabs/Scripts/Utilities/CameraController
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fcfa3e15c4dd9234e953c03fd22a51e5
     m_Address: Prefabs/Particles/DustCloud
     m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fdd29a4bf4163fa46ba1d743fc4e0943
+    m_Address: Prefabs/Scripts/Editor/AutoAdressable
+    m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0

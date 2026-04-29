@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ObjectList", menuName = "Game/Utilities/ObjectList")]
-public class ObjectList : ScriptableObject
+//[CreateAssetMenu(fileName = "ObjectList", menuName = "Game/Utilities/ObjectList")]
+public class GameObjectList : ScriptableObject
 {
     public GameObject[] Entries;
 

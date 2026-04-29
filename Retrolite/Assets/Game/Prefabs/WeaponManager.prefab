@@ -99,13 +99,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f520b351c73f54f259b8017b70d491a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefabs: {fileID: 11400000, guid: 2d3b67caa0117fcc1901dd70deab86c3, type: 2}
+  bulletPrefabs: {fileID: 11400000, guid: 1ede2a9026bbae14cabb7017c81cc06a, type: 2}
   data:
     Name: Empty
     FireRate:
-      rid: 1425606034702991376
+      rootNode:
+        rid: 7704659070946902022
     Accuracy:
-      rid: 1425606034702991377
+      rootNode:
+        rid: 7704659070946902023
     MagazineSize: 0
     CurrentAmmo: 1
     Echo: 0
@@ -116,31 +118,44 @@ MonoBehaviour:
     BulletType: 0
     BulletData:
       Damage:
-        rid: -2
+        rootNode:
+          rid: -2
       LifeTime:
-        rid: -2
+        rootNode:
+          rid: -2
       Knockback:
-        rid: -2
+        rootNode:
+          rid: -2
       Scale:
-        rid: -2
+        rootNode:
+          rid: -2
       Speed:
-        rid: -2
+        rootNode:
+          rid: -2
       Angle:
+        rootNode:
+          rid: -2
+      OnReturn:
+        rid: -2
+      OnDamage:
         rid: -2
       BulletSprite: {fileID: 0}
+      FireSound: {fileID: 0}
       IsDynamic: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 1425606034702991376
+    - rid: 7704659070946902022
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 0
-    - rid: 1425606034702991377
+    - rid: 7704659070946902023
       type: {class: ConstantNode, ns: CalculatingSystem, asm: Assembly-CSharp}
       data:
+        IsLocked: 0
         Value: 1
 --- !u!1 &2631612035885631530
 GameObject:
@@ -189,6 +204,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handTransform: {fileID: 9022623504473703491}
   gun: {fileID: 8413811009898432924}
+  IsReloading: 0
 --- !u!1 &3446680998451889957
 GameObject:
   m_ObjectHideFlags: 0

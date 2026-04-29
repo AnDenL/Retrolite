@@ -5,7 +5,7 @@ using CalculatingSystem;
 
 public class GunBase : MonoBehaviour
 {
-    [SerializeField] private ObjectList bulletPrefabs;
+    [SerializeField] private PrefabsList bulletPrefabs;
     private BulletPool bulletPool;
     private Context context;
     private WeaponManager manager;
@@ -25,7 +25,7 @@ public class GunBase : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = data.GunSprite;
 
         Transform spawn = transform.childCount > 0 ? transform.GetChild(0) : transform;
-        bulletPool = new BulletPool(bulletPrefabs.Entries[(int)data.BulletType], spawn, data.BulletData, context);
+        bulletPool = new BulletPool(bulletPrefabs[(int)data.BulletType], spawn, data.BulletData, context);
         manager = wm;
     }
 
